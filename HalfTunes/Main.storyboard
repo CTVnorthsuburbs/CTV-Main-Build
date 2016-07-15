@@ -2,11 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6bE-09-FD8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Videos-->
+        <!--My Videos-->
         <scene sceneID="GkY-Yy-XVW">
             <objects>
                 <tableViewController id="X4D-Xd-ZHY" customClass="VideoTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,34 +28,71 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-K4-h5D">
+                                            <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
                                             <rect key="frame" x="97" y="8" width="495" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6h-YQ-ALY">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="File Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6h-YQ-ALY">
                                             <rect key="frame" x="97" y="36" width="495" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-39-9Wc">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-39-9Wc" userLabel="Download Button">
                                             <rect key="frame" x="514" y="27" width="69" height="30"/>
                                             <state key="normal" title="Download">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-K4-h5D">
-                                            <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
-                                        </imageView>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsx-rf-2wX" userLabel="Cancel Button">
+                                            <rect key="frame" x="544" y="27" width="48" height="30"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pqc-D4-rSI" userLabel="Pause Button">
+                                            <rect key="frame" x="494" y="27" width="42" height="30"/>
+                                            <state key="normal" title="Pause">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100% of 1.35MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44T-ZV-iEZ" userLabel="Progress Label">
+                                            <rect key="frame" x="507" y="72" width="84" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <progressView hidden="YES" opaque="NO" tag="40" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-qP-z3O">
+                                            <rect key="frame" x="62" y="44" width="476" height="2"/>
+                                        </progressView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="sBi-39-9Wc" secondAttribute="trailing" constant="9" id="3NW-IV-4qH"/>
+                                        <constraint firstItem="sBi-39-9Wc" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="19" id="CCz-tt-apf"/>
+                                        <constraint firstItem="dsx-rf-2wX" firstAttribute="trailing" secondItem="TpD-sJ-fVf" secondAttribute="trailingMargin" constant="8" id="CHF-dx-5Vi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bXb-qP-z3O" secondAttribute="trailing" constant="102" id="DO6-hl-sz9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="44T-ZV-iEZ" secondAttribute="trailing" constant="9" id="FDQ-9I-pK2"/>
+                                        <constraint firstItem="bXb-qP-z3O" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" constant="14" id="LBL-jF-TjG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sBi-39-9Wc" secondAttribute="trailing" constant="17" id="OFj-Uj-Bb0"/>
+                                        <constraint firstItem="44T-ZV-iEZ" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="centerY" id="V2T-GZ-Hcg"/>
+                                        <constraint firstItem="dsx-rf-2wX" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="1" id="lCW-Yi-DO8"/>
+                                        <constraint firstItem="dsx-rf-2wX" firstAttribute="leading" secondItem="Pqc-D4-rSI" secondAttribute="trailing" constant="8" id="mub-pu-6Ki"/>
+                                        <constraint firstItem="dsx-rf-2wX" firstAttribute="centerY" secondItem="Pqc-D4-rSI" secondAttribute="centerY" id="pTg-kX-ttG"/>
+                                        <constraint firstItem="Pqc-D4-rSI" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="1" id="tN8-MR-kgY"/>
+                                        <constraint firstItem="bXb-qP-z3O" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="baseline" id="wPO-RU-sxN"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="cancelButton" destination="dsx-rf-2wX" id="94i-3V-J5y"/>
+                                    <outlet property="downloadButton" destination="sBi-39-9Wc" id="TdI-26-AV6"/>
                                     <outlet property="fileNameLabel" destination="C6h-YQ-ALY" id="Nfi-HR-5EB"/>
+                                    <outlet property="pauseButton" destination="Pqc-D4-rSI" id="lbv-Of-TU4"/>
+                                    <outlet property="progressLabel" destination="44T-ZV-iEZ" id="af6-2L-9JK"/>
+                                    <outlet property="progressView" destination="bXb-qP-z3O" id="D1b-w8-k5R"/>
                                     <outlet property="thumbnailView" destination="r1z-K4-h5D" id="Evd-Ky-MzG"/>
                                     <outlet property="titleLabel" destination="afY-mg-s8l" id="Lg8-O1-jgC"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="GtT-Vd-w7x"/>
@@ -66,7 +104,7 @@
                             <outlet property="delegate" destination="X4D-Xd-ZHY" id="Vg1-fc-3rg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Videos" id="eSY-WF-TJg">
+                    <navigationItem key="navigationItem" title="My Videos" id="eSY-WF-TJg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5IV-og-BzF">
                             <connections>
                                 <segue destination="v04-W0-ww0" kind="presentation" identifier="AddItem" id="7q5-IT-HBe"/>
@@ -91,15 +129,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
-                                <rect key="frame" x="20" y="80" width="560" height="362"/>
+                                <rect key="frame" x="20" y="80" width="560" height="404"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter video name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jaC-rX-iHd">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter file name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dEE-0R-Ya3">
+                                        <rect key="frame" x="0.0" y="42" width="560" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
-                                        <rect key="frame" x="120" y="42" width="320" height="320"/>
+                                        <rect key="frame" x="120" y="84" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="OEg-fp-J0R" secondAttribute="height" multiplier="1:1" id="eS5-Ed-Gj8"/>
@@ -110,8 +153,10 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dEE-0R-Ya3" secondAttribute="trailing" id="TSN-AY-iBU"/>
                                     <constraint firstAttribute="trailing" secondItem="jaC-rX-iHd" secondAttribute="trailing" id="ekZ-bN-ujf"/>
                                     <constraint firstItem="jaC-rX-iHd" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="mYS-Oi-eKf"/>
+                                    <constraint firstItem="dEE-0R-Ya3" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="sMs-Ev-FTy"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -135,6 +180,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="fileNameTextField" destination="dEE-0R-Ya3" id="VYm-j0-dPj"/>
                         <outlet property="saveButton" destination="zH4-dM-PV7" id="X2o-PZ-U81"/>
                         <outlet property="thumbnailView" destination="OEg-fp-J0R" id="bOs-Dv-GWF"/>
                         <outlet property="titleTextField" destination="jaC-rX-iHd" id="OEy-mI-C2v"/>
@@ -191,6 +237,6 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hfz-VK-jOs"/>
+        <segue reference="GtT-Vd-w7x"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,7 +38,7 @@ class VideoTableViewController: UITableViewController {
         let video2 = Video(title: "Baseball", thumbnail: photo2, fileName: "video2", sourceUrl: "ctv15.org" )!
         
         let photo3 = UIImage(named: "meal3")!
-        let video3 = Video(title: "Volleyball", thumbnail: photo3, fileName: "video2", sourceUrl: "ctv15.org" )!
+        let video3 = Video(title: "Volleyball", thumbnail: photo3, fileName: "video3", sourceUrl: "ctv15.org" )!
         
         videos += [video1, video2, video3]
     }
@@ -68,6 +68,7 @@ class VideoTableViewController: UITableViewController {
         
        cell.titleLabel.text = video.title
         cell.thumbnailView.image = video.thumbnail
+        cell.fileNameLabel.text = video.fileName
         
         
         

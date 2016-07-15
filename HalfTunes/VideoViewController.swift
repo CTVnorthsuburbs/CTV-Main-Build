@@ -20,7 +20,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
+    @IBOutlet weak var fileNameTextField: UITextField!
     /*
      This value is either passed by `VideoTableViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new video.
@@ -38,6 +38,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             navigationItem.title = video.title
             titleTextField.text   = video.title
             thumbnailView.image = video.thumbnail
+            fileNameTextField.text = video.fileName
          
         }
         
@@ -105,10 +106,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if saveButton === sender {
             let title = titleTextField.text ?? ""
             let thumbnail = thumbnailView.image
-            
+            let fileName = fileNameTextField.text ?? ""
             
             // Set the video to be passed to VideoListTableViewController after the unwind segue.
-            video = Video(title: title, thumbnail: thumbnail, fileName: "file", sourceUrl: "ctv15.org")
+            video = Video(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: "ctv15.org")
         }
     }
     
