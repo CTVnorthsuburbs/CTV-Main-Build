@@ -7,17 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D2431C41D391EBC0024F1D6 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2431C11D391EBC0024F1D6 /* MealViewController.swift */; };
-		8D2431C51D391EBC0024F1D6 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2431C21D391EBC0024F1D6 /* RatingControl.swift */; };
-		8D2431C61D391EBC0024F1D6 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2431C31D391EBC0024F1D6 /* Meal.swift */; };
-		8D2431C91D391EC60024F1D6 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2431C71D391EC60024F1D6 /* MealTableViewController.swift */; };
-		8D2431CA1D391EC60024F1D6 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2431C81D391EC60024F1D6 /* MealTableViewCell.swift */; };
 		8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */; };
 		8D2431CE1D391FC10024F1D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CD1D391FC10024F1D6 /* Main.storyboard */; };
 		8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CF1D391FF30024F1D6 /* Assets.xcassets */; };
 		8D5109AD1D39229500CFFDAC /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109AC1D39229500CFFDAC /* Video.swift */; };
 		8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */; };
 		8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */; };
+		8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */; };
 		8DB606961D303934005029DB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6068F1D303934005029DB /* Decoder.swift */; };
 		8DB606971D303934005029DB /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606901D303934005029DB /* Dictionary.swift */; };
 		8DB606981D303934005029DB /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606911D303934005029DB /* Encoder.swift */; };
@@ -32,17 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D2431C11D391EBC0024F1D6 /* MealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
-		8D2431C21D391EBC0024F1D6 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
-		8D2431C31D391EBC0024F1D6 /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		8D2431C71D391EC60024F1D6 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
-		8D2431C81D391EC60024F1D6 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D2431CD1D391FC10024F1D6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D2431CF1D391FF30024F1D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D5109AC1D39229500CFFDAC /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
+		8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8DB6068F1D303934005029DB /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Gloss/Decoder.swift; sourceTree = "<group>"; };
 		8DB606901D303934005029DB /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Gloss/Dictionary.swift; sourceTree = "<group>"; };
 		8DB606911D303934005029DB /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encoder.swift; path = Gloss/Encoder.swift; sourceTree = "<group>"; };
@@ -121,12 +113,8 @@
 		D9EF8FC31B53FD2100EFC4B6 /* HalfTunes */ = {
 			isa = PBXGroup;
 			children = (
-				8D2431C11D391EBC0024F1D6 /* MealViewController.swift */,
-				8D2431C21D391EBC0024F1D6 /* RatingControl.swift */,
-				8D2431C31D391EBC0024F1D6 /* Meal.swift */,
-				8D2431C71D391EC60024F1D6 /* MealTableViewController.swift */,
+				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
 				8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */,
-				8D2431C81D391EC60024F1D6 /* MealTableViewCell.swift */,
 				D92117481B596DFE008DAD44 /* Cells */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 				8D2431C01D391E970024F1D6 /* Gloss */,
@@ -223,11 +211,9 @@
 			files = (
 				D9EF8FEA1B53FD6900EFC4B6 /* SearchViewController.swift in Sources */,
 				D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */,
-				8D2431C91D391EC60024F1D6 /* MealTableViewController.swift in Sources */,
-				8D2431C61D391EBC0024F1D6 /* Meal.swift in Sources */,
 				8DB606981D303934005029DB /* Encoder.swift in Sources */,
+				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */,
-				8D2431C51D391EBC0024F1D6 /* RatingControl.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
@@ -235,10 +221,8 @@
 				8DB606991D303934005029DB /* Gloss.swift in Sources */,
 				8DB606971D303934005029DB /* Dictionary.swift in Sources */,
 				8DB6069B1D303934005029DB /* Operators.swift in Sources */,
-				8D2431C41D391EBC0024F1D6 /* MealViewController.swift in Sources */,
 				8D5109AD1D39229500CFFDAC /* Video.swift in Sources */,
 				8DB6069D1D303E1F005029DB /* Download.swift in Sources */,
-				8D2431CA1D391EC60024F1D6 /* MealTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

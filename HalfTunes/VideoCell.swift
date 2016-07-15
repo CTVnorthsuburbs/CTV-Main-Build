@@ -23,9 +23,17 @@ protocol VideoCellDelegate {
 class VideoCell: UITableViewCell {
     // MARK: Properties
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
+ 
+
+    @IBOutlet weak var thumbnailView: UIImageView!
+
+    @IBOutlet weak var fileNameLabel: UILabel!
+    
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +48,7 @@ class VideoCell: UITableViewCell {
     
     var delegate: VideoCellDelegate?
     
-    @IBOutlet weak var titleLabel: UILabel!
+    
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!

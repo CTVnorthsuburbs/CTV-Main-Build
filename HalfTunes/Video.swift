@@ -21,7 +21,7 @@ class Video: NSObject, NSCoding {
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("meals")
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("videos")
     
     // MARK: Types
     
@@ -52,7 +52,7 @@ class Video: NSObject, NSCoding {
         
         super.init()
         
-        // Initialization should fail if there is no name or if the rating is negative.
+        // Initialization should fail if there is no title.
         if title.isEmpty {
             return nil
         }
@@ -75,7 +75,7 @@ class Video: NSObject, NSCoding {
         let sourceUrl = aDecoder.decodeObjectForKey(PropertyKey.sourceUrlKey) as! String
         
         
-        // Because photo is an optional property of Meal, use conditional cast.
+        // Because photo is an optional property of Video, use conditional cast.
         let thumbnail = aDecoder.decodeObjectForKey(PropertyKey.thumbnailKey) as? UIImage
         
    

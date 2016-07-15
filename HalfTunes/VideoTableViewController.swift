@@ -21,7 +21,7 @@ class VideoTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        // Load any saved meals, otherwise load sample data.
+        // Load any saved videos, otherwise load sample data.
         if let savedVideos = loadVideos() {
             videos += savedVideos
         } else {
@@ -31,13 +31,13 @@ class VideoTableViewController: UITableViewController {
     }
     
     func loadSampleVideos() {
-        let photo1 = UIImage(named: "video1")!
+        let photo1 = UIImage(named: "meal1")!
         let video1 = Video(title: "Soccer", thumbnail: photo1, fileName: "video1", sourceUrl: "ctv15.org" )!
         
-        let photo2 = UIImage(named: "video2")!
+        let photo2 = UIImage(named: "meal2")!
         let video2 = Video(title: "Baseball", thumbnail: photo2, fileName: "video2", sourceUrl: "ctv15.org" )!
         
-        let photo3 = UIImage(named: "video3")!
+        let photo3 = UIImage(named: "meal3")!
         let video3 = Video(title: "Volleyball", thumbnail: photo3, fileName: "video2", sourceUrl: "ctv15.org" )!
         
         videos += [video1, video2, video3]
@@ -60,14 +60,14 @@ class VideoTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "VideoTableViewCell"
+        let cellIdentifier = "VideoCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! VideoCell
         
-        // Fetches the appropriate meal for the data source layout.
+        // Fetches the appropriate video for the data source layout.
         let video = videos[indexPath.row]
         
-        cell.nameLabel.text = video.title
-        cell.photoImageView.image = video.thumbnail
+       cell.titleLabel.text = video.title
+        cell.thumbnailView.image = video.thumbnail
         
         
         
@@ -115,36 +115,36 @@ class VideoTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            let mealDetailViewController = segue.destinationViewController as! MealViewController
+            let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.
-            if let selectedMealCell = sender as? VideoCell {
-                let indexPath = tableView.indexPathForCell(selectedMealCell)!
-                let selectedMeal = videos[indexPath.row]
-               // mealDetailViewController.meal = selectedMeal
+            if let selectedVideoCell = sender as? VideoCell {
+                let indexPath = tableView.indexPathForCell(selectedVideoCell)!
+                let selectedVideo = videos[indexPath.row]
+                videoDetailViewController.video = selectedVideo
             }
         }
         else if segue.identifier == "AddItem" {
-            print("Adding new meal.")
+            print("Adding new video.")
         }
     }
     
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-       /* if let sourceViewController = sender.sourceViewController as? MealViewController, video = sourceViewController.video {
+    @IBAction func unwindToVideoList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? VideoViewController, video = sourceViewController.video {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
+                // Update an existing video.
                 videos[selectedIndexPath.row] = video
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             } else {
-                // Add a new meal.
+                // Add a new video.
                 let newIndexPath = NSIndexPath(forRow: videos.count, inSection: 0)
                 videos.append(video)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
-            // Save the meals.
+            // Save the videos.
             saveVideos()
-        }  */
+        }
     }
     
     // MARK: NSCoding
@@ -152,7 +152,7 @@ class VideoTableViewController: UITableViewController {
     func saveVideos() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(videos, toFile: Video.ArchiveURL.path!)
         if !isSuccessfulSave {
-            print("Failed to save meals...")
+            print("Failed to save videos...")
         }
     }
     
