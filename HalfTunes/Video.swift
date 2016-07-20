@@ -58,6 +58,13 @@ class Video: NSObject, NSCoding {
         }
     }
     
+
+    
+    
+    
+    
+
+    
     // MARK: NSCoding
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -85,5 +92,12 @@ class Video: NSObject, NSCoding {
         // Must call designated initializer.
         self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl )
     }
+    
+    
+
+
+   
+    
+    
     
 }

@@ -15,12 +15,14 @@ public struct Videos: Decodable {
     
     public let vod: [Vods]?
     
-    public let thumbnail: Thumbnails?
+    public let thumbnail: [Thumbnail]?
+    
+
     
     public init?(json: JSON) {
         show = "show" <~~ json
         vod = "vods" <~~ json
-        thumbnail = "thumbnail" <~~ json
+        thumbnail = "thumbnails" <~~ json
     }
     
 }
@@ -54,12 +56,13 @@ public struct Vods: Decodable {
             else { return nil }
         
         
+        
         self.id = id
         
         self.url = url
         
         self.fileName = fileName
-        
+    
         
         
     }
@@ -103,25 +106,45 @@ public struct Shows: Decodable {
     
 }
 
-public struct Thumbnails: Decodable {
+
+
+public struct Thumbnail: Decodable {
     
     
-    public let thumbnail: String
+    public let url: String
     
     
     public init?(json: JSON) {
         
         
-        guard let thumbnail: String = "thumbnail" <~~ json
+        
+        guard let url: String = "url" <~~ json
             
             else { return nil }
         
         
-        self.thumbnail = thumbnail
-
+        self.url = url
+        
+              print(url)
+        
+        
+        
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

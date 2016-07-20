@@ -23,7 +23,6 @@
 		8DB6069D1D303E1F005029DB /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6069C1D303E1F005029DB /* Download.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 		D9EF8FCE1B53FD2100EFC4B6 /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9EF8FCC1B53FD2100EFC4B6 /* Main1.storyboard */; };
-		D9EF8FEA1B53FD6900EFC4B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FE81B53FD6900EFC4B6 /* SearchViewController.swift */; };
 		D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */; };
 		D9EF8FF21B53FDCB00EFC4B6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +47,6 @@
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9EF8FCD1B53FD2100EFC4B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main1.storyboard; sourceTree = "<group>"; };
-		D9EF8FE81B53FD6900EFC4B6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +119,6 @@
 				D92117481B596DFE008DAD44 /* Cells */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 				8D2431C01D391E970024F1D6 /* Gloss */,
-				D9EF8FE81B53FD6900EFC4B6 /* SearchViewController.swift */,
 				D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */,
 				8D2431CD1D391FC10024F1D6 /* Main.storyboard */,
 				D9EF8FCC1B53FD2100EFC4B6 /* Main1.storyboard */,
@@ -213,7 +210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9EF8FEA1B53FD6900EFC4B6 /* SearchViewController.swift in Sources */,
 				D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */,
 				8DB606981D303934005029DB /* Encoder.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
