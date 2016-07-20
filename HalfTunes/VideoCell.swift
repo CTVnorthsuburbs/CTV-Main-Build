@@ -46,7 +46,14 @@ class VideoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var delegate: VideoCellDelegate?
+   // var delegate: VideoCellDelegate?
+    
+     var delegate:VideoCellDelegate! = nil
+ 
+    
+    
+    
+    
     
    
     
@@ -77,6 +84,14 @@ class VideoCell: UITableViewCell {
     }
     
     @IBAction func downloadTapped(sender: AnyObject) {
-        delegate?.downloadTapped(self)
+        
+        
+        if (delegate == nil) {
+            
+            
+            print("equalis nil")
+        }
+        
+                delegate!.downloadTapped(self)
     }
 }

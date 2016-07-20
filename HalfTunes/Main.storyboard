@@ -48,18 +48,27 @@
                                             <state key="normal" title="Download">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="downloadTapped:" destination="YQV-Wp-cdh" eventType="touchUpInside" id="0z9-E0-cGy"/>
+                                            </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsx-rf-2wX" userLabel="Cancel Button">
                                             <rect key="frame" x="544" y="27" width="48" height="30"/>
                                             <state key="normal" title="Cancel">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="cancelTapped:" destination="YQV-Wp-cdh" eventType="touchUpInside" id="kUH-vg-GmQ"/>
+                                            </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pqc-D4-rSI" userLabel="Pause Button">
                                             <rect key="frame" x="494" y="27" width="42" height="30"/>
                                             <state key="normal" title="Pause">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="pauseOrResumeTapped:" destination="YQV-Wp-cdh" eventType="touchUpInside" id="4wK-2X-vKv"/>
+                                            </connections>
                                         </button>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100% of 1.35MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44T-ZV-iEZ" userLabel="Progress Label">
                                             <rect key="frame" x="507" y="72" width="84" height="14"/>
@@ -130,7 +139,7 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="delegate" destination="X4D-Xd-ZHY" id="Vg1-fc-3rg"/>
+                            <outlet property="delegate" destination="X4D-Xd-ZHY" id="562-Tj-DW7"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Videos" id="eSY-WF-TJg">
@@ -142,6 +151,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="gRE-ql-Y6Y" id="XNK-bP-G41"/>
+                        <outlet property="view" destination="yuI-Fm-teB" id="rnQ-Yx-OjN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEL-bU-CDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,6 +279,6 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hfz-VK-jOs"/>
+        <segue reference="GtT-Vd-w7x"/>
     </inferredMetricsTieBreakers>
 </document>

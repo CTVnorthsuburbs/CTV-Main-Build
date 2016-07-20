@@ -14,7 +14,15 @@ import UIKit
 import MediaPlayer
 
 
-class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+
+class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
+    
+    
+    
+    
+  
+    
+    
     // MARK: Properties
     
     var videos = [Video]()
@@ -136,6 +144,133 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     
     
+
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "VideoCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! VideoCell
+        
+        // Fetches the appropriate video for the data source layout.
+        let video = videos[indexPath.row]
+        
+        
+        
+          cell.delegate = self
+        
+        
+        cell.titleLabel.text = video.title
+        cell.thumbnailView.image = video.thumbnail
+        cell.fileNameLabel.text = video.fileName
+        
+
+        
+        
+        
+        
+        var showDownloadControls = false
+        
+        
+        
+        if let download = activeDownloads[video.sourceUrl!] {
+            
+            
+           
+            
+            showDownloadControls = true
+         
+            cell.progressView.progress = download.progress
+            cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
+            
+            let title = (download.isDownloading) ? "Pause" : "Resume"
+            cell.pauseButton.setTitle(title, forState: UIControlState.Normal)
+        }
+        
+        
+     
+        
+        cell.progressView.hidden = !showDownloadControls
+        cell.progressLabel.hidden = !showDownloadControls
+        
+        // If the track is already downloaded, enable cell selection and hide the Download button
+        let downloaded = localFileExistsForVideo(video)
+        cell.selectionStyle = downloaded ? UITableViewCellSelectionStyle.Gray : UITableViewCellSelectionStyle.None
+        cell.downloadButton.hidden = downloaded || showDownloadControls
+        
+        cell.pauseButton.hidden = !showDownloadControls
+        cell.cancelButton.hidden = !showDownloadControls
+        
+        
+
+        
+        
+        
+        
+        
+        return cell
+    }
+    
+    
+    
+    
+    
+    
+    
+    func pauseTapped(cell: VideoCell) {
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let video = videos[indexPath.row]
+            pauseDownload(video)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+        }
+    }
+    
+    func resumeTapped(cell: VideoCell) {
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let video = videos[indexPath.row]
+            resumeDownload(video)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+        }
+    }
+    
+    func cancelTapped(cell: VideoCell) {
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let video = videos[indexPath.row]
+            cancelDownload(video)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+        }
+    }
+    
+    func downloadTapped(cell: VideoCell) {
+        
+        
+        
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let video = videos[indexPath.row]
+            startDownload(video)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+            
+            
+        }
+    }
+    
+
+    
+    
+    
+    
+    
+    
     // MARK: Keyboard dismissal
     
     func dismissKeyboard() {
@@ -234,26 +369,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return videos.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "VideoCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! VideoCell
-        
-        // Fetches the appropriate video for the data source layout.
-        let video = videos[indexPath.row]
-        
-       cell.titleLabel.text = video.title
-        cell.thumbnailView.image = video.thumbnail
-        cell.fileNameLabel.text = video.fileName
-        
-        
-        
-        return cell
-    }
+
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -294,6 +410,10 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
@@ -307,9 +427,14 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
         else if segue.identifier == "AddItem" {
             print("Adding new video.")
+            
         }
     }
     
+    
+    
+    
+ 
     
     @IBAction func unwindToVideoList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? VideoViewController, video = sourceViewController.video {
@@ -397,6 +522,10 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     // Called when the Download button for a track is tapped
     func startDownload(video: Video) {
+        
+        
+        print("download")
+        
         if let urlString = video.sourceUrl, url =  NSURL(string: urlString) {
             // 1
             let download = Download(url: urlString)
@@ -487,7 +616,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     func videoIndexForDownloadTask(downloadTask: NSURLSessionDownloadTask) -> Int? {
         
         if let url = downloadTask.originalRequest?.URL?.absoluteString {
-            for (index, video) in searchResults.enumerate() {
+            for (index, video) in videos.enumerate() {
                 if url == video.sourceUrl! {
                     return index
                 }
@@ -542,6 +671,8 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
         // 3
         if let url = downloadTask.originalRequest?.URL?.absoluteString {
             activeDownloads[url] = nil
+            
+           
             // 4
             if let videoIndex = videoIndexForDownloadTask(downloadTask) {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -570,109 +701,4 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
         }
     }
 }
-
-// MARK: - UISearchBarDelegate
-
-
-
-// MARK: TrackCellDelegate
-
-extension VideoTableViewController: VideoCellDelegate {
-    func pauseTapped(cell: VideoCell) {
-        if let indexPath = tableView.indexPathForCell(cell) {
-            let video = searchResults[indexPath.row]
-            pauseDownload(video)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
-        }
-    }
-    
-    func resumeTapped(cell: VideoCell) {
-        if let indexPath = tableView.indexPathForCell(cell) {
-            let video = searchResults[indexPath.row]
-            resumeDownload(video)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
-        }
-    }
-    
-    func cancelTapped(cell: VideoCell) {
-        if let indexPath = tableView.indexPathForCell(cell) {
-            let video = searchResults[indexPath.row]
-            cancelDownload(video)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
-        }
-    }
-    
-    func downloadTapped(cell: VideoCell) {
-        if let indexPath = tableView.indexPathForCell(cell) {
-            let video = searchResults[indexPath.row]
-            startDownload(video)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
-        }
-    }
-}
-
-// MARK: UITableViewDataSource
-/*
-extension VideoTableViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell", forIndexPath: indexPath) as!VideoCell
-        
-        // Delegate cell button tap events to this view controller
-        cell.delegate = self
-        
-        let video = searchResults[indexPath.row]
-        
-        // Configure title and artist labels
-        cell.titleLabel.text = video.title
-        cell.fileNameLabel.text = video.fileName
-        
-        var showDownloadControls = false
-        if let download = activeDownloads[video.sourceUrl!] {
-            showDownloadControls = true
-            
-            cell.progressView.progress = download.progress
-            cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
-            
-            let title = (download.isDownloading) ? "Pause" : "Resume"
-            cell.pauseButton.setTitle(title, forState: UIControlState.Normal)
-        }
-        cell.progressView.hidden = !showDownloadControls
-        cell.progressLabel.hidden = !showDownloadControls
-        
-        // If the track is already downloaded, enable cell selection and hide the Download button
-        let downloaded = localFileExistsForVideo(video)
-        cell.selectionStyle = downloaded ? UITableViewCellSelectionStyle.Gray : UITableViewCellSelectionStyle.None
-        cell.downloadButton.hidden = downloaded || showDownloadControls
-        
-        cell.pauseButton.hidden = !showDownloadControls
-        cell.cancelButton.hidden = !showDownloadControls
-        
-        return cell
-    }
-}
-
-// MARK: UITableViewDelegate
-
-extension VideoTableViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 62.0
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let video = searchResults[indexPath.row]
-        if localFileExistsForVideo(video) {
-            playDownload(video)
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-}
-
-*/
-
-
-
 
