@@ -14,6 +14,7 @@
 		8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */; };
 		8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */; };
 		8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */; };
+		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
 		8DB606961D303934005029DB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6068F1D303934005029DB /* Decoder.swift */; };
 		8DB606971D303934005029DB /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606901D303934005029DB /* Dictionary.swift */; };
 		8DB606981D303934005029DB /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606911D303934005029DB /* Encoder.swift */; };
@@ -35,6 +36,7 @@
 		8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
 		8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8DB6068F1D303934005029DB /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Gloss/Decoder.swift; sourceTree = "<group>"; };
 		8DB606901D303934005029DB /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Gloss/Dictionary.swift; sourceTree = "<group>"; };
 		8DB606911D303934005029DB /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encoder.swift; path = Gloss/Encoder.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5109AC1D39229500CFFDAC /* Video.swift */,
+				8D65C39D1D3FAD630078B86B /* JSON.swift */,
 				D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */,
 				8DB6069C1D303E1F005029DB /* Download.swift */,
 			);
@@ -97,7 +100,7 @@
 		D9EF8FB81B53FD2100EFC4B6 = {
 			isa = PBXGroup;
 			children = (
-				D9EF8FC31B53FD2100EFC4B6 /* HalfTunes */,
+				D9EF8FC31B53FD2100EFC4B6 /* CTVApp */,
 				D9EF8FC21B53FD2100EFC4B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,7 +113,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9EF8FC31B53FD2100EFC4B6 /* HalfTunes */ = {
+		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
 				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
@@ -126,6 +129,7 @@
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
 			);
+			name = CTVApp;
 			path = HalfTunes;
 			sourceTree = "<group>";
 		};
@@ -215,6 +219,7 @@
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */,
+				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
 				D9EF8FF21B53FDCB00EFC4B6 /* Track.swift in Sources */,

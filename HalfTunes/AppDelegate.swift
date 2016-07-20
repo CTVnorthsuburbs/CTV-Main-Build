@@ -13,7 +13,7 @@
     
     var backgroundSessionCompletionHandler: (() -> Void)?
     var window: UIWindow?
-    let tintColor =  UIColor(red: 242/255, green: 71/255, blue: 63/255, alpha: 1)
+    let tintColor =  UIColor(red: 36/255, green: 81/255, blue: 186/255, alpha: 1)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
