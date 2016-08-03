@@ -16,11 +16,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
    
 
  
-
-    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var fileNameTextField: UITextField!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
     /*
      This value is either passed by `VideoTableViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new video.
@@ -30,15 +30,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Handle the text field’s user input through delegate callbacks.
-        titleTextField.delegate = self
         
         // Set up views if editing an existing Video.
         if let video = video {
             navigationItem.title = video.title
-            titleTextField.text   = video.title
+            titleLabel.text   = video.title
             thumbnailView.image = video.thumbnail
-            fileNameTextField.text = video.fileName
+          
          
         }
         
@@ -66,7 +64,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func checkValidVideoTitle() {
         // Disable the Save button if the text field is empty.
-        let text = titleTextField.text ?? ""
+        let text = titleLabel.text ?? ""
         saveButton.enabled = !text.isEmpty
     }
     
@@ -104,9 +102,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     // This method lets you configure a view controller before it's presented.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            let title = titleTextField.text ?? ""
+            let title = titleLabel.text ?? ""
             let thumbnail = thumbnailView.image
-            let fileName = fileNameTextField.text ?? ""
+            let fileName = titleLabel.text ?? ""
             
             
             // Set the video to be passed to VideoListTableViewController after the unwind segue.
@@ -118,7 +116,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         // Hide the keyboard.
-        titleTextField.resignFirstResponder()
+  
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()

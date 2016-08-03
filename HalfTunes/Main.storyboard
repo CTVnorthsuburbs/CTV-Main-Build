@@ -167,20 +167,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
-                                <rect key="frame" x="20" y="80" width="560" height="399"/>
+                                <rect key="frame" x="20" y="80" width="560" height="348"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter video name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jaC-rX-iHd">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter file name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dEE-0R-Ya3">
-                                        <rect key="frame" x="0.0" y="42" width="560" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
-                                        <rect key="frame" x="0.0" y="84" width="560" height="315"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="315"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="OEg-fp-J0R" secondAttribute="height" multiplier="16:9" id="eS5-Ed-Gj8"/>
@@ -189,12 +179,16 @@
                                             <outletCollection property="gestureRecognizers" destination="obw-ho-oen" appends="YES" id="ooK-tQ-UCV"/>
                                         </connections>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
+                                        <rect key="frame" x="0.0" y="327" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dEE-0R-Ya3" secondAttribute="trailing" id="TSN-AY-iBU"/>
-                                    <constraint firstAttribute="trailing" secondItem="jaC-rX-iHd" secondAttribute="trailing" id="ekZ-bN-ujf"/>
-                                    <constraint firstItem="jaC-rX-iHd" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="mYS-Oi-eKf"/>
-                                    <constraint firstItem="dEE-0R-Ya3" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="sMs-Ev-FTy"/>
+                                    <constraint firstItem="j7P-vB-Kf4" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="Cfy-nN-QKj"/>
+                                    <constraint firstAttribute="trailing" secondItem="j7P-vB-Kf4" secondAttribute="trailing" id="mmy-wH-eG6"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -218,10 +212,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="fileNameTextField" destination="dEE-0R-Ya3" id="VYm-j0-dPj"/>
                         <outlet property="saveButton" destination="zH4-dM-PV7" id="X2o-PZ-U81"/>
                         <outlet property="thumbnailView" destination="OEg-fp-J0R" id="bOs-Dv-GWF"/>
-                        <outlet property="titleTextField" destination="jaC-rX-iHd" id="OEy-mI-C2v"/>
+                        <outlet property="titleLabel" destination="j7P-vB-Kf4" id="j1o-jL-rD9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

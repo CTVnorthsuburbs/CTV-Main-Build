@@ -125,7 +125,7 @@ public struct Thumbnail: Decodable {
         
         self.url = url
         
-              print(url)
+            
         
         
         

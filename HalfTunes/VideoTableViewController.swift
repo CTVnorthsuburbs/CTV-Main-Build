@@ -160,7 +160,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         if (!localFileExistsForVideo(video)) {
         if let urlString = video.sourceUrl, url = localFilePathForUrl(urlString) {
             
-            print("playing stream")
+   
             
             let fileUrl = NSURL(string: urlString)
             
@@ -169,7 +169,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
         
         } else {
-            print("playing local")
+         
             playDownload(video)
             
         }
@@ -444,7 +444,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
   
     
-    /*
+  
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
@@ -463,7 +463,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
     }
     
-    */
+   
     
  
     
