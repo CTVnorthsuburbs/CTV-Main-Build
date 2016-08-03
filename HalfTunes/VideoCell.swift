@@ -16,6 +16,7 @@ protocol VideoCellDelegate {
     func resumeTapped(cell: VideoCell)
     func cancelTapped(cell: VideoCell)
     func downloadTapped(cell: VideoCell)
+    func thumbnailTapped(cell: VideoCell)
 }
 
 
@@ -54,6 +55,7 @@ class VideoCell: UITableViewCell {
     
     
     
+    @IBOutlet weak var thumbnailButton: UIButton!
     
    
     
@@ -67,6 +69,15 @@ class VideoCell: UITableViewCell {
 
     @IBOutlet weak var progressLabel: UILabel!
 
+    @IBAction func thumbnailTapped(sender: AnyObject) {
+        
+        
+        
+        delegate?.thumbnailTapped(self)
+    
+        
+        
+    }
   
 
    

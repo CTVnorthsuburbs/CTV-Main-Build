@@ -96,10 +96,8 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             return
         }
         
-        
+    
         //MARK: May not work
-        
-        
         
   /* use thumbnail files from trms
         
@@ -116,7 +114,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             let asset = AVURLAsset(URL: NSURL(string: vod.url)!, options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
             imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(1, 10), actualTime: nil)
+            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(30, 1), actualTime: nil)
             tempThumb = UIImage(CGImage: cgImage)
            
             // lay out this image view, or if it already exists, set its image property to uiImage
@@ -140,6 +138,53 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             //self.tableView.setContentOffset(CGPointZero, animated: false)    this closes the searchbar but is broken
         }
     }
+    
+    
+    
+    var moviePlayer : MPMoviePlayerController?
+
+    
+    func playVideo(video: Video) {
+        
+        //Get the Video Path
+        //You need to put this in Project->Target->copy bundle resource for this to work
+        let videoPath = NSBundle.mainBundle().pathForResource(video.sourceUrl, ofType:"mp4")
+        
+        //Make a URL from your path
+        //let url = NSURL.fileURLWithPath(videoPath!)
+        
+        //Initalize the movie player
+        
+        
+        
+        if (!localFileExistsForVideo(video)) {
+        if let urlString = video.sourceUrl, url = localFilePathForUrl(urlString) {
+            
+            print("playing stream")
+            
+            let fileUrl = NSURL(string: urlString)
+            
+            let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
+            presentMoviePlayerViewControllerAnimated(moviePlayer)
+        }
+        
+        } else {
+            print("playing local")
+            playDownload(video)
+            
+        }
+    
+    }
+    
+
+    
+    
+    
+    
+
+    
+    
+    
     
     
     
@@ -172,8 +217,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         
         cell.titleLabel.text = video.title
         cell.thumbnailView.image = video.thumbnail
-        cell.fileNameLabel.text = video.fileName
-        
+               
 
         
         
@@ -191,7 +235,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             showDownloadControls = true
          
             cell.progressView.progress = download.progress
-            cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
+            //cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
             
             let title = (download.isDownloading) ? "Pause" : "Resume"
             cell.pauseButton.setTitle(title, forState: UIControlState.Normal)
@@ -201,7 +245,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
      
         
         cell.progressView.hidden = !showDownloadControls
-        cell.progressLabel.hidden = !showDownloadControls
+       // cell.progressLabel.hidden = !showDownloadControls
         
         // If the track is already downloaded, enable cell selection and hide the Download button
         let downloaded = localFileExistsForVideo(video)
@@ -265,10 +309,15 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     }
     
 
-    
-    
-    
-    
+    func thumbnailTapped(cell: VideoCell) {
+        
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let video = videos[indexPath.row]
+            playVideo(video)
+
+        }
+        
+    }
     
     
     // MARK: Keyboard dismissal
@@ -280,7 +329,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 
-        
         dismissKeyboard()
         
         if !searchBar.text!.isEmpty {
@@ -339,24 +387,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         view.removeGestureRecognizer(tapRecognizer)
     }
-
-    
-    
-    
-    
-    
-    func loadSampleVideos() {
-        let photo1 = UIImage(named: "meal1")!
-        let video1 = Video(title: "Soccer", thumbnail: photo1, fileName: "video1", sourceUrl: "ctv15.org" )!
-        
-        let photo2 = UIImage(named: "meal2")!
-        let video2 = Video(title: "Baseball", thumbnail: photo2, fileName: "video2", sourceUrl: "ctv15.org" )!
-        
-        let photo3 = UIImage(named: "meal3")!
-        let video3 = Video(title: "Volleyball", thumbnail: photo3, fileName: "video3", sourceUrl: "ctv15.org" )!
-        
-        videos += [video1, video2, video3]
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -412,7 +442,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     
+  
     
+    /*
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
@@ -431,8 +463,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
     }
     
-    
-    
+    */
     
  
     
@@ -479,16 +510,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
 
 
 
-
-//
-//  SearchViewController.swift
-//  HalfTunes
-//
-//  Created by Ken Toh on 13/7/15.
-//  Copyright (c) 2015 Ken Toh. All rights reserved.
-//
-
-
     var activeDownloads = [String: Download]()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -523,8 +544,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     // Called when the Download button for a track is tapped
     func startDownload(video: Video) {
         
-        
-        print("download")
         
         if let urlString = video.sourceUrl, url =  NSURL(string: urlString) {
             // 1
@@ -695,7 +714,7 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
             if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: videoIndex, inSection: 0)) as? VideoCell {
                 dispatch_async(dispatch_get_main_queue(), {
                     videoCell.progressView.progress = download.progress
-                    videoCell.progressLabel.text =  String(format: "%.1f%% of %@",  download.progress * 100, totalSize)
+                    //videoCell.progressLabel.text =  String(format: "%.1f%% of %@",  download.progress * 100, totalSize)
                 })
             }
         }
