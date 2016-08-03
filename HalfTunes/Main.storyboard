@@ -205,7 +205,7 @@
                                 <action selector="cancel:" destination="BYZ-38-t0r" id="Q9j-L2-iw5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zH4-dM-PV7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zH4-dM-PV7">
                             <connections>
                                 <segue destination="Tqd-Bz-EwA" kind="unwind" unwindAction="unwindToVideoList:" id="J8u-gp-g2H"/>
                             </connections>

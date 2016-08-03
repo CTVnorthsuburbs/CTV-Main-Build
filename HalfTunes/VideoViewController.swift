@@ -108,7 +108,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
             // Set the video to be passed to VideoListTableViewController after the unwind segue.
-            video = Video(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: "ctv15.org")
+           // video = Video(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: "ctv15.org")
         }
     }
     
