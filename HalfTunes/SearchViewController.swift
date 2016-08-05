@@ -38,7 +38,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
      
         
-        let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?include=vod,thumbnail")
+        let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=baseball&include=vod,thumbnail")
+        
+        
+            // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
         // 5
         dataTask = defaultSession.dataTaskWithURL(url!) {
             data, response, error in
@@ -137,10 +140,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         //MARK: May not work
-        
+
         
         for show in VideosResult.show! {
-            
+          
             
             
             searchResults.append(Video(title: show.title, thumbnail: nil, fileName: vod.fileName, sourceUrl: vod.url)!)
