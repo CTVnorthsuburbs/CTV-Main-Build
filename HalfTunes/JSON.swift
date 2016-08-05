@@ -28,6 +28,29 @@ public struct Videos: Decodable {
 }
 
 
+
+public struct VideosResult: Decodable {
+    
+    public let show: [Shows]?
+    
+    public let vod: [Vods]?
+    
+    public let thumbnail: [Thumbnail]?
+    
+    
+    
+    public init?(json: JSON) {
+        show = "shows" <~~ json
+        vod = "vods" <~~ json
+        thumbnail = "thumbnails" <~~ json
+    }
+    
+}
+
+
+
+
+
 public struct Vods: Decodable {
     
     
