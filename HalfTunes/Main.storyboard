@@ -138,7 +138,8 @@
                             <outlet property="delegate" destination="X4D-Xd-ZHY" id="562-Tj-DW7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Videos" id="eSY-WF-TJg">
+                    <navigationItem key="navigationItem" id="eSY-WF-TJg">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5IV-og-BzF">
                             <connections>
                                 <segue destination="v04-W0-ww0" kind="presentation" identifier="AddItem" id="7q5-IT-HBe"/>
@@ -153,6 +154,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEL-bU-CDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578" y="387"/>
+        </scene>
+        <!--Segment View Controller-->
+        <scene sceneID="raW-kj-4KY">
+            <objects>
+                <viewController id="vLH-KY-luo" customClass="SegmentViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dxf-l7-5if"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ZD-T7-iEy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7ZV-LD-nBu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BYM-za-4LI">
+                                <rect key="frame" x="180" y="51" width="240" height="30"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="vLH-KY-luo" eventType="valueChanged" id="h1z-xc-qSF"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-MZ-UDS">
+                                <rect key="frame" x="0.0" y="101" width="600" height="499"/>
+                                <connections>
+                                    <segue destination="oq3-p0-Bef" kind="embed" id="x4m-dD-S0N"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9GN-RF-D11">
+                                <rect key="frame" x="0.0" y="101" width="600" height="499"/>
+                                <connections>
+                                    <segue destination="aiY-6i-j9S" kind="embed" id="daq-Zd-zA4"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BYM-za-4LI" firstAttribute="centerX" secondItem="7ZV-LD-nBu" secondAttribute="centerX" id="4qe-fe-IZL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="firstView" destination="9GN-RF-D11" id="pA5-aM-7Qp"/>
+                        <outlet property="searchDisplayController" destination="Dmw-Bi-AlK" id="9ha-p3-kji"/>
+                        <outlet property="secondView" destination="1vb-MZ-UDS" id="0Qb-Uh-AWS"/>
+                        <outlet property="segmentedControl" destination="BYM-za-4LI" id="kV4-rN-sen"/>
+                        <outlet property="view" destination="7ZV-LD-nBu" id="ulD-S3-6Wf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gnz-Pv-aNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Cci-Yk-fUg">
+                    <connections>
+                        <outlet property="delegate" destination="vLH-KY-luo" id="9Y5-Jj-SN3"/>
+                        <outlet property="searchContentsController" destination="vLH-KY-luo" id="MZb-1b-Y3T"/>
+                        <outlet property="searchResultsDataSource" destination="vLH-KY-luo" id="8gv-Im-ze6"/>
+                        <outlet property="searchResultsDelegate" destination="vLH-KY-luo" id="52s-mM-haO"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="Dmw-Bi-AlK">
+                    <connections>
+                        <outlet property="delegate" destination="vLH-KY-luo" id="10d-pi-08C"/>
+                        <outlet property="searchContentsController" destination="vLH-KY-luo" id="sZJ-jb-Q4O"/>
+                        <outlet property="searchResultsDataSource" destination="vLH-KY-luo" id="jhT-p2-ITe"/>
+                        <outlet property="searchResultsDelegate" destination="vLH-KY-luo" id="HBk-7S-K6j"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1230" y="393"/>
         </scene>
         <!--New Video-->
         <scene sceneID="tne-QT-ifu">
@@ -262,6 +331,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9e-Wt-4rM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-75" y="1157"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Spu-jt-btU">
+            <objects>
+                <viewController id="oq3-p0-Bef" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eHR-Sf-zaZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="499"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVQ-bh-TSM">
+                                <rect key="frame" x="248" y="34" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BLA-W9-K0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1287" y="1031.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cmB-5E-AIT">
+            <objects>
+                <viewController id="aiY-6i-j9S" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g23-5I-3VB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="499"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-EY-Lys">
+                                <rect key="frame" x="248" y="67" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fjy-bE-kHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="431.5"/>
         </scene>
     </scenes>
     <resources>
