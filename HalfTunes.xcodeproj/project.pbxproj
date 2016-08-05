@@ -22,6 +22,7 @@
 		8DB6069B1D303934005029DB /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606951D303934005029DB /* Operators.swift */; };
 		8DB6069D1D303E1F005029DB /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6069C1D303E1F005029DB /* Download.swift */; };
 		8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */; };
+		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 		D9EF8FCE1B53FD2100EFC4B6 /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9EF8FCC1B53FD2100EFC4B6 /* Main1.storyboard */; };
 		D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */; };
@@ -45,6 +46,7 @@
 		8DB606951D303934005029DB /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Gloss/Operators.swift; sourceTree = "<group>"; };
 		8DB6069C1D303E1F005029DB /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
+		8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				8D2431CF1D391FF30024F1D6 /* Assets.xcassets */,
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
+				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
 			);
 			name = CTVApp;
 			path = HalfTunes;
@@ -224,6 +227,7 @@
 				8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
 				D9EF8FF21B53FDCB00EFC4B6 /* Track.swift in Sources */,
+				8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */,
 				8DB606991D303934005029DB /* Gloss.swift in Sources */,
 				8DB606971D303934005029DB /* Dictionary.swift in Sources */,
 				8DB6069B1D303934005029DB /* Operators.swift in Sources */,
