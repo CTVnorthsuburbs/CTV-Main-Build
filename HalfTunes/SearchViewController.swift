@@ -14,11 +14,60 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    
+        var dataTask: NSURLSessionDataTask?
+    
+     let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    
+    
     var searchActive : Bool = false
     var data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
     var filtered:[String] = []
     
     override func viewDidLoad() {
+        
+        
+        
+        if dataTask != nil {
+            dataTask?.cancel()
+        }
+        // 2
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        
+        let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?include=vod,thumbnail")
+        // 5
+        dataTask = defaultSession.dataTaskWithURL(url!) {
+            data, response, error in
+            // 6
+            dispatch_async(dispatch_get_main_queue()) {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            }
+            // 7
+            if let error = error {
+                print(error.localizedDescription)
+                
+                
+            } else if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    
+                    
+                    
+                    
+                    
+                    
+              //      self.updateSearchResults(data)
+                    
+                    
+                    
+                }
+            }
+        }
+
+        
+        
+        
+        
         super.viewDidLoad()
         
         /* Setup delegates */
