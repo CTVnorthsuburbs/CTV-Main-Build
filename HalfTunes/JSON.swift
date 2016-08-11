@@ -50,6 +50,61 @@ public struct VideosResult: Decodable {
 
 
 
+public struct AllVideos: Decodable {
+    
+    public let results : NSDictionary?
+    
+    public init?(json: JSON) {
+        
+        results = "savedShowSearch" <~~ json
+      
+    }
+    
+}
+
+public struct AllVideosResults: Decodable {
+    
+    
+    public let results: NSArray?
+    
+    
+    public init?(json: JSON) {
+        
+        guard let results : NSArray = "results" <~~ json
+            
+            else { return nil }
+        
+          self.results = results
+        
+    }
+    
+}
+
+
+public struct Results: Decodable {
+    
+    
+    public let results: [Int]
+    
+    
+    public init?(json: JSON) {
+        
+        guard let results : [Int] = "results" <~~ json
+            
+            else { return nil }
+        
+        self.results = results
+        
+    }
+    
+}
+
+
+
+
+
+
+
 
 public struct Vods: Decodable {
     

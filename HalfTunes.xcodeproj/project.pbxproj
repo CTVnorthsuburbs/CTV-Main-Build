@@ -121,6 +121,7 @@
 				8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */,
 				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
 				8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */,
+				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
 				D92117481B596DFE008DAD44 /* Cells */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 				8D2431C01D391E970024F1D6 /* Gloss */,
@@ -130,7 +131,6 @@
 				8D2431CF1D391FF30024F1D6 /* Assets.xcassets */,
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
-				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
 			);
 			name = CTVApp;
 			path = HalfTunes;

@@ -16,74 +16,148 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    
-        var dataTask: NSURLSessionDataTask?
-    
-     let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+
     
     
     var searchActive : Bool = false
     var data1 = [String]()
     var filtered:[String] = []
     
-    override func viewDidLoad() {
+    
+    
+    
+    
+    
+    
+    func getNSURLSession() -> NSURLSession {
         
+        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
+        return defaultSession
+    
+    }
+    
+    
+    func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: Bool) -> [Int]? {
+        
+        var dataTask: NSURLSessionDataTask?
+        
+        var results : [Int]?
+        
+
         
         if dataTask != nil {
             dataTask?.cancel()
         }
-        // 2
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+   
         
-     
-        
-        let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=baseball&include=vod,thumbnail")
-        
-        
-            // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
-        // 5
-        dataTask = defaultSession.dataTaskWithURL(url!) {
+        dataTask = defaultSession.dataTaskWithURL(url) {
+            
             data, response, error in
-            // 6
+         
             dispatch_async(dispatch_get_main_queue()) {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                
-                
-         
-                        print("update called")
-                
+   
             }
             // 7
             if let error = error {
                 print(error.localizedDescription)
-                        print("update called")
+                
                 
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     
                     
+                    if (isIDSearchURL == true) {
+                        
+                        print("gets called")
+                        
+                         self.updateSearchResults(data)
+                        
+                    } else {
+                        
+          
+                        
+                     results = self.getSavedSearchResults(data)!
+          
                     
-                  
-                    
-                    
-             self.updateSearchResults(data)
-                    
+
+                    }
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()
                         //self.tableView.setContentOffset(CGPointZero, animated: false)    this closes the searchbar but is broken
                     }
-                    
-                    
+                 
                 }
+                
             }
+            
         }
-
+        
                dataTask?.resume()
         
+        while (results == nil && isIDSearchURL != true) {
+            
+        }
+        
+        return results
+        
+    }
+    
+    
+    func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
+        
+        var url = "http://trms.ctv15.org/Cablecastapi/v1/shows/?"
+        
+        for id in idArray {
+            
+            url = url + "ids=\(id)&"
+            
+        }
+        
+        url += "include=vod,thumbnail"
+        
+                var searchURL = NSURL(string: url)
+        
+       return searchURL
+        
+    }
+    
+    
+    override func viewDidLoad() {
         
         
+        var session = getNSURLSession()
+        
+          let searchUrl = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=52966")
+        
+        var results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
+        
+        print("runs here")
+       var searchIdURL =  convertIdArrayToSearchURL(results!)
+        
+        
+        getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
+
+        
+        
+
+        
+
+        
+        //let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=baseball&include=vod,thumbnail")
+        
+
+    
+        
+ 
+        
+            // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
+        // 5
+
         super.viewDidLoad()
         
         /* Setup delegates */
@@ -92,6 +166,59 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
         
     }
+    
+    
+    
+    
+    
+    
+    func getSavedSearchResults(data: NSData?) -> [Int]? {
+        
+        searchResults.removeAll()
+        
+        var json: [String: AnyObject]!
+        
+        
+        do {
+            
+            json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String: AnyObject]
+            
+        } catch {
+            
+            print(error)
+            
+        }
+        
+        guard let VideosResult = AllVideos(json: json) else {
+            
+            return nil
+            
+        }
+        
+        guard let results = VideosResult.results else {
+            
+            return nil
+        }
+        
+        guard let result = results["results"] else {
+            
+            return nil
+        }
+            
+        let finalResult = result as! [Int]
+        
+            return finalResult
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -132,25 +259,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        guard let thumbnail = VideosResult.thumbnail else {
-            
-            return
-            
-        }
+   
         
         
         //MARK: May not work
 
-        
         for show in VideosResult.show! {
-          
+            
             
             
             searchResults.append(Video(title: show.title, thumbnail: nil, fileName: vod.fileName, sourceUrl: vod.url)!)
             
         }
         
-       // searchResults.append(Video(title: show.title, thumbnail: nil, fileName: vod.fileName, sourceUrl: vod.url)!)
+        // searchResults.append(Video(title: show.title, thumbnail: nil, fileName: vod.fileName, sourceUrl: vod.url)!)
         
         
         
@@ -159,10 +281,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             
             
-           data1.append( show.title!)
+            data1.append( show.title!)
             print(show.title)
             
         }
+
       
     }
     
