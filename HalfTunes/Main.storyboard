@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cxi-OH-E8J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cxi-OH-E8J">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -167,16 +167,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BYM-za-4LI">
-                                <rect key="frame" x="180" y="51" width="240" height="30"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="vLH-KY-luo" eventType="valueChanged" id="h1z-xc-qSF"/>
-                                </connections>
-                            </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-MZ-UDS">
                                 <rect key="frame" x="0.0" y="101" width="600" height="499"/>
                                 <connections>
@@ -189,10 +179,21 @@
                                     <segue destination="aiY-6i-j9S" kind="embed" id="daq-Zd-zA4"/>
                                 </connections>
                             </containerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BYM-za-4LI">
+                                <rect key="frame" x="180" y="51" width="240" height="30"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="vLH-KY-luo" eventType="valueChanged" id="h1z-xc-qSF"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BYM-za-4LI" firstAttribute="centerX" secondItem="7ZV-LD-nBu" secondAttribute="centerX" id="4qe-fe-IZL"/>
+                            <constraint firstItem="BYM-za-4LI" firstAttribute="top" secondItem="dxf-l7-5if" secondAttribute="bottom" constant="31" id="vhW-B5-olh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -396,12 +397,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ez9-H4-AuL">
-                                <rect key="frame" x="0.0" y="35" width="600" height="44"/>
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ez9-H4-AuL">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oof-90-NFw">
-                                <rect key="frame" x="0.0" y="91" width="600" height="509"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oof-90-NFw">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bg6-gI-jkF">
@@ -419,7 +420,10 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Oof-90-NFw" secondAttribute="trailing" constant="-20" id="AHI-8G-19m"/>
                             <constraint firstItem="Ez9-H4-AuL" firstAttribute="leading" secondItem="WWA-eW-3Kd" secondAttribute="leadingMargin" constant="-20" id="CuB-EH-jAs"/>
+                            <constraint firstItem="Oof-90-NFw" firstAttribute="top" secondItem="Ez9-H4-AuL" secondAttribute="bottom" id="Qaa-nE-6sf"/>
                             <constraint firstItem="Oof-90-NFw" firstAttribute="leading" secondItem="WWA-eW-3Kd" secondAttribute="leadingMargin" constant="-20" id="ZXK-ba-VaH"/>
+                            <constraint firstItem="Oof-90-NFw" firstAttribute="bottom" secondItem="tgq-Pn-ZNo" secondAttribute="top" id="bC8-gM-IGW"/>
+                            <constraint firstItem="Ez9-H4-AuL" firstAttribute="top" secondItem="Wbj-6C-uvC" secondAttribute="bottom" id="cDa-B1-Eus"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ez9-H4-AuL" secondAttribute="trailing" constant="-20" id="hBg-56-MXx"/>
                         </constraints>
                     </view>

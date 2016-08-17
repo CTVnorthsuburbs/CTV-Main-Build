@@ -72,7 +72,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     if (isIDSearchURL == true) {
                         
-                        print("gets called")
+                     
                         
                          self.updateSearchResults(data)
                         
@@ -118,9 +118,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        url += "include=vod,thumbnail"
+        url += "page_size=200&include=vod,thumbnail"
         
                 var searchURL = NSURL(string: url)
+        
+        print(searchURL)
         
        return searchURL
         
@@ -128,7 +130,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     override func viewDidLoad() {
-        
+      /*
         
         var session = getNSURLSession()
         
@@ -136,27 +138,37 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         var results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
         
-        print("runs here")
+      
        var searchIdURL =  convertIdArrayToSearchURL(results!)
         
         
         getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
-
+        
+    
+        */
+        
+        
+        
+        var videoSearch = VideoSearch()
+        
+        //searchResults = videoSearch.getSport("baseball")
+        
+        
+        searchResults = videoSearch.getRecent()
         
         
 
         
+        for item in searchResults {
+            
+            data1.append(item.title!)
+            
+        }
 
         
         //let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=baseball&include=vod,thumbnail")
-        
 
-    
-        
- 
-        
-            // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
-        // 5
+        // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
 
         super.viewDidLoad()
         
