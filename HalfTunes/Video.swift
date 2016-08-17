@@ -10,8 +10,39 @@ import Foundation
 import UIKit
 
 
+import UIKit
 
-class Video: NSObject, NSCoding {
+
+import MediaPlayer
+
+
+import UIKit
+
+
+import MediaPlayer
+
+
+public func getSampleVideos() -> [Video] {
+    
+    var samples = [Video]()
+    var video = Video(title: "Legion Baseball Rosetown v. Tri-City Maroon 16-07-13 Gm1", thumbnail: nil, fileName: "10581- Baseball TCM v Rosetown 16-07-13 gm1 trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10581-Baseball-TCM-v-Rosetown-16-07-13-gm1-trms-Medium-v1.mp4")
+    video!.generateThumbnail()
+    samples.append(video!)
+    video = Video(title: "RAHS Graduation 2016", thumbnail: nil, fileName: "10439-RAHSGrad16-06-03.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4")
+    video!.generateThumbnail()
+    samples.append(video!)
+    video = Video(title: "Softball Roseville v. Mounds View RAHS MVHS 16-04-13", thumbnail: nil, fileName: "10178- RAHS vs. MVHS Softball 16-04-13- trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10178-RAHS-vs-MVHS-Softball-16-04-13-trms-Medium-v1.mp4")
+    video!.generateThumbnail()
+    samples.append(video!)
+
+    return samples
+}
+
+
+
+
+
+public class Video: NSObject, NSCoding {
     var title: String?
     var fileName: String?
     var sourceUrl: String?
@@ -59,7 +90,23 @@ class Video: NSObject, NSCoding {
     }
     
 
-    
+    public func generateThumbnail() {
+        
+        var tempThumb: UIImage
+        
+        do {
+            let asset = AVURLAsset(URL: NSURL(string: self.sourceUrl!)!, options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(18, 1), actualTime: nil)
+            tempThumb = UIImage(CGImage: cgImage)
+            self.thumbnail = tempThumb
+            // lay out this image view, or if it already exists, set its image property to uiImage
+        } catch let error as NSError {
+            print("Error generating thumbnail: \(error)")
+        }
+        
+    }
     
     
     
@@ -67,7 +114,7 @@ class Video: NSObject, NSCoding {
     
     // MARK: NSCoding
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
         aCoder.encodeObject(thumbnail, forKey: PropertyKey.thumbnailKey)
         aCoder.encodeObject(fileName, forKey: PropertyKey.fileNameKey)
@@ -76,7 +123,7 @@ class Video: NSObject, NSCoding {
         
     }
     
-    required convenience init?(coder aDecoder: NSCoder) {
+    required convenience public init?(coder aDecoder: NSCoder) {
         let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
         let fileName = aDecoder.decodeObjectForKey(PropertyKey.fileNameKey) as! String
         let sourceUrl = aDecoder.decodeObjectForKey(PropertyKey.sourceUrlKey) as! String
@@ -84,10 +131,6 @@ class Video: NSObject, NSCoding {
         
         // Because photo is an optional property of Video, use conditional cast.
         let thumbnail = aDecoder.decodeObjectForKey(PropertyKey.thumbnailKey) as? UIImage
-        
-   
-        
-        
         
         // Must call designated initializer.
         self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl )

@@ -35,12 +35,13 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
+  
+        
         // Load any saved videos, otherwise load sample data.
         if let savedVideos = loadVideos() {
             videos += savedVideos
         } else {
-            // Load the sample data.
-            //loadSampleVideos()
+                  videos = getSampleVideos()
         }
 
         tableView.tableFooterView = UIView()
@@ -59,7 +60,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         searchResults.removeAll()
         
         
-        var tempThumb : UIImage = UIImage(named: "meal1")!
+        let tempThumb : UIImage = UIImage(named: "defaultPhoto")!
         
         var json: [String: AnyObject]!
         
@@ -92,7 +93,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             
         }
         
-        guard Videos.thumbnail!.first != nil else {
+        guard let thumbnail = Videos.thumbnail!.first  else {
             
             return
         }
@@ -109,30 +110,29 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
         
         
-   */
+ 
+
         
-        do {
-            let asset = AVURLAsset(URL: NSURL(string: vod.url)!, options: nil)
-            let imgGenerator = AVAssetImageGenerator(asset: asset)
-            imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(30, 1), actualTime: nil)
-            tempThumb = UIImage(CGImage: cgImage)
-           
-            // lay out this image view, or if it already exists, set its image property to uiImage
-        } catch let error as NSError {
-            print("Error generating thumbnail: \(error)")
-        }
+    */
+        
+     
         
         
+     
         
-        searchResults.append(Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)!)
+   
         
-        
-        //this is to test but needs to be removed
-        
-        videos.append(Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)!)
+        let video = Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)
         
         
+  
+        
+        video!.generateThumbnail()
+        
+        
+        videos.append(video!)
+        
+           searchResults.append(Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)!)
         
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()

@@ -15,6 +15,8 @@
 		8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */; };
 		8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */; };
 		8D63F29A1D64B22900689693 /* VideoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2991D64B22900689693 /* VideoSearch.swift */; };
+		8D63F2BF1D64E4E200689693 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2BD1D64E4E200689693 /* MasterViewController.swift */; };
+		8D63F2C01D64E4E200689693 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2BE1D64E4E200689693 /* DetailViewController.swift */; };
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
 		8DB606961D303934005029DB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6068F1D303934005029DB /* Decoder.swift */; };
 		8DB606971D303934005029DB /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606901D303934005029DB /* Dictionary.swift */; };
@@ -25,8 +27,6 @@
 		8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */; };
 		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
-		D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */; };
-		D9EF8FF21B53FDCB00EFC4B6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +38,8 @@
 		8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
 		8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8D63F2991D64B22900689693 /* VideoSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSearch.swift; sourceTree = "<group>"; };
+		8D63F2BD1D64E4E200689693 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = masterdetailsample/masterdetailsample/MasterViewController.swift; sourceTree = "<group>"; };
+		8D63F2BE1D64E4E200689693 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = masterdetailsample/masterdetailsample/DetailViewController.swift; sourceTree = "<group>"; };
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8DB6068F1D303934005029DB /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Gloss/Decoder.swift; sourceTree = "<group>"; };
 		8DB606901D303934005029DB /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Gloss/Dictionary.swift; sourceTree = "<group>"; };
@@ -51,8 +53,6 @@
 		D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
-		D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +79,40 @@
 			name = Gloss;
 			sourceTree = "<group>";
 		};
+		8D63F29B1D64D42900689693 /* MyVideos */ = {
+			isa = PBXGroup;
+			children = (
+				8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */,
+				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
+				8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */,
+				8DB6069C1D303E1F005029DB /* Download.swift */,
+				D92117481B596DFE008DAD44 /* Cells */,
+			);
+			name = MyVideos;
+			sourceTree = "<group>";
+		};
+		8D63F29C1D64D44A00689693 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8D63F2991D64B22900689693 /* VideoSearch.swift */,
+				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		8D63F2C41D64E5BF00689693 /* MasterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8D63F2BD1D64E4E200689693 /* MasterViewController.swift */,
+				8D63F2BE1D64E4E200689693 /* DetailViewController.swift */,
+			);
+			name = MasterDetail;
+			sourceTree = "<group>";
+		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */,
-				D9EF8FED1B53FDCB00EFC4B6 /* TrackCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -93,8 +122,6 @@
 			children = (
 				8D5109AC1D39229500CFFDAC /* Video.swift */,
 				8D65C39D1D3FAD630078B86B /* JSON.swift */,
-				D9EF8FEE1B53FDCB00EFC4B6 /* Track.swift */,
-				8DB6069C1D303E1F005029DB /* Download.swift */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -118,12 +145,9 @@
 		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
-				8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */,
-				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
-				8D5109B01D3931DD00CFFDAC /* VideoTableViewController.swift */,
-				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
-				8D63F2991D64B22900689693 /* VideoSearch.swift */,
-				D92117481B596DFE008DAD44 /* Cells */,
+				8D63F2C41D64E5BF00689693 /* MasterDetail */,
+				8D63F29C1D64D44A00689693 /* Search */,
+				8D63F29B1D64D42900689693 /* MyVideos */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 				8D2431C01D391E970024F1D6 /* Gloss */,
 				D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */,
@@ -216,16 +240,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D63F2BF1D64E4E200689693 /* MasterViewController.swift in Sources */,
+				8D63F2C01D64E4E200689693 /* DetailViewController.swift in Sources */,
 				D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */,
 				8DB606981D303934005029DB /* Encoder.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
-				D9EF8FF11B53FDCB00EFC4B6 /* TrackCell.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
 				8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
-				D9EF8FF21B53FDCB00EFC4B6 /* Track.swift in Sources */,
 				8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */,
 				8DB606991D303934005029DB /* Gloss.swift in Sources */,
 				8DB606971D303934005029DB /* Dictionary.swift in Sources */,
