@@ -92,7 +92,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             
         }
         
-        guard let thumbnail = Videos.thumbnail!.first else {
+        guard Videos.thumbnail!.first != nil else {
             
             return
         }

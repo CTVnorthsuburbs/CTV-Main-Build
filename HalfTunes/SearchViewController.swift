@@ -120,7 +120,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         url += "page_size=200&include=vod,thumbnail"
         
-                var searchURL = NSURL(string: url)
+                let searchURL = NSURL(string: url)
         
         print(searchURL)
         
@@ -149,7 +149,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-        var videoSearch = VideoSearch()
+        let videoSearch = VideoSearch()
         
         //searchResults = videoSearch.getSport("baseball")
         
@@ -259,7 +259,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        guard let show = VideosResult.show else {
+        guard VideosResult.show != nil else {
             
             return
             
