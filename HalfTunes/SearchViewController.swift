@@ -11,6 +11,10 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
       var searchResults = [Video]()
+    
+    var myVideos = getSampleVideos()
+    
+    
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +22,29 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var searchActive : Bool = false
     var data = [String]()
     var filtered:[String] = []
+    
+    
+    
+    
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    
+
+    
+
+        
+  
+
+    
+    
+    
+
+    
+    
+    
+    
+    
     
 
     
@@ -36,6 +63,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             data.append(item.title!)
             
+    
+            
+            
+            
         }
 
         
@@ -51,6 +82,90 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.hidden = true
         
     }
+    
+    
+    
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        
+        
+        
+        
+        switch segmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            
+            
+            
+            for item in searchResults {
+                
+                data.append(item.title!)
+                
+            }
+            
+            
+            self.tableView.hidden = false
+            
+            filtered = data.filter({ (text) -> Bool in
+                let tmp: NSString = text
+                let range = tmp.rangeOfString(searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+                return range.location != NSNotFound
+            })
+            if(filtered.count == 0){
+                searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
+            } else {
+                searchActive = true;
+            }
+            self.tableView.reloadData()
+            
+            
+            
+            
+            
+        case 1:
+            
+            data.removeAll()
+            self.tableView.hidden = true
+            
+            for item in myVideos {
+                
+                
+                data.append(item.title!)
+                
+                
+                
+                
+            }
+            
+            
+            
+            self.tableView.hidden = false
+            
+            filtered = data.filter({ (text) -> Bool in
+                let tmp: NSString = text
+                let range = tmp.rangeOfString(searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+                return range.location != NSNotFound
+            })
+            if(filtered.count == 0){
+                searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
+            } else {
+                searchActive = true;
+            }
+            self.tableView.reloadData()
+     
+            
+            
+            
+        default:
+            break;
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetails" {
