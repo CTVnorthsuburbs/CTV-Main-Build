@@ -11,14 +11,10 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
       var searchResults = [Video]()
-    
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
 
-    
-    
     var searchActive : Bool = false
     var data = [String]()
     var filtered:[String] = []
@@ -30,22 +26,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     override func viewDidLoad() {
-      /*
-        
-        var session = getNSURLSession()
-        
-          let searchUrl = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=52966")
-        
-        var results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
-        
-      
-       var searchIdURL =  convertIdArrayToSearchURL(results!)
-        
-        
-        getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
-        
-    
-        */
+ 
         
         
         
@@ -53,11 +34,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         //searchResults = videoSearch.getSport("baseball")
         
-        
         searchResults = videoSearch.getRecent()
         
-        
-
         
         for item in searchResults {
             
@@ -66,9 +44,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
 
         
-        //let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=baseball&include=vod,thumbnail")
-
-        // let url = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchTerm)&include=vod,thumbnail")
+     
 
         super.viewDidLoad()
         
@@ -78,9 +54,37 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
         
     }
-    
-    
-    
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetails" {
+            
+            let videoDetailViewController = segue.destinationViewController as! SearchDetailViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedVideoCell = sender {
+                
+                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
+                
+              var count = 0  //code to map filtered result position to searchResult position
+                
+                for result in searchResults {
+                    
+                    
+                    if (filtered[indexPath.row] == result.title) {
+                        
+                         let selectedVideo = searchResults[count]
+                        
+                               videoDetailViewController.video = selectedVideo
+                        
+                    }
+                    count += 1
+                }
+                
+                    }
+            
+        }
+
+    }
  
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -107,7 +111,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             return range.location != NSNotFound
         })
         if(filtered.count == 0){
-            searchActive = false;
+            searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
         } else {
             searchActive = true;
         }
@@ -126,17 +130,28 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
+    
             return filtered.count
         }
-        return data.count;
+        
+
+        return filtered.count;    //use data.count to always display intial table of all searchResults
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell;
         if(searchActive){
+            
+            
+            let temp = filtered[indexPath.row]
+            
+            print(temp)
+            
             cell.textLabel?.text = filtered[indexPath.row]
+    
         } else {
-            cell.textLabel?.text = data[indexPath.row];
+            cell.textLabel?.text = data[indexPath.row]
+          
         }
         
         return cell;

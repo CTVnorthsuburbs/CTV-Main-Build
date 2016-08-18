@@ -113,8 +113,6 @@ func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: B
                     
                 }
                 
-      
-                
             }
             
         }
@@ -125,7 +123,9 @@ func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: B
     
     while (results == nil && complete == false) {
         
+        //wait till results are received
     }
+    
     return results
     
 }
@@ -223,11 +223,16 @@ func updateSearchResults(data: NSData?)-> Bool {
         return false
             
     }
+    
+    var count = 0
         
     for show in VideosResult.show! {
-            
-        searchResults.append(Video(title: show.title, thumbnail: nil, fileName: vod.fileName, sourceUrl: vod.url)!)
-            
+        
+        searchResults.append(Video(title: show.title, thumbnail: nil, fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url)!)
+        
+        count += 1
+
+
     }
         
     return true
