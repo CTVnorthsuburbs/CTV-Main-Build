@@ -19,17 +19,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var data = [String]()
     var filtered:[String] = []
     
-    
-    
-    
-    
-    
+
     
     override func viewDidLoad() {
  
-        
-        
-        
         let videoSearch = VideoSearch()
         
         //searchResults = videoSearch.getSport("baseball")
@@ -48,10 +41,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
         super.viewDidLoad()
         
-        /* Setup delegates */
+        // Setup delegates
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        self.tableView.hidden = true
         
     }
 
@@ -69,7 +64,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 for result in searchResults {
                     
-                    
                     if (filtered[indexPath.row] == result.title) {
                         
                          let selectedVideo = searchResults[count]
@@ -77,6 +71,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                                videoDetailViewController.video = selectedVideo
                         
                     }
+                    
                     count += 1
                 }
                 
@@ -104,6 +99,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.tableView.hidden = false
         
         filtered = data.filter({ (text) -> Bool in
             let tmp: NSString = text
@@ -141,11 +138,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell;
         if(searchActive){
-            
-            
-            let temp = filtered[indexPath.row]
-            
-            print(temp)
             
             cell.textLabel?.text = filtered[indexPath.row]
     
