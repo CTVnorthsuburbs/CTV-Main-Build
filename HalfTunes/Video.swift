@@ -28,7 +28,7 @@ public func getSampleVideos() -> [Video] {
     var video = Video(title: "Legion Baseball Rosetown v. Tri-City Maroon 16-07-13 Gm1", thumbnail: nil, fileName: "10581- Baseball TCM v Rosetown 16-07-13 gm1 trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10581-Baseball-TCM-v-Rosetown-16-07-13-gm1-trms-Medium-v1.mp4")
     video!.generateThumbnail()
     samples.append(video!)
-    video = Video(title: "RAHS Graduation 2016", thumbnail: nil, fileName: "10439-RAHSGrad16-06-03.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4")
+    video = Video(title: "Roseville High School Graduation Ceremony (RAHS) 2015-06-05 (CH14)", thumbnail: nil, fileName: "10439-RAHSGrad16-06-03.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4")
     video!.generateThumbnail()
     samples.append(video!)
     video = Video(title: "Softball Roseville v. Mounds View RAHS MVHS 16-04-13", thumbnail: nil, fileName: "10178- RAHS vs. MVHS Softball 16-04-13- trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10178-RAHS-vs-MVHS-Softball-16-04-13-trms-Medium-v1.mp4")

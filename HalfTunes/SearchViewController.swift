@@ -28,47 +28,80 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    
 
+    @IBOutlet weak var allVideosResults: UIView!
     
-
-        
-  
-    
-    
-
-    
-    
-    
-    
-    
-    
-
+    var childView : AllVideosResultsViewController?
     
     override func viewDidLoad() {
         
+     
+        
+let defaults = NSUserDefaults.standardUserDefaults()
+         
       
+        var savedResults = [Video]()
+        
+        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData
+        
+        if( retrievedData != nil) {
+            
+              savedResults = NSKeyedUnarchiver.unarchiveObjectWithData(retrievedData!) as? [Video] ?? [Video]()
+            
+        
+        }
+      
+        
+      
+        if(savedResults.count != 0) {
+            
+            searchResults = savedResults
+            
+            print("saved search results retrieved")
+            
+            let dataToSave = NSKeyedArchiver.archivedDataWithRootObject(savedResults)
+            
+            defaults.setObject(dataToSave, forKey: "SavedVideoSearchList")
+            
+        } else {
+            
+            
+            print("video search called")
+            let videoSearch = VideoSearch()
+            
+            //searchResults = videoSearch.getSport("baseball")
+            
+            searchResults = videoSearch.getRecent()
+            
+              let myData = NSKeyedArchiver.archivedDataWithRootObject(searchResults)
+        defaults.setObject(myData, forKey: "SavedVideoSearchList")
+            
+       
+        }
+    
+    
+        
+        
+        childView = self.childViewControllers.last as? AllVideosResultsViewController
  
-        let videoSearch = VideoSearch()
+        self.tableView = childView!.tableView
+        childView!.searchBar = self.searchBar
         
-        //searchResults = videoSearch.getSport("baseball")
-        
-        searchResults = videoSearch.getRecent()
+    
         
         
         for item in searchResults {
             
             data.append(item.title!)
-            
-    
-            
-            
-            
+
         }
 
+        childView!.searchResults = self.searchResults
         
-     
+     childView!.data = self.data
+        childView!.filtered = self.filtered
+        
+        childView!.myVideos = self.myVideos
 
         super.viewDidLoad()
         
@@ -92,7 +125,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         {
         case 0:
             
-            
+            data.removeAll()
             
             for item in searchResults {
                 
@@ -101,13 +134,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             
-            self.tableView.hidden = false
             
             filtered = data.filter({ (text) -> Bool in
                 let tmp: NSString = text
                 let range = tmp.rangeOfString(searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
                 return range.location != NSNotFound
             })
+            
+            
+            childView!.filtered = self.filtered
+            
             if(filtered.count == 0){
                 searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
             } else {
@@ -122,13 +158,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             
             data.removeAll()
-            self.tableView.hidden = true
+            
+           
             
             for item in myVideos {
                 
                 
+
                 data.append(item.title!)
-                
                 
                 
                 
@@ -136,21 +173,27 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             
             
-            self.tableView.hidden = false
+
             
             filtered = data.filter({ (text) -> Bool in
                 let tmp: NSString = text
                 let range = tmp.rangeOfString(searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
                 return range.location != NSNotFound
             })
+            
+            
+            
+            childView!.filtered = self.filtered
+            
+            
             if(filtered.count == 0){
                 searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
             } else {
                 searchActive = true;
             }
-            self.tableView.reloadData()
+    
      
-            
+                self.tableView.reloadData()
             
             
         default:
@@ -165,67 +208,48 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowDetails" {
-            
-            let videoDetailViewController = segue.destinationViewController as! SearchDetailViewController
-            
-            // Get the cell that generated this segue.
-            if let selectedVideoCell = sender {
-                
-                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
-                
-              var count = 0  //code to map filtered result position to searchResult position
-                
-                for result in searchResults {
-                    
-                    if (filtered[indexPath.row] == result.title) {
-                        
-                         let selectedVideo = searchResults[count]
-                        
-                               videoDetailViewController.video = selectedVideo
-                        
-                    }
-                    
-                    count += 1
-                }
-                
-                    }
-            
-        }
-
-    }
  
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchActive = true;
+        searchActive = true
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
+       
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
+        
+        searchActive = false
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if (searchText.characters.count == 0) {
+            self.tableView.hidden = true
+        } else {
+      
         self.tableView.hidden = false
+            
+        }
         
         filtered = data.filter({ (text) -> Bool in
             let tmp: NSString = text
             let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
             return range.location != NSNotFound
         })
+        
+        
+        childView!.filtered = self.filtered
         if(filtered.count == 0){
-            searchActive = true;   //true results in table only appearing when search is active (only after initial search is made)
+            searchActive = true;  //true results in table only appearing when search is active (only after initial search is made)
         } else {
-            searchActive = true;
+            searchActive = true
         }
         self.tableView.reloadData()
     }
@@ -247,7 +271,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
 
-        return filtered.count;    //use data.count to always display intial table of all searchResults
+        return data.count   //use data.count to always display intial table of all searchResults
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
