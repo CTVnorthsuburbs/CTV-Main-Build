@@ -35,8 +35,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
         
   
-
-    
     
     
 
