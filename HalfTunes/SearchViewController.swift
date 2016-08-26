@@ -35,14 +35,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         
-     
-        
-let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
          
       
         var savedResults = [Video]()
         
-        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData
+        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData           //move all the search stuff out of the controller and into the search class
         
         if( retrievedData != nil) {
             
@@ -52,8 +50,8 @@ let defaults = NSUserDefaults.standardUserDefaults()
         }
       
         
-      
-        if(savedResults.count != 0) {
+        if(savedResults.count != 0) {     //set to != to use saved results, == to always search
+            
             
             searchResults = savedResults
             
@@ -71,8 +69,20 @@ let defaults = NSUserDefaults.standardUserDefaults()
             
             //searchResults = videoSearch.getSport("baseball")
             
-            searchResults = videoSearch.getRecent()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {                 //perform search list update in background
+                // do your task
+                
+                self.searchResults = videoSearch.getRecent()
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    // update some UI
+                    
+                    print("task finished: \(self.searchResults.count)")
+                }
+            }
+        
             
+              print("final count of returned results \(searchResults.count)")
               let myData = NSKeyedArchiver.archivedDataWithRootObject(searchResults)
         defaults.setObject(myData, forKey: "SavedVideoSearchList")
             
@@ -95,6 +105,8 @@ let defaults = NSUserDefaults.standardUserDefaults()
             data.append(item.title!)
 
         }
+        
+        print("number of search results retrieved: \(searchResults.count)")
 
         childView!.searchResults = self.searchResults
         

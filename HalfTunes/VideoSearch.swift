@@ -12,9 +12,11 @@ import UIKit
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
-var searchResults = [Video]()
+private var searchResults = [Video]()
+    
+let arrayLength = 50  //This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from trms
 
-func getNSURLSession() -> NSURLSession {
+private func getNSURLSession() -> NSURLSession {
     
     let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
@@ -25,29 +27,173 @@ func getNSURLSession() -> NSURLSession {
 }
     
 private func search(savedSearchID: Int)-> [Video] {
+    
+      searchResults.removeAll()
         
     let session = getNSURLSession()
         
     let searchUrl = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
+    
+    
+    
+    if (results!.count > arrayLength) {  //if array is longer than maximum, split it and process results
+    
+    
+    let splitResults = splitIdArray(results!)
+
+    if (splitResults != nil) {
         
-    let searchIdURL =  convertIdArrayToSearchURL(results!)
+        var searchURLs = [NSURL]()
         
-    getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
+        var counter = 0
+        
+        for splitArray in splitResults! {
+
+            let searchURL = convertIdArrayToSearchURL(splitArray)
+          
+            searchURLs.append(searchURL!)
+            
+            counter = counter + 1
+            
+        }
+        
+        for url in searchURLs {
+      
+             getSearchResults(session, url: url, isIDSearchURL: true)
+            
+        }
+        
+    } else {        //if array is smaller than maximum, just process it
+        
+   let searchIdURL =  convertIdArrayToSearchURL(results!)
+        
+   getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
+        
+        }
+        
+    }
     
     return searchResults
 }
     
 private func search(searchString: String)-> [Video] {
+    
+      searchResults.removeAll()
         
     let session = getNSURLSession()
         
-    let searchURL = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&page_size=200&include=vod,thumbnail")
+    let searchURL = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
         
     getSearchResults(session, url: searchURL!, isIDSearchURL: true)
         
     return searchResults
+}
+    
+private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array into sets of 50 in order to shorten search url. Maxium url length is 200 ids.
+    
+    var resultArray = [[Int]]()
+    
+    let arrayCount = idArray.count
+    
+    let numberOfArrays = arrayCount / arrayLength
+    
+    for _ in 0...numberOfArrays {
+        
+        resultArray.append([])
+        
+    }
+    
+    let count = numberOfArrays
+    
+    var position = -1
+    
+    for index in 0...count {
+        
+        var tempArray : [Int]
+    
+        if  (idArray.indices.contains(position + arrayLength) ){
+            
+             tempArray = Array(idArray[(position + 1 )...position + arrayLength])
+            
+        } else {
+        // if there is less than arrayLength indexes left in array, calculate remainder and assign
+         
+        var range = idArray.count
+            
+        range = range % arrayLength
+        
+    
+            
+            tempArray = Array(idArray[position + 1...position + range])
+        }
+        
+        
+        for id in tempArray {
+            
+               resultArray[index].append(id)
+            
+        }
+        
+        position = position + arrayLength
+        
+    }
+    
+    var totalCount = 0
+    
+    for i in resultArray {
+        
+                  totalCount = totalCount + i.count
+        
+    }
+    
+    
+//This bit below compares the results of the split with the orignal input array and prints an error if comparision fails
+    
+    var testArray = [Int]()
+    
+    for array in resultArray {
+        
+
+        for index in array {
+            
+                    testArray.append(index)
+            
+        }
+        
+    }
+    
+    var testResult = true
+    
+    var countPosition = 0
+    
+    for element in idArray {
+        
+        
+        if (element != testArray[countPosition]) {
+            
+          testResult = false
+            
+        print(element)
+            
+        }
+        
+        countPosition = countPosition + 1
+        
+        
+    }
+    
+    if(testResult == false) {
+        
+        print("split array does not match original id array")
+        
+        return nil
+        
+    }
+    
+   return resultArray
+   
 }
     
 func getRecent() -> [Video] {
@@ -67,7 +213,7 @@ func getSport(sport: String)->[Video]{
 }
 
 
-func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: Bool) -> [Int]? {
+private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: Bool) -> [Int]? {
     
     var dataTask: NSURLSessionDataTask?
     
@@ -102,11 +248,6 @@ func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: B
                     
                    complete = self.updateSearchResults(data)
                     
-                    if (complete) {
-                        
-                    }
-                    
-                    
                 } else {
                     
                     results = self.getSavedSearchResults(data)!
@@ -131,17 +272,25 @@ func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: B
 }
 
 
-func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
+private func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
     
     var url = "http://trms.ctv15.org/Cablecastapi/v1/shows/?"
     
+    var count = arrayLength //set a limit to results by matching split array length var
+    
     for id in idArray {
         
+        count = count - 1
+        
+        if (count >= 0) {
+        
         url = url + "ids=\(id)&"
+            
+        }
         
     }
     
-    url += "page_size=200&include=vod,thumbnail"
+    url += "include=vod,thumbnail&page_size=\(arrayLength)"
     
     let searchURL = NSURL(string: url)
     
@@ -149,7 +298,7 @@ func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
     
 }
     
-func getSavedSearchResults(data: NSData?) -> [Int]? {
+private func getSavedSearchResults(data: NSData?) -> [Int]? {
         
     searchResults.removeAll()
         
@@ -189,9 +338,9 @@ func getSavedSearchResults(data: NSData?) -> [Int]? {
 }
     
     
-func updateSearchResults(data: NSData?)-> Bool {
+private func updateSearchResults(data: NSData?)-> Bool {
         
-    searchResults.removeAll()
+    //searchResults.removeAll()
         
     var json: [String: AnyObject]!
         
