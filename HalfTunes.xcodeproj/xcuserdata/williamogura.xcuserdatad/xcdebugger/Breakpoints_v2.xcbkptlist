@@ -2,4 +2,69 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HalfTunes/SearchViewController.swift"
+            timestampString = "494344704.380602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "SearchViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HalfTunes.SearchViewController.childView.setter : Swift.Optional&lt;HalfTunes.AllVideosResultsViewController&gt;"
+                  moduleName = "HalfTunes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
+                  timestampString = "494344844.774842"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HalfTunes.SearchViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; HalfTunes.SearchViewController"
+                  moduleName = "HalfTunes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
+                  timestampString = "494344844.775024"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "442">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HalfTunes.SearchViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;HalfTunes.SearchViewController&gt;"
+                  moduleName = "HalfTunes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
+                  timestampString = "494344844.775203"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

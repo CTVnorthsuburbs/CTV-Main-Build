@@ -35,7 +35,18 @@ class SearchDetailViewController: UIViewController, UITextFieldDelegate, UIImage
         if let video = video {
             navigationItem.title = video.title
             titleLabel.text   = video.title
-            video.generateThumbnail()
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {  //generate thumbnail in bacground
+                // do your task
+                     video.generateThumbnail()
+                dispatch_async(dispatch_get_main_queue()) {
+                    // update some UI
+                    self.thumbnailView.image = video.thumbnail
+                    
+                }
+            }
+       
             thumbnailView.image = video.thumbnail
             
             

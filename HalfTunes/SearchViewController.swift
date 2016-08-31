@@ -28,6 +28,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    
+    
+    
+    
+    
+    
 
     @IBOutlet weak var allVideosResults: UIView!
     
@@ -77,14 +84,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_async(dispatch_get_main_queue()) {
                     // update some UI
                     
-                    print("task finished: \(self.searchResults.count)")
+                    print("final count of returned results \(self.searchResults.count)")
+                    let myData = NSKeyedArchiver.archivedDataWithRootObject(self.searchResults)
+                    defaults.setObject(myData, forKey: "SavedVideoSearchList")
                 }
             }
         
             
-              print("final count of returned results \(searchResults.count)")
-              let myData = NSKeyedArchiver.archivedDataWithRootObject(searchResults)
-        defaults.setObject(myData, forKey: "SavedVideoSearchList")
+  
             
        
         }

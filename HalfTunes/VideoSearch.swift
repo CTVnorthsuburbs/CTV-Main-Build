@@ -28,15 +28,13 @@ private func getNSURLSession() -> NSURLSession {
     
 private func search(savedSearchID: Int)-> [Video] {
     
-      searchResults.removeAll()
+    searchResults.removeAll()
         
     let session = getNSURLSession()
         
     let searchUrl = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
-    
-    
     
     if (results!.count > arrayLength) {  //if array is longer than maximum, split it and process results
     
@@ -80,7 +78,7 @@ private func search(savedSearchID: Int)-> [Video] {
     
 private func search(searchString: String)-> [Video] {
     
-      searchResults.removeAll()
+    searchResults.removeAll()
         
     let session = getNSURLSession()
         
@@ -148,7 +146,6 @@ private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array 
         
     }
     
-    
 //This bit below compares the results of the split with the orignal input array and prints an error if comparision fails
     
     var testArray = [Int]()
@@ -180,7 +177,6 @@ private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array 
         }
         
         countPosition = countPosition + 1
-        
         
     }
     
