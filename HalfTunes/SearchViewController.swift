@@ -133,6 +133,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         childView = self.childViewControllers.first as? AllVideosResultsViewController
+        
+        
+        
+        myVideosChildView = self.childViewControllers.last as? MyVideosResultsControllerView
+
+        
+                self.myVideosTableView = myVideosChildView!.tableView
+        
  
         self.tableView = childView!.tableView
         childView!.searchBar = self.searchBar
@@ -168,7 +176,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-       //  tableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
+     //    myVideosTableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
+        
+        
+      //  myVideosChildView!.videos = searchResults
         
     }
     
@@ -257,7 +268,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             }
     
      
-                self.tableView.reloadData()
+                self.myVideosTableView.reloadData()
             
             
         default:
