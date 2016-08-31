@@ -22,16 +22,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "HalfTunes.SearchViewController.childView.setter : Swift.Optional&lt;HalfTunes.AllVideosResultsViewController&gt;"
+                  symbolName = "HalfTunes.SearchViewController.myVideosResults.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
                   moduleName = "HalfTunes"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
-                  timestampString = "494344844.774842"
+                  timestampString = "494352903.875602"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "65">
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HalfTunes.SearchViewController.myVideosResults.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
+                  moduleName = "HalfTunes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
+                  timestampString = "494352903.875777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "42">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +56,12 @@
                   moduleName = "HalfTunes"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
-                  timestampString = "494344844.775024"
+                  timestampString = "494352903.875931"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "442">
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "472">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -56,12 +71,12 @@
                   moduleName = "HalfTunes"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/williamogura/Downloads/HalfTunes-Starter/HalfTunes/SearchViewController.swift"
-                  timestampString = "494344844.775203"
+                  timestampString = "494352903.876176"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "344">
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "356">
                </Location>
             </Locations>
          </BreakpointContent>
