@@ -451,6 +451,12 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNi-NP-rrO">
                                 <rect key="frame" x="0.0" y="152" width="600" height="448"/>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RpP-mg-ypD">
+                                <rect key="frame" x="0.0" y="152" width="600" height="448"/>
+                                <connections>
+                                    <segue destination="hxK-xf-gRx" kind="embed" id="1gX-OU-x7F"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -465,6 +471,7 @@
                     <navigationItem key="navigationItem" id="fyF-7U-ldv"/>
                     <connections>
                         <outlet property="allVideosResults" destination="tVd-6G-czj" id="gNO-yd-xDb"/>
+                        <outlet property="myVideosResults" destination="RpP-mg-ypD" id="b7J-by-5QH"/>
                         <outlet property="searchBar" destination="Ez9-H4-AuL" id="3bS-zx-uUN"/>
                         <outlet property="segmentedControl" destination="Pi2-9u-bqn" id="UnV-de-bhZ"/>
                         <outlet property="tableView" destination="Oof-90-NFw" id="hJ8-Yl-HkX"/>
@@ -906,7 +913,7 @@
             <objects>
                 <tableViewController id="hxK-xf-gRx" userLabel="Video Table View Controller" customClass="MyVideosResultsControllerView" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="NKt-0Z-HCE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="448"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

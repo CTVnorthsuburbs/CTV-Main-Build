@@ -32,15 +32,48 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
-    
+    @IBOutlet weak var myVideosTableView: UITableView!
+
     
     
 
     @IBOutlet weak var allVideosResults: UIView!
     
+    
+    @IBOutlet weak var myVideosResults: UIView!
+    
+    
+    var myVideosChildView : MyVideosResultsControllerView?
+  
+    
     var childView : AllVideosResultsViewController?
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+        
+        
+        
+    
     override func viewDidLoad() {
+        
+        
+        
+        allVideosResults.hidden = false
+        myVideosResults.hidden = true
+        
+        
+        
         
         let defaults = NSUserDefaults.standardUserDefaults()
          
@@ -99,7 +132,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
         
         
-        childView = self.childViewControllers.last as? AllVideosResultsViewController
+        childView = self.childViewControllers.first as? AllVideosResultsViewController
  
         self.tableView = childView!.tableView
         childView!.searchBar = self.searchBar
@@ -131,6 +164,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.tableView.hidden = true
         
+        
+        
+        
+        
+       //  tableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
+        
     }
     
     
@@ -143,6 +182,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         switch segmentedControl.selectedSegmentIndex
         {
         case 0:
+            
+            allVideosResults.hidden = false
+            myVideosResults.hidden = true
             
             data.removeAll()
             
@@ -175,6 +217,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             
         case 1:
+            
+            allVideosResults.hidden = true
+            myVideosResults.hidden = false
             
             data.removeAll()
             
