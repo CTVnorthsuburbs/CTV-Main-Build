@@ -19,7 +19,7 @@ import Foundation
 
 import UIKit
 
-class AllVideosResultsViewController: UIViewController,  UITableViewDelegate, UISearchBarDelegate{
+class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegate, UISearchDisplayDelegate {
     
     var searchResults = [Video]()
     
@@ -40,8 +40,7 @@ class AllVideosResultsViewController: UIViewController,  UITableViewDelegate, UI
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    
-    @IBOutlet weak var tableView: UITableView!
+ 
     
     
     

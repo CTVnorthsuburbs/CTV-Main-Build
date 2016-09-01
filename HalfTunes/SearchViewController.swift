@@ -57,7 +57,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "ShowDetails1" {
+        if segue.identifier == "ShowDetails" {
             
             
             print("segue runs")
@@ -179,8 +179,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
                 self.myVideosTableView = myVideosChildView!.tableView
         
- 
-        self.tableView = childView!.tableView
+ //here
+       self.tableView = childView!.tableView
         childView!.searchBar = self.searchBar
         
     
@@ -219,7 +219,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.myVideosTableView.hidden = true
     
         
-                myVideosChildView!.data = self.searchResults     //overrides myVideos list
+              //  myVideosChildView!.data = self.searchResults     //overrides myVideos list
         
         
         

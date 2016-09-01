@@ -270,7 +270,7 @@ var searchBar: UISearchBar!
     func thumbnailTapped(cell: VideoCell) {
         
         if let indexPath = tableView.indexPathForCell(cell) {
-            let video = videos[indexPath.row]
+            let video = filtered[indexPath.row]
             playVideo(video)
 
         }
@@ -494,6 +494,9 @@ var searchBar: UISearchBar!
  
     
     @IBAction func unwindToVideoList(sender: UIStoryboardSegue) {
+        
+        
+        print("running")
         if let sourceViewController = sender.sourceViewController as? VideoViewController, video = sourceViewController.video {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing video.
