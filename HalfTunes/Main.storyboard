@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tLP-Da-4DJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6bE-09-FD8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -9,22 +9,15 @@
         <!--Video Table View Controller-->
         <scene sceneID="GkY-Yy-XVW">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEL-bU-CDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="X4D-Xd-ZHY" userLabel="Video Table View Controller" customClass="VideoTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="yuI-Fm-teB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" text="" placeholder="Show ID" id="gRE-ql-Y6Y">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="X4D-Xd-ZHY" id="zf5-SL-W8p"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="YQV-Wp-cdh" customClass="VideoCell" customModule="HalfTunes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="130" width="600" height="90"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -147,13 +140,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="gRE-ql-Y6Y" id="XNK-bP-G41"/>
                         <outlet property="view" destination="yuI-Fm-teB" id="rnQ-Yx-OjN"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fEL-bU-CDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="578" y="387"/>
+            <point key="canvasLocation" x="550" y="337"/>
         </scene>
         <!--Segment View Controller-->
         <scene sceneID="raW-kj-4KY">
@@ -335,7 +326,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWb-Rl-Wkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="387"/>
+            <point key="canvasLocation" x="-442" y="28"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8ii-y2-Inh">
@@ -484,7 +475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="trc-y2-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="1196"/>
+            <point key="canvasLocation" x="3261" y="1196"/>
         </scene>
         <!--Master-->
         <scene sceneID="1Mz-k0-1uT">

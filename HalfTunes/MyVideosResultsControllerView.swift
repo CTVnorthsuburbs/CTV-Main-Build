@@ -374,10 +374,7 @@ class MyVideosResultsControllerView: UITableViewController, UISearchBarDelegate,
     
     
     
-    lazy var tapRecognizer: UITapGestureRecognizer = {
-        var recognizer = UITapGestureRecognizer(target:self, action: #selector(VideoTableViewController.dismissKeyboard))
-        return recognizer
-    }()
+
     
     lazy var downloadsSession: NSURLSession = {
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("bgSessionConfiguration")

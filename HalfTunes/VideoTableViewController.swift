@@ -28,14 +28,142 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     var videos = [Video]()
     
+    
+    
+    
+
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
+    var searchResults = [Video]()          //this holds the list of all videos
+    
+    var myVideos = [Video]()                //this holds the videos saved to myVideos
+    
+    
+    
+    
+    var searchActive : Bool = false
+    var data = [Video]()                //videos accesible to search
+    var filtered:[Video] = []               //videos as they are filtered by the search
+    
+
+    
+    
+  //  @IBOutlet weak var tableView: UITableView!
+    
+    
+
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         
-        super.viewDidLoad()
+        
+        
+        
+      //  tableView.hidden = true
+        
+        
+
+        
+        myVideos = getSampleVideos()
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        
+        var savedResults = [Video]()
+        
+        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData           //move all the search stuff out of the controller and into the search class
+        
+        if( retrievedData != nil) {
+            
+            savedResults = NSKeyedUnarchiver.unarchiveObjectWithData(retrievedData!) as? [Video] ?? [Video]()
+            
+            
+        }
+        
+        
+        if(savedResults.count != 0) {     //set to != to use saved results, == to always search
+            
+            
+            searchResults = savedResults
+            
+            print("saved search results retrieved")
+            
+            let dataToSave = NSKeyedArchiver.archivedDataWithRootObject(savedResults)
+            
+            defaults.setObject(dataToSave, forKey: "SavedVideoSearchList")
+            
+        } else {
+            
+            
+            print("video search called")
+            let videoSearch = VideoSearch()
+            
+            //searchResults = videoSearch.getSport("baseball")
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {                 //perform search list update in background
+                // do your task
+                
+                self.searchResults = videoSearch.getRecent()
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    // update some UI
+                    
+                    print("final count of returned results \(self.searchResults.count)")
+                    let myData = NSKeyedArchiver.archivedDataWithRootObject(self.searchResults)
+                    defaults.setObject(myData, forKey: "SavedVideoSearchList")
+                }
+            }
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+
+        
+  
+        
+        print("number of search results retrieved: \(searchResults.count)")
+        
+ data = myVideos
+        
+    
+        
+        
+        
+        
+        //    myVideosTableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
+        
+        
+        //  myVideosChildView!.videos = searchResults
+
+        
+        
+     //    tableView.delegate = self
 
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-  
+  /*
         
         // Load any saved videos, otherwise load sample data.
         if let savedVideos = loadVideos() {
@@ -45,6 +173,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         }
 
         tableView.tableFooterView = UIView()
+ 
+ 
+ */
         _ = self.downloadsSession
         
         
@@ -53,93 +184,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     }
     
     
-    // MARK: Handling Search Results
-    
-    // This helper method helps parse response JSON NSData into an array of Track objects.
-    func updateSearchResults(data: NSData?) {
-        searchResults.removeAll()
-        
-        
-        let tempThumb : UIImage = UIImage(named: "defaultPhoto")!
-        
-        var json: [String: AnyObject]!
-        
-        
-        do {
-            
-            json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String: AnyObject]
-            
-        } catch {
-            
-            print(error)
-            
-        }
-        
-        guard let Videos = Videos(json: json) else {
-            
-            return
-            
-    }
-        
-        guard let show = Videos.show else {
-            
-            return
-            
-        }
-        
-        guard let vod = Videos.vod!.first else {
-            
-            return
-            
-        }
-        
-        guard let thumbnail = Videos.thumbnail!.first  else {
-            
-            return
-        }
-        
-    
-        //MARK: May not work
-        
-  /* use thumbnail files from trms
-        
-        if let url = NSURL(string: thumbnail.url) {
-            if let data = NSData(contentsOfURL: url) {
-                tempThumb = UIImage(data: data)!
-            }        
-        }
-        
-        
- 
 
-        
-    */
-        
-     
-        
-        
-     
-        
-   
-        
-        let video = Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)
-        
-        
-  
-        
-        video!.generateThumbnail()
-        
-        
-        videos.append(video!)
-        
-           searchResults.append(Video(title: show.title, thumbnail: tempThumb, fileName: vod.fileName, sourceUrl: vod.url)!)
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.tableView.reloadData()
-            //self.tableView.setContentOffset(CGPointZero, animated: false)    this closes the searchbar but is broken
-        }
-    }
-    
     
     
     var moviePlayer : MPMoviePlayerController?
@@ -177,47 +222,45 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     }
     
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return videos.count
-        
-        
-        
-        
-    }
-    
-    
-    
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "VideoCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! VideoCell
         
         // Fetches the appropriate video for the data source layout.
-        let video = videos[indexPath.row]
+        
+        
+        let video : Video?
+        
+        if(searchActive){
+            
+            
+    video = filtered[indexPath.row]
+            
+        //    cell.textLabel?.text = filtered[indexPath.row]
+            
+        } else {
+            
+            
+            video = data[indexPath.row]
+          //  cell.textLabel?.text = data[indexPath.row]
+            
+        }
+        
+        
+        
+        
+        
+        
+      //  let video = videos[indexPath.row]
         
         
         
           cell.delegate = self
         
         
-        cell.titleLabel.text = video.title
-        cell.thumbnailView.image = video.thumbnail
+        cell.titleLabel.text = video!.title
+       cell.thumbnailView.image = video!.thumbnail
                
 
         
@@ -226,9 +269,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         
         var showDownloadControls = false
         
+      
         
-        
-        if let download = activeDownloads[video.sourceUrl!] {
+        if let download = activeDownloads[video!.sourceUrl!] {
             
             
            
@@ -242,14 +285,14 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             cell.pauseButton.setTitle(title, forState: UIControlState.Normal)
         }
         
-        
+ 
      
         
         cell.progressView.hidden = !showDownloadControls
        // cell.progressLabel.hidden = !showDownloadControls
         
         // If the track is already downloaded, enable cell selection and hide the Download button
-        let downloaded = localFileExistsForVideo(video)
+        let downloaded = localFileExistsForVideo(video!)
         cell.selectionStyle = downloaded ? UITableViewCellSelectionStyle.Gray : UITableViewCellSelectionStyle.None
         cell.downloadButton.hidden = downloaded || showDownloadControls
         
@@ -321,82 +364,108 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     }
     
     
-    // MARK: Keyboard dismissal
-    
-    func dismissKeyboard() {
-        searchBar.resignFirstResponder()
-    }
 
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-
-        dismissKeyboard()
-        
-        if !searchBar.text!.isEmpty {
-            // 1
-            if dataTask != nil {
-                dataTask?.cancel()
-            }
-            // 2
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            // 3
-            let expectedCharSet = NSCharacterSet.URLQueryAllowedCharacterSet()
-            let searchTerm = searchBar.text!.stringByAddingPercentEncodingWithAllowedCharacters(expectedCharSet)!
-            // 4
-            let url = NSURL(string: "http://trms.ctv15.org/cablecastapi/v1/shows/\(searchTerm)?include=vod,thumbnail")
-            // 5
-            dataTask = defaultSession.dataTaskWithURL(url!) {
-                data, response, error in
-                // 6
-                dispatch_async(dispatch_get_main_queue()) {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                }
-                // 7
-                if let error = error {
-                    print(error.localizedDescription)
-                    
-                
-                } else if let httpResponse = response as? NSHTTPURLResponse {
-                    if httpResponse.statusCode == 200 {
-                        
-                        
-       
-                        self.updateSearchResults(data)
-             
-                        
-                        
-                    }
-                }
-            }
-           
-            dataTask?.resume()
-            
-           
-        }
-  
-        
-    }
-    
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
-    }
-    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        view.addGestureRecognizer(tapRecognizer)
+        searchActive = true
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        view.removeGestureRecognizer(tapRecognizer)
+        searchActive = false
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        searchActive = false
     }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if (searchText.characters.count == 0) {
+          //  self.tableView.hidden = true
+        } else {
+            
+            self.tableView.hidden = false
+            
+        }
+        
+        filtered = data.filter({ (text) -> Bool in
+            let tmp: NSString = text.title!
+            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })
+        
+ 
+        if(filtered.count == 0){
+            searchActive = true;  //true results in table only appearing when search is active (only after initial search is made)
+        } else {
+            searchActive = true
+        }
+        self.tableView.reloadData()
+    }
+    
+    
+    
+    
+
+    
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            let videoDetailViewController = segue.destinationViewController as! VideoViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedVideoCell = sender as? VideoCell {
+                let indexPath = tableView.indexPathForCell(selectedVideoCell)!
+                
+                var count = 0  //code to map filtered result position to searchResult position
+                
+                
+                
+                
+                print("getting cell at \(indexPath)")
+                for result in searchResults {
+                    
+                    if (filtered[indexPath.row].title == result.title) {
+                        
+                        print("found")
+                        
+                        let selectedVideo = searchResults[count]
+                        
+                        videoDetailViewController.video = selectedVideo
+                        
+                    } else {
+                        
+                        
+                        
+                        print("not found")
+                    }
+                    
+                    count += 1
+                }
+                
+                
+                
+            }
+        }
+        else if segue.identifier == "AddItem" {
+            print("Adding new video.")
+            
+        }
+    }
+    
+    
+    
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
@@ -407,6 +476,24 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(searchActive) {
+            
+            return filtered.count
+        }
+        
+        
+        return data.count   //use data.count to always display intial table of all searchResults
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     // Override to support editing the table view.
@@ -445,26 +532,48 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
   
     
-  
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowDetail" {
-            let videoDetailViewController = segue.destinationViewController as! VideoViewController
-            
-            // Get the cell that generated this segue.
-            if let selectedVideoCell = sender as? VideoCell {
-                let indexPath = tableView.indexPathForCell(selectedVideoCell)!
-                let selectedVideo = videos[indexPath.row]
-                videoDetailViewController.video = selectedVideo
-            }
-        }
-        else if segue.identifier == "AddItem" {
-            print("Adding new video.")
-            
-        }
-    }
+
     
    
+    
+    /*
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetails" {
+            
+            let videoDetailViewController = segue.destinationViewController as! SearchDetailViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedVideoCell = sender {
+                
+                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
+                
+                var count = 0  //code to map filtered result position to searchResult position
+                
+                for result in searchResults {
+                    
+                    if (filtered[indexPath.row] == result.title) {
+                        
+                        let selectedVideo = searchResults[count]
+                        
+                        videoDetailViewController.video = selectedVideo
+                        
+                    }
+                    
+                    count += 1
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    
+   */
+    
+    
     
  
     
@@ -513,20 +622,15 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
 
     var activeDownloads = [String: Download]()
     
-    @IBOutlet weak var searchBar: UISearchBar!
     
     let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
     var dataTask: NSURLSessionDataTask?
     
-    var searchResults = [Video]()
+ 
     
     
-    
-    lazy var tapRecognizer: UITapGestureRecognizer = {
-        var recognizer = UITapGestureRecognizer(target:self, action: #selector(VideoTableViewController.dismissKeyboard))
-        return recognizer
-    }()
+
     
     lazy var downloadsSession: NSURLSession = {
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("bgSessionConfiguration")
