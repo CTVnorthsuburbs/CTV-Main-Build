@@ -34,7 +34,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
 
     
     
-    @IBOutlet weak var searchBar: UISearchBar!
+var searchBar: UISearchBar!
     
     
     var searchResults = [Video]()          //this holds the list of all videos
@@ -78,108 +78,22 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
       //  tableView.hidden = true
         
         
+        super.viewDidLoad()
 
         
-        myVideos = getSampleVideos()
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        
-        var savedResults = [Video]()
-        
-        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData           //move all the search stuff out of the controller and into the search class
-        
-        if( retrievedData != nil) {
-            
-            savedResults = NSKeyedUnarchiver.unarchiveObjectWithData(retrievedData!) as? [Video] ?? [Video]()
-            
-            
-        }
-        
-        
-        if(savedResults.count != 0) {     //set to != to use saved results, == to always search
-            
-            
-            searchResults = savedResults
-            
-            print("saved search results retrieved")
-            
-            let dataToSave = NSKeyedArchiver.archivedDataWithRootObject(savedResults)
-            
-            defaults.setObject(dataToSave, forKey: "SavedVideoSearchList")
-            
-        } else {
-            
-            
-            print("video search called")
-            let videoSearch = VideoSearch()
-            
-            //searchResults = videoSearch.getSport("baseball")
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {                 //perform search list update in background
-                // do your task
-                
-                self.searchResults = videoSearch.getRecent()
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    // update some UI
-                    
-                    print("final count of returned results \(self.searchResults.count)")
-                    let myData = NSKeyedArchiver.archivedDataWithRootObject(self.searchResults)
-                    defaults.setObject(myData, forKey: "SavedVideoSearchList")
-                }
-            }
-            
-            
-            
-            
-            
-        }
-        
-        
+       myVideos = getSampleVideos()
         
 
-        
-  
-        
-        print("number of search results retrieved: \(searchResults.count)")
         
  data = myVideos
         
-    
-        
-        
-        
-        
-        //    myVideosTableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
-        
-        
-        //  myVideosChildView!.videos = searchResults
+
 
         
         
-     //    tableView.delegate = self
-
-        // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem()
-        
-  /*
-        
-        // Load any saved videos, otherwise load sample data.
-        if let savedVideos = loadVideos() {
-            videos += savedVideos
-        } else {
-                  videos = getSampleVideos()
-        }
-
-        tableView.tableFooterView = UIView()
- 
- 
- */
         _ = self.downloadsSession
         
-        
-        super.viewDidLoad()
+
         
     }
     
@@ -385,8 +299,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
+        
         if (searchText.characters.count == 0) {
-          //  self.tableView.hidden = true
+           self.tableView.hidden = true
         } else {
             
             self.tableView.hidden = false
@@ -417,7 +332,13 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+             print("child segue runs")
         if segue.identifier == "ShowDetail" {
+            
+            
+            
+       
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.
@@ -434,17 +355,12 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
                     
                     if (filtered[indexPath.row].title == result.title) {
                         
-                        print("found")
+
                         
                         let selectedVideo = searchResults[count]
                         
                         videoDetailViewController.video = selectedVideo
                         
-                    } else {
-                        
-                        
-                        
-                        print("not found")
                     }
                     
                     count += 1

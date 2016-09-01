@@ -74,7 +74,10 @@ class AllVideosResultsViewController: UIViewController,  UITableViewDelegate, UI
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetails" {
             
-            let videoDetailViewController = segue.destinationViewController as! SearchDetailViewController
+            
+            print("this one runs")
+            
+            let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.
             if let selectedVideoCell = sender {

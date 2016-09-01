@@ -17,7 +17,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+ var tableView: UITableView!
 
     var searchActive : Bool = false
     var data = [String]()
@@ -32,7 +32,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
-    @IBOutlet weak var myVideosTableView: UITableView!
+  var myVideosTableView: UITableView!
 
     
     
@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var myVideosResults: UIView!
     
     
-    var myVideosChildView : MyVideosResultsControllerView?
+    var myVideosChildView : VideoTableViewController?
   
     
     var childView : AllVideosResultsViewController?
@@ -55,9 +55,48 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowDetails1" {
+            
+            
+            print("segue runs")
+            
+            let videoDetailViewController = segue.destinationViewController as! VideoViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedVideoCell = sender {
+                
+                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
+                
+                var count = 0  //code to map filtered result position to searchResult position
+                
+                for result in searchResults {
+                    
+                    if (filtered[indexPath.row] == result.title) {
+                        
+                        let selectedVideo = searchResults[count]
+                        
+                        videoDetailViewController.video = selectedVideo
+                        
+                    }
+                    
+                    count += 1
+                }
+                
+            }
+            
+        }
+        
+    }
     
 
+    
+
+    
+    
+    
+    
     
     
 
@@ -136,8 +175,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-        myVideosChildView = self.childViewControllers.last as? MyVideosResultsControllerView
-
+        myVideosChildView = self.childViewControllers.last as? VideoTableViewController
         
                 self.myVideosTableView = myVideosChildView!.tableView
         
@@ -162,6 +200,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         childView!.filtered = self.filtered
         
         childView!.myVideos = self.myVideos
+        
+        
+        
+        
+        
+        myVideosChildView!.searchResults = self.searchResults
+        
 
         super.viewDidLoad()
         
@@ -171,21 +216,114 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
         
         self.tableView.hidden = true
+        self.myVideosTableView.hidden = true
+    
+        
+                myVideosChildView!.data = self.searchResults     //overrides myVideos list
         
         
         
-        
-        
-     //    myVideosTableView.registerClass(VideoCell.self, forCellReuseIdentifier: "VideoCell")
-        
-        
-      //  myVideosChildView!.videos = searchResults
+
         
     }
     
     
     
        
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        
+        
+        
+        switch segmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            
+            
+            let searchText = searchBar.text             //get current search text, change the delgate, then add the text
+            
+        
+              searchBar.delegate = self
+            
+            if(searchText!.isEmpty == false) {
+       
+
+          self.searchBar(searchBar, textDidChange:searchText!)
+                
+                
+                
+            } else {
+                
+                
+                  self.searchBar(searchBar, textDidChange:"")
+            }
+            
+            
+           
+             if ((searchBar.text ) != nil) {
+                
+                
+                
+                allVideosResults.hidden = false
+                
+             } else {
+                
+                
+                
+                allVideosResults.hidden = true
+             }
+             
+             
+ 
+            myVideosResults.hidden = true
+        case 1:
+            
+            
+            
+            
+            
+            let searchText = searchBar.text             //get current search text, change the delgate, then add the text
+            
+            searchBar.delegate = myVideosChildView
+            if(searchText!.isEmpty == false) {
+    
+              myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
+
+            } else {
+                
+                
+                   myVideosChildView?.searchBar(searchBar, textDidChange:"")
+                
+            }
+            
+            
+            
+ 
+            
+            if ((searchBar.text ) != nil) {
+                
+                
+                  myVideosResults.hidden = false
+                
+            } else {
+                
+                  myVideosResults.hidden = true
+                
+            }
+            
+            
+            
+           allVideosResults.hidden = true
+            
+        
+            
+        default:
+            break;
+        }
+        
+        
+        
+    }
+    
     
     
 
