@@ -17,8 +17,6 @@
 		8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */; };
 		8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */; };
 		8D63F29A1D64B22900689693 /* VideoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2991D64B22900689693 /* VideoSearch.swift */; };
-		8D63F2BF1D64E4E200689693 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2BD1D64E4E200689693 /* MasterViewController.swift */; };
-		8D63F2C01D64E4E200689693 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2BE1D64E4E200689693 /* DetailViewController.swift */; };
 		8D63F2C81D64ED0D00689693 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2C71D64ED0D00689693 /* SearchDetailViewController.swift */; };
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
 		8DB606961D303934005029DB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6068F1D303934005029DB /* Decoder.swift */; };
@@ -27,7 +25,6 @@
 		8DB606991D303934005029DB /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606931D303934005029DB /* Gloss.swift */; };
 		8DB6069B1D303934005029DB /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606951D303934005029DB /* Operators.swift */; };
 		8DB6069D1D303E1F005029DB /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6069C1D303E1F005029DB /* Download.swift */; };
-		8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */; };
 		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -43,8 +40,6 @@
 		8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllVideosResultControllerView.swift; sourceTree = "<group>"; };
 		8D63F2991D64B22900689693 /* VideoSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSearch.swift; sourceTree = "<group>"; };
-		8D63F2BD1D64E4E200689693 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = masterdetailsample/masterdetailsample/MasterViewController.swift; sourceTree = "<group>"; };
-		8D63F2BE1D64E4E200689693 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = masterdetailsample/masterdetailsample/DetailViewController.swift; sourceTree = "<group>"; };
 		8D63F2C71D64ED0D00689693 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8DB6068F1D303934005029DB /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Gloss/Decoder.swift; sourceTree = "<group>"; };
@@ -54,7 +49,6 @@
 		8DB606931D303934005029DB /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gloss.swift; path = Gloss/Gloss.swift; sourceTree = "<group>"; };
 		8DB606951D303934005029DB /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Gloss/Operators.swift; sourceTree = "<group>"; };
 		8DB6069C1D303E1F005029DB /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
-		8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,7 +82,7 @@
 		8D63F29B1D64D42900689693 /* MyVideos */ = {
 			isa = PBXGroup;
 			children = (
-				8DEA3F701D54C50200F1DA69 /* SegmentViewController.swift */,
+				8D24546C1D773AEB002A21C3 /* MyVideosResultsControllerView.swift */,
 				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
 				8DB6069C1D303E1F005029DB /* Download.swift */,
 				D92117481B596DFE008DAD44 /* Cells */,
@@ -104,18 +98,8 @@
 				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
 				8D63F2C71D64ED0D00689693 /* SearchDetailViewController.swift */,
 				8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */,
-				8D24546C1D773AEB002A21C3 /* MyVideosResultsControllerView.swift */,
 			);
 			name = Search;
-			sourceTree = "<group>";
-		};
-		8D63F2C41D64E5BF00689693 /* MasterDetail */ = {
-			isa = PBXGroup;
-			children = (
-				8D63F2BD1D64E4E200689693 /* MasterViewController.swift */,
-				8D63F2BE1D64E4E200689693 /* DetailViewController.swift */,
-			);
-			name = MasterDetail;
 			sourceTree = "<group>";
 		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
@@ -154,7 +138,6 @@
 		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
-				8D63F2C41D64E5BF00689693 /* MasterDetail */,
 				8D63F29C1D64D44A00689693 /* Search */,
 				8D63F29B1D64D42900689693 /* MyVideos */,
 				D92117491B596E03008DAD44 /* Data Objects */,
@@ -249,8 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D63F2BF1D64E4E200689693 /* MasterViewController.swift in Sources */,
-				8D63F2C01D64E4E200689693 /* DetailViewController.swift in Sources */,
 				D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */,
 				8DB606981D303934005029DB /* Encoder.swift in Sources */,
 				8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */,
@@ -258,7 +239,6 @@
 				8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
-				8DEA3F711D54C50200F1DA69 /* SegmentViewController.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
 				8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */,
 				8DB606991D303934005029DB /* Gloss.swift in Sources */,

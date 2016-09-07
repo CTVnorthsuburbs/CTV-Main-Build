@@ -9,13 +9,18 @@
 import Foundation
 import UIKit
 
+/// VideoSearch Class handles the URL session, searches sent to api, handling of the results, and splitting of result arrays that are sent back to the api in order to get the shows
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
 private var searchResults = [Video]()
-    
-let arrayLength = 50  //This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from trms
 
+// This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast
+    
+let arrayLength = 50
+
+/// Creates the NSURL session necessary to download content from remote URL
+    
 private func getNSURLSession() -> NSURLSession {
     
     let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
@@ -25,6 +30,11 @@ private func getNSURLSession() -> NSURLSession {
     return defaultSession
     
 }
+
+/**
+ Search returns results from saved search stored in cablecast frontdoor. The function calls the getNSURLSession, accessing the searchURL, receives the results from the API as IDs, it then parses the results array into smaller slices defined by the arrayLength Int value, and then creates new urls from these slices, that are sent to the API in order to receive the necessary Shows
+- parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor
+*/
     
 private func search(savedSearchID: Int)-> [Video] {
     
@@ -36,8 +46,7 @@ private func search(savedSearchID: Int)-> [Video] {
         
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
     
-    if (results!.count > arrayLength) {  //if array is longer than maximum, split it and process results
-    
+    if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest
     
     let splitResults = splitIdArray(results!)
 
@@ -75,6 +84,11 @@ private func search(savedSearchID: Int)-> [Video] {
     
     return searchResults
 }
+
+/**
+Search by string returns an array of video objects corresponding to the search string passed
+- parameter searchString: Search Keyword
+*/
     
 private func search(searchString: String)-> [Video] {
     
@@ -218,6 +232,7 @@ private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSear
     if dataTask != nil {
         
         dataTask?.cancel()
+        
     }
     
     var complete = false

@@ -25,60 +25,38 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
     var myVideos = [Video]()
     
-    
-    
-   var searchBar: UISearchBar!
-   
+    var searchBar: UISearchBar!
     
     var searchActive : Bool = false
+    
     var data = [String]()
+    
     var filtered:[String] = []
-    
-    
-    
-    
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
- 
-    
-    
-    
     @IBOutlet weak var allVideosResults: UIView!
-    
-    
-    
-    
     
     override func viewDidLoad() {
      
-
         super.viewDidLoad()
 
-
         tableView.delegate = self
-  
         
         self.tableView.hidden = true
         
     }
     
-    
-    
-
-    
-    
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "ShowDetails" {
-            
-            
+        
             print("this one runs")
             
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.
+            
             if let selectedVideoCell = sender {
                 
                 let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
@@ -96,6 +74,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                     }
                     
                     count += 1
+                    
                 }
                 
             }
@@ -104,21 +83,28 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
         
     }
     
-
-
 }
-
 
 extension AllVideosResultsViewController: NSURLSessionDelegate {
     
     func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
+        
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            
             if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
+                
                 appDelegate.backgroundSessionCompletionHandler = nil
+                
                 dispatch_async(dispatch_get_main_queue(), {
+                    
                     completionHandler()
+                    
                 })
+                
             }
+            
         }
+        
     }
+    
 }

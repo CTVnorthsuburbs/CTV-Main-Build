@@ -10,55 +10,41 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
-      var searchResults = [Video]()
+    var searchResults = [Video]()
     
     var myVideos = getSampleVideos()
     
-    
-
     @IBOutlet weak var searchBar: UISearchBar!
- var tableView: UITableView!
+    
+    var tableView: UITableView!
 
     var searchActive : Bool = false
+    
     var data = [String]()
+    
     var filtered:[String] = []
     
-    
-    
-    
+    var numberOfAllVideosResults = 11  //Sets the number of results displayed in All Video Search Table
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    
-    
-    
-  var myVideosTableView: UITableView!
-
-    
-    
+    var myVideosTableView: UITableView!
 
     @IBOutlet weak var allVideosResults: UIView!
     
-    
     @IBOutlet weak var myVideosResults: UIView!
-    
     
     var myVideosChildView : VideoTableViewController?
   
-    
     var childView : AllVideosResultsViewController?
     
+    @IBOutlet weak var searchExamples: UILabel!
     
-    
-    
-    
-    
-    
+    @IBOutlet weak var searchExampleTitle: UILabel!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowDetails" {
-            
             
             print("segue runs")
             
@@ -89,34 +75,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
-    
 
-    
-
-    
-    
-    
-    
-    
-    
-
-        
-        
-        
-    
     override func viewDidLoad() {
         
-        
+        searchExamples.text = "Lacrosse\n\nHockey\n\nRAHS\n\nBoys Soccer\n\nGirls Hockey\n\n16-01-22\n\nMounds View"
         
         allVideosResults.hidden = false
+        
         myVideosResults.hidden = true
         
-        
-        
-        
         let defaults = NSUserDefaults.standardUserDefaults()
-         
-      
+        
         var savedResults = [Video]()
         
         let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData           //move all the search stuff out of the controller and into the search class
@@ -124,13 +93,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if( retrievedData != nil) {
             
               savedResults = NSKeyedUnarchiver.unarchiveObjectWithData(retrievedData!) as? [Video] ?? [Video]()
-            
         
         }
       
-        
         if(savedResults.count != 0) {     //set to != to use saved results, == to always search
-            
             
             searchResults = savedResults
             
@@ -142,49 +108,39 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         } else {
             
-            
             print("video search called")
+            
             let videoSearch = VideoSearch()
             
             //searchResults = videoSearch.getSport("baseball")
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {                 //perform search list update in background
-                // do your task
                 
                 self.searchResults = videoSearch.getRecent()
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    // update some UI
-                    
+            
                     print("final count of returned results \(self.searchResults.count)")
+                    
                     let myData = NSKeyedArchiver.archivedDataWithRootObject(self.searchResults)
+                    
                     defaults.setObject(myData, forKey: "SavedVideoSearchList")
+                    
                 }
+                
             }
-        
-            
-  
-            
-       
+
         }
     
-    
-        
-        
         childView = self.childViewControllers.first as? AllVideosResultsViewController
-        
-        
         
         myVideosChildView = self.childViewControllers.last as? VideoTableViewController
         
-                self.myVideosTableView = myVideosChildView!.tableView
+        self.myVideosTableView = myVideosChildView!.tableView
         
- //here
-       self.tableView = childView!.tableView
+        self.tableView = childView!.tableView
+        
         childView!.searchBar = self.searchBar
-        
-    
-        
         
         for item in searchResults {
             
@@ -196,229 +152,270 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
         childView!.searchResults = self.searchResults
         
-     childView!.data = self.data
+        childView!.data = self.data
+        
         childView!.filtered = self.filtered
         
         childView!.myVideos = self.myVideos
-        
-        
-        
-        
-        
+
         myVideosChildView!.searchResults = self.searchResults
-        
 
         super.viewDidLoad()
         
         // Setup delegates
         tableView.delegate = self
+        
         tableView.dataSource = self
+        
         searchBar.delegate = self
         
         self.tableView.hidden = true
+        
         self.myVideosTableView.hidden = true
-    
         
-              //  myVideosChildView!.data = self.searchResults     //overrides myVideos list
+        self.myVideosChildView?.searchExamples = self.searchExamples
         
+        self.myVideosChildView?.searchExampleTitle = self.searchExampleTitle
         
-        
-
+        // myVideosChildView!.data = self.searchResults     // Uncomment to replace my videos with full search results, useful for testing
         
     }
     
-    
-    
-       
     @IBAction func indexChanged(sender: UISegmentedControl) {
         
-        
-        
         switch segmentedControl.selectedSegmentIndex
-        {
-        case 0:
             
+        {
+            
+        case 0:
             
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
-        
-              searchBar.delegate = self
+            searchBar.delegate = self
             
             if(searchText!.isEmpty == false) {
        
-
-          self.searchBar(searchBar, textDidChange:searchText!)
-                
-                
+            self.searchBar(searchBar, textDidChange:searchText!)
                 
             } else {
                 
+                self.searchBar(searchBar, textDidChange:"")
                 
-                  self.searchBar(searchBar, textDidChange:"")
             }
             
-            
-           
-             if ((searchBar.text ) != nil) {
-                
-                
+            if ((searchBar.text ) != nil) {
                 
                 allVideosResults.hidden = false
                 
              } else {
                 
-                
-                
                 allVideosResults.hidden = true
+                
              }
-             
-             
- 
+            
             myVideosResults.hidden = true
+            
         case 1:
-            
-            
-            
-            
             
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
             searchBar.delegate = myVideosChildView
+            
             if(searchText!.isEmpty == false) {
     
-              myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
+                myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
+                
+                searchExamples.hidden = true
+                
+                searchExampleTitle.hidden = true
 
             } else {
                 
+                myVideosChildView?.searchBar(searchBar, textDidChange:"")
                 
-                   myVideosChildView?.searchBar(searchBar, textDidChange:"")
+                searchExamples.hidden = false
                 
+                searchExampleTitle.hidden = false
+            
             }
-            
-            
-            
- 
             
             if ((searchBar.text ) != nil) {
                 
-                
-                  myVideosResults.hidden = false
+                myVideosResults.hidden = false
                 
             } else {
                 
-                  myVideosResults.hidden = true
-                
+                myVideosResults.hidden = true
+         
             }
             
-            
-            
-           allVideosResults.hidden = true
-            
-        
+            allVideosResults.hidden = true
             
         default:
+            
             break;
+            
         }
-        
-        
         
     }
     
-    
-    
-
- 
-    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
         searchActive = true
+        
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
         searchActive = false
-       
+        
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
         searchActive = false
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
         searchActive = false
+        
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         if (searchText.characters.count == 0) {
+            
+            searchExamples.hidden = false
+            
+            searchExampleTitle.hidden = false
+            
             self.tableView.hidden = true
+            
         } else {
+            
+            searchExamples.hidden = true
+            
+            searchExampleTitle.hidden = true
       
-        self.tableView.hidden = false
+            self.tableView.hidden = false
             
         }
         
         filtered = data.filter({ (text) -> Bool in
+            
             let tmp: NSString = text
+            
             let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            
             return range.location != NSNotFound
         })
         
-        
-        childView!.filtered = self.filtered
-        if(filtered.count == 0){
-            searchActive = true;  //true results in table only appearing when search is active (only after initial search is made)
-        } else {
-            searchActive = true
+        if (filtered.count > 0) {                       //this limits the results of the autocomplete for all Videos Search
+           
+            var count = numberOfAllVideosResults
+            
+            var slice = [String]()
+            
+            for item in filtered {
+                
+                if (count > 0) {
+                    
+                    slice.append(item)
+                    
+                    count = count - 1
+                    
+                }
+                
+            }
+            
+            filtered = slice
+            
         }
+
+        childView!.filtered = self.filtered
+        
+        if(filtered.count == 0){
+            
+            searchActive = true;  //true results in table only appearing when search is active (only after initial search is made)
+            
+        } else {
+            
+            searchActive = true
+            
+        }
+        
         self.tableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
+        
     }
     
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if(searchActive) {
     
             return filtered.count
+            
         }
         
-
         return data.count   //use data.count to always display intial table of all searchResults
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell;
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+        
         if(searchActive){
             
             cell.textLabel?.text = filtered[indexPath.row]
     
         } else {
+            
             cell.textLabel?.text = data[indexPath.row]
           
         }
         
-        return cell;
+        return cell
+        
     }
+    
 }
 
-
-extension SearchViewController: NSURLSessionDelegate {
+extension SearchViewController: NSURLSessionDelegate {  // Not sure if this is necessary
     
     func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
+        
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            
             if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
+                
                 appDelegate.backgroundSessionCompletionHandler = nil
+                
                 dispatch_async(dispatch_get_main_queue(), {
                     completionHandler()
+                    
                 })
+                
             }
+            
         }
+        
     }
+    
 }
+
+

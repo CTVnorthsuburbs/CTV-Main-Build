@@ -10,54 +10,51 @@ import Foundation
 
 import UIKit
 
-
 protocol VideoCellDelegate {
+    
     func pauseTapped(cell: VideoCell)
+    
     func resumeTapped(cell: VideoCell)
+    
     func cancelTapped(cell: VideoCell)
+    
     func downloadTapped(cell: VideoCell)
+    
     func thumbnailTapped(cell: VideoCell)
+    
 }
 
-
-
 class VideoCell: UITableViewCell {
+    
     // MARK: Properties
     
- 
-
     @IBOutlet weak var thumbnailView: UIImageView!
 
     @IBOutlet weak var fileNameLabel: UILabel!
     
-    
     @IBOutlet weak var titleLabel: UILabel!
     
-
-    
-    
     override func awakeFromNib() {
+        
         super.awakeFromNib()
+        
         // Initialization code
+        
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
+        
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+        
     }
     
    // var delegate: VideoCellDelegate?
     
      var delegate:VideoCellDelegate! = nil
  
-    
-    
-    
-    
     @IBOutlet weak var thumbnailButton: UIButton!
-    
-   
     
     @IBOutlet weak var downloadButton: UIButton!
     
@@ -71,38 +68,40 @@ class VideoCell: UITableViewCell {
 
     @IBAction func thumbnailTapped(sender: AnyObject) {
         
-        
-        
         delegate?.thumbnailTapped(self)
-    
-        
         
     }
   
-
-   
-    
     @IBAction func pauseOrResumeTapped(sender: AnyObject) {
+        
         if(pauseButton.titleLabel!.text == "Pause") {
+            
             delegate?.pauseTapped(self)
+            
         } else {
+            
             delegate?.resumeTapped(self)
+            
         }
+        
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
+        
         delegate?.cancelTapped(self)
+        
     }
     
     @IBAction func downloadTapped(sender: AnyObject) {
         
-        
         if (delegate == nil) {
             
-            
             print("equalis nil")
+            
         }
         
                 delegate!.downloadTapped(self)
+        
     }
+    
 }

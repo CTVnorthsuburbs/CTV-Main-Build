@@ -17,17 +17,17 @@ public struct Videos: Decodable {
     
     public let thumbnail: [Thumbnail]?
     
-
-    
     public init?(json: JSON) {
+        
         show = "show" <~~ json
+        
         vod = "vods" <~~ json
+        
         thumbnail = "thumbnails" <~~ json
+        
     }
     
 }
-
-
 
 public struct VideosResult: Decodable {
     
@@ -37,18 +37,17 @@ public struct VideosResult: Decodable {
     
     public let thumbnail: [Thumbnail]?
     
-    
-    
     public init?(json: JSON) {
+        
         show = "shows" <~~ json
+        
         vod = "vods" <~~ json
+        
         thumbnail = "thumbnails" <~~ json
+        
     }
     
 }
-
-
-
 
 public struct AllVideos: Decodable {
     
@@ -64,9 +63,7 @@ public struct AllVideos: Decodable {
 
 public struct AllVideosResults: Decodable {
     
-    
     public let results: NSArray?
-    
     
     public init?(json: JSON) {
         
@@ -74,18 +71,15 @@ public struct AllVideosResults: Decodable {
             
             else { return nil }
         
-          self.results = results
+        self.results = results
         
     }
     
 }
 
-
 public struct Results: Decodable {
     
-    
     public let results: [Int]
-    
     
     public init?(json: JSON) {
         
@@ -99,16 +93,7 @@ public struct Results: Decodable {
     
 }
 
-
-
-
-
-
-
-
 public struct Vods: Decodable {
-    
-    
     
     public let id: Int
     
@@ -116,14 +101,11 @@ public struct Vods: Decodable {
     
     public let fileName: String
     
-    
     public init?(json: JSON) {
-        
         
         guard let id: Int = "id" <~~ json
             
             else { return nil }
-        
         
         guard let url: String = "url" <~~ json
             
@@ -133,79 +115,51 @@ public struct Vods: Decodable {
             
             else { return nil }
         
-        
-        
         self.id = id
         
         self.url = url
         
         self.fileName = fileName
-    
-        
         
     }
     
 }
 
-
-
 public struct Shows: Decodable {
-    
     
     public let title: String
     
     public let id: Int
     
-    
-    
-    
-    
     public init?(json: JSON) {
-        
         
         guard let title: String = "title" <~~ json
             
             else { return nil }
         
-        
         guard let id: Int = "id" <~~ json
             
             else { return nil }
-        
         
         self.title = title
         
         self.id = id
         
-        
-        
-        
     }
     
 }
 
-
-
 public struct Thumbnail: Decodable {
-    
     
     public let url: String
     
-    
     public init?(json: JSON) {
-        
-        
         
         guard let url: String = "url" <~~ json
             
             else { return nil }
         
-        
         self.url = url
-        
-            
-        
-        
         
     }
     
