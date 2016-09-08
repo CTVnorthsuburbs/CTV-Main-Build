@@ -14,6 +14,7 @@ import UIKit
 import MediaPlayer
 
 
+/// The VideoTableViewController class contains the controller that handles the My Videos table view within the Search View
 
 class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
     
@@ -292,8 +293,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        print("child segue runs")
-        
         if segue.identifier == "ShowDetail" {
 
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
@@ -305,8 +304,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
                 let indexPath = tableView.indexPathForCell(selectedVideoCell)!
                 
                 var count = 0  //code to map filtered result position to searchResult position
-                
-                print("getting cell at \(indexPath)")
                 
                 for result in searchResults {
                     

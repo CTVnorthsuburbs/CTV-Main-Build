@@ -9,17 +9,28 @@
 import Foundation
 import UIKit
 
-/// VideoSearch Class handles the URL session, searches sent to api, handling of the results, and splitting of result arrays that are sent back to the api in order to get the shows
+/** The VideoSearch Class handles the URL session, searches sent to the CableCast API, handling of the results, and splitting of result arrays that are sent back to the API in order to get the video objects. The class functions by first creating a NSURLSession to handle the JSON download. Next, a searchURL is created. This URL is accessed and the results are stored in the results Array. These results consist of an Int Array containing the ID's of the videos returned from the search. The ID Array must then be sent back to the API in order to receive the JSON Video objects that contain both a title and a video source URL. If the result Array containing the IDs is longer than the maxium limit, then it is split into smaller Arrays using the splitIdArray function. This function accepts the Int Array and returns an Array of Int Arrays. The size of each split Array is determined by the arrayLength variable. Once the Array is split, separate URLs are created for each split Array and these URLs are accessed in order to receive the JSON Video Objects that are appended to a single results array.
+ 
+    Steps when recent Videos are requested:
+    - getRecent() is called by an outside class.
+    - search(52966) is called by getRecent(). The Int value passed is the Saved Search ID supplied by the CableCast Frontdoor.
+    - search(savedSearchID: Int) removes the previous searchResults. Creates a new NSURL session and uses this session to access the searchURL.
+    - The getSearchResults() returns the Array of Video IDs.
+    - If the results array exceeds the maximum defined by the arrayLength property, then the results are passed to splitIdArray().
+    - splitIdArray() returns the Array of Int Arrays. The Int Arrays are converted to Search URLs through convertIdArrayToSearchURL().
+    - Each searchURL returned from convertIdArrayToSearchURL() are passed to getSearchResults() in order to receive the JSON Video Objects.
+    - Finally the results are appended to the searchResults Video Array and this is returned to the orignal calling function getRecent().
+*/
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
 private var searchResults = [Video]()
 
-// This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast
+// This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
 let arrayLength = 50
 
-/// Creates the NSURL session necessary to download content from remote URL
+/// Creates the NSURL session necessary to download content from remote URL.
     
 private func getNSURLSession() -> NSURLSession {
     
@@ -33,7 +44,7 @@ private func getNSURLSession() -> NSURLSession {
 
 /**
  Search returns results from saved search stored in cablecast frontdoor. The function calls the getNSURLSession, accessing the searchURL, receives the results from the API as IDs, it then parses the results array into smaller slices defined by the arrayLength Int value, and then creates new urls from these slices, that are sent to the API in order to receive the necessary Shows
-- parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor
+- parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
 */
     
 private func search(savedSearchID: Int)-> [Video] {
@@ -46,7 +57,7 @@ private func search(savedSearchID: Int)-> [Video] {
         
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
     
-    if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest
+    if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
     
     let splitResults = splitIdArray(results!)
 
@@ -103,7 +114,12 @@ private func search(searchString: String)-> [Video] {
     return searchResults
 }
     
-private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array into sets of 50 in order to shorten search url. Maxium url length is 200 ids.
+/** splitIdArray accepts an Int Array and splits the array into smaller Arrays, the size of which are defined by the arrayLength var. The return is an Array of Int Arrays.
+- parameter idArray: Array of IDs supplied by getSearchResults()
+*/
+    
+    
+private func splitIdArray(idArray: [Int])-> [[Int]]? {
     
     var resultArray = [[Int]]()
     
@@ -130,7 +146,7 @@ private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array 
              tempArray = Array(idArray[(position + 1 )...position + arrayLength])
             
         } else {
-        // if there is less than arrayLength indexes left in array, calculate remainder and assign
+        // if there is less than arrayLength indexes left in array, calculate remainder and assign.
          
         var range = idArray.count
             
@@ -160,7 +176,7 @@ private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array 
         
     }
     
-//This bit below compares the results of the split with the orignal input array and prints an error if comparision fails
+//This bit below compares the results of the split with the orignal input array and prints an error if comparision fails.
     
     var testArray = [Int]()
     
@@ -205,6 +221,8 @@ private func splitIdArray(idArray: [Int])-> [[Int]]? {        //splits id array 
    return resultArray
    
 }
+
+/// getRecent() returns the most recent Videos from CableCast as defined by the Saved Search 'App Basic Search'.
     
 func getRecent() -> [Video] {
         
@@ -213,6 +231,8 @@ func getRecent() -> [Video] {
     return searchResults
         
 }
+
+/// getSport() accepts a String Keyword that is passed as a search parameter.
     
 func getSport(sport: String)->[Video]{
         

@@ -46,8 +46,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         if segue.identifier == "ShowDetails" {
             
-            print("segue runs")
-            
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.

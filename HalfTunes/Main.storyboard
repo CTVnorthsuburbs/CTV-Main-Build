@@ -395,7 +395,7 @@
                                                 <action selector="downloadTapped:" destination="Y1e-HN-7Jt" eventType="touchUpInside" id="sGN-RA-vF5"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FB03F713-DCD8-4C89-8595-89C7E41B10DF" translatesAutoresizingMaskIntoConstraints="NO" id="JNC-In-BBl">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="D14EA1AE-C36A-42B4-88E7-5BB7CBA95036" translatesAutoresizingMaskIntoConstraints="NO" id="JNC-In-BBl">
                                             <rect key="frame" x="13" y="13" width="112" height="63"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" image="YES" allowsDirectInteraction="YES"/>
@@ -884,7 +884,7 @@
                                                 <action selector="downloadTapped:" destination="fKQ-9T-Ps5" eventType="touchUpInside" id="SOI-Le-49m"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6930CDE9-14FE-41F7-9D23-B65643CCD26B" translatesAutoresizingMaskIntoConstraints="NO" id="vAr-7p-2xN">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6B19BC44-C52C-4270-913A-CD1231929D3C" translatesAutoresizingMaskIntoConstraints="NO" id="vAr-7p-2xN">
                                             <rect key="frame" x="13" y="13" width="112" height="63"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" image="YES" allowsDirectInteraction="YES"/>
@@ -1007,7 +1007,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6930CDE9-14FE-41F7-9D23-B65643CCD26B" width="540" height="540">
+        <image name="6B19BC44-C52C-4270-913A-CD1231929D3C" width="540" height="540">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -20502,7 +20502,7 @@ ABHWqQAR1qwAEdaxABHWuQAR1rwAEdbOABHW0QAR1tYAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAA
 ABHW2A
 </mutableData>
         </image>
-        <image name="FB03F713-DCD8-4C89-8595-89C7E41B10DF" width="540" height="540">
+        <image name="D14EA1AE-C36A-42B4-88E7-5BB7CBA95036" width="540" height="540">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

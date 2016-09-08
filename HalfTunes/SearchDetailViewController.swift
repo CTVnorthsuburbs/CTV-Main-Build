@@ -31,15 +31,13 @@ class SearchDetailViewController: UIViewController, UITextFieldDelegate, UIImage
         
         super.viewDidLoad()
         
-        // Set up views if editing an existing Video.
-        
         if let video = video {
             
             navigationItem.title = video.title
             
             titleLabel.text   = video.title
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {  //generate thumbnail in background
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {  //generate thumbnail in background, it should check if the thumbnail is already available as a property of video.
 
                 video.generateThumbnail()
                 

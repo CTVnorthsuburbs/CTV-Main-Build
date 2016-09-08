@@ -50,8 +50,6 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowDetails" {
-        
-            print("this one runs")
             
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
