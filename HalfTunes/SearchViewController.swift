@@ -49,6 +49,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             let videoDetailViewController = segue.destinationViewController as! VideoViewController
             
             // Get the cell that generated this segue.
+            
             if let selectedVideoCell = sender {
                 
                 let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
@@ -73,6 +74,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
+    
+    func updateSearchResults(searchResults: [Video]) {
+        
+        for item in searchResults {
+            
+            self.data.append(item.title!)
+            
+        }
+    }
 
     override func viewDidLoad() {
         
@@ -94,7 +104,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         }
       
-        if(savedResults.count != 0) {     //set to != to use saved results, == to always search
+        if(savedResults.count != 0) {     //set to != to use saved results when available, otherwise use the video search, == to always search (useful for testing).
             
             searchResults = savedResults
             
@@ -103,6 +113,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             let dataToSave = NSKeyedArchiver.archivedDataWithRootObject(savedResults)
             
             defaults.setObject(dataToSave, forKey: "SavedVideoSearchList")
+            
+            updateSearchResults(searchResults)
+            
             
         } else {
             
@@ -124,6 +137,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     defaults.setObject(myData, forKey: "SavedVideoSearchList")
                     
+                    self.updateSearchResults(self.searchResults)
+            
+                
+                    
                 }
                 
             }
@@ -139,12 +156,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView = childView!.tableView
         
         childView!.searchBar = self.searchBar
-        
-        for item in searchResults {
-            
-            data.append(item.title!)
-
-        }
         
         print("number of search results retrieved: \(searchResults.count)")
 

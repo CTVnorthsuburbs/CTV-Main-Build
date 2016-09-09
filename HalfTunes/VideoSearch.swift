@@ -397,12 +397,6 @@ private func updateSearchResults(data: NSData?)-> Bool {
         return false
             
     }
-        
-    guard let vod = VideosResult.vod!.first else {
-            
-        return false
-            
-    }
     
     var count = 0
         

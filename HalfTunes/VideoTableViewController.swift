@@ -440,8 +440,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     
     @IBAction func unwindToVideoList(sender: UIStoryboardSegue) {
         
-        print("running")
-        
         if let sourceViewController = sender.sourceViewController as? VideoViewController, video = sourceViewController.video {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -505,10 +503,6 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         return session
         
     }()
-    
-    // MARK: View controller methods
-    
-    // MARK: Download methods
     
     // Called when the Download button for a track is tapped
     
@@ -603,6 +597,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     }
     
     // This method attempts to play the local file (if it exists) when the cell is tapped
+    
     func playDownload(video: Video) {
         
         if let urlString = video.sourceUrl, url = localFilePathForUrl(urlString) {
