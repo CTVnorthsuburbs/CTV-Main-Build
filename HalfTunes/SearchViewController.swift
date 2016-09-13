@@ -404,27 +404,5 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
 }
 
-extension SearchViewController: NSURLSessionDelegate {  // Not sure if this is necessary
-    
-    func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
-        
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            
-            if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
-                
-                appDelegate.backgroundSessionCompletionHandler = nil
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler()
-                    
-                })
-                
-            }
-            
-        }
-        
-    }
-    
-}
 
 

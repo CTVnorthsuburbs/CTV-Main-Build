@@ -315,6 +315,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="MEY-wU-z06"/>
+                                <exclude reference="NaZ-YY-xdA"/>
+                                <exclude reference="px3-Ww-zg0"/>
+                                <exclude reference="so7-oI-Exf"/>
                                 <exclude reference="3Cw-2e-eIN"/>
                                 <exclude reference="3Ng-T2-NvR"/>
                                 <exclude reference="9Fv-Ta-u94"/>
@@ -322,10 +326,6 @@
                                 <exclude reference="qf3-3f-0Mo"/>
                                 <exclude reference="qhB-Ng-eUP"/>
                                 <exclude reference="tSo-IF-6pZ"/>
-                                <exclude reference="MEY-wU-z06"/>
-                                <exclude reference="NaZ-YY-xdA"/>
-                                <exclude reference="px3-Ww-zg0"/>
-                                <exclude reference="so7-oI-Exf"/>
                                 <exclude reference="EFe-sO-60S"/>
                                 <exclude reference="EPP-Dy-L1c"/>
                                 <exclude reference="EwE-tc-MV4"/>

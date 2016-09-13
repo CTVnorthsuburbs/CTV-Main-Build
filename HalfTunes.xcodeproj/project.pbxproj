@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1F2EE31D88396400F2308D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D1F2EE11D88396400F2308D /* Model.xcdatamodeld */; };
 		8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */; };
 		8D2431CE1D391FC10024F1D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CD1D391FC10024F1D6 /* Main.storyboard */; };
 		8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CF1D391FF30024F1D6 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D1F2EE21D88396400F2308D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D2431CD1D391FC10024F1D6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D2431CF1D391FF30024F1D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				8D2431CF1D391FF30024F1D6 /* Assets.xcassets */,
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
+				8D1F2EE11D88396400F2308D /* Model.xcdatamodeld */,
 			);
 			name = CTVApp;
 			path = HalfTunes;
@@ -237,6 +240,7 @@
 				8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* VideoTableViewController.swift in Sources */,
+				8D1F2EE31D88396400F2308D /* Model.xcdatamodeld in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
@@ -389,6 +393,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8D1F2EE11D88396400F2308D /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8D1F2EE21D88396400F2308D /* Model.xcdatamodel */,
+			);
+			currentVersion = 8D1F2EE21D88396400F2308D /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D9EF8FB91B53FD2100EFC4B6 /* Project object */;
 }

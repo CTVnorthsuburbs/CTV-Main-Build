@@ -357,7 +357,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             
         }
         
-        return data.count   //use data.count to always display intial table of all searchResults
+        return filtered.count   //use data.count to always display intial table of all searchResults
         
     }
     
@@ -367,13 +367,35 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         
         if editingStyle == .Delete {
             
-            // Delete the row from the data source
+            // Changed from videos.remove to filtered. This stops the crash but the videos reappear when a new search is started
             
-            videos.removeAtIndex(indexPath.row)
+            var count = 0
+        
+            for video in data {    //this mess converts the filtered cell into the corresponding data cell in order to remove the video from both (maybe the conversion should be a separate function)
+                
+            if (video.title == filtered[indexPath.row].title) {
+        
+               data.removeAtIndex(count)
+                
+                count = 0
+           
+            } else {
+                
+                count = count + 1
+                
+                }
+           
+            }
             
-            saveVideos()
+            filtered.removeAtIndex(indexPath.row)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            // Delete the row from the data source
+         
+            saveVideos()
+            
+           // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
         } else if editingStyle == .Insert {
             
@@ -536,8 +558,10 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
                 download.downloadTask?.cancelByProducingResumeData { data in
                     
                     if data != nil {
-                        
+                        print("get called")
+                        print(download.url)
                         download.resumeData = data
+          
                         
                     }
                 }
@@ -652,13 +676,13 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
     }
     
     func videoIndexForDownloadTask(downloadTask: NSURLSessionDownloadTask) -> Int? {
-        
+
         if let url = downloadTask.originalRequest?.URL?.absoluteString {
             
-            for (index, video) in videos.enumerate() {
+            for (index, video) in filtered.enumerate() {
                 
                 if url == video.sourceUrl! {
-                    
+
                     return index
                     
                 }
@@ -666,7 +690,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             }
             
         }
-        
+
         return nil
         
     }
@@ -701,15 +725,11 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
         
-        // 1
-        
         if let originalURL = downloadTask.originalRequest?.URL?.absoluteString,
             
             destinationURL = localFilePathForUrl(originalURL) {
             
             print(destinationURL)
-            
-            // 2
             
             let fileManager = NSFileManager.defaultManager()
             
@@ -735,12 +755,10 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
             
         }
         
-        // 3
         if let url = downloadTask.originalRequest?.URL?.absoluteString {
             
             activeDownloads[url] = nil
            
-            // 4
             if let videoIndex = videoIndexForDownloadTask(downloadTask) {
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -756,20 +774,20 @@ extension VideoTableViewController: NSURLSessionDownloadDelegate {
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        
-        // 1
+    
         if let downloadUrl = downloadTask.originalRequest?.URL?.absoluteString,
             
             download = activeDownloads[downloadUrl] {
             // 2
+            
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             // 3
             let totalSize = NSByteCountFormatter.stringFromByteCount(totalBytesExpectedToWrite, countStyle: NSByteCountFormatterCountStyle.Binary)
             // 4
             if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: videoIndex, inSection: 0)) as? VideoCell {
-                
+
                 dispatch_async(dispatch_get_main_queue(), {
-                    
+
                     videoCell.progressView.progress = download.progress
                     
                     //videoCell.progressLabel.text =  String(format: "%.1f%% of %@",  download.progress * 100, totalSize)
