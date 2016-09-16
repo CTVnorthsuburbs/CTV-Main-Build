@@ -23,8 +23,6 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
     var searchResults = [Video]()
     
-    var myVideos = [Video]()
-    
     var searchBar: UISearchBar!
     
     var searchActive : Bool = false

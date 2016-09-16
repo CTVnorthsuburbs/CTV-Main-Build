@@ -12,8 +12,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     var searchResults = [Video]()
     
-    var myVideos = getSampleVideos()
-    
+    var myVideos = [Video]()
     @IBOutlet weak var searchBar: UISearchBar!
     
     var tableView: UITableView!
@@ -34,7 +33,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var myVideosResults: UIView!
     
-    var myVideosChildView : VideoTableViewController?
+    var myVideosChildView : MyVideosViewController?
   
     var childView : AllVideosResultsViewController?
     
@@ -89,6 +88,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchExamples.text = "Lacrosse\n\nHockey\n\nRAHS\n\nBoys Soccer\n\nGirls Hockey\n\n16-01-22\n\nMounds View"
         
         allVideosResults.hidden = false
+        
         
         myVideosResults.hidden = true
         
@@ -149,7 +149,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
         childView = self.childViewControllers.first as? AllVideosResultsViewController
         
-        myVideosChildView = self.childViewControllers.last as? VideoTableViewController
+        myVideosChildView = self.childViewControllers.last as? MyVideosViewController
         
         self.myVideosTableView = myVideosChildView!.tableView
         
@@ -161,11 +161,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
         childView!.searchResults = self.searchResults
         
-        childView!.data = self.data
+        //childView!.data = self.data
         
         childView!.filtered = self.filtered
         
-        childView!.myVideos = self.myVideos
+      //  childView!.myVideos = self.myVideos
 
         myVideosChildView!.searchResults = self.searchResults
 

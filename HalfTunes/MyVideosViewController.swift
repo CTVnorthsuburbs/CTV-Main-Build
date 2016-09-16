@@ -1,5 +1,5 @@
 //
-//  VideoTableViewController.swift
+//  MyVideosViewController.swift
 //  HalfTunes
 //
 //  Created by William Ogura on 7/15/16.
@@ -14,9 +14,9 @@ import UIKit
 import MediaPlayer
 
 
-/// The VideoTableViewController class contains the controller that handles the My Videos table view within the Search View
+/// The MyVideosViewController class contains the controller that handles the My Videos table view within the Search View
 
-class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
+class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
     
     var videos = [Video]()
     
@@ -28,7 +28,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
 
     var searchActive : Bool = false
     
-    var data = [Video]()                //videos accesible to search
+  //  var data = [Video]()                //videos accesible to search
     
     var filtered:[Video] = []               //videos as they are filtered by the search
     
@@ -44,9 +44,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         
     super.viewDidLoad()
 
-    myVideos = getSampleVideos()
+    myVideos = [Video]()
         
-    data = myVideos
+   // data = myVideos
 
     _ = self.downloadsSession
         
@@ -104,7 +104,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             
         } else {
             
-            video = data[indexPath.row]
+            video = myVideos[indexPath.row]
         
         // cell.textLabel?.text = data[indexPath.row]
             
@@ -265,7 +265,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
             
         }
         
-        filtered = data.filter({ (text) -> Bool in
+        filtered = myVideos.filter({ (text) -> Bool in
             
             let tmp: NSString = text.title!
             
@@ -368,27 +368,24 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
         if editingStyle == .Delete {
             
             // Changed from videos.remove to filtered. This stops the crash but the videos reappear when a new search is started
-            
-            var count = 0
-        
-            for video in data {    //this mess converts the filtered cell into the corresponding data cell in order to remove the video from both (maybe the conversion should be a separate function)
+      
+ 
+            if(myVideos.contains(filtered[indexPath.row])) {
                 
-            if (video.title == filtered[indexPath.row].title) {
-        
-               data.removeAtIndex(count)
                 
-                count = 0
-           
-            } else {
+               var vid = myVideos.indexOf(filtered[indexPath.row])
                 
-                count = count + 1
+                myVideos.removeAtIndex(vid!)
                 
-                }
-           
+                
+                
+                
             }
-            
-            filtered.removeAtIndex(indexPath.row)
-            
+ 
+           filtered.removeAtIndex(indexPath.row)
+             
+ 
+ 
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             // Delete the row from the data source
@@ -398,6 +395,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
            // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
         } else if editingStyle == .Insert {
+            
+            
+            print("insert runs")
             
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             
@@ -468,7 +468,9 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
                 
                 // Update an existing video.
                 
-                videos[selectedIndexPath.row] = video
+                print("updating from unwind")
+                
+              //  videos[selectedIndexPath.row] = video
                 
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
                 
@@ -476,11 +478,20 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
                 
                 // Add a new video.
                 
-                let newIndexPath = NSIndexPath(forRow: videos.count, inSection: 0)
+            
+                if(!myVideos.contains(video)) {
+                let newIndexPath = NSIndexPath(forRow: filtered.count, inSection: 0)
                 
-                videos.append(video)
                 
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        
+                filtered.append(video)
+                myVideos.append(video)
+            
+                self.tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                    
+                
+                    
+                } 
             }
             // Save the videos.
             
@@ -699,7 +710,7 @@ class VideoTableViewController: UITableViewController, UISearchBarDelegate, UISe
 
 // MARK: - NSURLSessionDelegate
 
-extension VideoTableViewController: NSURLSessionDelegate {
+extension MyVideosViewController: NSURLSessionDelegate {
     
     func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
         
@@ -721,7 +732,7 @@ extension VideoTableViewController: NSURLSessionDelegate {
 
 // MARK: - NSURLSessionDownloadDelegate
 
-extension VideoTableViewController: NSURLSessionDownloadDelegate {
+extension MyVideosViewController: NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
         

@@ -21,7 +21,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var titleLabel: UILabel!
     
     /*
-     This value is either passed by `VideoTableViewController` in `prepareForSegue(_:sender:)`
+     This value is either passed by `MyVideosViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new video.
      */
     
@@ -32,7 +32,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         super.viewDidLoad()
         
         // Set up views if editing an existing Video.
-        
+
         if let video = video {
             
             navigationItem.title = video.title
@@ -55,6 +55,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         }
         
+        
+        
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -72,6 +74,15 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             navigationController!.popViewControllerAnimated(true)
             
         }
+        
+    }
+    
+    
+    func toggleSaveButton() {
+        
+        
+         let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "buttonMethod")
+        navigationItem.rightBarButtonItem = refreshButton
         
     }
  
