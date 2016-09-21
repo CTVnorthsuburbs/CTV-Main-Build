@@ -54,11 +54,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     
 
-    func playVideo(video: Video) {
+    func playVideo(_ video: Video) {
         
         //Get the Video Path
 
-        let videoPath = NSBundle.mainBundle().pathForResource(video.sourceUrl, ofType:"mp4")
+        let videoPath = Bundle.main.path(forResource: video.sourceUrl, ofType:"mp4")
         
         //Make a URL from your path
         
@@ -66,9 +66,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if (!localFileExistsForVideo(video)) {
             
-        if let urlString = video.sourceUrl, url = localFilePathForUrl(urlString) {
+        if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
-            let fileUrl = NSURL(string: urlString)
+            let fileUrl = URL(string: urlString)
             
             let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
             
@@ -84,13 +84,13 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Table view cells are reused and should be dequeued using a cell identifier.
         
         let cellIdentifier = "VideoCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! VideoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VideoCell
         
         // Fetches the appropriate video for the data source layout.
         
@@ -98,13 +98,13 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if(searchActive){
             
-            video = filtered[indexPath.row]
+            video = filtered[(indexPath as NSIndexPath).row]
             
         // cell.textLabel?.text = filtered[indexPath.row]
             
         } else {
             
-            video = myVideos[indexPath.row]
+            video = myVideos[(indexPath as NSIndexPath).row]
         
         // cell.textLabel?.text = data[indexPath.row]
             
@@ -130,11 +130,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             let title = (download.isDownloading) ? "Pause" : "Resume"
             
-            cell.pauseButton.setTitle(title, forState: UIControlState.Normal)
+            cell.pauseButton.setTitle(title, for: UIControlState())
             
         }
 
-        cell.progressView.hidden = !showDownloadControls
+        cell.progressView.isHidden = !showDownloadControls
         
         // cell.progressLabel.hidden = !showDownloadControls
         
@@ -142,78 +142,78 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         let downloaded = localFileExistsForVideo(video!)
         
-        cell.selectionStyle = downloaded ? UITableViewCellSelectionStyle.Gray : UITableViewCellSelectionStyle.None
+        cell.selectionStyle = downloaded ? UITableViewCellSelectionStyle.gray : UITableViewCellSelectionStyle.none
         
-        cell.downloadButton.hidden = downloaded || showDownloadControls
+        cell.downloadButton.isHidden = downloaded || showDownloadControls
         
-        cell.pauseButton.hidden = !showDownloadControls
+        cell.pauseButton.isHidden = !showDownloadControls
         
-        cell.cancelButton.hidden = !showDownloadControls
+        cell.cancelButton.isHidden = !showDownloadControls
 
         return cell
         
     }
     
-    func pauseTapped(cell: VideoCell) {
+    func pauseTapped(_ cell: VideoCell) {
         
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             
-            let video = filtered[indexPath.row]
+            let video = filtered[(indexPath as NSIndexPath).row]
             
             pauseDownload(video)
             
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+            tableView.reloadRows(at: [IndexPath(row: (indexPath as NSIndexPath).row, section: 0)], with: .none)
             
         }
         
     }
     
-    func resumeTapped(cell: VideoCell) {
+    func resumeTapped(_ cell: VideoCell) {
         
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             
-            let video = filtered[indexPath.row]
+            let video = filtered[(indexPath as NSIndexPath).row]
             
             resumeDownload(video)
             
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+            tableView.reloadRows(at: [IndexPath(row: (indexPath as NSIndexPath).row, section: 0)], with: .none)
             
         }
         
     }
     
-    func cancelTapped(cell: VideoCell) {
+    func cancelTapped(_ cell: VideoCell) {
         
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             
-            let video = filtered[indexPath.row]
+            let video = filtered[(indexPath as NSIndexPath).row]
             
             cancelDownload(video)
             
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+            tableView.reloadRows(at: [IndexPath(row: (indexPath as NSIndexPath).row, section: 0)], with: .none)
             
         }
         
     }
     
-    func downloadTapped(cell: VideoCell) {
+    func downloadTapped(_ cell: VideoCell) {
         
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             
-            let video = filtered[indexPath.row]
+            let video = filtered[(indexPath as NSIndexPath).row]
             
             startDownload(video)
             
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
+            tableView.reloadRows(at: [IndexPath(row: (indexPath as NSIndexPath).row, section: 0)], with: .none)
             
         }
     }
     
-    func thumbnailTapped(cell: VideoCell) {
+    func thumbnailTapped(_ cell: VideoCell) {
         
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             
-            let video = filtered[indexPath.row]
+            let video = filtered[(indexPath as NSIndexPath).row]
             
             playVideo(video)
 
@@ -221,55 +221,55 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
         
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if (searchText.characters.count == 0) {
             
-            searchExamples!.hidden = false
+            searchExamples!.isHidden = false
             
-            searchExampleTitle!.hidden = false
+            searchExampleTitle!.isHidden = false
             
-            self.tableView.hidden = true
+            self.tableView.isHidden = true
             
         } else {
             
-            self.tableView.hidden = false
+            self.tableView.isHidden = false
             
-            searchExamples!.hidden = true
+            searchExamples!.isHidden = true
             
-            searchExampleTitle!.hidden = true
+            searchExampleTitle!.isHidden = true
             
         }
         
         filtered = myVideos.filter({ (text) -> Bool in
             
-            let tmp: NSString = text.title!
+            let tmp: NSString = text.title! as NSString
             
-            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             
             return range.location != NSNotFound
             
@@ -277,7 +277,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if(filtered.count == 0){
             
-            tableView.hidden = true
+            tableView.isHidden = true
             
             searchActive = true  //true results in table only appearing when search is active (only after initial search is made)
             
@@ -291,23 +291,23 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowDetail" {
 
-            let videoDetailViewController = segue.destinationViewController as! VideoViewController
+            let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? VideoCell {
                 
-                let indexPath = tableView.indexPathForCell(selectedVideoCell)!
+                let indexPath = tableView.indexPath(for: selectedVideoCell)!
                 
                 var count = 0  //code to map filtered result position to searchResult position
                 
                 for result in searchResults {
                     
-                    if (filtered[indexPath.row].title == result.title) {
+                    if (filtered[(indexPath as NSIndexPath).row].title == result.title) {
                         
                         let selectedVideo = searchResults[count]
                         
@@ -333,7 +333,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // MARK: - Table view data source
     
-   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+   override func numberOfSections(in tableView: UITableView) -> Int {
     
         return 1
     
@@ -341,7 +341,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Override to support conditional editing of the table view.
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         // Return false if you do not want the specified item to be editable.
         
@@ -349,7 +349,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(searchActive) {
             
@@ -363,30 +363,30 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Override to support editing the table view.
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             
             // Changed from videos.remove to filtered. This stops the crash but the videos reappear when a new search is started
       
  
-            if(myVideos.contains(filtered[indexPath.row])) {
+            if(myVideos.contains(filtered[(indexPath as NSIndexPath).row])) {
                 
                 
-               var vid = myVideos.indexOf(filtered[indexPath.row])
+               let vid = myVideos.index(of: filtered[(indexPath as NSIndexPath).row])
                 
-                myVideos.removeAtIndex(vid!)
+                myVideos.remove(at: vid!)
                 
                 
                 
                 
             }
  
-           filtered.removeAtIndex(indexPath.row)
+           filtered.remove(at: (indexPath as NSIndexPath).row)
              
  
  
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             // Delete the row from the data source
          
@@ -394,7 +394,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
            // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             
             
             print("insert runs")
@@ -460,9 +460,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
    */
     
-    @IBAction func unwindToVideoList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToVideoList(_ sender: UIStoryboardSegue) {
         
-        if let sourceViewController = sender.sourceViewController as? VideoViewController, video = sourceViewController.video {
+        if let sourceViewController = sender.source as? VideoViewController, let video = sourceViewController.video {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 
@@ -472,7 +472,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
               //  videos[selectedIndexPath.row] = video
                 
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 
             } else {
                 
@@ -480,14 +480,14 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
             
                 if(!myVideos.contains(video)) {
-                let newIndexPath = NSIndexPath(forRow: filtered.count, inSection: 0)
+                let newIndexPath = IndexPath(row: filtered.count, section: 0)
                 
                 
         
                 filtered.append(video)
                 myVideos.append(video)
             
-                self.tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                self.tableView.insertRows(at: [newIndexPath], with: .bottom)
                     
                 
                     
@@ -505,7 +505,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func saveVideos() {
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(videos, toFile: Video.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(videos, toFile: Video.ArchiveURL.path)
         
         if !isSuccessfulSave {
             
@@ -517,21 +517,21 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func loadVideos() -> [Video]? {
         
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Video.ArchiveURL.path!) as? [Video]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
         
     }
 
     var activeDownloads = [String: Download]()
     
-    let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
-    var dataTask: NSURLSessionDataTask?
+    var dataTask: URLSessionDataTask?
 
-    lazy var downloadsSession: NSURLSession = {
+    lazy var downloadsSession: Foundation.URLSession = {
         
-        let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("bgSessionConfiguration")
+        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
         
-        let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
         return session
         
@@ -539,13 +539,13 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Called when the Download button for a track is tapped
     
-    func startDownload(video: Video) {
+    func startDownload(_ video: Video) {
         
-        if let urlString = video.sourceUrl, url =  NSURL(string: urlString) {
+        if let urlString = video.sourceUrl, let url =  URL(string: urlString) {
 
             let download = Download(url: urlString)
 
-            download.downloadTask = downloadsSession.downloadTaskWithURL(url)
+            download.downloadTask = downloadsSession.downloadTask(with: url)
 
             download.downloadTask!.resume()
 
@@ -558,15 +558,15 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Called when the Pause button for a track is tapped
     
-    func pauseDownload(video: Video) {
+    func pauseDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl,
             
-            download = activeDownloads[urlString] {
+            let download = activeDownloads[urlString] {
             
             if(download.isDownloading) {
                 
-                download.downloadTask?.cancelByProducingResumeData { data in
+                download.downloadTask?.cancel { data in
                     
                     if data != nil {
                         print("get called")
@@ -587,11 +587,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Called when the Cancel button for a track is tapped
     
-    func cancelDownload(video: Video) {
+    func cancelDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl,
             
-            download = activeDownloads[urlString] {
+            let download = activeDownloads[urlString] {
             
             download.downloadTask?.cancel()
             
@@ -603,23 +603,23 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Called when the Resume button for a track is tapped
     
-    func resumeDownload(video: Video) {
+    func resumeDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl,
             
-            download = activeDownloads[urlString] {
+            let download = activeDownloads[urlString] {
             
             if let resumeData = download.resumeData {
                 
-                download.downloadTask = downloadsSession.downloadTaskWithResumeData(resumeData)
+                download.downloadTask = downloadsSession.downloadTask(withResumeData: resumeData)
                 
                 download.downloadTask!.resume()
                 
                 download.isDownloading = true
                 
-            } else if let url = NSURL(string: download.url) {
+            } else if let url = URL(string: download.url) {
                 
-                download.downloadTask = downloadsSession.downloadTaskWithURL(url)
+                download.downloadTask = downloadsSession.downloadTask(with: url)
                 
                 download.downloadTask!.resume()
                 
@@ -633,9 +633,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // This method attempts to play the local file (if it exists) when the cell is tapped
     
-    func playDownload(video: Video) {
+    func playDownload(_ video: Video) {
         
-        if let urlString = video.sourceUrl, url = localFilePathForUrl(urlString) {
+        if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
             let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: url)
             
@@ -650,17 +650,20 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     // the lastPathComponent of the URL (i.e. the file name and extension of the file)
     // to the path of the app’s Documents directory.
     
-    func localFilePathForUrl(previewUrl: String) -> NSURL? {
+    func localFilePathForUrl(_ previewUrl: String) -> URL? {
         
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         
-        if let url = NSURL(string: previewUrl), lastPathComponent = url.lastPathComponent {
+        let url = URL(string: previewUrl)
             
-            let fullPath = documentsPath.stringByAppendingPathComponent(lastPathComponent)
             
-            return NSURL(fileURLWithPath:fullPath)
+             let lastPathComponent = url?.lastPathComponent
+        
+            let fullPath = documentsPath.appendingPathComponent(lastPathComponent!)
             
-        }
+            return URL(fileURLWithPath:fullPath)
+            
+        
         
         return nil
         
@@ -668,17 +671,17 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // This method checks if the local file exists at the path generated by localFilePathForUrl(_:)
     
-    func localFileExistsForVideo(video: Video) -> Bool {
+    func localFileExistsForVideo(_ video: Video) -> Bool {
         
-        if let urlString = video.sourceUrl, localUrl = localFilePathForUrl(urlString) {
+        if let urlString = video.sourceUrl, let localUrl = localFilePathForUrl(urlString) {
             
             var isDir : ObjCBool = false
             
-            if let path = localUrl.path {
+             let path = localUrl.path
                 
-                return NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDir)
+                return FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
                 
-            }
+            
             
         }
         
@@ -686,11 +689,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
     }
     
-    func videoIndexForDownloadTask(downloadTask: NSURLSessionDownloadTask) -> Int? {
+    func videoIndexForDownloadTask(_ downloadTask: URLSessionDownloadTask) -> Int? {
 
-        if let url = downloadTask.originalRequest?.URL?.absoluteString {
+        if let url = downloadTask.originalRequest?.url?.absoluteString {
             
-            for (index, video) in filtered.enumerate() {
+            for (index, video) in filtered.enumerated() {
                 
                 if url == video.sourceUrl! {
 
@@ -710,17 +713,17 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
 
 // MARK: - NSURLSessionDelegate
 
-extension MyVideosViewController: NSURLSessionDelegate {
+extension MyVideosViewController: URLSessionDelegate {
     
-    func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             
             if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
                 
                 appDelegate.backgroundSessionCompletionHandler = nil
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     completionHandler()
                     
@@ -732,21 +735,21 @@ extension MyVideosViewController: NSURLSessionDelegate {
 
 // MARK: - NSURLSessionDownloadDelegate
 
-extension MyVideosViewController: NSURLSessionDownloadDelegate {
+extension MyVideosViewController: URLSessionDownloadDelegate {
     
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         
-        if let originalURL = downloadTask.originalRequest?.URL?.absoluteString,
+        if let originalURL = downloadTask.originalRequest?.url?.absoluteString,
             
-            destinationURL = localFilePathForUrl(originalURL) {
+            let destinationURL = localFilePathForUrl(originalURL) {
             
             print(destinationURL)
             
-            let fileManager = NSFileManager.defaultManager()
+            let fileManager = FileManager.default
             
             do {
                 
-                try fileManager.removeItemAtURL(destinationURL)
+                try fileManager.removeItem(at: destinationURL)
                 
             } catch {
                 
@@ -756,7 +759,7 @@ extension MyVideosViewController: NSURLSessionDownloadDelegate {
             
             do {
                 
-                try fileManager.copyItemAtURL(location, toURL: destinationURL)
+                try fileManager.copyItem(at: location, to: destinationURL)
                 
             } catch let error as NSError {
                 
@@ -766,15 +769,15 @@ extension MyVideosViewController: NSURLSessionDownloadDelegate {
             
         }
         
-        if let url = downloadTask.originalRequest?.URL?.absoluteString {
+        if let url = downloadTask.originalRequest?.url?.absoluteString {
             
             activeDownloads[url] = nil
            
             if let videoIndex = videoIndexForDownloadTask(downloadTask) {
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
-                    self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: videoIndex, inSection: 0)], withRowAnimation: .None)
+                    self.tableView.reloadRows(at: [IndexPath(row: videoIndex, section: 0)], with: .none)
                     
                 })
                 
@@ -784,20 +787,20 @@ extension MyVideosViewController: NSURLSessionDownloadDelegate {
         
     }
     
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
     
-        if let downloadUrl = downloadTask.originalRequest?.URL?.absoluteString,
+        if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString,
             
-            download = activeDownloads[downloadUrl] {
+            let download = activeDownloads[downloadUrl] {
             // 2
             
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             // 3
-            let totalSize = NSByteCountFormatter.stringFromByteCount(totalBytesExpectedToWrite, countStyle: NSByteCountFormatterCountStyle.Binary)
+            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             // 4
-            if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: videoIndex, inSection: 0)) as? VideoCell {
+            if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
 
                     videoCell.progressView.progress = download.progress
                     

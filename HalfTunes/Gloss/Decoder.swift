@@ -39,7 +39,7 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional value type
     */
-    public static func decode<T>(key: String) -> JSON -> T? {
+    public static func decode<T>(_ key: String) -> (JSON) -> T? {
         return {
             json in
             
@@ -59,7 +59,7 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional value type
     */
-    public static func decodeDecodable<T: Decodable>(key: String) -> JSON -> T? {
+    public static func decodeDecodable<T: Decodable>(_ key: String) -> (JSON) -> T? {
         return {
             json in
             
@@ -80,12 +80,12 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional date
     */
-    public static func decodeDate(key: String, dateFormatter: NSDateFormatter) -> JSON -> NSDate? {
+    public static func decodeDate(_ key: String, dateFormatter: DateFormatter) -> (JSON) -> Date? {
         return {
             json in
             
             if let dateString = json[key] as? String {
-                return dateFormatter.dateFromString(dateString)
+                return dateFormatter.date(from: dateString)
             }
             
             return nil
@@ -100,9 +100,9 @@ public struct Decoder {
     
     - returns: Function decoding JSON to an optional ISO8601 date
     */
-    public static func decodeDateISO8601(key: String) -> JSON -> NSDate? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    public static func decodeDateISO8601(_ key: String) -> (JSON) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
         return Decoder.decodeDate(key, dateFormatter: dateFormatter)
@@ -115,7 +115,7 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional enum value
     */
-    public static func decodeEnum<T: RawRepresentable>(key: String) -> JSON -> T? {
+    public static func decodeEnum<T: RawRepresentable>(_ key: String) -> (JSON) -> T? {
         return {
             json in
             
@@ -134,12 +134,12 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional URL
     */
-    public static func decodeURL(key: String) -> JSON -> NSURL? {
+    public static func decodeURL(_ key: String) -> (JSON) -> URL? {
         return {
             json in
             
             if let urlString = json[key] as? String {
-                return NSURL(string: urlString)
+                return URL(string: urlString)
             }
             
             return nil
@@ -154,7 +154,7 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optinal array
     */
-    public static func decodeDecodableArray<T: Decodable>(key: String) -> JSON -> [T]? {
+    public static func decodeDecodableArray<T: Decodable>(_ key: String) -> (JSON) -> [T]? {
         return {
             json in
             
@@ -182,7 +182,7 @@ public struct Decoder {
     
     :returns: Function decoding JSON to an optional enum array
     */
-    public static func decodeEnumArray<T: RawRepresentable>(key: String) -> JSON -> [T]? {
+    public static func decodeEnumArray<T: RawRepresentable>(_ key: String) -> (JSON) -> [T]? {
         return {
             json in
             
@@ -210,15 +210,15 @@ public struct Decoder {
      
      :returns: Function decoding JSON to an optional date array
      */
-    public static func decodeDateArray(key: String, dateFormatter: NSDateFormatter) -> JSON -> [NSDate]? {
+    public static func decodeDateArray(_ key: String, dateFormatter: DateFormatter) -> (JSON) -> [Date]? {
         return {
             json in
             
             if let dateStrings = json[key] as? [String] {
-                var dates: [NSDate] = []
+                var dates: [Date] = []
                 
                 for dateString in dateStrings {
-                    if let date = dateFormatter.dateFromString(dateString) {
+                    if let date = dateFormatter.date(from: dateString) {
                         dates.append(date)
                     }
                 }
@@ -238,9 +238,9 @@ public struct Decoder {
      
      - returns: Function decoding JSON to an optional ISO8601 date array
      */
-    public static func decodeDateISO8601Array(key: String) -> JSON -> [NSDate]? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    public static func decodeDateISO8601Array(_ key: String) -> (JSON) -> [Date]? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
         return Decoder.decodeDateArray(key, dateFormatter: dateFormatter)
@@ -253,15 +253,15 @@ public struct Decoder {
      
      :returns: Function decoding JSON to an optional URL array
      */
-    public static func decodeURLArray(key: String) -> JSON -> [NSURL]? {
+    public static func decodeURLArray(_ key: String) -> (JSON) -> [URL]? {
         return {
             json in
             
             if let urlStrings = json[key] as? [String] {
-                var urls: [NSURL] = []
+                var urls: [URL] = []
                 
                 for urlString in urlStrings {
-                    if let url = NSURL(string: urlString) {
+                    if let url = URL(string: urlString) {
                         urls.append(url)
                     }
                 }

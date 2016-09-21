@@ -54,7 +54,7 @@ public protocol Decodable {
     
     :parameter: jsonArray Array of JSON representations of object
     */
-    static func modelsFromJSONArray(jsonArray: [JSON]) -> [Self]?
+    static func modelsFromJSONArray(_ jsonArray: [JSON]) -> [Self]?
     
 }
 
@@ -71,7 +71,7 @@ public extension Decodable {
     
     :parameter: jsonArray Array of JSON representations of object
     */
-    static func modelsFromJSONArray(jsonArray: [JSON]) -> [Self]? {
+    static func modelsFromJSONArray(_ jsonArray: [JSON]) -> [Self]? {
         var models: [Self] = []
         
         for json in jsonArray {
@@ -101,7 +101,7 @@ public protocol Encodable {
     
     :parameter: models Array of models to be encoded as JSON
     */
-    static func toJSONArray(models:[Self]) -> [JSON]?
+    static func toJSONArray(_ models:[Self]) -> [JSON]?
 }
 
 /**
@@ -117,7 +117,7 @@ public extension Encodable {
     
     :parameter: models Array of models to be encoded as JSON
     */
-    static func toJSONArray(models:[Self]) -> [JSON]? {
+    static func toJSONArray(_ models:[Self]) -> [JSON]? {
         var jsonArray: [JSON] = []
         
         for model in models {
@@ -139,7 +139,7 @@ public extension Encodable {
 Transforms an array of JSON optionals
 to a single optional JSON dictionary
 */
-public func jsonify(array: [JSON?]) -> JSON? {
+public func jsonify(_ array: [JSON?]) -> JSON? {
     var json: JSON = [:]
     
     for j in array {

@@ -38,7 +38,7 @@ public func getSampleVideos() -> [Video] {
     
 }
 
-public class Video: NSObject, NSCoding {
+open class Video: NSObject, NSCoding {
     
     var title: String?
     
@@ -50,9 +50,9 @@ public class Video: NSObject, NSCoding {
 
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("videos")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("videos")
     
     // MARK: Types
     
@@ -100,21 +100,21 @@ public class Video: NSObject, NSCoding {
         
     }
     
-    public func generateThumbnail() {
+    open func generateThumbnail() {
         
         var tempThumb: UIImage
         
         do {
             
-            let asset = AVURLAsset(URL: NSURL(string: self.sourceUrl!)!, options: nil)
+            let asset = AVURLAsset(url: URL(string: self.sourceUrl!)!, options: nil)
             
             let imgGenerator = AVAssetImageGenerator(asset: asset)
             
             imgGenerator.appliesPreferredTrackTransform = true
             
-            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(18, 1), actualTime: nil)
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(18, 1), actualTime: nil)
             
-            tempThumb = UIImage(CGImage: cgImage)
+            tempThumb = UIImage(cgImage: cgImage)
             
             self.thumbnail = tempThumb
             
@@ -130,29 +130,29 @@ public class Video: NSObject, NSCoding {
     
     // MARK: NSCoding
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+    open func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encode(title, forKey: PropertyKey.titleKey)
         
-        aCoder.encodeObject(thumbnail, forKey: PropertyKey.thumbnailKey)
+        aCoder.encode(thumbnail, forKey: PropertyKey.thumbnailKey)
         
-        aCoder.encodeObject(fileName, forKey: PropertyKey.fileNameKey)
+        aCoder.encode(fileName, forKey: PropertyKey.fileNameKey)
         
-        aCoder.encodeObject(sourceUrl, forKey: PropertyKey.sourceUrlKey)
+        aCoder.encode(sourceUrl, forKey: PropertyKey.sourceUrlKey)
         
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
         
-        let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
+        let title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
         
-        let fileName = aDecoder.decodeObjectForKey(PropertyKey.fileNameKey) as! String
+        let fileName = aDecoder.decodeObject(forKey: PropertyKey.fileNameKey) as! String
         
-        let sourceUrl = aDecoder.decodeObjectForKey(PropertyKey.sourceUrlKey) as! String
+        let sourceUrl = aDecoder.decodeObject(forKey: PropertyKey.sourceUrlKey) as! String
         
         // Because photo is an optional property of Video, use conditional cast.
         
-        let thumbnail = aDecoder.decodeObjectForKey(PropertyKey.thumbnailKey) as? UIImage
+        let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         
         // Must call designated initializer.
         

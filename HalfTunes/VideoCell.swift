@@ -12,15 +12,15 @@ import UIKit
 
 protocol VideoCellDelegate {
     
-    func pauseTapped(cell: VideoCell)
+    func pauseTapped(_ cell: VideoCell)
     
-    func resumeTapped(cell: VideoCell)
+    func resumeTapped(_ cell: VideoCell)
     
-    func cancelTapped(cell: VideoCell)
+    func cancelTapped(_ cell: VideoCell)
     
-    func downloadTapped(cell: VideoCell)
+    func downloadTapped(_ cell: VideoCell)
     
-    func thumbnailTapped(cell: VideoCell)
+    func thumbnailTapped(_ cell: VideoCell)
     
 }
 
@@ -42,7 +42,7 @@ class VideoCell: UITableViewCell {
         
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         
         super.setSelected(selected, animated: animated)
         
@@ -66,13 +66,13 @@ class VideoCell: UITableViewCell {
 
     @IBOutlet weak var progressLabel: UILabel!
 
-    @IBAction func thumbnailTapped(sender: AnyObject) {
+    @IBAction func thumbnailTapped(_ sender: AnyObject) {
         
         delegate?.thumbnailTapped(self)
         
     }
   
-    @IBAction func pauseOrResumeTapped(sender: AnyObject) {
+    @IBAction func pauseOrResumeTapped(_ sender: AnyObject) {
         
         if(pauseButton.titleLabel!.text == "Pause") {
             
@@ -86,13 +86,13 @@ class VideoCell: UITableViewCell {
         
     }
     
-    @IBAction func cancelTapped(sender: AnyObject) {
+    @IBAction func cancelTapped(_ sender: AnyObject) {
         
         delegate?.cancelTapped(self)
         
     }
     
-    @IBAction func downloadTapped(sender: AnyObject) {
+    @IBAction func downloadTapped(_ sender: AnyObject) {
         
         if (delegate == nil) {
             

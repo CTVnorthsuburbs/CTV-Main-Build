@@ -41,27 +41,27 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
 
         tableView.delegate = self
         
-        self.tableView.hidden = true
+        self.tableView.isHidden = true
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowDetails" {
             
-            let videoDetailViewController = segue.destinationViewController as! VideoViewController
+            let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender {
                 
-                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
+                let indexPath = tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
                 
                 var count = 0  //code to map filtered result position to searchResult position
                 
                 for result in searchResults {
                     
-                    if (filtered[indexPath.row] == result.title) {
+                    if (filtered[(indexPath as NSIndexPath).row] == result.title) {
                   
                         let selectedVideo = searchResults[count]
                         
@@ -81,17 +81,17 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
 }
 
-extension AllVideosResultsViewController: NSURLSessionDelegate {
+extension AllVideosResultsViewController: URLSessionDelegate {
     
-    func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             
             if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
                 
                 appDelegate.backgroundSessionCompletionHandler = nil
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     completionHandler()
                     

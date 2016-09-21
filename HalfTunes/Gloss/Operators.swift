@@ -58,7 +58,7 @@ public func <~~ <T: RawRepresentable>(key: String, json: JSON) -> T? {
 /**
 Convenience operator for decoding JSON to NSURL
 */
-public func <~~ (key: String, json: JSON) -> NSURL? {
+public func <~~ (key: String, json: JSON) -> URL? {
     return Decoder.decodeURL(key)(json)
 }
 
@@ -79,7 +79,7 @@ public func <~~ <T: Decodable>(key: String, json: JSON) -> [T]? {
 /**
  Convenience operator for decoding JSON to array of URLs
  */
-public func <~~ (key: String, json: JSON) -> [NSURL]? {
+public func <~~ (key: String, json: JSON) -> [URL]? {
     return Decoder.decodeURLArray(key)(json)
 }
 
@@ -114,7 +114,7 @@ public func ~~> <T: RawRepresentable>(key: String, property: T?) -> JSON? {
 /**
 Convenience operator for encoding NSURL to JSON
 */
-public func ~~> (key: String, property: NSURL?) -> JSON? {
+public func ~~> (key: String, property: URL?) -> JSON? {
     return Encoder.encodeURL(key)(property)
 }
 

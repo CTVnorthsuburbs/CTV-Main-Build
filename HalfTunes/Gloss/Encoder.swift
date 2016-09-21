@@ -39,7 +39,7 @@ public struct Encoder {
     
     :returns: Function decoding value to optional JSON
     */
-    public static func encode<T>(key: String) -> T? -> JSON? {
+    public static func encode<T>(_ key: String) -> (T?) -> JSON? {
         return {
             property in
             
@@ -59,12 +59,12 @@ public struct Encoder {
     
     :returns: Function decoding value to optional JSON
     */
-    public static func encodeEncodable<T: Encodable>(key: String) -> T? -> JSON? {
+    public static func encodeEncodable<T: Encodable>(_ key: String) -> (T?) -> JSON? {
         return {
             model in
             
-            if let model = model, json = model.toJSON() {
-                return [key : json]
+            if let model = model, let json = model.toJSON() {
+                return [key : json as AnyObject]
             }
             
             return nil
@@ -79,12 +79,12 @@ public struct Encoder {
     
     :returns: Function encoding date to optional JSON
     */
-    public static func encodeDate(key: String, dateFormatter: NSDateFormatter) -> NSDate? -> JSON? {
+    public static func encodeDate(_ key: String, dateFormatter: DateFormatter) -> (Date?) -> JSON? {
         return {
             date in
             
             if let date = date {
-                return [key : dateFormatter.stringFromDate(date)]
+                return [key : dateFormatter.string(from: date) as AnyObject]
             }
             
             return nil
@@ -99,9 +99,9 @@ public struct Encoder {
     
     :returns: Function encoding ISO8601 date to optional JSON
     */
-    public static func encodeDateISO8601(key: String) -> NSDate? -> JSON? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    public static func encodeDateISO8601(_ key: String) -> (Date?) -> JSON? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
         return Encoder.encodeDate(key, dateFormatter: dateFormatter)
@@ -114,12 +114,12 @@ public struct Encoder {
     
     :returns: Function encoding enum value to optional JSON
     */
-    public static func encodeEnum<T: RawRepresentable>(key: String) -> T? -> JSON? {
+    public static func encodeEnum<T: RawRepresentable>(_ key: String) -> (T?) -> JSON? {
         return {
             enumValue in
             
             if let enumValue = enumValue {
-                return [key : enumValue.rawValue as! AnyObject]
+                return [key : enumValue.rawValue as AnyObject]
             }
             
             return nil
@@ -133,12 +133,12 @@ public struct Encoder {
     
     :returns: Function encoding URL to optional JSON
     */
-    public static func encodeURL(key: String) -> NSURL? -> JSON? {
+    public static func encodeURL(_ key: String) -> (URL?) -> JSON? {
         return {
             url in
             
             if let url = url {
-                return [key : url.absoluteString]
+                return [key : url.absoluteString as AnyObject]
             }
             
             return nil
@@ -152,7 +152,7 @@ public struct Encoder {
     
     :returns: Function encoding array to optional JSON
     */
-    public static func encodeArray<T>(key: String) -> [T]? -> JSON? {
+    public static func encodeArray<T>(_ key: String) -> ([T]?) -> JSON? {
         return {
             array in
             
@@ -172,7 +172,7 @@ public struct Encoder {
     
     :returns: Function encoding array to optional JSON
     */
-    public static func encodeEncodableArray<T: Encodable>(key: String) -> [T]? -> JSON? {
+    public static func encodeEncodableArray<T: Encodable>(_ key: String) -> ([T]?) -> JSON? {
         return {
             array in
             
@@ -185,7 +185,7 @@ public struct Encoder {
                     }
                 }
                 
-                return [key : encodedArray]
+                return [key : encodedArray as AnyObject]
             }
             
             return nil
@@ -200,7 +200,7 @@ public struct Encoder {
     
     :returns: Function encoding array to optional JSON
     */
-    public static func encodeEnumArray<T: RawRepresentable>(key: String) -> [T]? -> JSON? {
+    public static func encodeEnumArray<T: RawRepresentable>(_ key: String) -> ([T]?) -> JSON? {
         return {
             enumValues in
             
@@ -211,7 +211,7 @@ public struct Encoder {
                     rawValues.append(enumValue.rawValue)
                 }
                 
-                return [key : rawValues as! AnyObject]
+                return [key : rawValues as AnyObject]
             }
             
             return nil
@@ -226,7 +226,7 @@ public struct Encoder {
      
      :returns: Function encoding date array to optional JSON
      */
-    public static func encodeDateArray(key: String, dateFormatter: NSDateFormatter) -> [NSDate]? -> JSON? {
+    public static func encodeDateArray(_ key: String, dateFormatter: DateFormatter) -> ([Date]?) -> JSON? {
         return {
             dates in
             
@@ -234,12 +234,12 @@ public struct Encoder {
                 var dateStrings: [String] = []
                 
                 for date in dates {
-                    let dateString = dateFormatter.stringFromDate(date)
+                    let dateString = dateFormatter.string(from: date)
                     
                     dateStrings.append(dateString)
                 }
                 
-                return [key : dateStrings]
+                return [key : dateStrings as AnyObject]
             }
             
             return nil
@@ -254,9 +254,9 @@ public struct Encoder {
      
      :returns: Function encoding ISO8601 date array to optional JSON
      */
-    public static func encodeDateISO8601Array(key: String) -> [NSDate]? -> JSON? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    public static func encodeDateISO8601Array(_ key: String) -> ([Date]?) -> JSON? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
         return Encoder.encodeDateArray(key, dateFormatter: dateFormatter)

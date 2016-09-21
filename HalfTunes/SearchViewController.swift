@@ -41,23 +41,23 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var searchExampleTitle: UILabel!
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowDetails" {
             
-            let videoDetailViewController = segue.destinationViewController as! VideoViewController
+            let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender {
                 
-                let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
+                let indexPath = tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
                 
                 var count = 0  //code to map filtered result position to searchResult position
                 
                 for result in searchResults {
                     
-                    if (filtered[indexPath.row] == result.title) {
+                    if (filtered[(indexPath as NSIndexPath).row] == result.title) {
                         
                         let selectedVideo = searchResults[count]
                         
@@ -74,7 +74,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func updateSearchResults(searchResults: [Video]) {
+    func updateSearchResults(_ searchResults: [Video]) {
         
         for item in searchResults {
             
@@ -87,20 +87,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchExamples.text = "Lacrosse\n\nHockey\n\nRAHS\n\nBoys Soccer\n\nGirls Hockey\n\n16-01-22\n\nMounds View"
         
-        allVideosResults.hidden = false
+        allVideosResults.isHidden = false
         
         
-        myVideosResults.hidden = true
+        myVideosResults.isHidden = true
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         var savedResults = [Video]()
         
-        let retrievedData = NSUserDefaults.standardUserDefaults().objectForKey("SavedVideoSearchList") as? NSData           //move all the search stuff out of the controller and into the search class
+        let retrievedData = UserDefaults.standard.object(forKey: "SavedVideoSearchList") as? Data           //move all the search stuff out of the controller and into the search class
         
         if( retrievedData != nil) {
             
-              savedResults = NSKeyedUnarchiver.unarchiveObjectWithData(retrievedData!) as? [Video] ?? [Video]()
+              savedResults = NSKeyedUnarchiver.unarchiveObject(with: retrievedData!) as? [Video] ?? [Video]()
         
         }
       
@@ -110,9 +110,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             print("saved search results retrieved")
             
-            let dataToSave = NSKeyedArchiver.archivedDataWithRootObject(savedResults)
+            let dataToSave = NSKeyedArchiver.archivedData(withRootObject: savedResults)
             
-            defaults.setObject(dataToSave, forKey: "SavedVideoSearchList")
+            defaults.set(dataToSave, forKey: "SavedVideoSearchList")
             
             updateSearchResults(searchResults)
             
@@ -125,17 +125,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             //searchResults = videoSearch.getSport("baseball")
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {                 //perform search list update in background
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {                 //perform search list update in background
                 
                 self.searchResults = videoSearch.getRecent()
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
             
                     print("final count of returned results \(self.searchResults.count)")
                     
-                    let myData = NSKeyedArchiver.archivedDataWithRootObject(self.searchResults)
+                    let myData = NSKeyedArchiver.archivedData(withRootObject: self.searchResults)
                     
-                    defaults.setObject(myData, forKey: "SavedVideoSearchList")
+                    defaults.set(myData, forKey: "SavedVideoSearchList")
                     
                     self.updateSearchResults(self.searchResults)
             
@@ -178,9 +178,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchBar.delegate = self
         
-        self.tableView.hidden = true
+        self.tableView.isHidden = true
         
-        self.myVideosTableView.hidden = true
+        self.myVideosTableView.isHidden = true
         
         self.myVideosChildView?.searchExamples = self.searchExamples
         
@@ -190,7 +190,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
         
         switch segmentedControl.selectedSegmentIndex
             
@@ -214,15 +214,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             if ((searchBar.text ) != nil) {
                 
-                allVideosResults.hidden = false
+                allVideosResults.isHidden = false
                 
              } else {
                 
-                allVideosResults.hidden = true
+                allVideosResults.isHidden = true
                 
              }
             
-            myVideosResults.hidden = true
+            myVideosResults.isHidden = true
             
         case 1:
             
@@ -234,31 +234,31 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
                 myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
                 
-                searchExamples.hidden = true
+                searchExamples.isHidden = true
                 
-                searchExampleTitle.hidden = true
+                searchExampleTitle.isHidden = true
 
             } else {
                 
                 myVideosChildView?.searchBar(searchBar, textDidChange:"")
                 
-                searchExamples.hidden = false
+                searchExamples.isHidden = false
                 
-                searchExampleTitle.hidden = false
+                searchExampleTitle.isHidden = false
             
             }
             
             if ((searchBar.text ) != nil) {
                 
-                myVideosResults.hidden = false
+                myVideosResults.isHidden = false
                 
             } else {
                 
-                myVideosResults.hidden = true
+                myVideosResults.isHidden = true
          
             }
             
-            allVideosResults.hidden = true
+            allVideosResults.isHidden = true
             
         default:
             
@@ -268,55 +268,55 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
         
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchActive = false
         
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if (searchText.characters.count == 0) {
             
-            searchExamples.hidden = false
+            searchExamples.isHidden = false
             
-            searchExampleTitle.hidden = false
+            searchExampleTitle.isHidden = false
             
-            self.tableView.hidden = true
+            self.tableView.isHidden = true
             
         } else {
             
-            searchExamples.hidden = true
+            searchExamples.isHidden = true
             
-            searchExampleTitle.hidden = true
+            searchExampleTitle.isHidden = true
       
-            self.tableView.hidden = false
+            self.tableView.isHidden = false
             
         }
         
         filtered = data.filter({ (text) -> Bool in
             
-            let tmp: NSString = text
+            let tmp: NSString = text as NSString
             
-            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             
             return range.location != NSNotFound
         })
@@ -367,12 +367,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(searchActive) {
     
@@ -384,17 +384,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
         
         if(searchActive){
             
-            cell.textLabel?.text = filtered[indexPath.row]
+            cell.textLabel?.text = filtered[(indexPath as NSIndexPath).row]
     
         } else {
             
-            cell.textLabel?.text = data[indexPath.row]
+            cell.textLabel?.text = data[(indexPath as NSIndexPath).row]
           
         }
         

@@ -39,11 +39,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             titleLabel.text   = video.title
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {  //generate thumbnail in bacground
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {  //generate thumbnail in bacground
 
                 video.generateThumbnail()
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
 
                     self.thumbnailView.image = video.thumbnail
                     
@@ -59,7 +59,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
         
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         
@@ -67,11 +67,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         if isPresentingInAddVideoMode {
             
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
             
         } else {
             
-            navigationController!.popViewControllerAnimated(true)
+            navigationController!.popViewController(animated: true)
             
         }
         
@@ -81,7 +81,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     func toggleSaveButton() {
         
         
-         let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "buttonMethod")
+         let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: "buttonMethod")
         navigationItem.rightBarButtonItem = refreshButton
         
     }

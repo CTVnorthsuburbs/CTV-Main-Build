@@ -32,7 +32,7 @@ extension Dictionary {
     
     :parameter: other Dictionary to add entries from
     */
-    public mutating func add(other: Dictionary) -> () {
+    public mutating func add(_ other: Dictionary) -> () {
         for (key,value) in other {
             self.updateValue(value, forKey:key)
         }

@@ -24,7 +24,7 @@ import UIKit
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
-private var searchResults = [Video]()
+fileprivate var searchResults = [Video]()
 
 // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
@@ -32,11 +32,11 @@ let arrayLength = 50
 
 /// Creates the NSURL session necessary to download content from remote URL.
     
-private func getNSURLSession() -> NSURLSession {
+fileprivate func getNSURLSession() -> URLSession {
     
-    let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
-    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
     
     return defaultSession
     
@@ -47,13 +47,13 @@ private func getNSURLSession() -> NSURLSession {
 - parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
 */
     
-private func search(savedSearchID: Int)-> [Video] {
+fileprivate func search(_ savedSearchID: Int)-> [Video] {
     
     searchResults.removeAll()
         
     let session = getNSURLSession()
         
-    let searchUrl = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
+    let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
     
@@ -63,7 +63,7 @@ private func search(savedSearchID: Int)-> [Video] {
 
     if (splitResults != nil) {
         
-        var searchURLs = [NSURL]()
+        var searchURLs = [URL]()
         
         var counter = 0
         
@@ -101,13 +101,13 @@ Search by string returns an array of video objects corresponding to the search s
 - parameter searchString: Search Keyword
 */
     
-private func search(searchString: String)-> [Video] {
+fileprivate func search(_ searchString: String)-> [Video] {
     
     searchResults.removeAll()
         
     let session = getNSURLSession()
         
-    let searchURL = NSURL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
+    let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
         
     getSearchResults(session, url: searchURL!, isIDSearchURL: true)
         
@@ -119,7 +119,7 @@ private func search(searchString: String)-> [Video] {
 */
     
     
-private func splitIdArray(idArray: [Int])-> [[Int]]? {
+fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
     
     var resultArray = [[Int]]()
     
@@ -234,7 +234,7 @@ func getRecent() -> [Video] {
 
 /// getSport() accepts a String Keyword that is passed as a search parameter.
     
-func getSport(sport: String)->[Video]{
+func getSport(_ sport: String)->[Video]{
         
     search(sport)
         
@@ -243,9 +243,9 @@ func getSport(sport: String)->[Video]{
 }
 
 
-private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSearchURL: Bool) -> [Int]? {
+fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
     
-    var dataTask: NSURLSessionDataTask?
+    var dataTask: URLSessionDataTask?
     
     var results : [Int]?
     
@@ -257,13 +257,13 @@ private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSear
     
     var complete = false
     
-    dataTask = defaultSession.dataTaskWithURL(url) {
+    dataTask = defaultSession.dataTask(with: url, completionHandler: {
         
         data, response, error in
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
         }
 
@@ -271,7 +271,7 @@ private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSear
             
             print(error.localizedDescription)
             
-        } else if let httpResponse = response as? NSHTTPURLResponse {
+        } else if let httpResponse = response as? HTTPURLResponse {
             
             if httpResponse.statusCode == 200 {
                 
@@ -289,7 +289,7 @@ private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSear
             
         }
         
-    }
+    }) 
     
     dataTask?.resume()
     
@@ -303,7 +303,7 @@ private func getSearchResults(defaultSession: NSURLSession, url: NSURL, isIDSear
 }
 
 
-private func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
+fileprivate func convertIdArrayToSearchURL(_ idArray: [Int]) -> URL? {
     
     var url = "http://trms.ctv15.org/Cablecastapi/v1/shows/?"
     
@@ -323,13 +323,13 @@ private func convertIdArrayToSearchURL(idArray: [Int]) -> NSURL? {
     
     url += "include=vod,thumbnail&page_size=\(arrayLength)"
     
-    let searchURL = NSURL(string: url)
+    let searchURL = URL(string: url)
     
     return searchURL
     
 }
     
-private func getSavedSearchResults(data: NSData?) -> [Int]? {
+fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
         
     searchResults.removeAll()
         
@@ -338,7 +338,7 @@ private func getSavedSearchResults(data: NSData?) -> [Int]? {
         
     do {
             
-        json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String: AnyObject]
+        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
     } catch {
             
@@ -369,7 +369,7 @@ private func getSavedSearchResults(data: NSData?) -> [Int]? {
 }
     
     
-private func updateSearchResults(data: NSData?)-> Bool {
+fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
     //searchResults.removeAll()
         
@@ -378,7 +378,7 @@ private func updateSearchResults(data: NSData?)-> Bool {
         
     do {
             
-        json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String: AnyObject]
+        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
     } catch {
             
