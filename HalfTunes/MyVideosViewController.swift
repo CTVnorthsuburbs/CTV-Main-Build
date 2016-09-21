@@ -77,7 +77,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         }
         
         } else {
-         
+         print("local file exists for: \(video.title)")
             playDownload(video)
             
         }
@@ -373,9 +373,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             if(myVideos.contains(filtered[(indexPath as NSIndexPath).row])) {
                 
                 
-               let vid = myVideos.index(of: filtered[(indexPath as NSIndexPath).row])
+               let video = myVideos.index(of: filtered[(indexPath as NSIndexPath).row])
                 
-                myVideos.remove(at: vid!)
+                myVideos.remove(at: video!)
                 
                 
                 
@@ -384,13 +384,21 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
  
            filtered.remove(at: (indexPath as NSIndexPath).row)
              
- 
+ print("after delete")
+            printVideos(video: filtered)
  
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
             
             // Delete the row from the data source
          
             saveVideos()
+            
+            
+            print("printing myvideos")
+            
+            printVideos(video: myVideos)
             
            // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
@@ -402,6 +410,20 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             
         }
+        
+    }
+    
+    
+    func printVideos(video: [Video]) {
+        
+        print("Printing array")
+        for vid in video {
+            
+            print(vid.title)
+            
+            
+        }
+        
         
     }
     
@@ -569,8 +591,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 download.downloadTask?.cancel { data in
                     
                     if data != nil {
-                        print("get called")
-                        print(download.url)
+
                         download.resumeData = data
           
                         
@@ -665,7 +686,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
         
         
-        return nil
+        //return nil
         
     }
     
