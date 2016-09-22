@@ -41,9 +41,14 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
 
         tableView.delegate = self
         
+        
+        
         self.tableView.isHidden = true
         
     }
+    
+
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

@@ -144,6 +144,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 }
                 
             }
+            
+            
 
         }
     
@@ -187,6 +189,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.myVideosChildView?.searchExampleTitle = self.searchExampleTitle
         
         // myVideosChildView!.data = self.searchResults     // Uncomment to replace my videos with full search results, useful for testing
+
+
         
     }
     
@@ -200,7 +204,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
-            searchBar.delegate = self
+            searchBar.delegate = childView
             
             if(searchText!.isEmpty == false) {
        
@@ -266,11 +270,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
+        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
+        
+       
         
     }
     
@@ -281,15 +288,18 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+
         
         searchActive = false
+        
+        
         
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchActive = false
-        
+       
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
