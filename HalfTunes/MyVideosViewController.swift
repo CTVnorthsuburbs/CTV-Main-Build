@@ -538,9 +538,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func saveVideos() {
         
-        print("svave called")
+     
         
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
+        
+        
+    
         
         if !isSuccessfulSave {
             

@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="22" width="383" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <frame key="frameInset" width="383" height="90"/>
+                                    <frame key="frameInset" width="383" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
@@ -391,19 +391,112 @@
         <!--My Videos-->
         <scene sceneID="xAm-Ot-2Ud">
             <objects>
-                <tableViewController title="My Videos" id="OKr-i4-2ts" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lak-1y-pHH">
+                <tableViewController title="My Videos" id="OKr-i4-2ts" customClass="MyVideosStaticViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="lak-1y-pHH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="THB-zt-0S4">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="hjh-Pc-twj" customClass="VideoCell" customModule="HalfTunes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THB-zt-0S4" id="f9k-ng-pcu">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjh-Pc-twj" id="teq-9P-kCw">
+                                    <frame key="frameInset" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKM-MI-UnX">
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwn-hf-z4V" userLabel="Download Button">
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" title="Download">
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="downloadTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="KQH-ZV-0Jb"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="UQk-4q-Tg2">
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" image="YES" allowsDirectInteraction="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="89" id="VdM-W4-lxG"/>
+                                                <constraint firstAttribute="width" secondItem="UQk-4q-Tg2" secondAttribute="height" multiplier="16:9" id="aKb-Wk-aVi"/>
+                                                <constraint firstAttribute="width" constant="158" id="atF-ZM-e06"/>
+                                                <constraint firstAttribute="width" secondItem="UQk-4q-Tg2" secondAttribute="height" multiplier="128:89" id="whW-z6-SoP"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="atF-ZM-e06"/>
+                                                    <exclude reference="VdM-W4-lxG"/>
+                                                    <exclude reference="whW-z6-SoP"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <progressView hidden="YES" opaque="NO" tag="40" contentMode="scaleToFill" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vg0-AS-68h"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvk-hz-fIc">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="thumbnailTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="QfA-aD-d3i"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpj-93-SfV" userLabel="Cancel Button">
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="cancelTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="7kl-6V-STk"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83k-dg-cUc" userLabel="Pause Button">
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" title="Pause">
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="pauseOrResumeTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="cuv-98-aSw"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Cvk-hz-fIc" firstAttribute="leading" secondItem="teq-9P-kCw" secondAttribute="leadingMargin" constant="5" id="1mi-Ra-gAb"/>
+                                        <constraint firstItem="vg0-AS-68h" firstAttribute="trailing" secondItem="teq-9P-kCw" secondAttribute="trailingMargin" constant="-17" id="2eM-d3-5l5"/>
+                                        <constraint firstItem="NKM-MI-UnX" firstAttribute="leading" secondItem="UQk-4q-Tg2" secondAttribute="trailing" constant="8" id="BUL-AA-GdX"/>
+                                        <constraint firstItem="Cvk-hz-fIc" firstAttribute="top" secondItem="teq-9P-kCw" secondAttribute="topMargin" constant="5" id="FqV-qn-LhS"/>
+                                        <constraint firstItem="83k-dg-cUc" firstAttribute="centerY" secondItem="teq-9P-kCw" secondAttribute="centerY" constant="10" id="Fyl-U6-9c7"/>
+                                        <constraint firstItem="zpj-93-SfV" firstAttribute="leading" secondItem="83k-dg-cUc" secondAttribute="trailing" constant="8" id="K3P-hf-FSx"/>
+                                        <constraint firstItem="UQk-4q-Tg2" firstAttribute="leading" secondItem="teq-9P-kCw" secondAttribute="leadingMargin" constant="5" id="UNW-0c-TGm"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Uwn-hf-z4V" secondAttribute="trailing" constant="10" id="UkO-eZ-BIa"/>
+                                        <constraint firstItem="zpj-93-SfV" firstAttribute="centerY" secondItem="teq-9P-kCw" secondAttribute="centerY" constant="10" id="Xai-kL-7RI"/>
+                                        <constraint firstItem="UQk-4q-Tg2" firstAttribute="top" secondItem="teq-9P-kCw" secondAttribute="topMargin" constant="5" id="dwh-E2-bv0"/>
+                                        <constraint firstItem="zpj-93-SfV" firstAttribute="trailing" secondItem="teq-9P-kCw" secondAttribute="trailingMargin" constant="-10" id="fAy-Ua-Ens"/>
+                                        <constraint firstItem="Uwn-hf-z4V" firstAttribute="centerY" secondItem="teq-9P-kCw" secondAttribute="centerY" constant="10" id="hgb-W7-GjX"/>
+                                        <constraint firstItem="vg0-AS-68h" firstAttribute="leading" secondItem="teq-9P-kCw" secondAttribute="leadingMargin" constant="125" id="iJX-xz-rRD"/>
+                                        <constraint firstItem="NKM-MI-UnX" firstAttribute="leading" secondItem="Cvk-hz-fIc" secondAttribute="trailing" constant="8" id="lfb-9o-STg"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UQk-4q-Tg2" secondAttribute="bottom" constant="5" id="r9E-yP-NYk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="NKM-MI-UnX" secondAttribute="trailing" id="tSP-k9-ez3"/>
+                                        <constraint firstAttribute="bottom" secondItem="vg0-AS-68h" secondAttribute="bottom" constant="6" id="ti4-8D-7rf"/>
+                                        <constraint firstItem="NKM-MI-UnX" firstAttribute="top" secondItem="teq-9P-kCw" secondAttribute="topMargin" constant="15" id="tpZ-zc-iA5"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Cvk-hz-fIc" secondAttribute="bottom" constant="5" id="we2-2Z-oco"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="cancelButton" destination="zpj-93-SfV" id="3lC-4h-YF5"/>
+                                    <outlet property="downloadButton" destination="Uwn-hf-z4V" id="4oP-vU-TlO"/>
+                                    <outlet property="pauseButton" destination="83k-dg-cUc" id="WJn-1L-L2I"/>
+                                    <outlet property="progressView" destination="vg0-AS-68h" id="ITZ-mu-J1E"/>
+                                    <outlet property="thumbnailButton" destination="Cvk-hz-fIc" id="9X7-Ue-dPj"/>
+                                    <outlet property="thumbnailView" destination="UQk-4q-Tg2" id="pdv-BV-7pe"/>
+                                    <outlet property="titleLabel" destination="NKM-MI-UnX" id="vEo-k1-Esv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -416,7 +509,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s1-BW-xEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="391" y="-1448"/>
+            <point key="canvasLocation" x="343" y="-1358"/>
         </scene>
         <!--My Videos-->
         <scene sceneID="65m-dH-m7g">
@@ -471,7 +564,7 @@
                                 <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7v-wg-aVp" id="xd6-7W-m8J">
-                                    <frame key="frameInset" width="383" height="44"/>
+                                    <frame key="frameInset" width="383" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
