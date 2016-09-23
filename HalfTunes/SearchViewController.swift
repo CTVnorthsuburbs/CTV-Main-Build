@@ -161,11 +161,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         childView!.searchResults = self.searchResults
         
-        //childView!.data = self.data
+
         
         childView!.filtered = self.filtered
         
-        //  childView!.myVideos = self.myVideos
+
         
         myVideosChildView!.searchResults = self.searchResults
         
@@ -190,6 +190,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    
+    
+    func setMyVideoView() {
+        
+        segmentedControl.selectedSegmentIndex = 1
+        
+        indexChanged(segmentedControl)
+        
+        
+    }
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         
         switch segmentedControl.selectedSegmentIndex

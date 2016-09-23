@@ -40,13 +40,13 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     override func viewDidLoad() {
         
-    // tableView.hidden = true
+
         
     super.viewDidLoad()
 
     myVideos = [Video]()
         
-   // data = myVideos
+ 
 
     _ = self.downloadsSession
         
@@ -106,11 +106,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             video = myVideos[(indexPath as NSIndexPath).row]
         
-        // cell.textLabel?.text = data[indexPath.row]
+
             
         }
         
-      //  let video = videos[indexPath.row]
+
     
         cell.delegate = self
         
@@ -504,7 +504,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 // Add a new video.
                 
-            
+        
                 if(!myVideos.contains(video)) {
                 let newIndexPath = IndexPath(row: filtered.count, section: 0)
                 
@@ -520,8 +520,15 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 } 
             }
             // Save the videos.
+       var parentVC = parent as? SearchViewController
             
+            parentVC?.setMyVideoView()
+            
+            
+    
             saveVideos()
+            
+            
             
         }
         

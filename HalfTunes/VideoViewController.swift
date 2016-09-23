@@ -66,11 +66,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let isPresentingInAddVideoMode = presentingViewController is UINavigationController
         
         if isPresentingInAddVideoMode {
-            
+        
             dismiss(animated: true, completion: nil)
             
         } else {
-            
+     
             navigationController!.popViewController(animated: true)
             
         }
