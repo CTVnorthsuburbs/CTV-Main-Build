@@ -46,7 +46,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
 
     myVideos = [Video]()
         
- 
+        myVideos = loadVideos()!
 
     _ = self.downloadsSession
         
@@ -538,7 +538,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func saveVideos() {
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(videos, toFile: Video.ArchiveURL.path)
+        print("svave called")
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
         
         if !isSuccessfulSave {
             
@@ -551,7 +553,6 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     func loadVideos() -> [Video]? {
         
         return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
-        
     }
 
     var activeDownloads = [String: Download]()

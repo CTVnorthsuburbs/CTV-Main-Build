@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="22" width="383" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <frame key="frameInset" width="383" height="90"/>
+                                    <frame key="frameInset" width="383" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
@@ -169,6 +169,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="j7P-vB-Kf4" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="Cfy-nN-QKj"/>
+                                    <constraint firstItem="OEg-fp-J0R" firstAttribute="leading" secondItem="j7P-vB-Kf4" secondAttribute="leading" id="K2e-04-VAu"/>
                                     <constraint firstAttribute="trailing" secondItem="j7P-vB-Kf4" secondAttribute="trailing" id="mmy-wH-eG6"/>
                                 </constraints>
                             </stackView>
@@ -177,7 +178,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Q-20-O1c">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="199" id="8D8-Mx-Z2x"/>
+                                    <constraint firstAttribute="height" constant="199" id="qFi-GN-KGn"/>
                                 </constraints>
                                 <connections>
                                     <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
@@ -186,18 +187,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" id="1ag-Bf-sVg"/>
-                            <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="bottom" constant="80" id="8Tc-Ob-l1J"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="FrD-LC-xTw"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="4DG-Iz-vNF"/>
+                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="top" id="JO1-hq-kdu"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Nah-rY-buX"/>
-                            <constraint firstItem="N0C-ZO-twV" firstAttribute="centerX" secondItem="6CW-NK-mGa" secondAttribute="centerX" id="WJh-k8-nMX"/>
+                            <constraint firstItem="N0C-ZO-twV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TqF-bC-Qv0"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="bottom" constant="48" id="aQw-LV-2tz"/>
-                            <constraint firstItem="N0C-ZO-twV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f3J-Hq-oxi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" constant="-5" id="d3X-xa-uf6"/>
+                            <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="bottom" constant="80" id="drR-we-geb"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="hJo-p8-r6V"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hU0-oR-URX"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="top" id="ink-pU-BzS"/>
-                            <constraint firstAttribute="trailing" secondItem="N0C-ZO-twV" secondAttribute="trailing" id="uf9-5n-XyH"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="trailing" secondItem="6CW-NK-mGa" secondAttribute="trailing" id="xGg-Dz-oGu"/>
+                            <constraint firstItem="N0C-ZO-twV" firstAttribute="centerX" secondItem="Y8Q-20-O1c" secondAttribute="centerX" id="mYU-nN-gbC"/>
+                            <constraint firstAttribute="trailing" secondItem="N0C-ZO-twV" secondAttribute="trailing" id="uAg-9I-NHT"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="Y8Q-20-O1c" secondAttribute="leading" id="udk-2c-Eqn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Video" id="qx4-RS-RMK">
@@ -223,7 +223,7 @@
                 <exit id="Tqd-Bz-EwA" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="obw-ho-oen"/>
             </objects>
-            <point key="canvasLocation" x="1469.5999999999999" y="981.85907046476768"/>
+            <point key="canvasLocation" x="1457" y="810"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5b6-AQ-OWf">
@@ -404,7 +404,7 @@
                                 <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7v-wg-aVp" id="xd6-7W-m8J">
-                                    <frame key="frameInset" width="383" height="44"/>
+                                    <frame key="frameInset" width="383" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
