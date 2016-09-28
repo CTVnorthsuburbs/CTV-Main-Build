@@ -341,11 +341,11 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if(searchActive) {
                 
-                return filtered.count
+                return myVideos.count
                 
             }
             
-            return filtered.count   //use data.count to always display intial table of all searchResults
+            return myVideos.count   //use data.count to always display intial table of all searchResults
             
         }
         
@@ -358,24 +358,24 @@ class MyVideosStaticViewController: MyVideosViewController {
                 // Changed from videos.remove to filtered. This stops the crash but the videos reappear when a new search is started
                 
                 
-                if(myVideos.contains(filtered[(indexPath as NSIndexPath).row])) {
+           
                     
                     
-                    let video = myVideos.index(of: filtered[(indexPath as NSIndexPath).row])
+                    let video = myVideos[indexPath.row]
                     
                     
-                    deleteVideo(filtered[(indexPath as NSIndexPath).row])
+                    deleteVideo(video)
                     
-                    myVideos.remove(at: video!)
+                myVideos.remove(at: indexPath.row)
                     
-                    
-                    
-                }
                 
-                filtered.remove(at: (indexPath as NSIndexPath).row)
+                    
+                
+                
+             
                 
                 print("after delete")
-                printVideos(video: filtered)
+                printVideos(video: myVideos)
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
@@ -492,11 +492,11 @@ class MyVideosStaticViewController: MyVideosViewController {
                     
                     
                     if(!myVideos.contains(video)) {
-                        let newIndexPath = IndexPath(row: filtered.count, section: 0)
+                        let newIndexPath = IndexPath(row: myVideos.count, section: 0)
                         
                         
                         
-                        filtered.append(video)
+                        //filtered.append(video)
                         myVideos.append(video)
                         
                         self.tableView.insertRows(at: [newIndexPath], with: .bottom)
@@ -727,7 +727,7 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if let url = downloadTask.originalRequest?.url?.absoluteString {
                 
-                for (index, video) in filtered.enumerated() {
+                for (index, video) in myVideos.enumerated() {
                     
                     if url == video.sourceUrl! {
                         

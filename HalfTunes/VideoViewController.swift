@@ -10,6 +10,10 @@ import Foundation
 import MediaPlayer
 import UIKit
 
+import AVFoundation
+import AVKit
+
+
 class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
@@ -22,7 +26,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBOutlet weak var thumbnailButton: UIButton!
     
-       var moviePlayer : MPMoviePlayerController?
+       var moviePlayer : AVPlayer?
+
     /*
      This value is either passed by `MyVideosViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new video.
@@ -30,12 +35,20 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var video: Video?
     
+ 
+    
+        
+        
+    
+
+  
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Set up views if editing an existing Video.
 
+        
         if let video = video {
             
             navigationItem.title = video.title
@@ -61,6 +74,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
     }
+    
+
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         
@@ -96,9 +111,20 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 let fileUrl = URL(string: urlString)
                 
-                let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
+                  let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
                 
-                presentMoviePlayerViewControllerAnimated(moviePlayer)
+                
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = moviePlayer
+                
+                
+              
+                
+               // presentMoviePlayerViewControllerAnimated(moviePlayer)
+                
+                self.present(playerViewController, animated: true) {
+                    playerViewController.player!.play()
+                }
                 
             }
             
@@ -120,13 +146,26 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
-            let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: url)
-            
-            
-            
          
             
-            presentMoviePlayerViewControllerAnimated(moviePlayer)
+            
+          
+            
+            let moviePlayer:AVPlayer! = AVPlayer(url: url)
+            
+            
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = moviePlayer
+            
+            
+            
+            
+            // presentMoviePlayerViewControllerAnimated(moviePlayer)
+            
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+
         }
         
     }

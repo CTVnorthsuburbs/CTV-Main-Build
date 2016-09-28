@@ -118,6 +118,13 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
+		8D991DFA1D9C1F010027B110 /* Video Player */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Video Player";
+			sourceTree = "<group>";
+		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +161,7 @@
 		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D991DFA1D9C1F010027B110 /* Video Player */,
 				8D66CF161D8C28C000C600F4 /* DetailVideoView */,
 				8D63F29C1D64D44A00689693 /* SearchView */,
 				8D63F29B1D64D42900689693 /* MyVideos */,

@@ -187,6 +187,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.myVideosChildView?.searchExampleTitle = self.searchExampleTitle
         
         // myVideosChildView!.data = self.searchResults     // Uncomment to replace my videos with full search results, useful for testing
+    
+      
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("searchViewcontroller appeared")
+        indexChanged(segmentedControl)
         
     }
     
@@ -235,7 +242,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             myVideosResults.isHidden = true
             
         case 1:
-            
+          
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
             searchBar.delegate = myVideosChildView
@@ -281,12 +288,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
+       
         
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
+        
         
     }
     
@@ -300,6 +309,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchActive = false
         
+        self.childView?.searchBar.endEditing(true)
+        
+        //  self.myVideosChildView?.searchBar.endEditing(true)
+        
+        
+    
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -311,6 +327,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             searchExampleTitle.isHidden = false
             
             self.tableView.isHidden = true
+            
+                    self.childView?.searchBar.endEditing(true)
+
             
         } else {
             

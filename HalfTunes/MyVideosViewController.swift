@@ -52,8 +52,29 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+      
+        myVideos = loadVideos()!
+        
+  
+        
+  
+       // tableView.reloadData()
+        
+    }
     
+    
+  
+    
+    override func awakeFromNib() {
+         tableView.reloadData()
+    
+    }
 
+    
+    
     func playVideo(_ video: Video) {
         
         //Get the Video Path
@@ -100,13 +121,16 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             video = filtered[(indexPath as NSIndexPath).row]
             
+            
+            
         // cell.textLabel?.text = filtered[indexPath.row]
             
         } else {
             
-            video = myVideos[(indexPath as NSIndexPath).row]
+          //  video = myVideos[(indexPath as NSIndexPath).row] to fix delete error
         
-
+    video = filtered[(indexPath as NSIndexPath).row]
+            
             
         }
         
@@ -245,6 +269,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         searchActive = false
         
+       searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -256,6 +281,8 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             searchExampleTitle!.isHidden = false
             
             self.tableView.isHidden = true
+            
+            searchBar.resignFirstResponder()
             
         } else {
             
