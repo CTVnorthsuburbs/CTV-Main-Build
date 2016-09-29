@@ -83,9 +83,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+  
     override func viewDidLoad() {
         
         searchExamples.text = "Lacrosse\n\nHockey\n\nRAHS\n\nBoys Soccer\n\nGirls Hockey\n\n16-01-22\n\nMounds View"
+        
+        
+        searchExamples.isUserInteractionEnabled = true
+
+    
         
         allVideosResults.isHidden = false
         

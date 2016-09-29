@@ -291,21 +291,17 @@ class MyVideosStaticViewController: MyVideosViewController {
                     
                     let indexPath = tableView.indexPath(for: selectedVideoCell)!
                     
-                    var count = 0  //code to map filtered result position to searchResult position
-                    
-                    for result in searchResults {
-                        
-                        if (filtered[(indexPath as NSIndexPath).row].title == result.title) {
-                            
-                            let selectedVideo = searchResults[count]
+              
+                            print("indexpath:\(indexPath.row)")
+                            let selectedVideo = myVideos[indexPath.row]
                             
                             videoDetailViewController.video = selectedVideo
                             
-                        }
+                    
                         
-                        count += 1
+                
                         
-                    }
+                    
                     
                 }
                 

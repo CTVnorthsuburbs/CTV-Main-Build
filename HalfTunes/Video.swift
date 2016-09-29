@@ -112,7 +112,7 @@ open class Video: NSObject, NSCoding {
             
             imgGenerator.appliesPreferredTrackTransform = true
             
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(18, 1), actualTime: nil)
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(30, 1), actualTime: nil)
             
             tempThumb = UIImage(cgImage: cgImage)
             
