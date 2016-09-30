@@ -15,6 +15,27 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var myVideos = [Video]()
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var searchExamplesView: UIView!
+    
+    @IBOutlet weak var hockeyButton: UIButton!
+    
+    @IBOutlet weak var rahsButton: UIButton!
+    
+    @IBOutlet weak var boysSoccerButton: UIButton!
+    
+    @IBOutlet weak var girlsSwimmingButton: UIButton!
+    
+    @IBOutlet weak var dateButton: UIButton!
+    
+    @IBOutlet weak var moundsViewButton: UIButton!
+    
+    @IBOutlet weak var lacrosseButton: UIButton!
+    
+    
+    @IBOutlet weak var myVideoEmptyLabel: UILabel!
+    
+    var tapRecognizer : UITapGestureRecognizer?
+    
     var tableView: UITableView!
     
     var searchActive : Bool = false
@@ -37,9 +58,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     var childView : AllVideosResultsViewController?
     
-    @IBOutlet weak var searchExamples: UILabel!
     
-    @IBOutlet weak var searchExampleTitle: UILabel!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -83,15 +102,29 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-  
+    
+    
+    @IBAction func buttonPressed(_ sender: AnyObject) {
+        
+        
+        let searchText = sender.titleLabel??.text
+        
+        searchBar.delegate = self
+        self.searchBar.text = searchText
+        
+        self.searchBar(searchBar, textDidChange:searchText!)
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         
-        searchExamples.text = "Lacrosse\n\nHockey\n\nRAHS\n\nBoys Soccer\n\nGirls Hockey\n\n16-01-22\n\nMounds View"
         
-        
-        searchExamples.isUserInteractionEnabled = true
-
-    
         
         allVideosResults.isHidden = false
         
@@ -167,11 +200,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         childView!.searchResults = self.searchResults
         
-
+        
         
         childView!.filtered = self.filtered
         
-
+        
         
         myVideosChildView!.searchResults = self.searchResults
         
@@ -188,19 +221,36 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.myVideosTableView.isHidden = true
         
-        self.myVideosChildView?.searchExamples = self.searchExamples
+        self.myVideosChildView?.searchExamplesView = self.searchExamplesView
         
-        self.myVideosChildView?.searchExampleTitle = self.searchExampleTitle
+        self.myVideosChildView?.myVideoEmptyLabel = self.myVideoEmptyLabel
+        
+        
+        myVideoEmptyLabel.isHidden = true
         
         // myVideosChildView!.data = self.searchResults     // Uncomment to replace my videos with full search results, useful for testing
+        
+         tapRecognizer = UITapGestureRecognizer()
+        
+        tapRecognizer?.addTarget(self, action: "didTapView")
+        
+       
     
-      
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("searchViewcontroller appeared")
-        indexChanged(segmentedControl)
+    func didTapView(){
         
+        self.view.endEditing(true)
+        print("all video tapped")
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        indexChanged(segmentedControl)
+     
+
     }
     
     
@@ -211,8 +261,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         indexChanged(segmentedControl)
         
-        
     }
+    
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         
         switch segmentedControl.selectedSegmentIndex
@@ -220,11 +270,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         {
             
         case 0:
-            
+             self.view.addGestureRecognizer(tapRecognizer!)
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
             searchBar.delegate = self
-            
+        
+  
             if(searchText!.isEmpty == false) {
                 
                 self.searchBar(searchBar, textDidChange:searchText!)
@@ -248,26 +299,29 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             myVideosResults.isHidden = true
             
         case 1:
-          
+            
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
             searchBar.delegate = myVideosChildView
-            
+            myVideoEmptyLabel.isHidden = false
+           
+                self.view.removeGestureRecognizer(tapRecognizer!)
             if(searchText!.isEmpty == false) {
+                
+                
                 
                 myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
                 
-                searchExamples.isHidden = true
-                
-                searchExampleTitle.isHidden = true
+                searchExamplesView.isHidden = true
                 
             } else {
                 
                 myVideosChildView?.searchBar(searchBar, textDidChange:"")
                 
-                searchExamples.isHidden = false
-                
-                searchExampleTitle.isHidden = false
+                searchExamplesView.isHidden = true
+           
+              //  self.view.addGestureRecognizer(tapRecognizer!)
+
                 
             }
             
@@ -275,13 +329,18 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 myVideosResults.isHidden = false
                 
+                
             } else {
                 
                 myVideosResults.isHidden = true
                 
+    
+               
             }
             
             allVideosResults.isHidden = true
+            
+           
             
         default:
             
@@ -294,14 +353,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
-       
+      
+        
+     //   self.view.addGestureRecognizer(tapRecognizer!)
         
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
-        
+      //   self.view.removeGestureRecognizer(tapRecognizer!)
         
     }
     
@@ -320,28 +381,37 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         //  self.myVideosChildView?.searchBar.endEditing(true)
         
         
-    
+        
         
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+     
+        
         if (searchText.characters.count == 0) {
             
-            searchExamples.isHidden = false
+
             
-            searchExampleTitle.isHidden = false
+            searchExamplesView.isHidden = false
+            
+            myVideoEmptyLabel.isHidden = true
+            
             
             self.tableView.isHidden = true
             
-                    self.childView?.searchBar.endEditing(true)
-
+            self.childView?.searchBar.endEditing(true)
+            
+       self.view.addGestureRecognizer(tapRecognizer!)
+            
             
         } else {
             
-            searchExamples.isHidden = true
+     
+           
+            myVideoEmptyLabel.isHidden = true
             
-            searchExampleTitle.isHidden = true
+            searchExamplesView.isHidden = true
             
             self.tableView.isHidden = false
             
@@ -421,10 +491,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+     
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
         
         if(searchActive){
+               self.view.removeGestureRecognizer(tapRecognizer!)
             
+     
             cell.textLabel?.text = filtered[(indexPath as NSIndexPath).row]
             
         } else {

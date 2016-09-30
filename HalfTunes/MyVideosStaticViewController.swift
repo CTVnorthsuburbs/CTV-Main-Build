@@ -237,19 +237,14 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if (searchText.characters.count == 0) {
                 
-                searchExamples!.isHidden = false
-                
-                searchExampleTitle!.isHidden = false
+              
                 
                 self.tableView.isHidden = true
                 
             } else {
                 
                 self.tableView.isHidden = false
-                
-                searchExamples!.isHidden = true
-                
-                searchExampleTitle!.isHidden = true
+       
                 
             }
             
