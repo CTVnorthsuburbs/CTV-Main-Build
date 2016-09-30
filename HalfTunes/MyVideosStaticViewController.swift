@@ -287,16 +287,12 @@ class MyVideosStaticViewController: MyVideosViewController {
                     let indexPath = tableView.indexPath(for: selectedVideoCell)!
                     
               
-                            print("indexpath:\(indexPath.row)")
                             let selectedVideo = myVideos[indexPath.row]
                             
                             videoDetailViewController.video = selectedVideo
                             
                     
-                        
-                
-                        
-                    
+                      
                     
                 }
                 
@@ -376,11 +372,7 @@ class MyVideosStaticViewController: MyVideosViewController {
                 
                 saveVideos()
                 
-                
-                print("printing myvideos")
-                
-                printVideos(video: myVideos)
-                
+
                 // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 
             } else if editingStyle == .insert {
@@ -394,19 +386,7 @@ class MyVideosStaticViewController: MyVideosViewController {
             
         }
         
-        
-        override func printVideos(video: [Video]) {
-            
-            print("Printing array")
-            for vid in video {
-                
-                print(vid.title)
-                
-                
-            }
-            
-            
-        }
+    
         
         /*
          // Override to support rearranging the table view.

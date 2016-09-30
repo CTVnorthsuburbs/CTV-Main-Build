@@ -35,13 +35,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var video: Video?
     
- 
-    
-        
-        
-    
-
-  
+    var myVideos = [Video]()
     
     override func viewDidLoad() {
         
@@ -70,12 +64,32 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             thumbnailView.image = video.thumbnail
             
         }
+     
+  
+   
+        
+        myVideos = loadVideos()!
         
         
+        for vid in myVideos {
+            
+            if (vid.title == video?.title) {
+                
+                
+                toggleSaveButton()
+            }
+            
+            
+        }
+ 
         
     }
     
-
+    func loadVideos() -> [Video]? {
+        
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+    }
+    
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         

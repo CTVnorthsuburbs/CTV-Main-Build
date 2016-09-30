@@ -68,8 +68,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         myVideos = loadVideos()!
         
-        
-      //  self.parent!.view.addGestureRecognizer(tapRecognizer!)
+
         
         
     }
@@ -81,7 +80,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
           self.view.removeGestureRecognizer(tapRecognizer!)
         
                  self.parent!.view.removeGestureRecognizer(tapRecognizer!)
-        print("didtapview")
+
         
     }
     
@@ -268,9 +267,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         searchActive = true
       
-        print("serabar did begin")
-        
-      //  self.parent!.view.removeGestureRecognizer(tapRecognizer!)
+
         
     }
     
@@ -279,10 +276,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         searchActive = false
       
 
- 
-  //self.parent!.view.removeGestureRecognizer(tapRecognizer!)
-        
-        print("searchbar textdidendedit")
+
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -307,9 +301,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if (searchText.characters.count == 0) {
             
-              print("here it goes")
+            
             
              self.parent!.view.addGestureRecognizer(tapRecognizer!)
+            
+            
            
             searchExamplesView!.isHidden = true
             
@@ -321,7 +317,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
         } else {
             
-           self.parent!.view.removeGestureRecognizer(tapRecognizer!)
+       //    self.parent!.view.removeGestureRecognizer(tapRecognizer!)    changed withoput testing in order to have searchtext with letter in myvideos still dismiss
         
             self.tableView.isHidden = false
             
@@ -379,6 +375,8 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                         let selectedVideo = searchResults[count]
                         
                         videoDetailViewController.video = selectedVideo
+                        
+                   
                         
                     }
                     

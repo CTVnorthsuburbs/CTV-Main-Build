@@ -27,6 +27,8 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
     var searchActive : Bool = false
     
+
+    
     var data = [String]()
     
     var filtered:[String] = []
@@ -67,11 +69,18 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                 for result in searchResults {
                     
                     if (filtered[(indexPath as NSIndexPath).row] == result.title) {
-                  
+                  print("this runs segue")
+                        
+                        
+                   
                         let selectedVideo = searchResults[count]
                         
                         videoDetailViewController.video = selectedVideo
                         
+                
+                        
+                  
+                      
                     }
                     
                     count += 1

@@ -12,7 +12,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     var searchResults = [Video]()
     
-    var myVideos = [Video]()
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var searchExamplesView: UIView!
@@ -81,6 +80,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                         let selectedVideo = searchResults[count]
                         
                         videoDetailViewController.video = selectedVideo
+                        
+             
+                        
+                        
+                      
                         
                     }
                     
@@ -201,7 +205,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         childView!.searchResults = self.searchResults
         
         
-        
         childView!.filtered = self.filtered
         
         
@@ -234,14 +237,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         tapRecognizer?.addTarget(self, action: "didTapView")
         
+        searchBar.placeholder = "All Videos"
+        
+
        
-    
     }
     
     func didTapView(){
         
         self.view.endEditing(true)
-        print("all video tapped")
+   
     }
     
     
@@ -270,6 +275,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         {
             
         case 0:
+            
+            searchBar.placeholder = "All Videos"
              self.view.addGestureRecognizer(tapRecognizer!)
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
@@ -300,6 +307,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         case 1:
             
+            searchBar.placeholder = "My Videos"
             let searchText = searchBar.text             //get current search text, change the delgate, then add the text
             
             searchBar.delegate = myVideosChildView
@@ -320,7 +328,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 searchExamplesView.isHidden = true
            
-              //  self.view.addGestureRecognizer(tapRecognizer!)
+    
 
                 
             }
@@ -354,15 +362,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchActive = true
       
-        
-     //   self.view.addGestureRecognizer(tapRecognizer!)
+    
         
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
-      //   self.view.removeGestureRecognizer(tapRecognizer!)
+  
         
     }
     
@@ -378,7 +385,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.childView?.searchBar.endEditing(true)
         
-        //  self.myVideosChildView?.searchBar.endEditing(true)
+  
         
         
         
