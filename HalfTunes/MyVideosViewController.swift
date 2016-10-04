@@ -306,7 +306,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             self.tableView.isHidden = true
             
-            searchBar.resignFirstResponder()
+          //  searchBar.resignFirstResponder()
             
         } else {
             

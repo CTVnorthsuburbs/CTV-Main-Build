@@ -408,7 +408,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             self.tableView.isHidden = true
             
-            self.childView?.searchBar.endEditing(true)
+          //  self.childView?.searchBar.endEditing(true)
             
             self.view.addGestureRecognizer(tapRecognizer!)
             
