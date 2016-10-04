@@ -461,7 +461,7 @@ class MyVideosStaticViewController: MyVideosViewController {
                     
                     // Add a new video.
                     
-                    
+                    print("this is where it sav es")
                     if(!myVideos.contains(video)) {
                         let newIndexPath = IndexPath(row: myVideos.count, section: 0)
                         

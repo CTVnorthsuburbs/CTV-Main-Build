@@ -17,21 +17,17 @@ import AVKit
 class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
-
+    
     @IBOutlet weak var thumbnailView: UIImageView!
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var thumbnailButton: UIButton!
     
-       var moviePlayer : AVPlayer?
-
-    /*
-     This value is either passed by `MyVideosViewController` in `prepareForSegue(_:sender:)`
-     or constructed as part of adding a new video.
-     */
+    @IBOutlet weak var addVideoButton: UIButton!
+    
+    var moviePlayer : AVPlayer?
     
     var video: Video?
     
@@ -39,9 +35,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
         
-
+        addVideoButton.setTitle("Download", for: UIControlState.selected)
+        
+        super.viewDidLoad()
         
         if let video = video {
             
@@ -50,11 +47,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             titleLabel.text   = video.title
             
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {  //generate thumbnail in bacground
-
+                
                 video.generateThumbnail()
                 
                 DispatchQueue.main.async {
-
+                    
                     self.thumbnailView.image = video.thumbnail
                     
                 }
@@ -64,26 +61,28 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             thumbnailView.image = video.thumbnail
             
         }
-     
-  
-   
         
         myVideos = loadVideos()!
         
-        
-        for vid in myVideos {
-            
-            if (vid.title == video?.title) {
-                
-                
-                toggleSaveButton()
-            }
+        if (hasSavedVideo()) {
             
             
+            toggleAddButton()
         }
- 
+
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+    
+            myVideos = loadVideos()!
+        
+            toggleAddButton()
+        
+    
+    }
+    
     
     func loadVideos() -> [Video]? {
         
@@ -98,11 +97,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let isPresentingInAddVideoMode = presentingViewController is UINavigationController
         
         if isPresentingInAddVideoMode {
-        
+            
             dismiss(animated: true, completion: nil)
             
         } else {
-     
+            
             navigationController!.popViewController(animated: true)
             
         }
@@ -110,8 +109,51 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
 
-    @IBAction func playVideo(_ sender: AnyObject) {
+    @IBAction func addVideo(_ sender: AnyObject) {
+        
+        
+        if(!addVideoButton.isSelected) {
+        saveVideos()
+        }
+    }
+    
+    func hasSavedVideo() -> Bool {
+        
+        for vid in myVideos {
+            
+            if (vid.title == video?.title) {
+                
+                return true
+            }
+            
+        }
 
+        
+        return false
+    }
+    
+    func saveVideos() {
+        
+        
+        myVideos.append(video!)
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
+        print("saved the video")
+        
+        if (isSuccessfulSave) {
+            
+            toggleAddButton()
+        } else {
+ 
+            print("Failed to save videos...")
+            
+        }
+        
+    }
+
+    
+    
+    @IBAction func playVideo(_ sender: AnyObject) {
         
         let videoPath = Bundle.main.path(forResource: video?.sourceUrl, ofType:"mp4")
         
@@ -125,61 +167,45 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 let fileUrl = URL(string: urlString)
                 
-                  let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
-                
+                let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
                 
                 let playerViewController = AVPlayerViewController()
+                
                 playerViewController.player = moviePlayer
                 
-                
-              
-                
-               // presentMoviePlayerViewControllerAnimated(moviePlayer)
-                
                 self.present(playerViewController, animated: true) {
+                    
                     playerViewController.player!.play()
                 }
                 
             }
             
         } else {
+            
             print("local file exists for: \(video?.title)")
+            
             playDownload(video!)
             
         }
-
-        
-        
-        
         
     }
-    
-    
     
     func playDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
-         
-            
-            
-          
-            
             let moviePlayer:AVPlayer! = AVPlayer(url: url)
             
-            
             let playerViewController = AVPlayerViewController()
+            
             playerViewController.player = moviePlayer
-            
-            
-            
             
             // presentMoviePlayerViewControllerAnimated(moviePlayer)
             
             self.present(playerViewController, animated: true) {
                 playerViewController.player!.play()
             }
-
+            
         }
         
     }
@@ -202,8 +228,6 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let fullPath = documentsPath.appendingPathComponent(lastPathComponent!)
         
         return URL(fileURLWithPath:fullPath)
-        
-        
         
         //return nil
         
@@ -228,15 +252,33 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         return false
         
     }
-
     
-    func toggleSaveButton() {
+    func toggleAddButton() {
+    
+        
+        if(localFileExistsForVideo(video!)) {
+      
+             addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
+            
+            
+            addVideoButton.isSelected = true
+            
+        } else {
         
         
-         let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: "buttonMethod")
-        navigationItem.rightBarButtonItem = refreshButton
+        if(hasSavedVideo()) {
+        addVideoButton.setTitle("Download", for: UIControlState.selected)
+addVideoButton.isSelected = true
+            
+        } else {
+            
+            addVideoButton.setTitle("+ Add", for: UIControlState.normal)
+
+            addVideoButton.isSelected = false
+        }
         
     }
- 
+    }
+    
 }
 

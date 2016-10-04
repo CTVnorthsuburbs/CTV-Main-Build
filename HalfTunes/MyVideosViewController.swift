@@ -557,18 +557,16 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 // Add a new video.
                 
+                         print("this is where it saves")
                 
                 if(!myVideos.contains(video)) {
                     let newIndexPath = IndexPath(row: filtered.count, section: 0)
-                    
                     
                     
                     filtered.append(video)
                     myVideos.append(video)
                     
                     self.tableView.insertRows(at: [newIndexPath], with: .bottom)
-                    
-                    
                     
                 }
             }
