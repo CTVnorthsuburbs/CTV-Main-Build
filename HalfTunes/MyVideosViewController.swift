@@ -57,7 +57,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         tapRecognizer?.addTarget(self, action: "didTapView")
         
-       
+        
         
         
     }
@@ -68,7 +68,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         myVideos = loadVideos()!
         
-
+        
         
         
     }
@@ -77,10 +77,10 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     func didTapView(){
         
         self.parent!.view.endEditing(true)
-          self.view.removeGestureRecognizer(tapRecognizer!)
+        self.view.removeGestureRecognizer(tapRecognizer!)
         
-                 self.parent!.view.removeGestureRecognizer(tapRecognizer!)
-
+        self.parent!.view.removeGestureRecognizer(tapRecognizer!)
+        
         
     }
     
@@ -123,10 +123,10 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       //self.view.removeGestureRecognizer(tapRecognizer!)
+        //self.view.removeGestureRecognizer(tapRecognizer!)
         
         // Table view cells are reused and should be dequeued using a cell identifier.
-    
+        
         let cellIdentifier = "VideoCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VideoCell
@@ -139,7 +139,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             video = filtered[(indexPath as NSIndexPath).row]
             
-        
+            
             
             // cell.textLabel?.text = filtered[indexPath.row]
             
@@ -266,17 +266,17 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
-      
-
+        
+        
         
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchActive = false
-      
-
-
+        
+        
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -296,17 +296,10 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        
-        
-        
         if (searchText.characters.count == 0) {
             
+            self.parent!.view.addGestureRecognizer(tapRecognizer!)
             
-            
-             self.parent!.view.addGestureRecognizer(tapRecognizer!)
-            
-            
-           
             searchExamplesView!.isHidden = true
             
             myVideoEmptyLabel?.isHidden = false
@@ -317,12 +310,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
         } else {
             
-       //    self.parent!.view.removeGestureRecognizer(tapRecognizer!)    changed withoput testing in order to have searchtext with letter in myvideos still dismiss
-        
+            //    self.parent!.view.removeGestureRecognizer(tapRecognizer!)    changed withoput testing in order to have searchtext with letter in myvideos still dismiss
+            
             self.tableView.isHidden = false
             
             myVideoEmptyLabel?.isHidden = true
-            
             
             searchExamplesView!.isHidden = true
             
@@ -349,7 +341,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             searchActive = true
             
         }
-    
+        
         self.tableView.reloadData()
         
     }
@@ -376,7 +368,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                         
                         videoDetailViewController.video = selectedVideo
                         
-                   
+                        
                         
                     }
                     

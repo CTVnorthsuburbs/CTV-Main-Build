@@ -85,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				8D60652D1D95777C00D45F3F /* MyVideosStaticViewController.swift */,
-				8D5109B01D3931DD00CFFDAC /* MyVideosViewController.swift */,
 				8DB6069C1D303E1F005029DB /* Download.swift */,
 				D92117481B596DFE008DAD44 /* Cells */,
 			);
@@ -95,6 +94,7 @@
 		8D63F29C1D64D44A00689693 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				8D5109B01D3931DD00CFFDAC /* MyVideosViewController.swift */,
 				8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */,
 				8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */,
 			);

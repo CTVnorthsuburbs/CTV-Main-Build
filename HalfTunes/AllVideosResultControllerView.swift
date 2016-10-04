@@ -69,7 +69,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                 for result in searchResults {
                     
                     if (filtered[(indexPath as NSIndexPath).row] == result.title) {
-                  print("this runs segue")
+                 
                         
                         
                    

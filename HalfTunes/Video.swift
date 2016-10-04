@@ -102,6 +102,10 @@ open class Video: NSObject, NSCoding {
     
     open func generateThumbnail() {
         
+        
+        
+      
+        
         var tempThumb: UIImage
         
         do {
@@ -125,7 +129,10 @@ open class Video: NSObject, NSCoding {
             print("Error generating thumbnail: \(error)")
             
         }
-    
+        
+        
+        
+        
     }
     
     // MARK: NSCoding
