@@ -53,7 +53,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var myVideosResults: UIView!
     
-    var myVideosChildView : MyVideosViewController?
+    var myVideosChildView : MyVideosSearchViewController?
     
     var childView : AllVideosResultsViewController?
     
@@ -155,7 +155,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         childView = self.childViewControllers.first as? AllVideosResultsViewController
         
-        myVideosChildView = self.childViewControllers.last as? MyVideosViewController
+        myVideosChildView = self.childViewControllers.last as? MyVideosSearchViewController
         
         self.myVideosTableView = myVideosChildView!.tableView
         
