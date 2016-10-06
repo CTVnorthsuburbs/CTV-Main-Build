@@ -16,6 +16,50 @@ import MediaPlayer
 
 /// The MyVideosViewController class contains the controller that handles the My Videos table view within the Search View
 
+
+
+
+
+class GlobalVariables {
+    
+    // These are the properties you can store in your singleton
+  var activeDownloads = [String: Download]()
+    var progress : Float = 0
+    
+    // Here is how you would get to it without there being a global collision of variables.
+    // , or in other words, it is a globally accessable parameter that is specific to the
+    // class.
+    class var sharedManager: GlobalVariables {
+        struct Static {
+            static let instance = GlobalVariables()
+        }
+        return Static.instance
+        
+        
+        
+    }
+    
+    
+    func getDownload(downloadUrl: String)-> Download? {
+        
+        if((activeDownloads[downloadUrl]) != nil) {
+              var download = activeDownloads[downloadUrl]
+            
+                 return download
+        }
+        
+       
+         return nil
+   
+        
+        
+    }
+}
+
+
+
+
+
 class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
     
     var videos = [Video]()
@@ -38,7 +82,31 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     var myVideoEmptyLabel : UILabel?
     
-    var moviePlayer : MPMoviePlayerController?
+    var progressView : UIProgressView? = nil
+    
+   // var moviePlayer : MPMoviePlayerController?
+    
+    
+    
+   
+    
+    var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+    
+    var dataTask = URLSessionDataTask()
+    
+    lazy var downloadsSession: Foundation.URLSession = {
+        
+        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+        
+        let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        
+        return session
+        
+    }()
+    
+    
+    
+    
     
     override func viewDidLoad() {
         
@@ -48,8 +116,14 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         myVideos = [Video]()
         
-        myVideos = loadVideos()!
+        if(loadVideos() != nil) {
+            
+            myVideos = (loadVideos())!
+            
+            
+        }
         
+
         _ = self.downloadsSession
         
         
@@ -66,7 +140,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
         
-        myVideos = loadVideos()!
+        if(loadVideos() != nil) {
+            
+            
+            self.myVideos = loadVideos()!
+            
+        }
         
         
         
@@ -162,7 +241,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         var showDownloadControls = false
         
-        if let download = activeDownloads[video!.sourceUrl!] {
+        if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
             
             showDownloadControls = true
             
@@ -368,7 +447,23 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                         
                         videoDetailViewController.video = selectedVideo
                         
+                      
                         
+                        
+                        videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                        
+                        videoDetailViewController.setDataTask(dataTask: &dataTask)
+                        
+                        
+                        videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+                        
+                        
+                    //    videoDetailViewController.activeDownloads = activeDownloads
+                        
+                       
+       
+                        
+                  
                         
                     }
                     
@@ -608,29 +703,14 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
     }
-    
-    var activeDownloads = [String: Download]()
-    
-    let defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
-    
-    var dataTask: URLSessionDataTask?
-    
-    lazy var downloadsSession: Foundation.URLSession = {
-        
-        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
-        
-        let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        
-        return session
-        
-    }()
+
     
     // Called when the Download button for a track is tapped
     
     func startDownload(_ video: Video) {
-        
+          print("download is started here")
         if let urlString = video.sourceUrl, let url =  URL(string: urlString) {
-            
+            print("download is started")
             let download = Download(url: urlString)
             
             download.downloadTask = downloadsSession.downloadTask(with: url)
@@ -639,7 +719,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             download.isDownloading = true
             
-            activeDownloads[download.url] = download
+            GlobalVariables.sharedManager.activeDownloads[download.url] = download
             
         }
     }
@@ -650,7 +730,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if let urlString = video.sourceUrl,
             
-            let download = activeDownloads[urlString] {
+            let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
             
             if(download.isDownloading) {
                 
@@ -678,11 +758,11 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if let urlString = video.sourceUrl,
             
-            let download = activeDownloads[urlString] {
+            let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
             
             download.downloadTask?.cancel()
             
-            activeDownloads[urlString] = nil
+            GlobalVariables.sharedManager.activeDownloads[urlString] = nil
             
         }
         
@@ -694,7 +774,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if let urlString = video.sourceUrl,
             
-            let download = activeDownloads[urlString] {
+            let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
             
             if let resumeData = download.resumeData {
                 
@@ -1003,7 +1083,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
         
         if let url = downloadTask.originalRequest?.url?.absoluteString {
             
-            activeDownloads[url] = nil
+            GlobalVariables.sharedManager.activeDownloads[url] = nil
             
             if let videoIndex = videoIndexForDownloadTask(downloadTask) {
                 
@@ -1023,20 +1103,31 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
         
         if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString,
             
-            let download = activeDownloads[downloadUrl] {
+            let download = GlobalVariables.sharedManager.activeDownloads[downloadUrl] {
             // 2
             
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             // 3
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             // 4
+            
+           
+
             if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
                 
                 DispatchQueue.main.async(execute: {
                     
+                    
+                    
                     videoCell.progressView.progress = download.progress
                     
-                    //videoCell.progressLabel.text =  String(format: "%.1f%% of %@",  download.progress * 100, totalSize)
+                   var temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
+                    
+                    temp?.progress = download.progress
+                    
+                    
+                   
+                    
                     
                 })
                 

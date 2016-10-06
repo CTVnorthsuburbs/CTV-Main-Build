@@ -28,7 +28,14 @@ class MyVideosStaticViewController: MyVideosViewController {
        
         super.viewDidLoad()
         
-        self.myVideos = loadVideos()!
+        
+        if(loadVideos() != nil) {
+            
+            
+             self.myVideos = loadVideos()!
+            
+        }
+      
         
         self.filtered = self.myVideos
         
@@ -36,10 +43,27 @@ class MyVideosStaticViewController: MyVideosViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-             myVideos = loadVideos()!
+        if(loadVideos() != nil) {
+            
+            
+            self.myVideos = loadVideos()!
+            
+        }
          self.filtered = self.myVideos
         super.viewWillAppear(animated)
         tableView.reloadData()
+        
+        
+        
+        for vid in GlobalVariables.sharedManager.activeDownloads {
+            
+            
+            
+            print(GlobalVariables.sharedManager.activeDownloads)
+        }
+        
+        
+        
     }
     
     
@@ -106,7 +130,7 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             var showDownloadControls = false
             
-            if let download = activeDownloads[video!.sourceUrl!] {
+            if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
                 
                 showDownloadControls = true
                 
@@ -290,10 +314,17 @@ class MyVideosStaticViewController: MyVideosViewController {
                             let selectedVideo = myVideos[indexPath.row]
                             
                             videoDetailViewController.video = selectedVideo
-                            
                     
-                      
+                     //    videoDetailViewController.setActiveDownloads(downloads: &activeDownloads)
                     
+                    
+                      videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                    
+                      videoDetailViewController.setDataTask(dataTask: &dataTask)
+                    
+                    
+                    videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+  
                 }
                 
             }
@@ -357,7 +388,7 @@ class MyVideosStaticViewController: MyVideosViewController {
                     
                 
                     
-                
+                GlobalVariables.sharedManager.activeDownloads[video.sourceUrl!] = nil
                 
              
                 
@@ -531,7 +562,7 @@ class MyVideosStaticViewController: MyVideosViewController {
                 
                 download.isDownloading = true
                 
-                activeDownloads[download.url] = download
+                GlobalVariables.sharedManager.activeDownloads[download.url] = download
                 
             }
         }
@@ -542,7 +573,7 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if let urlString = video.sourceUrl,
                 
-                let download = activeDownloads[urlString] {
+                let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
                 
                 if(download.isDownloading) {
                     
@@ -570,11 +601,11 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if let urlString = video.sourceUrl,
                 
-                let download = activeDownloads[urlString] {
+                let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
                 
                 download.downloadTask?.cancel()
                 
-                activeDownloads[urlString] = nil
+                GlobalVariables.sharedManager.activeDownloads[urlString] = nil
                 
             }
             
@@ -586,7 +617,7 @@ class MyVideosStaticViewController: MyVideosViewController {
             
             if let urlString = video.sourceUrl,
                 
-                let download = activeDownloads[urlString] {
+                let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
                 
                 if let resumeData = download.resumeData {
                     
