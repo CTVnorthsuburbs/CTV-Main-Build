@@ -77,6 +77,30 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         
                         videoDetailViewController.video = selectedVideo
                         
+                        
+                        var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+                        
+                        var dataTask = URLSessionDataTask()
+                        
+                        var downloadsSession: Foundation.URLSession = {
+                            
+                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                            
+                            let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+                            
+                            return session
+                            
+                        }()
+                        
+                        videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                        
+                        videoDetailViewController.setDataTask(dataTask: &dataTask)
+                        
+                        
+                        videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+                        
+                        
+                        print("this sweugla runs")
                 
                         
                   

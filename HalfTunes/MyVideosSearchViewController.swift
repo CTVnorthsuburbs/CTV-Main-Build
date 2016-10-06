@@ -22,6 +22,11 @@ import MediaPlayer
 
 class MyVideosSearchViewController: MyVideosViewController {
     
+    
+    
+    
+
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -49,6 +54,14 @@ class MyVideosSearchViewController: MyVideosViewController {
             self.myVideos = loadVideos()!
             
         }
+        
+        
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        
+    
+        
+
         
     }
 

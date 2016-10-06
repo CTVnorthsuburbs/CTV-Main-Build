@@ -194,6 +194,30 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             self.progressView.progress = (download.progress)
             
+            
+            
+          
+            
+            if(download.isDownloading == true) {
+               
+                
+                addVideoButton.setTitle("Pause", for: UIControlState.selected)
+                addVideoButton.isSelected = true
+                
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
+                
+            } else if (download.isDownloading == false)  {
+                
+                
+                
+                addVideoButton.setTitle("Resume", for: UIControlState.selected)
+                addVideoButton.isSelected = true
+                
+                timer!.invalidate()
+            }
+            
+            
+            
             //cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
             
           
@@ -201,14 +225,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         
         self.progressView.isHidden = !showDownloadControls
-        
-        
-        let downloaded = localFileExistsForVideo(video!)
-        
-        
-        
-       
-        
+  
         self.cancelButton.isHidden = !showDownloadControls
         
     }
@@ -526,7 +543,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 print("paused")
                 
-                timer?.invalidate()
+                timer!.invalidate()
                 
                 addVideoButton.setTitle("Resume", for: UIControlState.selected)
 

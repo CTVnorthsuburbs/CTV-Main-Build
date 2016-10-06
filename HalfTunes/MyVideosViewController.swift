@@ -15,6 +15,9 @@ import MediaPlayer
 
 class GlobalVariables {
     
+    
+    
+    
     // These are the properties you can store in your singleton
     var activeDownloads = [String: Download]()
     var progress : Float = 0
@@ -128,7 +131,15 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
         
+  
+            
+        
     }
+        
+        
+        
+        
+    
     
     
     func didTapView(){
