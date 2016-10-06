@@ -28,10 +28,7 @@ class GlobalVariables {
         }
         return Static.instance
         
-        
-        
     }
-    
     
     func getDownload(downloadUrl: String)-> Download? {
         
@@ -41,10 +38,7 @@ class GlobalVariables {
             return download
         }
         
-        
         return nil
-        
-        
         
     }
 }
@@ -96,16 +90,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     }()
     
     
-    
-    
-    
     override func viewDidLoad() {
         
-  
-        
-       
         super.viewDidLoad()
-        
         
         if(loadVideos() != nil) {
             
@@ -114,7 +101,6 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
         }
       
-        
         self.filtered = self.myVideos
         
     }

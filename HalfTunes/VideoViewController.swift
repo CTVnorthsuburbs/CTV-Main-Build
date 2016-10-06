@@ -20,18 +20,18 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBOutlet weak var thumbnailView: UIImageView!
     
-    @IBOutlet weak var downloadButton: UIButton!
+   
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var pauseButton: UIButton!
+  
     @IBOutlet weak var thumbnailButton: UIButton!
     
     @IBOutlet weak var addVideoButton: UIButton!
     
-
+    
     
     var moviePlayer : AVPlayer?
     
@@ -41,26 +41,26 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     
- //   var activeDownloads = [String: Download]()
+    //   var activeDownloads = [String: Download]()
     
     var defaultSession : Foundation.URLSession? = nil
     
     var dataTask: URLSessionDataTask?
     
- var downloadsSession: Foundation.URLSession?
-        
+    var downloadsSession: Foundation.URLSession?
+    
     var timer : Timer?
     
     
     
     override func viewDidLoad() {
-       
+        
         
         addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
         
-             _ = self.downloadsSession
+        _ = self.downloadsSession
         
         if let video = video {
             
@@ -97,92 +97,64 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             toggleAddButton()
         }
         
-        
-        
-        
+
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
-     
-        
-
-        
-    }
-        
-        
-        
-     
-        
-        func setProgressBar()
-        {
-            
-        
-                
-                
-                var tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
-                
-                
-                if(tempDownload?.progress != 1 && tempDownload?.progress !=  nil ) {
-                    
-                    print(tempDownload!.progress)
-                
-                        self.progressView.setProgress(tempDownload!.progress, animated: true)
-                        
-                    
-                    
-                } else {
-            
-                    if(    GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!) != nil) {
-                    var showDownloadControls = false
-                    
-                    self.downloadButton.isHidden =  !showDownloadControls
-                    
-                    self.pauseButton.isHidden = !showDownloadControls
-                    
-                    self.cancelButton.isHidden = !showDownloadControls
-                    self.progressView.isHidden = !showDownloadControls
-                    
-                    self.toggleAddButton()
-                        
-                    }
-            
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                
-                if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
-                    
-                    appDelegate.backgroundSessionCompletionHandler = nil
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        completionHandler()
-                        
-                        
-                        
-                    
-                        
-                    })
-                }
-            }
-                    
-                 
-                    
-                    
-                    
-            }
-            
-            
-            //var tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
-            
-
-            
-            
+    
     }
     
+    func setProgressBar() {
+        
+        var tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
+        
+        
+        if( tempDownload?.progress !=  nil ) {
+            
+            
+           
+            
+            print(tempDownload!.progress)
+            
+            self.progressView.setProgress(tempDownload!.progress, animated: true)
+                
+            
+       
+        } else {
+            
+     
+                hideDownloadControls()
+               timer?.invalidate()
+            
+           
+                
+                self.toggleAddButton()
+                
+    
+                   }
+        
+        
+        //var tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
+    
+    }
+    
+    func hideDownloadControls() {
+        
+        var showDownloadControls = false
+        
+     
+  
+        
+        self.cancelButton.isHidden = !showDownloadControls
+        
+        self.progressView.isHidden = !showDownloadControls
+        
+        
+    }
     
     
     func setActiveDownloads( downloads: inout [String: Download]) {
         
-     //   self.activeDownloads = downloads
-        
-        
+        //   self.activeDownloads = downloads
+
     }
     
     
@@ -205,27 +177,18 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     
-    
-    
-  
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-    
+        
         if(loadVideos() != nil) {
-            
-            
+
             self.myVideos = loadVideos()!
             
         }
         
-            toggleAddButton()
+        toggleAddButton()
         var showDownloadControls = false
         
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
-            
-            
-            
             
             showDownloadControls = true
             
@@ -233,9 +196,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             //cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
             
-            let title = (download.isDownloading) ? "Pause" : "Resume"
-            
-            self.pauseButton.setTitle(title, for: UIControlState())
+          
             
         }
         
@@ -245,19 +206,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let downloaded = localFileExistsForVideo(video!)
         
         
-        self.downloadButton.isHidden = downloaded || showDownloadControls
         
-        self.pauseButton.isHidden = !showDownloadControls
+       
         
         self.cancelButton.isHidden = !showDownloadControls
         
-        
-
-        
-        
-        
-        
-    
     }
     
     
@@ -285,13 +238,34 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
-
+    
     @IBAction func addVideo(_ sender: AnyObject) {
         
-        
+        if(addVideoButton.titleLabel?.text == "+ Add"){
         if(!addVideoButton.isSelected) {
-        saveVideos()
+            saveVideos()
         }
+        }
+        
+        
+        if(addVideoButton.titleLabel?.text == "Download"){
+            
+         downloadTapped()
+            
+        }
+        
+        if(addVideoButton.titleLabel?.text == "Pause"){
+            
+            pauseDownload(video!)
+            
+        }
+        
+        if(addVideoButton.titleLabel?.text == "Resume"){
+            
+             resumeDownload(video!)
+            
+        }
+        
     }
     
     func hasSavedVideo() -> Bool {
@@ -304,7 +278,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             }
             
         }
-
+        
         
         return false
     }
@@ -321,14 +295,12 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             toggleAddButton()
         } else {
- 
+            
             print("Failed to save videos...")
             
         }
         
     }
-
-    
     
     @IBAction func playVideo(_ sender: AnyObject) {
         
@@ -431,56 +403,61 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func toggleAddButton() {
-    
         
+        if(video != nil) {
         if(localFileExistsForVideo(video!)) {
-      
-             addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
+            
+            addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
             
             
             addVideoButton.isSelected = true
             
         } else {
-        
-        
-        if(hasSavedVideo()) {
-        addVideoButton.setTitle("Download", for: UIControlState.selected)
-addVideoButton.isSelected = true
             
-        } else {
             
-            addVideoButton.setTitle("+ Add", for: UIControlState.normal)
-
-            addVideoButton.isSelected = false
+            if(hasSavedVideo()) {
+                addVideoButton.setTitle("Download", for: UIControlState.selected)
+                addVideoButton.isSelected = true
+                
+            } else {
+                
+                addVideoButton.setTitle("+ Add", for: UIControlState.normal)
+                
+                addVideoButton.isSelected = false
+            }
+            
         }
-        
-    }
+            
+        }
     }
     
+ func downloadTapped() {
     
-    @IBAction func downloadTapped(_ sender: AnyObject) {
+        print("download is started here")
         
-         print("download is started here")
-        
-              var showDownloadControls = false
-   //   print(parentView?.myVideos)
+        var showDownloadControls = false
+        //   print(parentView?.myVideos)
         startDownload(video!)
-        
+    
+    
+         addVideoButton.setTitle("Pause", for: UIControlState.selected)
         
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
             
             
+            print("this runs")
             
-        
             showDownloadControls = true
             
             self.progressView.progress = (download.progress)
             
+              timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
+            
             //cell.progressLabel.text = (download.isDownloading) ? "Downloading..." : "Paused"
             
-            let title = (download.isDownloading) ? "Pause" : "Resume"
+          
             
-            self.pauseButton.setTitle(title, for: UIControlState())
+            
             
         }
         
@@ -490,38 +467,28 @@ addVideoButton.isSelected = true
         let downloaded = localFileExistsForVideo(video!)
         
         
-        self.downloadButton.isHidden = downloaded || showDownloadControls
-        
-        self.pauseButton.isHidden = !showDownloadControls
+    
         
         self.cancelButton.isHidden = !showDownloadControls
-        
-        
-
-            
-        
-        
-        
-        
         
     }
     @IBAction func cancelTapped(_ sender: AnyObject) {
         
-    cancelDownload(video!)
+        cancelDownload(video!)
         
     }
     
     @IBAction func pauseTapped(_ sender: AnyObject) {
         
- pauseDownload(video!)
+        pauseDownload(video!)
         
     }
     
     
     func startDownload(_ video: Video) {
-        print("download is started here")
+       
         if let urlString = video.sourceUrl, let url =  URL(string: urlString) {
-            print("download is started")
+        
             let download = Download(url: urlString)
             
             download.downloadTask = downloadsSession?.downloadTask(with: url)
@@ -549,7 +516,7 @@ addVideoButton.isSelected = true
                         
                         download.resumeData = correctResumeData(data)
                         
-                    
+                        
                         
                         
                     }
@@ -558,35 +525,96 @@ addVideoButton.isSelected = true
                 download.isDownloading = false
                 
                 print("paused")
+                
+                timer?.invalidate()
+                
+                addVideoButton.setTitle("Resume", for: UIControlState.selected)
+
+                
+            
+                
+                
+                
             }
             
         }
         
     }
-
+    
     func cancelDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl,
-           
+            
             let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
             
             download.downloadTask?.cancel()
-             print("canceled")
+            print("canceled")
+          
+            GlobalVariables.sharedManager.activeDownloads[urlString] = nil
+            
+            
             for vid in GlobalVariables.sharedManager.activeDownloads {
                 
                 
                 
                 print(vid)
             }
-            GlobalVariables.sharedManager.activeDownloads[urlString] = nil
             
-      
+            timer?.invalidate()
+            toggleAddButton()
+            
+               hideDownloadControls()
             
         }
         
     }
     
-  
+    func resumeDownload(_ video: Video) {
+        
+        
+          addVideoButton.setTitle("Pause", for: UIControlState.selected)
+        
+        if let urlString = video.sourceUrl,
+            
+            let download = GlobalVariables.sharedManager.activeDownloads[urlString] {
+            
+            if let resumeData = download.resumeData {
+                
+                print("first reumve runs")
+                
+                download.downloadTask = downloadsSession?.correctedDownloadTask(withResumeData: resumeData)
+                
+                download.downloadTask!.resume()
+                
+                download.isDownloading = true
+                
+                
+                timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
+                
+                
+             
+                
+                
+            } else if let url = URL(string: download.url) {
+                
+                
+                print("second resume runs")
+                download.downloadTask = downloadsSession?.downloadTask(with: url)
+                
+                download.downloadTask!.resume()
+                
+                download.isDownloading = true
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
 }
 
 

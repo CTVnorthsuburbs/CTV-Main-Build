@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="22" width="383" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <frame key="frameInset" width="383" height="90"/>
+                                    <frame key="frameInset" width="383" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
@@ -199,18 +199,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N0C-ZO-twV">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWI-P7-YLU" userLabel="Download Button">
-                                <frame key="frameInset" minX="192" minY="316" width="48" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Download">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="downloadTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rQI-dr-4gX"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4o-Cn-Lid" userLabel="Cancel Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4o-Cn-Lid" userLabel="Cancel Button">
                                 <frame key="frameInset" minX="206" minY="316" width="34" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -224,37 +215,21 @@
                                     <constraint firstAttribute="width" constant="217" id="MlT-xA-KUK"/>
                                 </constraints>
                             </progressView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqR-If-EiK" userLabel="Pause Button">
-                                <frame key="frameInset" minX="168" minY="316" width="30" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Pause">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="pauseTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GfC-Ru-K3x"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="4DG-Iz-vNF"/>
-                            <constraint firstItem="K4o-Cn-Lid" firstAttribute="leading" secondItem="CqR-If-EiK" secondAttribute="trailing" constant="8" id="7Ua-Ql-chZ"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="HIR-Vs-heM" secondAttribute="bottom" constant="8" symbolic="YES" id="8jk-xG-kl3"/>
                             <constraint firstItem="HIR-Vs-heM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BsA-xU-Rq1"/>
-                            <constraint firstItem="HIR-Vs-heM" firstAttribute="leading" secondItem="gWI-P7-YLU" secondAttribute="trailing" constant="45" id="EdR-xw-qZh"/>
-                            <constraint firstItem="gWI-P7-YLU" firstAttribute="baseline" secondItem="K4o-Cn-Lid" secondAttribute="baseline" id="G6y-iH-vr5"/>
                             <constraint firstItem="Y8Q-20-O1c" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="top" id="JO1-hq-kdu"/>
                             <constraint firstItem="SZT-cd-wDS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="LgT-3Z-2U3"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Nah-rY-buX"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="SZT-cd-wDS" secondAttribute="bottom" constant="2" id="RHH-f1-0tv"/>
-                            <constraint firstItem="K4o-Cn-Lid" firstAttribute="trailing" secondItem="gWI-P7-YLU" secondAttribute="trailing" id="T0R-Gl-4ed"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TqF-bC-Qv0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" constant="-5" id="d3X-xa-uf6"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="bottom" constant="80" id="drR-we-geb"/>
-                            <constraint firstItem="CqR-If-EiK" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="bottom" constant="9" id="grD-Jx-gGL"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="hJo-p8-r6V"/>
                             <constraint firstItem="N0C-ZO-twV" firstAttribute="centerX" secondItem="Y8Q-20-O1c" secondAttribute="centerX" id="mYU-nN-gbC"/>
-                            <constraint firstItem="CqR-If-EiK" firstAttribute="baseline" secondItem="K4o-Cn-Lid" secondAttribute="baseline" id="r7H-bX-jns"/>
                             <constraint firstAttribute="trailing" secondItem="N0C-ZO-twV" secondAttribute="trailing" id="uAg-9I-NHT"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="Y8Q-20-O1c" secondAttribute="leading" id="udk-2c-Eqn"/>
                         </constraints>
@@ -269,8 +244,6 @@
                     <connections>
                         <outlet property="addVideoButton" destination="HIR-Vs-heM" id="hFF-sb-HAA"/>
                         <outlet property="cancelButton" destination="K4o-Cn-Lid" id="701-9t-BWF"/>
-                        <outlet property="downloadButton" destination="gWI-P7-YLU" id="iXG-He-L0E"/>
-                        <outlet property="pauseButton" destination="CqR-If-EiK" id="sQi-Ns-aoc"/>
                         <outlet property="progressView" destination="SZT-cd-wDS" id="edl-aM-fnh"/>
                         <outlet property="thumbnailButton" destination="Y8Q-20-O1c" id="kFc-Sx-DTj"/>
                         <outlet property="thumbnailView" destination="OEg-fp-J0R" id="bOs-Dv-GWF"/>
@@ -502,7 +475,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjh-Pc-twj" id="teq-9P-kCw">
-                                    <frame key="frameInset" width="375" height="90"/>
+                                    <frame key="frameInset" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKM-MI-UnX">
@@ -662,7 +635,7 @@
                                 <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7v-wg-aVp" id="xd6-7W-m8J">
-                                    <frame key="frameInset" width="383" height="44"/>
+                                    <frame key="frameInset" width="383" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
