@@ -231,6 +231,37 @@ func getRecent() -> [Video] {
     return searchResults
         
 }
+    
+    
+    func getRecentLimited() -> [Video] {
+        
+        search(52966)
+        
+        
+        var count = 10
+        
+        var reducedResults = [Video]()
+        
+       
+        
+        for result in searchResults {
+            
+            
+            if (count > 0) {
+            reducedResults.append(result)
+            }
+            
+            count = count - 1
+            
+            
+        }
+        
+        
+        
+        
+        return reducedResults
+        
+    }
 
 /// getSport() accepts a String Keyword that is passed as a search parameter.
     
@@ -361,6 +392,9 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
             
         return nil
     }
+    
+    
+
         
     let finalResult = result as! [Int]
         
@@ -398,11 +432,27 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
             
     }
     
-    var count = 0
+    
+    guard VideosResult.thumbnail != nil else {
         
+        return false
+        
+    }
+    var count = 0
+   
+ 
+    
+    
+ 
+    
     for show in VideosResult.show! {
         
-        searchResults.append(Video(title: show.title, thumbnail: nil, fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url)!)
+      
+      
+        
+  
+        
+        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url)!)
         
         count += 1
 

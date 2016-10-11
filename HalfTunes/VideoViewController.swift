@@ -14,7 +14,73 @@ import AVFoundation
 import AVKit
 
 
-class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource {
+    
+    
+    var search = VideoSearch()
+    
+    var recommendedVideos = [Video]()
+    
+    
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as? MainVideoCell
+        
+        
+        cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
+        
+          cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
+        
+        
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
+            
+            do {
+               self.recommendedVideos[indexPath.row].generateThumbnail()
+            } catch {
+               self.recommendedVideos[indexPath.row].thumbnail = nil
+            }
+            
+            
+           
+            
+            
+            
+            DispatchQueue.main.async {
+                
+                cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
+
+                
+            }
+            
+        }
+        return cell!
+ 
+        
+    }
+    
+    
+    /*
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Section \(section)"
+    }
+    */
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+      return recommendedVideos.count
+    }
+    
+    
+
     
     // MARK: Properties
     
@@ -56,6 +122,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         
         
+        recommendedVideos = search.getRecentLimited()
+        
+        print(recommendedVideos)
+        
         addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
@@ -70,7 +140,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {  //generate thumbnail in bacground
                 
-                video.generateThumbnail()
+                  video.generateThumbnail() 
                 
                 DispatchQueue.main.async {
                     
@@ -630,9 +700,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     
-    
+
+
     
 }
+
+
+
 
 
 

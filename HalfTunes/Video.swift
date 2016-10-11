@@ -100,13 +100,15 @@ open class Video: NSObject, NSCoding {
         
     }
     
-    open func generateThumbnail() {
+    open func generateThumbnail()  {
         
         
         
       
         
         var tempThumb: UIImage
+        
+
         
         do {
             
@@ -116,8 +118,8 @@ open class Video: NSObject, NSCoding {
             
             imgGenerator.appliesPreferredTrackTransform = true
             
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(30, 1), actualTime: nil)
-            
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(5, 1), actualTime: nil)
+    
             tempThumb = UIImage(cgImage: cgImage)
             
             self.thumbnail = tempThumb
@@ -128,9 +130,12 @@ open class Video: NSObject, NSCoding {
             
             print("Error generating thumbnail: \(error)")
             
+            
+            self.thumbnail = nil
+            
         }
         
-        
+       
         
         
     }

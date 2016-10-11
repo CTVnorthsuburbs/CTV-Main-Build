@@ -26,6 +26,8 @@
 		8DB606991D303934005029DB /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606931D303934005029DB /* Gloss.swift */; };
 		8DB6069B1D303934005029DB /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606951D303934005029DB /* Operators.swift */; };
 		8DB6069D1D303E1F005029DB /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6069C1D303E1F005029DB /* Download.swift */; };
+		8DE12DFD1DA7F06200749072 /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE12DFC1DA7F06200749072 /* VideoTableViewController.swift */; };
+		8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */; };
 		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +53,8 @@
 		8DB606931D303934005029DB /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gloss.swift; path = Gloss/Gloss.swift; sourceTree = "<group>"; };
 		8DB606951D303934005029DB /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Gloss/Operators.swift; sourceTree = "<group>"; };
 		8DB6069C1D303E1F005029DB /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		8DE12DFC1DA7F06200749072 /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
+		8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVideoCell.swift; sourceTree = "<group>"; };
 		8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,10 +129,19 @@
 			name = "Video Player";
 			sourceTree = "<group>";
 		};
+		8DE12DF71DA7DC5900749072 /* Featured Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8DE12DFC1DA7F06200749072 /* VideoTableViewController.swift */,
+			);
+			name = "Featured Videos";
+			sourceTree = "<group>";
+		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				8D5109AE1D3930AC00CFFDAC /* VideoCell.swift */,
+				8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -161,6 +174,7 @@
 		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
+				8DE12DF71DA7DC5900749072 /* Featured Videos */,
 				8D991DFA1D9C1F010027B110 /* Video Player */,
 				8D66CF161D8C28C000C600F4 /* DetailVideoView */,
 				8D63F29C1D64D44A00689693 /* SearchView */,
@@ -265,7 +279,9 @@
 				8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* MyVideosSearchViewController.swift in Sources */,
+				8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */,
 				8D1F2EE31D88396400F2308D /* Model.xcdatamodeld in Sources */,
+				8DE12DFD1DA7F06200749072 /* VideoTableViewController.swift in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8D0A6FAA1D94351900B1C38E /* MainViewController.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
