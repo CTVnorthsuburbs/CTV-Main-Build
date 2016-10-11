@@ -100,12 +100,14 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if(loadVideos() != nil) {
             
             
-             self.myVideos = loadVideos()!
+            self.myVideos = loadVideos()!
             
         }
       
         self.filtered = self.myVideos
         
+        
+     
     }
     
     
@@ -125,7 +127,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         for vid in GlobalVariables.sharedManager.activeDownloads {
             
             
-            
+            print("active downloads : ")
             print(GlobalVariables.sharedManager.activeDownloads)
         }
         
@@ -580,7 +582,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     
                     // Add a new video.
                     
-                    print("this is where it sav es")
+                 
                     if(!myVideos.contains(video)) {
                         let newIndexPath = IndexPath(row: myVideos.count, section: 0)
                         
@@ -616,7 +618,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             
             
-            let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
+            let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self.myVideos, toFile: Video.ArchiveURL.path)
             
             
             
@@ -630,9 +632,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         }
         
         func loadVideos() -> [Video]? {
-            
-            return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
-        }
+         
+            var loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+       
+            return  loaded
+    
+    }
         
    
         

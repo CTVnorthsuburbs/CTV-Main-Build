@@ -39,6 +39,8 @@ class MyVideosSearchViewController: MyVideosViewController {
             
         }
         
+        
+  
         _ = self.downloadsSession
         
         tapRecognizer = UITapGestureRecognizer()
@@ -56,6 +58,7 @@ class MyVideosSearchViewController: MyVideosViewController {
         }
         
         
+    
         super.viewWillAppear(animated)
         tableView.reloadData()
         
@@ -384,6 +387,8 @@ class MyVideosSearchViewController: MyVideosViewController {
     
     @IBAction override func unwindToVideoList(_ sender: UIStoryboardSegue) {
         
+  
+        
         if let sourceViewController = sender.source as? VideoViewController, let video = sourceViewController.video {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -399,8 +404,7 @@ class MyVideosSearchViewController: MyVideosViewController {
             } else {
                 
                 // Add a new video.
-                
-                print("this is where it saves")
+              
                 
                 if(!myVideos.contains(video)) {
                     let newIndexPath = IndexPath(row: filtered.count, section: 0)

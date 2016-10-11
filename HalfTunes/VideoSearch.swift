@@ -370,9 +370,11 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
     do {
             
         json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+        
+    
             
     } catch {
-            
+        
         print(error)
             
     }
@@ -397,6 +399,10 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
 
         
     let finalResult = result as! [Int]
+    
+   
+    
+    
         
     return finalResult
         
@@ -419,7 +425,7 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         print(error)
             
     }
-        
+    
     guard let VideosResult = VideosResult(json: json) else {
             
         return false
@@ -452,7 +458,11 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
   
         
-        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url)!)
+        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments)!)
+        
+
+        
+    
         
         count += 1
 

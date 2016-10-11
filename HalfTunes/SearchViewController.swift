@@ -91,6 +91,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         
+        childView = self.childViewControllers.first as? AllVideosResultsViewController
+        
+        myVideosChildView = self.childViewControllers.last as? MyVideosSearchViewController
+        
         
         
         allVideosResults.isHidden = false
@@ -106,21 +110,32 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         if( retrievedData != nil) {
             
-            savedResults = NSKeyedUnarchiver.unarchiveObject(with: retrievedData!) as? [Video] ?? [Video]()
+            savedResults = (NSKeyedUnarchiver.unarchiveObject(with: retrievedData!))! as! [Video]
             
         }
         
         if(savedResults.count != 0) {     //set to != to use saved results when available, otherwise use the video search, == to always search (useful for testing).
             
-            searchResults = savedResults
+           // self.searchResults = savedResults
             
             print("saved search results retrieved")
             
-            let dataToSave = NSKeyedArchiver.archivedData(withRootObject: savedResults)
+                        //perform search list update in background
+                
+                self.searchResults = savedResults
+                
+                
             
-            defaults.set(dataToSave, forKey: "SavedVideoSearchList")
+                    
+                    
+                    self.updateSearchResults(self.searchResults)
+                    
+                    self.childView!.searchResults = self.searchResults
+                    
+                    self.myVideosChildView!.searchResults = self.searchResults
+                    
             
-            updateSearchResults(searchResults)
+                
             
             
         } else {
@@ -137,7 +152,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 DispatchQueue.main.async {
                     
-                    print("final count of returned results \(self.searchResults.count)")
+                
                     
                     let myData = NSKeyedArchiver.archivedData(withRootObject: self.searchResults)
                     
@@ -145,18 +160,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     self.updateSearchResults(self.searchResults)
                     
+                    self.childView!.searchResults = self.searchResults
                     
+                    self.myVideosChildView!.searchResults = self.searchResults
                     
                 }
                 
             }
             
         }
-        
-        childView = self.childViewControllers.first as? AllVideosResultsViewController
-        
-        myVideosChildView = self.childViewControllers.last as? MyVideosSearchViewController
-        
+
         self.myVideosTableView = myVideosChildView!.tableView
         
         self.tableView = childView!.tableView
@@ -165,14 +178,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         print("number of search results retrieved: \(searchResults.count)")
         
-        childView!.searchResults = self.searchResults
+    
         
         
         childView!.filtered = self.filtered
         
         
-        
-        myVideosChildView!.searchResults = self.searchResults
+     
         
         super.viewDidLoad()
         
@@ -204,6 +216,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
+      
+        
+        
+        
     }
     
     func didTapView(){
@@ -221,7 +237,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    /*
+    
     
      //make sure this can be safely removed
      
@@ -264,7 +280,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    */
+    
     
     func setMyVideoView() {
         

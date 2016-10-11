@@ -97,6 +97,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBOutlet weak var addVideoButton: UIButton!
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     
     var moviePlayer : AVPlayer?
@@ -124,7 +125,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         recommendedVideos = search.getRecentLimited()
         
-        print(recommendedVideos)
+       
         
         addVideoButton.setTitle("Download", for: UIControlState.selected)
         
@@ -137,6 +138,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             navigationItem.title = video.title
             
             titleLabel.text   = video.title
+            
+            descriptionLabel.text = video.comments
+            
+          
+            
             
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {  //generate thumbnail in bacground
                 
@@ -159,6 +165,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             self.myVideos = loadVideos()!
             
+            
+        
+            
         }
         
         if (hasSavedVideo()) {
@@ -168,7 +177,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         
 
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
+       // timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
     
     }
     
@@ -249,6 +258,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
         if(loadVideos() != nil) {
 
             self.myVideos = loadVideos()!
@@ -258,17 +268,24 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         toggleAddButton()
         var showDownloadControls = false
         
-        if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
+        
+        if ( video?.sourceUrl != nil && (GlobalVariables.sharedManager.activeDownloads[(video?.sourceUrl!)!] != nil))  {
+            
+           
+            
+            let download = GlobalVariables.sharedManager.activeDownloads[(video!.sourceUrl!)]
+            
+           
             
             showDownloadControls = true
             
-            self.progressView.progress = (download.progress)
+            self.progressView.progress = (download?.progress)!
             
             
             
           
             
-            if(download.isDownloading == true) {
+            if(download?.isDownloading == true) {
                
                 
                 addVideoButton.setTitle("Pause", for: UIControlState.selected)
@@ -276,7 +293,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
                 
-            } else if (download.isDownloading == false)  {
+            } else if (download?.isDownloading == false)  {
                 
                 
                 
@@ -292,7 +309,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
           
             
+        } else {
+            
+     
+            
         }
+ 
+ 
         
         self.progressView.isHidden = !showDownloadControls
   
@@ -303,6 +326,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func loadVideos() -> [Video]? {
         
+        
+       var video = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+      
+    
         return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
     }
     
@@ -520,7 +547,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
  func downloadTapped() {
     
-        print("download is started here")
+      
         
         var showDownloadControls = false
         //   print(parentView?.myVideos)
@@ -532,7 +559,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
             
             
-            print("this runs")
+       
             
             showDownloadControls = true
             
@@ -639,13 +666,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
           
             GlobalVariables.sharedManager.activeDownloads[urlString] = nil
             
-            
-            for vid in GlobalVariables.sharedManager.activeDownloads {
-                
-                
-                
-                print(vid)
-            }
+         
             
             timer?.invalidate()
             toggleAddButton()
@@ -667,7 +688,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             if let resumeData = download.resumeData {
                 
-                print("first reumve runs")
+              
                 
                 download.downloadTask = downloadsSession?.correctedDownloadTask(withResumeData: resumeData)
                 
@@ -684,8 +705,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
             } else if let url = URL(string: download.url) {
                 
-                
-                print("second resume runs")
+             
                 download.downloadTask = downloadsSession?.downloadTask(with: url)
                 
                 download.downloadTask!.resume()

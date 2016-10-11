@@ -94,11 +94,7 @@ class VideoCell: UITableViewCell {
     
     @IBAction func downloadTapped(_ sender: AnyObject) {
         
-        if (delegate == nil) {
-            
-            print("equalis nil")
-            
-        }
+      
         
                 delegate!.downloadTapped(self)
         

@@ -131,6 +131,8 @@ public struct Shows: Decodable {
     
     public let id: Int
     
+    public let comments: String
+    
     public init?(json: JSON) {
         
         guard let title: String = "title" <~~ json
@@ -141,9 +143,15 @@ public struct Shows: Decodable {
             
             else { return nil }
         
+        guard let comments: String = "comments" <~~ json
+            
+            else { return nil }
+        
         self.title = title
         
         self.id = id
+        
+        self.comments = comments
         
     }
     

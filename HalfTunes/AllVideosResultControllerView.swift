@@ -54,7 +54,11 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
         if segue.identifier == "ShowDetails" {
+            
+        
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
@@ -62,19 +66,28 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
             
             if let selectedVideoCell = sender {
                 
+            
+                
                 let indexPath = tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
+                
+            
+                
                 
                 var count = 0  //code to map filtered result position to searchResult position
                 
+             
+          
                 for result in searchResults {
-                    
+       
+                  
                     if (filtered[(indexPath as NSIndexPath).row] == result.title) {
                  
                         
                         
                    
                         let selectedVideo = searchResults[count]
-                        
+                       
+                      
                         videoDetailViewController.video = selectedVideo
                         
                         
@@ -100,7 +113,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
                         
                         
-                        print("this sweugla runs")
+                        
                 
                         
                   

@@ -16,19 +16,19 @@ public func getSampleVideos() -> [Video] {
     
     var samples = [Video]()
     
-    var video = Video(title: "Legion Baseball Rosetown v. Tri-City Maroon 16-07-13 Gm1", thumbnail: nil, fileName: "10581- Baseball TCM v Rosetown 16-07-13 gm1 trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10581-Baseball-TCM-v-Rosetown-16-07-13-gm1-trms-Medium-v1.mp4")
+    var video = Video(title: "Legion Baseball Rosetown v. Tri-City Maroon 16-07-13 Gm1", thumbnail: nil, fileName: "10581- Baseball TCM v Rosetown 16-07-13 gm1 trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10581-Baseball-TCM-v-Rosetown-16-07-13-gm1-trms-Medium-v1.mp4", comments: "A sample video")
     
     video!.generateThumbnail()
     
     samples.append(video!)
     
-    video = Video(title: "Roseville High School Graduation Ceremony (RAHS) 2015-06-05 (CH14)", thumbnail: nil, fileName: "10439-RAHSGrad16-06-03.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4")
+    video = Video(title: "Roseville High School Graduation Ceremony (RAHS) 2015-06-05 (CH14)", thumbnail: nil, fileName: "10439-RAHSGrad16-06-03.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4", comments: "A sample video")
     
     video!.generateThumbnail()
     
     samples.append(video!)
     
-    video = Video(title: "Softball Roseville v. Mounds View RAHS MVHS 16-04-13", thumbnail: nil, fileName: "10178- RAHS vs. MVHS Softball 16-04-13- trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10178-RAHS-vs-MVHS-Softball-16-04-13-trms-Medium-v1.mp4")
+    video = Video(title: "Softball Roseville v. Mounds View RAHS MVHS 16-04-13", thumbnail: nil, fileName: "10178- RAHS vs. MVHS Softball 16-04-13- trms.mpg", sourceUrl: "http://trms.ctv15.org/TRMSVOD/10178-RAHS-vs-MVHS-Softball-16-04-13-trms-Medium-v1.mp4", comments: "A sample video")
     
     video!.generateThumbnail()
     
@@ -47,6 +47,8 @@ open class Video: NSObject, NSCoding {
     var sourceUrl: String?
     
     var thumbnail: UIImage?
+    
+    var comments: String?
 
     // MARK: Archiving Paths
     
@@ -66,11 +68,13 @@ open class Video: NSObject, NSCoding {
         
         static let sourceUrlKey = "sourceUrl"
         
+        static let commentsKey = "comments"
+        
     }
     
     // MARK: Initialization
     
-    init?(title: String, thumbnail: UIImage?,fileName: String, sourceUrl: String) {
+    init?(title: String, thumbnail: UIImage?,fileName: String, sourceUrl: String, comments: String) {
         
         // Initialize stored properties.
         
@@ -81,6 +85,8 @@ open class Video: NSObject, NSCoding {
         self.fileName = fileName
         
         self.sourceUrl = sourceUrl
+        
+        self.comments = comments
         
        /* Possible Image setter
         let url = NSURL(string: image.url)
@@ -152,6 +158,8 @@ open class Video: NSObject, NSCoding {
         
         aCoder.encode(sourceUrl, forKey: PropertyKey.sourceUrlKey)
         
+        aCoder.encode(comments, forKey: PropertyKey.commentsKey)
+        
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
@@ -162,13 +170,15 @@ open class Video: NSObject, NSCoding {
         
         let sourceUrl = aDecoder.decodeObject(forKey: PropertyKey.sourceUrlKey) as! String
         
+        let comments = aDecoder.decodeObject(forKey: PropertyKey.commentsKey) as! String
+        
         // Because photo is an optional property of Video, use conditional cast.
         
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         
         // Must call designated initializer.
         
-        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl )
+        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments )
         
     }
 
