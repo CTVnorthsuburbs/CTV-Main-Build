@@ -597,13 +597,12 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     }
     
     guard let VideosResult = VideosResult(json: json) else {
-            
+        
         return false
             
     }
         
     guard VideosResult.show != nil else {
-            
         return false
             
     }
@@ -611,42 +610,35 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     
   
     var count = 0
-   
+
  
     var fileName : Int?
     
     for show in VideosResult.show! {
         
-  
-        
-        
         if(show.showThumbnail.count != 0) {
             
             fileName = show.showThumbnail[2]
             
-    
-            
         } else {
             
-            
             fileName = nil
-            
-           
+    
         }
-        
-        
-        
         
         searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments)!)
         
 
-        
+        print("show title: \(show.title) and source url: \( VideosResult.vod![count].url)")
     
         
         count += 1
 
 
     }
+    
+    
+    print("shows: \(VideosResult.show?.count) and vods: \(VideosResult.vod?.count)")
         
     return true
         

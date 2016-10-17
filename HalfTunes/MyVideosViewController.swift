@@ -103,8 +103,8 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             self.myVideos = loadVideos()!
             
         }
-      
-        self.filtered = self.myVideos
+         _ = self.downloadsSession
+      //  self.filtered = self.myVideos
         
         
      
@@ -168,14 +168,17 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             let videoPath = Bundle.main.path(forResource: video.sourceUrl, ofType:"mp4")
             print("path\(videoPath)")
             //Make a URL from your path
-            
+            print("source url \(video.sourceUrl)")
             //Initalize the movie player
             
             if (!localFileExistsForVideo(video)) {
                 
                 if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
-                    
+                    print("url string \(urlString)")
                     let fileUrl = URL(string: urlString)
+                    
+                    
+                    print("fileurl \(fileUrl)")
                     
                     let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
                     
@@ -202,17 +205,8 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             // Fetches the appropriate video for the data source layout.
             
             let video : Video?
-            
-         
-  
                 video = myVideos[(indexPath as NSIndexPath).row]
-                
-                
-                
-            
-            
-            
-            
+  
             cell.delegate = self
             
             cell.titleLabel.text = video!.title
@@ -254,6 +248,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             return cell
             
         }
+    
+    
+    
+
+
+    
         
         func pauseTapped(_ cell: VideoCell) {
             
@@ -321,7 +321,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             }
             
         }
-        
+    
+    
+   
+    
+    
+    
        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
             
             searchActive = true
@@ -797,6 +802,8 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             if let urlString = video.sourceUrl, let localUrl = localFilePathForUrl(urlString) {
                 
+                
+                print("localurl:\(localUrl)")
                 var isDir : ObjCBool = false
                 
                 let path = localUrl.path
