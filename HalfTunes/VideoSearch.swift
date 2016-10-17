@@ -25,6 +25,11 @@ import UIKit
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
 fileprivate var searchResults = [Video]()
+    
+    fileprivate var thumbnailResults = [Thumbnail]()
+    
+    
+
 
 // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
@@ -36,7 +41,7 @@ fileprivate func getNSURLSession() -> URLSession {
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
     
     return defaultSession
     
@@ -96,6 +101,10 @@ fileprivate func search(_ savedSearchID: Int)-> [Video] {
     return searchResults
 }
 
+
+    
+    
+    
 /**
 Search by string returns an array of video objects corresponding to the search string passed
 - parameter searchString: Search Keyword
@@ -294,7 +303,7 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
         
         DispatchQueue.main.async {
             
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
         }
 
@@ -309,6 +318,7 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
                 if (isIDSearchURL == true) {
                     
                    complete = self.updateSearchResults(data)
+                
                     
                 } else {
                     
@@ -328,11 +338,122 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
         
         //wait till results are received
     }
-    
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
     return results
     
 }
+    
+    
+    fileprivate func searchThumbnail(_ savedSearchID: Int)-> String?{
+        
+        thumbnailResults.removeAll()
+        
+        let session = getNSURLSession()
+        
+        let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/thumbnails/\(savedSearchID)")
+        
+        // print("search url : \(searchUrl)")
+        
+        let results = getThumbnailResults(session, url: searchUrl!)
+        
+        return results
+        
+        
+    }
+    
 
+    
+    
+    
+    fileprivate func getThumbnailResults(_ defaultSession: URLSession, url: URL) -> String? {
+        
+        var dataTask: URLSessionDataTask?
+        
+        var thumbnail : String?
+        
+        if dataTask != nil {
+            
+            dataTask?.cancel()
+            
+        }
+        
+       
+        
+        dataTask = defaultSession.dataTask(with: url, completionHandler: {
+            
+            data, response, error in
+            
+            DispatchQueue.main.async {
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
+            }
+            
+            if let error = error {
+                
+                print(error.localizedDescription)
+                
+            } else if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode == 200 {
+                    
+               
+                        
+                    var json: [String: AnyObject]!
+                    
+                    
+                    do {
+                        
+                        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+                        
+                        
+                        
+                    } catch {
+                        
+                        print(error)
+                        
+                    }
+                    
+                    
+                    
+                    guard let results = Thumbnail(json: json) else {
+                       
+                        return 
+                    }
+                    
+                    guard let result = results.thumbnail else {
+                        
+                        return
+                    }
+
+                  
+                   thumbnail = result.url
+                    
+                   
+                    
+                    
+                }
+                
+            }
+            
+        }) 
+        
+    
+        
+        
+        dataTask?.resume()
+        
+        
+        while (thumbnail == nil ) {
+            
+            //wait till results are received
+        }
+        
+        
+              UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        return thumbnail
+        
+    }
 
 fileprivate func convertIdArrayToSearchURL(_ idArray: [Int]) -> URL? {
     
@@ -407,6 +528,55 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
     return finalResult
         
 }
+
+    
+    
+  public  func getThumbnail(id: Int)-> UIImage? {
+        
+        
+        
+        
+        
+        
+        
+        var image : UIImage?
+        
+        
+        
+        
+        var thumbnailURL = searchThumbnail(id)
+        
+        
+        if(thumbnailURL != nil ) {
+            
+            
+                 let escapedString = thumbnailURL!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+            
+            
+            
+            let url = NSURL(string: escapedString! )
+       
+            if(url != nil) {
+                let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                image = UIImage(data: data! as Data)
+                
+            
+                var imageView = UIImageView()
+                imageView.image = image
+           
+                
+                
+                return(image)
+            } 
+            
+        }
+    
+    return image
+        
+    }
+    
+    
+    
     
     
 fileprivate func updateSearchResults(_ data: Data?)-> Bool {
@@ -439,26 +609,35 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     }
     
     
-    guard VideosResult.thumbnail != nil else {
-        
-        return false
-        
-    }
+  
     var count = 0
    
  
-    
-    
- 
+    var fileName : Int?
     
     for show in VideosResult.show! {
         
-      
-      
-        
   
         
-        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: VideosResult.vod![count].fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments)!)
+        
+        if(show.showThumbnail.count != 0) {
+            
+            fileName = show.showThumbnail[2]
+            
+    
+            
+        } else {
+            
+            
+            fileName = nil
+            
+           
+        }
+        
+        
+        
+        
+        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments)!)
         
 
         

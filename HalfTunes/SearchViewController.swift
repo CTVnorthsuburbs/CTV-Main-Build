@@ -58,8 +58,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var childView : AllVideosResultsViewController?
     
     
-    
-    
+ 
     func updateSearchResults(_ searchResults: [Video]) {
         
         for item in searchResults {
@@ -86,7 +85,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    
+
     
     
     override func viewDidLoad() {
@@ -129,6 +128,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     
                     self.updateSearchResults(self.searchResults)
+            
                     
                     self.childView!.searchResults = self.searchResults
                     
@@ -136,7 +136,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
             
                 
+            print("number of search results retrieved: \(searchResults.count)")
             
+
             
         } else {
             
@@ -160,9 +162,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     self.updateSearchResults(self.searchResults)
                     
+                  
+                    
                     self.childView!.searchResults = self.searchResults
                     
                     self.myVideosChildView!.searchResults = self.searchResults
+                    print("number of search results retrieved: \(self.searchResults.count)")
+                    
+
                     
                 }
                 
@@ -175,8 +182,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView = childView!.tableView
         
         childView!.searchBar = self.searchBar
-        
-        print("number of search results retrieved: \(searchResults.count)")
         
     
         
@@ -240,7 +245,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     
      //make sure this can be safely removed
-     
+  /*
      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -281,7 +286,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    
+   */
     func setMyVideoView() {
         
         segmentedControl.selectedSegmentIndex = 1

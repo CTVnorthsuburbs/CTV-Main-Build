@@ -24,8 +24,15 @@ class MyVideosSearchViewController: MyVideosViewController {
     
     
     
-    
-
+    func printVideos() {
+        print("videos in my videos:")
+        for video in myVideos {
+            
+            
+            print(video.title)
+        }
+        
+    }
     
     override func viewDidLoad() {
         
@@ -62,9 +69,44 @@ class MyVideosSearchViewController: MyVideosViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         
-    
+    printVideos()
         
 
+        
+    }
+    
+    override func thumbnailTapped(_ cell: VideoCell) {
+        
+        if let indexPath = tableView.indexPath(for: cell) {
+            
+            
+            
+            var video = filtered[(indexPath as NSIndexPath).row]
+            
+            
+            
+            if(searchActive){
+                
+                video = filtered[(indexPath as NSIndexPath).row]
+                
+                
+                
+                // cell.textLabel?.text = filtered[indexPath.row]
+                
+            } else {
+                
+                  video = myVideos[(indexPath as NSIndexPath).row]
+                
+            
+                
+                
+            }
+            
+            print("video to play: \(video.title)")
+            
+            playVideo(video)
+            
+        }
         
     }
 
@@ -82,6 +124,7 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         let video : Video?
         
+    
         if(searchActive){
             
             video = filtered[(indexPath as NSIndexPath).row]
@@ -98,7 +141,6 @@ class MyVideosSearchViewController: MyVideosViewController {
             
             
         }
-        
         
         
         cell.delegate = self

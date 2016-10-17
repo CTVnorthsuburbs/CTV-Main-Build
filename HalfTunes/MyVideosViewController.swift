@@ -164,9 +164,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         func playVideo(_ video: Video) {
             
             //Get the Video Path
-            
+        print("playing video\(video.title)")
             let videoPath = Bundle.main.path(forResource: video.sourceUrl, ofType:"mp4")
-            
+            print("path\(videoPath)")
             //Make a URL from your path
             
             //Initalize the movie player

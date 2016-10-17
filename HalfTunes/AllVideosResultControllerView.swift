@@ -50,7 +50,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     }
     
 
-    
+ 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -97,9 +97,13 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         
                         var downloadsSession: Foundation.URLSession = {
                             
-                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration1")
                             
                             let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+                            
+                      
+                            session.finishTasksAndInvalidate();
+                            
                             
                             return session
                             
@@ -131,6 +135,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     }
     
 }
+
 
 extension AllVideosResultsViewController: URLSessionDelegate {
     

@@ -38,7 +38,16 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
             
             do {
-               self.recommendedVideos[indexPath.row].generateThumbnail()
+                
+                
+                
+             //  self.recommendedVideos[indexPath.row].generateThumbnail()
+             self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName! )
+                
+                
+            
+
+                
             } catch {
                self.recommendedVideos[indexPath.row].thumbnail = nil
             }
@@ -121,6 +130,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     override func viewDidLoad() {
+        var search = VideoSearch()
+        
         
         
         recommendedVideos = search.getRecentLimited()
@@ -140,23 +151,53 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             titleLabel.text   = video.title
             
             descriptionLabel.text = video.comments
-            
-          
-            
-            
-            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {  //generate thumbnail in bacground
-                
-                  video.generateThumbnail() 
-                
+    
+            DispatchQueue.global(qos: .background).async {
+              
+                if(video.fileName != nil) {
+                    
+                    
+                    
+                    
+                    video.thumbnail = search.getThumbnail(id: video.fileName!)
+                    
+                    
+                    if(video.thumbnail == nil) {
+                        
+                        
+                        video.generateThumbnail()
+                     
+                        
+                    }
+              
+                    
+                }
                 DispatchQueue.main.async {
+                    
+                    
                     
                     self.thumbnailView.image = video.thumbnail
                     
+                    
+                    if(   self.thumbnailView.image == nil) {
+                        
+                        
+                        
+                        video.generateThumbnail()
+                         self.thumbnailView.image = video.thumbnail
+                        
+                    }
+                    
+                 
                 }
-                
             }
             
-            thumbnailView.image = video.thumbnail
+            
+            
+            
+        
+            
+            //thumbnailView.image = video.thumbnail
             
         }
         
@@ -264,6 +305,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.myVideos = loadVideos()!
             
         }
+        
+        
+        
+        
+        
         
         toggleAddButton()
         var showDownloadControls = false
@@ -403,7 +449,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         myVideos.append(video!)
         
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
-        print("saved the video")
+       
         
         if (isSuccessfulSave) {
             
@@ -718,11 +764,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
-    
-    
-
-
-    
+  
 }
 
 

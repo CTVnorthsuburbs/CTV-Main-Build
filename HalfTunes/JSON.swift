@@ -15,7 +15,7 @@ public struct Videos: Decodable {
     
     public let vod: [Vods]?
     
-    public let thumbnail: [Thumbnail]?
+  
     
     public init?(json: JSON) {
         
@@ -23,7 +23,7 @@ public struct Videos: Decodable {
         
         vod = "vods" <~~ json
         
-        thumbnail = "thumbnails" <~~ json
+     
         
     }
     
@@ -35,7 +35,7 @@ public struct VideosResult: Decodable {
     
     public let vod: [Vods]?
     
-    public let thumbnail: [Thumbnail]?
+   
     
     public init?(json: JSON) {
         
@@ -43,7 +43,7 @@ public struct VideosResult: Decodable {
         
         vod = "vods" <~~ json
         
-        thumbnail = "thumbnails" <~~ json
+    
         
     }
     
@@ -133,6 +133,8 @@ public struct Shows: Decodable {
     
     public let comments: String
     
+    public let showThumbnail: [Int]
+    
     public init?(json: JSON) {
         
         guard let title: String = "title" <~~ json
@@ -147,27 +149,88 @@ public struct Shows: Decodable {
             
             else { return nil }
         
+        guard let showThumbnail: [Int] = "showThumbnails" <~~ json
+            
+            else {
+
+           
+print("not working")
+                return nil
+
+        }
+        
         self.title = title
         
         self.id = id
         
         self.comments = comments
         
+        self.showThumbnail = showThumbnail
+        
     }
     
 }
 
+
 public struct Thumbnail: Decodable {
+    
+    
+    public let thumbnail: Thumbnails?
+    
+   
+    
+    public init?(json: JSON) {
+        
+        
+        
+        guard let thumbnail: Thumbnails = "thumbnail" <~~ json
+            
+            else {
+                
+                print("JSON Thumbnail doesnt execute")
+                
+                return nil }
+        
+        
+        
+        self.thumbnail = thumbnail
+        
+      
+        
+    }
+    
+}
+
+public struct Thumbnails: Decodable {
+    
+    
+    public let id: Int
     
     public let url: String
     
     public init?(json: JSON) {
         
+        
+        
+        guard let id: Int = "id" <~~ json
+            
+            else {
+                
+                print("id")
+                
+                return nil }
+        
         guard let url: String = "url" <~~ json
             
-            else { return nil }
+            else {
+                
+                print("url not working")
+                
+                return nil }
         
         self.url = url
+        
+        self.id = id
         
     }
     
