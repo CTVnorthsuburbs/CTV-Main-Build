@@ -12,31 +12,7 @@ import UIKit
 
 import MediaPlayer
 
-public func getSampleVideos() -> [Video] {
-    
-    var samples = [Video]()
-    
-    var video = Video(title: "Legion Baseball Rosetown v. Tri-City Maroon 16-07-13 Gm1", thumbnail: nil, fileName: 1220 , sourceUrl: "http://trms.ctv15.org/TRMSVOD/10581-Baseball-TCM-v-Rosetown-16-07-13-gm1-trms-Medium-v1.mp4", comments: "A sample video")
-    
-    video!.generateThumbnail()
-    
-    samples.append(video!)
-    
-    video = Video(title: "Roseville High School Graduation Ceremony (RAHS) 2015-06-05 (CH14)", thumbnail: nil, fileName: 1220, sourceUrl: "http://trms.ctv15.org/TRMSVOD/10439-RAHSGrad16-06-03-Medium-v1.mp4", comments: "A sample video")
-    
-    video!.generateThumbnail()
-    
-    samples.append(video!)
-    
-    video = Video(title: "Softball Roseville v. Mounds View RAHS MVHS 16-04-13", thumbnail: nil, fileName: 1220, sourceUrl: "http://trms.ctv15.org/TRMSVOD/10178-RAHS-vs-MVHS-Softball-16-04-13-trms-Medium-v1.mp4", comments: "A sample video")
-    
-    video!.generateThumbnail()
-    
-    samples.append(video!)
 
-    return samples
-    
-}
 
 open class Video: NSObject, NSCoding {
     
@@ -49,6 +25,8 @@ open class Video: NSObject, NSCoding {
     var thumbnail: UIImage?
     
     var comments: String?
+    
+    var eventDate: String?
 
     // MARK: Archiving Paths
     
@@ -70,11 +48,13 @@ open class Video: NSObject, NSCoding {
         
         static let commentsKey = "comments"
         
+        static let eventDateKey = "comments"
+        
     }
     
     // MARK: Initialization
     
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: String) {
         
         // Initialize stored properties.
         
@@ -88,6 +68,7 @@ open class Video: NSObject, NSCoding {
         
         self.comments = comments
         
+        self.eventDate = eventDate
        /* Possible Image setter
         let url = NSURL(string: image.url)
         let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
@@ -160,6 +141,8 @@ open class Video: NSObject, NSCoding {
         
         aCoder.encode(comments, forKey: PropertyKey.commentsKey)
         
+        aCoder.encode(eventDate, forKey: PropertyKey.eventDateKey)
+        
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
@@ -172,13 +155,17 @@ open class Video: NSObject, NSCoding {
         
         let comments = aDecoder.decodeObject(forKey: PropertyKey.commentsKey) as! String
         
+        let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! String
+        
+        
+        
         // Because photo is an optional property of Video, use conditional cast.
         
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         
         // Must call designated initializer.
         
-        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments )
+        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate )
         
     }
 
