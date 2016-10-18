@@ -74,7 +74,7 @@ open class Video: NSObject, NSCoding {
     
     // MARK: Initialization
     
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String, comments: String) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String) {
         
         // Initialize stored properties.
         

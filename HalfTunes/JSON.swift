@@ -99,7 +99,7 @@ public struct Vods: Decodable {
     
     public let url: String
     
-    public let fileName: String
+    public var fileName = ""
     
     public init?(json: JSON) {
         
@@ -111,15 +111,28 @@ public struct Vods: Decodable {
             
             else { return nil }
         
-        guard let fileName: String = "fileName" <~~ json
+     
+        
+        if(("fileName" <~~ json) != nil) {
             
-            else { return nil }
+            guard let fileName: String = "fileName" <~~ json
+                
+                else { print("no vod fileName")
+                    
+                    
+                    return nil }
+            
+            
+            self.fileName = fileName
+        }
+        
+        
         
         self.id = id
         
         self.url = url
         
-        self.fileName = fileName
+     
         
     }
     
@@ -131,41 +144,72 @@ public struct Shows: Decodable {
     
     public let id: Int
     
-    public let comments: String
+    public var comments = ""
     
     public let showThumbnail: [Int]
+    
+    public let date: String
     
     public init?(json: JSON) {
         
         guard let title: String = "title" <~~ json
             
-            else { return nil }
+            else {
+                 print("no title")
+                return nil
+        
+       
+        
+        }
         
         guard let id: Int = "id" <~~ json
             
-            else { return nil }
+            else { print("no id")
+                return nil }
+        
+        
+        if(("comments" <~~ json) != nil) {
         
         guard let comments: String = "comments" <~~ json
             
-            else { return nil }
+            else { print("no comments")
+                
+                
+                return nil }
+            
+            
+                 self.comments = comments
+        }
         
         guard let showThumbnail: [Int] = "showThumbnails" <~~ json
             
             else {
 
            
-print("not working")
+print("no thumbnails")
                 return nil
 
+        }
+        
+        guard let date: String = "eventDate" <~~ json
+            
+            else {
+                
+                
+                print("no date")
+                return nil
+                
         }
         
         self.title = title
         
         self.id = id
         
-        self.comments = comments
+   
         
         self.showThumbnail = showThumbnail
+        
+        self.date = date
         
     }
     
