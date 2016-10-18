@@ -48,7 +48,7 @@ open class Video: NSObject, NSCoding {
         
         static let commentsKey = "comments"
         
-        static let eventDateKey = "comments"
+        static let eventDateKey = "eventDate"
         
     }
     

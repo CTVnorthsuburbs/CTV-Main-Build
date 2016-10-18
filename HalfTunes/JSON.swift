@@ -167,19 +167,8 @@ public struct Shows: Decodable {
             else { print("no id")
                 return nil }
         
-        
-        if(("comments" <~~ json) != nil) {
-        
-        guard let comments: String = "comments" <~~ json
-            
-            else { print("no comments")
-                
-                
-                return nil }
-            
-            
-                 self.comments = comments
-        }
+
+  
         
         guard let showThumbnail: [Int] = "showThumbnails" <~~ json
             
@@ -201,6 +190,13 @@ print("no thumbnails")
                 
         }
         
+        
+          let comments : String? = "comments" <~~ json
+        
+        
+        if(comments != nil) {
+        self.comments = comments!
+        }
         self.title = title
         
         self.id = id
