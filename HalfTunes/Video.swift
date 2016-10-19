@@ -54,6 +54,46 @@ open class Video: NSObject, NSCoding {
     
     // MARK: Initialization
     
+    
+    
+    func convertStringToDate(dateString: String) -> Date {
+        
+        let strTime = dateString
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        let string = strTime
+        
+        let date = dateFormatter.date(from: string)
+        
+        return date!
+        
+    }
+    
+    
+    func convertDateToString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        var timeString = dateFormatter.string(from: date)
+        
+        return timeString
+        
+    }
+    
+    
     init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: String) {
         
         // Initialize stored properties.
@@ -69,6 +109,54 @@ open class Video: NSObject, NSCoding {
         self.comments = comments
         
         self.eventDate = eventDate
+        
+        
+        
+        
+        
+        
+        
+        
+        var str = title
+        var newString = ""
+        let suffix = String(describing: str.characters.suffix(6))
+        
+        
+        if suffix.contains("-") {
+         
+            
+            var splitArray = str.components(separatedBy: " ")
+            
+            
+            
+            if(splitArray.last?.contains("-"))! {
+                
+                var count = splitArray.count
+                splitArray[count - 1].removeAll()
+                
+                
+                
+                for elements in splitArray {
+                    
+                    newString += (elements + " ")
+                    
+                }
+                
+                newString = newString.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            }
+            
+        }
+        
+        if(newString != "") {
+            
+            self.title = (newString)
+        }
+        
+        
+        
+        
+        
        /* Possible Image setter
         let url = NSURL(string: image.url)
         let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check

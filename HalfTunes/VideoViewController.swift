@@ -127,16 +127,54 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var timer : Timer?
     
+   
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    
+    func convertStringToDate(dateString: String) -> Date {
+        
+        let strTime = dateString
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        let string = strTime
+        
+        let date = dateFormatter.date(from: string)
+       
+        return date!
+        
+    }
+    
+    
+    func convertDateToString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+     
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+    
+        var timeString = dateFormatter.string(from: date)
+    
+        return timeString
+
+    }
+    
     
     
     override func viewDidLoad() {
+        
         var search = VideoSearch()
         
-        
-        
         recommendedVideos = search.getRecentLimited()
-        
-       
         
         addVideoButton.setTitle("Download", for: UIControlState.selected)
         
@@ -145,13 +183,28 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         _ = self.downloadsSession
         
         if let video = video {
+           
+            
+        
+            var date =  convertStringToDate(dateString: video.eventDate!)
+       
+            dateLabel.text = convertDateToString(date: date)
+                
+            
+            
+            
+            
             
             navigationItem.title = video.title
             
             titleLabel.text   = video.title
             
             descriptionLabel.text = video.comments
-    
+         
+          
+            
+            
+        
             DispatchQueue.global(qos: .background).async {
               
                 if(video.fileName != nil) {
