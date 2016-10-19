@@ -84,18 +84,26 @@
                                                 <action selector="pauseOrResumeTapped:" destination="YQV-Wp-cdh" eventType="touchUpInside" id="4wK-2X-vKv"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxU-Ao-heX">
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="r1z-K4-h5D" secondAttribute="bottom" constant="5" id="0Pj-FO-qkp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="afY-mg-s8l" secondAttribute="trailing" id="2GT-YA-JFt"/>
                                         <constraint firstItem="sBi-39-9Wc" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="centerY" constant="10" id="34e-Pl-5gU"/>
                                         <constraint firstAttribute="bottom" secondItem="bXb-qP-z3O" secondAttribute="bottom" constant="6" id="4dr-rp-cFi"/>
+                                        <constraint firstItem="DxU-Ao-heX" firstAttribute="trailing" secondItem="TpD-sJ-fVf" secondAttribute="trailingMargin" constant="-177" id="Cf5-fl-dEo"/>
                                         <constraint firstItem="Pqc-D4-rSI" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="centerY" constant="10" id="EHw-Hn-NrZ"/>
                                         <constraint firstItem="afY-mg-s8l" firstAttribute="leading" secondItem="SJi-0M-rOH" secondAttribute="trailing" constant="8" id="EJ8-Hy-fjE"/>
                                         <constraint firstItem="r1z-K4-h5D" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="5" id="I7N-QY-xw9"/>
                                         <constraint firstItem="bXb-qP-z3O" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" constant="125" id="IhG-5y-tQ5"/>
                                         <constraint firstItem="dsx-rf-2wX" firstAttribute="trailing" secondItem="TpD-sJ-fVf" secondAttribute="trailingMargin" constant="-10" id="OBD-pj-Uah"/>
                                         <constraint firstItem="afY-mg-s8l" firstAttribute="leading" secondItem="r1z-K4-h5D" secondAttribute="trailing" constant="8" id="RFQ-Xm-KEG"/>
+                                        <constraint firstItem="bXb-qP-z3O" firstAttribute="top" secondItem="DxU-Ao-heX" secondAttribute="bottom" constant="7" id="S7y-bn-ort"/>
+                                        <constraint firstItem="DxU-Ao-heX" firstAttribute="leading" secondItem="SJi-0M-rOH" secondAttribute="trailing" constant="8" id="W0Y-Y5-NBB"/>
                                         <constraint firstItem="SJi-0M-rOH" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="5" id="X25-gw-9p8"/>
                                         <constraint firstItem="dsx-rf-2wX" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="centerY" constant="10" id="bjF-6U-Yuc"/>
                                         <constraint firstItem="afY-mg-s8l" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" constant="15" id="dNx-mo-3XI"/>
@@ -110,6 +118,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="cancelButton" destination="dsx-rf-2wX" id="94i-3V-J5y"/>
+                                    <outlet property="dateLabel" destination="DxU-Ao-heX" id="g76-3S-j4H"/>
                                     <outlet property="downloadButton" destination="sBi-39-9Wc" id="TdI-26-AV6"/>
                                     <outlet property="pauseButton" destination="Pqc-D4-rSI" id="lbv-Of-TU4"/>
                                     <outlet property="progressView" destination="bXb-qP-z3O" id="D1b-w8-k5R"/>
@@ -137,7 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEL-bU-CDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167" y="244"/>
+            <point key="canvasLocation" x="1165.5999999999999" y="243.77811094452775"/>
         </scene>
         <!--New Video-->
         <scene sceneID="tne-QT-ifu">
@@ -342,7 +351,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="obw-ho-oen"/>
             </objects>
-            <point key="canvasLocation" x="1189.5999999999999" y="999.40029985007504"/>
+            <point key="canvasLocation" x="1210" y="1048"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5b6-AQ-OWf">
@@ -358,7 +367,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5g-zS-iFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="1227"/>
+            <point key="canvasLocation" x="239" y="1285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gwO-WK-hl6">
@@ -645,14 +654,22 @@
                                                 <action selector="pauseOrResumeTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="cuv-98-aSw"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-2W-ZQY">
+                                            <frame key="frameInset" minX="133" minY="55" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Cvk-hz-fIc" firstAttribute="leading" secondItem="teq-9P-kCw" secondAttribute="leadingMargin" constant="5" id="1mi-Ra-gAb"/>
                                         <constraint firstItem="vg0-AS-68h" firstAttribute="trailing" secondItem="teq-9P-kCw" secondAttribute="trailingMargin" constant="-17" id="2eM-d3-5l5"/>
                                         <constraint firstItem="NKM-MI-UnX" firstAttribute="leading" secondItem="UQk-4q-Tg2" secondAttribute="trailing" constant="8" id="BUL-AA-GdX"/>
+                                        <constraint firstItem="vg0-AS-68h" firstAttribute="top" secondItem="mYc-2W-ZQY" secondAttribute="bottom" constant="7" id="EIk-ln-zVn"/>
                                         <constraint firstItem="Cvk-hz-fIc" firstAttribute="top" secondItem="teq-9P-kCw" secondAttribute="topMargin" constant="5" id="FqV-qn-LhS"/>
                                         <constraint firstItem="83k-dg-cUc" firstAttribute="centerY" secondItem="teq-9P-kCw" secondAttribute="centerY" constant="10" id="Fyl-U6-9c7"/>
                                         <constraint firstItem="zpj-93-SfV" firstAttribute="leading" secondItem="83k-dg-cUc" secondAttribute="trailing" constant="8" id="K3P-hf-FSx"/>
+                                        <constraint firstItem="mYc-2W-ZQY" firstAttribute="leading" secondItem="Cvk-hz-fIc" secondAttribute="trailing" constant="8" id="Qkc-My-4DQ"/>
                                         <constraint firstItem="UQk-4q-Tg2" firstAttribute="leading" secondItem="teq-9P-kCw" secondAttribute="leadingMargin" constant="5" id="UNW-0c-TGm"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Uwn-hf-z4V" secondAttribute="trailing" constant="10" id="UkO-eZ-BIa"/>
                                         <constraint firstItem="zpj-93-SfV" firstAttribute="centerY" secondItem="teq-9P-kCw" secondAttribute="centerY" constant="10" id="Xai-kL-7RI"/>
@@ -671,6 +688,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="cancelButton" destination="zpj-93-SfV" id="3lC-4h-YF5"/>
+                                    <outlet property="dateLabel" destination="mYc-2W-ZQY" id="Az5-3j-L1V"/>
                                     <outlet property="downloadButton" destination="Uwn-hf-z4V" id="4oP-vU-TlO"/>
                                     <outlet property="pauseButton" destination="83k-dg-cUc" id="WJn-1L-L2I"/>
                                     <outlet property="progressView" destination="vg0-AS-68h" id="ITZ-mu-J1E"/>

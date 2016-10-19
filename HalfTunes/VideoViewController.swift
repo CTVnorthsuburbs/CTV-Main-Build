@@ -186,9 +186,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
            
             
         
-            var date =  convertStringToDate(dateString: video.eventDate!)
+            var date =  video.eventDate
        
-            dateLabel.text = convertDateToString(date: date)
+            dateLabel.text = convertDateToString(date: date!)
                 
             
             
@@ -817,8 +817,54 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        if segue.identifier == "ShowDetails" {
+            
+            
+            
+            let videoDetailViewController = segue.destination as! VideoViewController
+            
+            // Get the cell that generated this segue.
+            
+            if let selectedVideoCell = sender {
+                
+                
+                
+            //    let indexPath = tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
+                
+                
+                
+                
+                var count = 0  //code to map filtered result position to searchResult position
+                
+                
+             print("this works00")
+                    
+                    count += 1
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+
+
+
+
+
+
+    
   
-}
+
 
 
 

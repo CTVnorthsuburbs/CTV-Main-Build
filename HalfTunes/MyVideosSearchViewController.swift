@@ -147,6 +147,8 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         cell.titleLabel.text = video!.title
         
+        cell.dateLabel.text = convertDateToString(date: video!.eventDate!)
+        
         cell.thumbnailView.image = video!.thumbnail
         
         var showDownloadControls = false

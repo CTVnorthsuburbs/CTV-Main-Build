@@ -637,7 +637,9 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     
         }
         
-        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate: show.date)!)
+   
+        var date = convertStringToDate(dateString: show.date)
+        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date)!)
         
 
     

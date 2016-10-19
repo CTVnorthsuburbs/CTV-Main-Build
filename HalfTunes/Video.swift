@@ -12,7 +12,57 @@ import UIKit
 
 import MediaPlayer
 
+func convertStringToDate(dateString: String) -> Date {
+    
+  
+    
+    let dateFormatter = DateFormatter()
+    
+  //  dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    
+ //  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    
+    
+    
+    var date = dateFormatter.date( from: dateString)
+  
+        
+    if (date == nil) {
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        //  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        
+        
+        date = dateFormatter.date( from: dateString)
+        
+        
+    }
+       return date!
+        
+  
+    
+}
 
+
+func convertDateToString(date: Date) -> String {
+    
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    
+    dateFormatter.dateFormat = "MM-dd-yyyy"
+    
+    var timeString = dateFormatter.string(from: date)
+    
+    return timeString
+    
+}
 
 open class Video: NSObject, NSCoding {
     
@@ -26,7 +76,7 @@ open class Video: NSObject, NSCoding {
     
     var comments: String?
     
-    var eventDate: String?
+    var eventDate: Date?
 
     // MARK: Archiving Paths
     
@@ -56,47 +106,14 @@ open class Video: NSObject, NSCoding {
     
     
     
-    func convertStringToDate(dateString: String) -> Date {
-        
-        let strTime = dateString
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        let string = strTime
-        
-        let date = dateFormatter.date(from: string)
-        
-        return date!
-        
-    }
+  
     
     
-    func convertDateToString(date: Date) -> String {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        var timeString = dateFormatter.string(from: date)
-        
-        return timeString
-        
-    }
-    
-    
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: String) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date) {
         
         // Initialize stored properties.
+        
+           super.init()
         
         self.title = title
         
@@ -109,14 +126,7 @@ open class Video: NSObject, NSCoding {
         self.comments = comments
         
         self.eventDate = eventDate
-        
-        
-        
-        
-        
-        
-        
-        
+
         var str = title
         var newString = ""
         let suffix = String(describing: str.characters.suffix(6))
@@ -163,7 +173,7 @@ open class Video: NSObject, NSCoding {
         imageView.image = UIImage(data: data!)
        */
         
-        super.init()
+     
         
         // Initialization should fail if there is no title.
         
@@ -174,6 +184,9 @@ open class Video: NSObject, NSCoding {
         }
         
     }
+    
+    
+
     
     open func generateThumbnail()  {
         
@@ -243,7 +256,7 @@ open class Video: NSObject, NSCoding {
         
         let comments = aDecoder.decodeObject(forKey: PropertyKey.commentsKey) as! String
         
-        let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! String
+        let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! Date
         
         
         
