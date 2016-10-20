@@ -18,26 +18,34 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
 
     
+    var childView: SuggestedVideosTableViewController {
+        get {
+            let ctrl = childViewControllers.first(where: { $0 is SuggestedVideosTableViewController })
+            
+            
+            return ctrl as! SuggestedVideosTableViewController
+        }
+    }
+    
 
- 
+
+    @IBOutlet weak var child: UIView!
+    
     
     
     // MARK: Properties
     
     @IBOutlet weak var thumbnailView: UIImageView!
     
+   
     
-    
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var progressView: UIProgressView!
+
     
     @IBOutlet weak var thumbnailButton: UIButton!
     
-    @IBOutlet weak var addVideoButton: UIButton!
+   
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+  
     
     
     var moviePlayer : AVPlayer?
@@ -103,11 +111,14 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewDidLoad() {
         
+        
+        print(childView.dateLabel.text)
+        
         var search = VideoSearch()
         
-       
+     
         
-        addVideoButton.setTitle("Download", for: UIControlState.selected)
+        childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
         
@@ -119,7 +130,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             var date =  video.eventDate
             
-            dateLabel.text = convertDateToString(date: date!)
+            childView.dateLabel.text = convertDateToString(date: date!)
             
             
             
@@ -128,9 +139,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             navigationItem.title = video.title
             
-            titleLabel.text   = video.title
+            childView.titleLabel.text   = video.title
             
-            descriptionLabel.text = video.comments
+            childView.descriptionLabel.text = video.comments
             
             
             
@@ -218,7 +229,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             print(tempDownload!.progress)
             
-            self.progressView.setProgress(tempDownload!.progress, animated: true)
+           childView.progressView.setProgress(tempDownload!.progress, animated: true)
             
             
             
@@ -247,9 +258,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         
-        self.cancelButton.isHidden = !showDownloadControls
+        childView.cancelButton.isHidden = !showDownloadControls
         
-        self.progressView.isHidden = !showDownloadControls
+        childView.progressView.isHidden = !showDownloadControls
         
         
     }
@@ -309,7 +320,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             showDownloadControls = true
             
-            self.progressView.progress = (download?.progress)!
+            childView.progressView.progress = (download?.progress)!
             
             
             
@@ -318,8 +329,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             if(download?.isDownloading == true) {
                 
                 
-                addVideoButton.setTitle("Pause", for: UIControlState.selected)
-                addVideoButton.isSelected = true
+                childView.addVideoButton.setTitle("Pause", for: UIControlState.selected)
+                childView.addVideoButton.isSelected = true
                 
                 timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
                 
@@ -327,8 +338,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 
                 
-                addVideoButton.setTitle("Resume", for: UIControlState.selected)
-                addVideoButton.isSelected = true
+                childView.addVideoButton.setTitle("Resume", for: UIControlState.selected)
+                childView.addVideoButton.isSelected = true
                 
                 timer!.invalidate()
             }
@@ -347,9 +358,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         
-        self.progressView.isHidden = !showDownloadControls
+        childView.progressView.isHidden = !showDownloadControls
         
-        self.cancelButton.isHidden = !showDownloadControls
+        childView.cancelButton.isHidden = !showDownloadControls
         
     }
     
@@ -385,26 +396,26 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBAction func addVideo(_ sender: AnyObject) {
         
-        if(addVideoButton.titleLabel?.text == "+ Add"){
-            if(!addVideoButton.isSelected) {
+        if(childView.addVideoButton.titleLabel?.text == "+ Add"){
+            if(!childView.addVideoButton.isSelected) {
                 saveVideos()
             }
         }
         
         
-        if(addVideoButton.titleLabel?.text == "Download"){
+        if(childView.addVideoButton.titleLabel?.text == "Download"){
             
             downloadTapped()
             
         }
         
-        if(addVideoButton.titleLabel?.text == "Pause"){
+        if(childView.addVideoButton.titleLabel?.text == "Pause"){
             
             pauseDownload(video!)
             
         }
         
-        if(addVideoButton.titleLabel?.text == "Resume"){
+        if(childView.addVideoButton.titleLabel?.text == "Resume"){
             
             resumeDownload(video!)
             
@@ -551,23 +562,23 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if(video != nil) {
             if(localFileExistsForVideo(video!)) {
                 
-                addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
+                childView.addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
                 
                 
-                addVideoButton.isSelected = true
+               childView.addVideoButton.isSelected = true
                 
             } else {
                 
                 
                 if(hasSavedVideo()) {
-                    addVideoButton.setTitle("Download", for: UIControlState.selected)
-                    addVideoButton.isSelected = true
+                    childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+                    childView.addVideoButton.isSelected = true
                     
                 } else {
                     
-                    addVideoButton.setTitle("+ Add", for: UIControlState.normal)
+                    childView.addVideoButton.setTitle("+ Add", for: UIControlState.normal)
                     
-                    addVideoButton.isSelected = false
+                    childView.addVideoButton.isSelected = false
                 }
                 
             }
@@ -584,7 +595,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         startDownload(video!)
         
         
-        addVideoButton.setTitle("Pause", for: UIControlState.selected)
+        childView.addVideoButton.setTitle("Pause", for: UIControlState.selected)
         
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
             
@@ -593,7 +604,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             showDownloadControls = true
             
-            self.progressView.progress = (download.progress)
+            childView.progressView.progress = (download.progress)
             
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
             
@@ -605,7 +616,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         }
         
-        self.progressView.isHidden = !showDownloadControls
+        childView.progressView.isHidden = !showDownloadControls
         
         
         let downloaded = localFileExistsForVideo(video!)
@@ -613,7 +624,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         
-        self.cancelButton.isHidden = !showDownloadControls
+        childView.cancelButton.isHidden = !showDownloadControls
         
     }
     @IBAction func cancelTapped(_ sender: AnyObject) {
@@ -672,7 +683,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 timer!.invalidate()
                 
-                addVideoButton.setTitle("Resume", for: UIControlState.selected)
+                childView.addVideoButton.setTitle("Resume", for: UIControlState.selected)
                 
                 
                 
@@ -710,7 +721,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     func resumeDownload(_ video: Video) {
         
         
-        addVideoButton.setTitle("Pause", for: UIControlState.selected)
+        childView.addVideoButton.setTitle("Pause", for: UIControlState.selected)
         
         if let urlString = video.sourceUrl,
             

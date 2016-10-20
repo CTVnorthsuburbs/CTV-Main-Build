@@ -9,10 +9,28 @@
 import UIKit
 
 class SuggestedVideosTableViewController: UITableViewController {
+    @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var addVideoButton: UIButton!
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    @IBOutlet var suggestedVideoTable: UITableView!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var parentView : VideoViewController!
+    
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
 
+       
         
          recommendedVideos = search.getRecentLimited()
         
@@ -145,6 +163,9 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
+        
+        
+         cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
         
         cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
         
