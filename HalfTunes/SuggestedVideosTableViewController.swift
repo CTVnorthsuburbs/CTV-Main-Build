@@ -22,6 +22,15 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    
+    var defaultSession : Foundation.URLSession? = nil
+    
+    var dataTask: URLSessionDataTask?
+    
+    var downloadsSession: Foundation.URLSession?
+    
+    
+    
     var parentView : VideoViewController!
     
     override func viewDidLoad() {
@@ -47,6 +56,10 @@ class SuggestedVideosTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+
+    
 
     // MARK: - Table view data source
 
@@ -115,16 +128,18 @@ class SuggestedVideosTableViewController: UITableViewController {
     var recommendedVideos = [Video]()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("runs beofe selector")
+       
         if segue.identifier == "ShowDetail" {
             
-            print("this segue runs")
+           
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
-            if let selectedVideoCell = sender as? VideoCell {
+            if let selectedVideoCell = sender as? MainVideoCell {
+                
+                
                 
                 let indexPath = tableView.indexPath(for: selectedVideoCell)!
                 
@@ -133,15 +148,15 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 videoDetailViewController.video = selectedVideo
                 
-                //    videoDetailViewController.setActiveDownloads(downloads: &activeDownloads)
+               //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
                 
                 
-                //         videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                        videoDetailViewController.setDefaultSession(defaultSession: &parentView.defaultSession!)
                 
-                //         videoDetailViewController.setDataTask(dataTask: &dataTask)
+                        videoDetailViewController.setDataTask(dataTask: &parentView.dataTask!)
                 
                 
-                //     videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+                videoDetailViewController.setDownloadsSession(downloadsSession: &parentView.downloadsSession!)
                 
             }
             
@@ -224,7 +239,19 @@ class SuggestedVideosTableViewController: UITableViewController {
     }
     
     
+    @IBAction func addVideoPressed(_ sender: AnyObject) {
+   
+     
+    parentView.addVideo(self.addVideoButton)
+
+    }
     
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        
+        
+        parentView.cancelTapped(self.cancelButton)
+        
+    }
     
 
 }

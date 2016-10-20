@@ -161,14 +161,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Q-20-O1c">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="194" id="Nxj-0b-aB5"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -181,7 +173,16 @@
                                     <outletCollection property="gestureRecognizers" destination="obw-ho-oen" appends="YES" id="ooK-tQ-UCV"/>
                                 </connections>
                             </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Q-20-O1c">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="202" id="Nxj-0b-aB5"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                                <frame key="frameInset" minY="201" width="375"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
                                 </connections>
@@ -189,7 +190,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="3mT-yE-g62"/>
+                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" constant="-20" id="3mT-yE-g62"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="201" id="3zP-6I-dMA"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="4DG-Iz-vNF"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="trailing" secondItem="OEg-fp-J0R" secondAttribute="trailing" id="Deh-RF-PC7"/>
@@ -199,10 +200,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" constant="-5" id="d3X-xa-uf6"/>
                             <constraint firstItem="OEg-fp-J0R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fPX-1Y-Ruh"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="haa-bw-kg9"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="trailing" secondItem="Y8Q-20-O1c" secondAttribute="trailing" id="lk2-nY-H6W"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="trailing" secondItem="Y8Q-20-O1c" secondAttribute="trailing" constant="-11" id="lk2-nY-H6W"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nbg-ce-13Z"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="bottom" secondItem="Y8Q-20-O1c" secondAttribute="bottom" id="qNu-4X-QaJ"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="top" id="w9s-eO-O8X"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="bottom" secondItem="Y8Q-20-O1c" secondAttribute="bottom" constant="8" id="qNu-4X-QaJ"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="top" constant="16" id="w9s-eO-O8X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Video" id="qx4-RS-RMK">
@@ -693,11 +694,11 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="402"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="138"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
@@ -724,6 +725,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <state key="normal" title="+ Add"/>
+                                    <connections>
+                                        <action selector="addVideoPressed:" destination="fDR-0I-hgL" eventType="touchUpInside" id="0Ff-7l-wCd"/>
+                                    </connections>
                                 </button>
                                 <progressView hidden="YES" opaque="NO" tag="40" contentMode="scaleToFill" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZT-cd-wDS">
                                     <constraints>
@@ -736,6 +740,9 @@
                                     <state key="normal" title="Cancel">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="cancelPressed:" destination="fDR-0I-hgL" eventType="touchUpInside" id="aIY-dX-Hah"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -758,7 +765,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="Ow7-cb-4ZL" customClass="MainVideoCell" customModule="HalfTunes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="230" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ow7-cb-4ZL" id="KRS-Nl-9ay">
                                     <frame key="frameInset" width="375" height="67"/>
@@ -818,7 +825,10 @@
                                     <outlet property="thumbnailButton" destination="KtK-Sz-ago" id="s19-U0-rol"/>
                                     <outlet property="thumbnailView" destination="5um-VE-cb3" id="UEZ-FN-hZK"/>
                                     <outlet property="titleLabel" destination="7Aq-QN-Cs2" id="wsr-E3-7uD"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="KGT-Aj-VTq"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="KGT-Aj-VTq">
+                                        <segue key="commit" inheritsFrom="parent" id="fNp-cp-4gu"/>
+                                        <segue key="preview" inheritsFrom="commit" id="INl-3D-YgO"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -830,7 +840,7 @@
                     <navigationItem key="navigationItem" id="Nx8-AL-0PB"/>
                     <connections>
                         <outlet property="addVideoButton" destination="HIR-Vs-heM" id="uMK-Ox-4tb"/>
-                        <outlet property="cancelButton" destination="K4o-Cn-Lid" id="vdR-Vx-B8D"/>
+                        <outlet property="cancelButton" destination="K4o-Cn-Lid" id="mA8-Xo-xF6"/>
                         <outlet property="dateLabel" destination="jX8-Dp-JWl" id="gVy-kh-hYo"/>
                         <outlet property="descriptionLabel" destination="ocX-Zv-VlL" id="eOt-VG-ob8"/>
                         <outlet property="progressView" destination="SZT-cd-wDS" id="Obp-q5-XJV"/>
@@ -840,7 +850,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JV-cy-AUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1700" y="1714.9925037481262"/>
+            <point key="canvasLocation" x="1670" y="1986"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7OJ-RN-a8v">
@@ -863,7 +873,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2XC-rQ-lli"/>
-        <segue reference="2bE-88-7Mo"/>
+        <segue reference="yAc-d4-MEQ"/>
+        <segue reference="KGT-Aj-VTq"/>
     </inferredMetricsTieBreakers>
 </document>

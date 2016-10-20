@@ -112,7 +112,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         
         
-        print(childView.dateLabel.text)
+      
         
         var search = VideoSearch()
         
@@ -188,7 +188,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             }
             
             
-            
+            childView.parentView = self
             
             
             
@@ -360,7 +360,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         childView.progressView.isHidden = !showDownloadControls
         
-        childView.cancelButton.isHidden = !showDownloadControls
+       childView.cancelButton.isHidden = !showDownloadControls
         
     }
     
@@ -394,7 +394,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     
-    @IBAction func addVideo(_ sender: AnyObject) {
+     func addVideo(_ sender: AnyObject) {
         
         if(childView.addVideoButton.titleLabel?.text == "+ Add"){
             if(!childView.addVideoButton.isSelected) {
@@ -525,15 +525,15 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         
         let url = URL(string: previewUrl)
-        
+        if(url != nil ) {       //added this to fix error
         
         let lastPathComponent = url?.lastPathComponent
         
         let fullPath = documentsPath.appendingPathComponent(lastPathComponent!)
         
         return URL(fileURLWithPath:fullPath)
-        
-        //return nil
+        }
+        return nil
         
     }
     
@@ -627,7 +627,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         childView.cancelButton.isHidden = !showDownloadControls
         
     }
-    @IBAction func cancelTapped(_ sender: AnyObject) {
+ func cancelTapped(_ sender: AnyObject) {
         
         cancelDownload(video!)
         
