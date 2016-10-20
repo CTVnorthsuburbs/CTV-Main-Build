@@ -20,6 +20,7 @@
 		8D60652E1D95777C00D45F3F /* MyVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */; };
 		8D63F29A1D64B22900689693 /* VideoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2991D64B22900689693 /* VideoSearch.swift */; };
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
+		8D6B2D091DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B2D081DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift */; };
 		8DB606961D303934005029DB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6068F1D303934005029DB /* Decoder.swift */; };
 		8DB606971D303934005029DB /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606901D303934005029DB /* Dictionary.swift */; };
 		8DB606981D303934005029DB /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606911D303934005029DB /* Encoder.swift */; };
@@ -46,6 +47,7 @@
 		8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVideosViewController.swift; sourceTree = "<group>"; };
 		8D63F2991D64B22900689693 /* VideoSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSearch.swift; sourceTree = "<group>"; };
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		8D6B2D081DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedVideosTableViewController.swift; sourceTree = "<group>"; };
 		8DB6068F1D303934005029DB /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Gloss/Decoder.swift; sourceTree = "<group>"; };
 		8DB606901D303934005029DB /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Gloss/Dictionary.swift; sourceTree = "<group>"; };
 		8DB606911D303934005029DB /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encoder.swift; path = Gloss/Encoder.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */,
+				8D6B2D081DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift */,
 			);
 			name = DetailVideoView;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				8DE12DFD1DA7F06200749072 /* VideoTableViewController.swift in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
 				8D0A6FAA1D94351900B1C38E /* MainViewController.swift in Sources */,
+				8D6B2D091DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
 				8D5109AF1D3930AC00CFFDAC /* VideoCell.swift in Sources */,
 				8D60652E1D95777C00D45F3F /* MyVideosViewController.swift in Sources */,
