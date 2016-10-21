@@ -191,6 +191,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             childView.parentView = self
             
             
+            childView.video = self.video
+            
+            
             
             //thumbnailView.image = video.thumbnail
             

@@ -181,7 +181,8 @@
                                     <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                                <frame key="frameInset" minY="201" width="375"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
                                 </connections>
@@ -775,15 +776,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Sz-ago">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="thumbnailTapped:" destination="Ow7-cb-4ZL" eventType="touchUpInside" id="rI4-lF-5iu"/>
-                                            </connections>
-                                        </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="5um-VE-cb3">
                                             <frame key="frameInset" minX="8" minY="8" width="102" height="51"/>
                                             <accessibility key="accessibilityConfiguration">
@@ -805,16 +797,12 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="7Aq-QN-Cs2" secondAttribute="trailing" constant="27" id="3cT-eg-nG6"/>
-                                        <constraint firstItem="ZNC-Po-KZt" firstAttribute="leading" secondItem="KtK-Sz-ago" secondAttribute="trailing" constant="8" symbolic="YES" id="DZX-Og-kzT"/>
                                         <constraint firstItem="ZNC-Po-KZt" firstAttribute="leading" secondItem="7Aq-QN-Cs2" secondAttribute="leading" id="O1G-H9-Afw"/>
                                         <constraint firstItem="5um-VE-cb3" firstAttribute="top" secondItem="KRS-Nl-9ay" secondAttribute="topMargin" id="P1T-Lf-65D"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="5um-VE-cb3" secondAttribute="bottom" id="RJp-0w-GLM"/>
                                         <constraint firstItem="7Aq-QN-Cs2" firstAttribute="top" secondItem="KRS-Nl-9ay" secondAttribute="topMargin" id="Rhs-J1-6Mv"/>
                                         <constraint firstItem="7Aq-QN-Cs2" firstAttribute="centerX" secondItem="KRS-Nl-9ay" secondAttribute="centerX" constant="36" id="Uuu-SN-IkO"/>
-                                        <constraint firstItem="KtK-Sz-ago" firstAttribute="leading" secondItem="KRS-Nl-9ay" secondAttribute="leadingMargin" id="Zud-s7-i8K"/>
-                                        <constraint firstItem="KtK-Sz-ago" firstAttribute="centerY" secondItem="KRS-Nl-9ay" secondAttribute="centerY" id="ey4-aA-Tj9"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ZNC-Po-KZt" secondAttribute="bottom" id="gkK-RX-mj2"/>
-                                        <constraint firstItem="KtK-Sz-ago" firstAttribute="top" secondItem="KRS-Nl-9ay" secondAttribute="topMargin" id="i7e-g1-8HD"/>
                                         <constraint firstItem="5um-VE-cb3" firstAttribute="leading" secondItem="KRS-Nl-9ay" secondAttribute="leadingMargin" id="mUO-5Q-DWe"/>
                                         <constraint firstItem="7Aq-QN-Cs2" firstAttribute="leading" secondItem="5um-VE-cb3" secondAttribute="trailing" constant="8" symbolic="YES" id="rRs-IM-ABX"/>
                                     </constraints>
@@ -822,7 +810,6 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="ZNC-Po-KZt" id="bTD-sM-edd"/>
-                                    <outlet property="thumbnailButton" destination="KtK-Sz-ago" id="s19-U0-rol"/>
                                     <outlet property="thumbnailView" destination="5um-VE-cb3" id="UEZ-FN-hZK"/>
                                     <outlet property="titleLabel" destination="7Aq-QN-Cs2" id="wsr-E3-7uD"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="KGT-Aj-VTq">
@@ -850,7 +837,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JV-cy-AUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1669.5999999999999" y="1985.7571214392806"/>
+            <point key="canvasLocation" x="1666" y="1988"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7OJ-RN-a8v">
@@ -873,7 +860,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2bE-88-7Mo"/>
+        <segue reference="KGT-Aj-VTq"/>
         <segue reference="yAc-d4-MEQ"/>
     </inferredMetricsTieBreakers>
 </document>

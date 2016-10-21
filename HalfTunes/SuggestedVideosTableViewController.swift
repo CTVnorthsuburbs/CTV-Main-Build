@@ -29,7 +29,14 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     var downloadsSession: Foundation.URLSession?
     
+    var myVideos = [Video]()
     
+    
+    var search = VideoSearch()
+    
+    var recommendedVideos = [Video]()
+    
+    var video: Video?
     
     var parentView : VideoViewController!
     
@@ -39,10 +46,11 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         super.viewDidLoad()
 
-       
+  
         
          recommendedVideos = search.getRecentLimited()
-        
+      
+   
         
         myVideos = recommendedVideos
         // Uncomment the following line to preserve selection between presentations
@@ -50,7 +58,20 @@ class SuggestedVideosTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        
+        
+ 
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        
+        
+           }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -120,12 +141,31 @@ class SuggestedVideosTableViewController: UITableViewController {
     }
     */
     
-    var myVideos = [Video]()
-   
-    
-    var search = VideoSearch()
-    
-    var recommendedVideos = [Video]()
+    func removeDuplicateVideo() {
+        
+        var count = 0
+        
+        for vid in recommendedVideos {
+            
+            
+            
+            
+            if(video?.title == vid.title) {
+                
+                recommendedVideos.remove(at: count)
+                
+                tableView.reloadData()
+                
+            }
+            
+            count += 1
+            
+            
+            
+        }
+
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
@@ -253,5 +293,6 @@ class SuggestedVideosTableViewController: UITableViewController {
         
     }
     
+ 
 
 }
