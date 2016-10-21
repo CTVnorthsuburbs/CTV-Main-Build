@@ -151,6 +151,8 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         cell.thumbnailView.image = video!.thumbnail
         
+         cell.thumbnailView.setRadius(radius: 4)
+        
         var showDownloadControls = false
         
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {

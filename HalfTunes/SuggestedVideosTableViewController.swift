@@ -224,6 +224,8 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
         
+         cell?.thumbnailView.setRadius(radius: 4)
+        
         
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
             
