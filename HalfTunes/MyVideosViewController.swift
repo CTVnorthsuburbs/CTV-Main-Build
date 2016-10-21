@@ -430,11 +430,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
             }
                 
-            else if segue.identifier == "AddItem" {
-                
-                print("Adding new video.")
-                
-            }
+         
             
         }
         

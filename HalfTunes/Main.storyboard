@@ -157,7 +157,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa"/>
@@ -650,6 +650,7 @@
                                                         <outlet property="dateLabel" destination="ZOr-U2-aqz" id="poL-GY-RBx"/>
                                                         <outlet property="thumbnail" destination="FtQ-pm-nVt" id="k26-2j-XNM"/>
                                                         <outlet property="titleLabel" destination="kyX-Ai-Oyq" id="vY2-q1-efB"/>
+                                                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="V9M-Yj-v2K"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -962,7 +963,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KGT-Aj-VTq"/>
+        <segue reference="V9M-Yj-v2K"/>
         <segue reference="yAc-d4-MEQ"/>
     </inferredMetricsTieBreakers>
 </document>

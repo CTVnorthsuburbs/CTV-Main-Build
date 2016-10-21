@@ -19,6 +19,26 @@ class HorizontalTableViewController: UITableViewController {
     var model = [Video]()
     
     
+    
+    
+    var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+    
+    var dataTask = URLSessionDataTask()
+    
+    lazy var downloadsSession: Foundation.URLSession = {
+        
+        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+        
+        let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        
+        return session
+        
+    }()
+    
+    
+    
+    @IBOutlet weak var tableCollection: UICollectionView!
+    
     override func viewDidLoad() {
         model = search.getRecentLimited()
       
@@ -32,6 +52,51 @@ class HorizontalTableViewController: UITableViewController {
         return "Featured Events"
     }
     
+    
+
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowDetail" {
+            if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                    if let destination = segue.destination as? VideoViewController {
+                        
+                        
+                        
+                        
+                        let indexPath = collectionView.indexPath(for: collectionCell)!
+                        
+                        
+                        let selectedVideo = model[indexPath.row]
+                        
+                        
+                        
+                        // Pass some data to YourViewController
+                        // collectionView.tag will give your selected tableView index
+                        
+                        
+                        destination.video = selectedVideo
+                        
+                        
+                        
+                       destination.setDefaultSession(defaultSession: &defaultSession)
+                        
+                        destination.setDataTask(dataTask: &dataTask)
+                        
+                        
+                      destination.setDownloadsSession(downloadsSession: &downloadsSession)
+                        
+                        
+                       
+                    }
+                }
+            }
+            
+        }
+        
+        
+    }
  
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,11 +154,18 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
         }
+        
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+        
+        
+        
+        
     }
 
    }
@@ -111,6 +183,60 @@ extension UIImage{
         
     }
 }
+
+extension HorizontalTableViewController: URLSessionDownloadDelegate {
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        
+               }
+        
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString,
+            
+            let download = GlobalVariables.sharedManager.activeDownloads[downloadUrl] {
+            // 2
+            
+            download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
+            // 3
+            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
+            // 4
+            
+            
+            /*
+            if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    
+                    
+                    videoCell.progressView.progress = download.progress
+                    
+                    var temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
+                    
+                    temp?.progress = download.progress
+                    
+                    
+                    
+                    
+                    
+                })
+                
+            }
+            */
+        }
+        
+    }
+    
+
+
+
+
+
+
+
 
 
 
