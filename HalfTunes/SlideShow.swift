@@ -8,20 +8,24 @@
 
 import UIKit
 
+import AVFoundation
+
 class SlideShow: UIViewController {
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     var imageArray = [UIImage]()
   
-    override func viewDidLoad() {
+    override func viewDidLayoutSubviews() {
         
         
-        super.viewDidLoad()
+       // super.viewDidLoad()
         
         mainScrollView.frame = view.frame
         
-        imageArray = [#imageLiteral(resourceName: "mobile-nsb"),#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-exterior"),#imageLiteral(resourceName: "mobile-roseparade")]
+       
+        
+        imageArray = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-exterior"),#imageLiteral(resourceName: "mobile-roseparade")]
         
         for i in  0..<imageArray.count {
             
@@ -30,13 +34,20 @@ class SlideShow: UIViewController {
             imageView.contentMode  = .scaleAspectFit
             
             let xPostion = self.view.frame.width * CGFloat(i)
-            imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height)
+           imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height )
             
+            
+           // imageView.frame = CGRect(x: xPostion ,y: 0, width: self.view.frame.width,height: self.view.frame.height)
+            
+        //    imageView.frame = AVMakeRect(aspectRatio: (imageView.image?.size)!, insideRect: imageView.bounds)
+            
+            
+          
             mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i + 1)
             
             mainScrollView.addSubview(imageView)
             
-            
+          
         }
         
         
