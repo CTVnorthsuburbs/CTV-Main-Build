@@ -16,7 +16,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var search = VideoSearch()
     
-    var model = [Video]()
+    var videos = [Video]()
     
     
     
@@ -40,7 +40,7 @@ class HorizontalTableViewController: UITableViewController {
     @IBOutlet weak var tableCollection: UICollectionView!
     
     override func viewDidLoad() {
-        model = search.getRecentLimited()
+        videos = search.getRecentLimited()
       
         
     }
@@ -68,7 +68,7 @@ class HorizontalTableViewController: UITableViewController {
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
                         
-                        let selectedVideo = model[indexPath.row]
+                        let selectedVideo = videos[indexPath.row]
                         
                         
                         
@@ -128,7 +128,7 @@ class HorizontalTableViewController: UITableViewController {
 
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.count
+        return videos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -141,14 +141,14 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         cells = cell as! HorizontalCollectionViewCell
         
         
-        if ((model[indexPath.item].fileName) != nil) {
-        cells.thumbnail.image = search.getThumbnail(id: (model[indexPath.item].fileName!))
+        if ((videos[indexPath.item].fileName) != nil) {
+        cells.thumbnail.image = search.getThumbnail(id: (videos[indexPath.item].fileName!))
             
             cells.thumbnail.setRadius(radius: 4)
             
-        cells.titleLabel.text = model[indexPath.item].title
+        cells.titleLabel.text = videos[indexPath.item].title
             
-            cells.dateLabel.text = convertDateToString(date: model[indexPath.item].eventDate!)
+            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
             
            
             

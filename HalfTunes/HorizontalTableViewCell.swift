@@ -26,8 +26,21 @@ extension HorizontalTableViewCell {
         
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
+        
+        /*  second block replaces this block in order to optimize scroll
         collectionView.tag = row
         collectionView.reloadData()
+        */ 
+        
+        
+        if collectionView.tag != row {
+            collectionView.tag = row
+            // Stops collection view if it was scrolling.
+            collectionView.setContentOffset(collectionView.contentOffset, animated:false)
+            collectionView.reloadData()
+        }
+        
+        
     }
     
     var collectionViewOffset: CGFloat {
