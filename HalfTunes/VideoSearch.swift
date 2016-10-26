@@ -55,26 +55,35 @@ fileprivate func getNSURLSession() -> URLSession {
 fileprivate func search(_ savedSearchID: Int)-> [Video] {
     
     searchResults.removeAll()
+    
         
     let session = getNSURLSession()
         
     let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
-        
+    
     let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
     
     if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
     
     let splitResults = splitIdArray(results!)
+        
+    
 
     if (splitResults != nil) {
+        
+        
         
         var searchURLs = [URL]()
         
         var counter = 0
         
+        
+       
         for splitArray in splitResults! {
 
             let searchURL = convertIdArrayToSearchURL(splitArray)
+            
+          
           
             searchURLs.append(searchURL!)
             
@@ -88,15 +97,19 @@ fileprivate func search(_ savedSearchID: Int)-> [Video] {
             
         }
         
-    } else {        //if array is smaller than maximum, just process it
+        } }
+    
+    
+    else {        //if array is smaller than maximum, just process it
         
    let searchIdURL =  convertIdArrayToSearchURL(results!)
+        
         
    getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
         
         }
         
-    }
+    
     
     return searchResults
 }
@@ -271,6 +284,18 @@ func getRecent() -> [Video] {
         return reducedResults
         
     }
+    
+    
+    func getHockeyLimited() -> [Video] {
+        
+       search(65797)
+        
+      
+        
+        return searchResults
+        
+    }
+
 
 /// getSport() accepts a String Keyword that is passed as a search parameter.
     
@@ -532,18 +557,10 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
     
     
   public  func getThumbnail(id: Int)-> UIImage? {
-        
-        
-        
-        
-        
-        
-        
+
         var image : UIImage?
         
-        
-        
-        
+
         var thumbnailURL = searchThumbnail(id)
         
         
@@ -604,7 +621,7 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
     guard VideosResult.show != nil else {
         
-     
+  
         return false
             
     }
@@ -624,7 +641,7 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     
     for show in VideosResult.show! {
         
-    
+   
         
         if(show.showThumbnail.count != 0) {
             
@@ -639,6 +656,16 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
    
         var date = convertStringToDate(dateString: show.date)
+        
+        if(VideosResult.show?.count != VideosResult.vod?.count) {
+            
+            print("video results do not match!!")
+            
+            
+        }
+        
+        
+        
         searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date)!)
         
 
@@ -650,12 +677,7 @@ fileprivate func updateSearchResults(_ data: Data?)-> Bool {
     }
     
 
-    if(VideosResult.show?.count != VideosResult.vod?.count) {
-        
-        print("video results do not match!!")
-        
-        
-    }
+
     return true
         
     }

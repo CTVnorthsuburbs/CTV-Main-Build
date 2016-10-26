@@ -11,12 +11,19 @@ import UIKit
 class HorizontalTableViewController: UITableViewController {
     
     
- //   let model = generateRandomData()
+ 
     var storedOffsets = [Int: CGFloat]()
     
     var search = VideoSearch()
     
-    var videos = [Video]()
+   
+    
+
+    var videos = [[Video]]()
+    
+  
+    
+    var sectionTitles = [String]()
     
     
     
@@ -40,68 +47,60 @@ class HorizontalTableViewController: UITableViewController {
     @IBOutlet weak var tableCollection: UICollectionView!
     
     override func viewDidLoad() {
-        videos = search.getRecentLimited()
-      
+        
+        
+        videos.append(search.getRecentLimited())
+        
+        sectionTitles.append("Featured Events")
+        
+        videos.append(search.getRecent())
+        
+      sectionTitles.append("Recent Videos")
+   
+        
+      videos.append(search.getRecent())
+        
+        sectionTitles.append("Hockey")
+        
         
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
+
+        return sectionTitles[section]
         
         
-        return "Featured Events"
     }
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        print("number of sections: \(videos.count)")
+        
+        return videos.count
+        
+        
+    }
+    
     
     
 
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ShowDetail" {
-            if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
-                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
-                    if let destination = segue.destination as? VideoViewController {
-                        
-                        
-                        
-                        
-                        let indexPath = collectionView.indexPath(for: collectionCell)!
-                        
-                        
-                        let selectedVideo = videos[indexPath.row]
-                        
-                        
-                        
-                        // Pass some data to YourViewController
-                        // collectionView.tag will give your selected tableView index
-                        
-                        
-                        destination.video = selectedVideo
-                        
-                        
-                        
-                       destination.setDefaultSession(defaultSession: &defaultSession)
-                        
-                        destination.setDataTask(dataTask: &dataTask)
-                        
-                        
-                      destination.setDownloadsSession(downloadsSession: &downloadsSession)
-                        
-                        
-                       
-                    }
-                }
-            }
-            
-        }
-        
-        
-    }
+
  
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+       // return videos.count
+        
+        
+     // return videos[section].count
+        
         return 1
+        
+        
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -109,6 +108,9 @@ class HorizontalTableViewController: UITableViewController {
         
         return cell
     }
+    
+
+    
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
@@ -124,14 +126,70 @@ class HorizontalTableViewController: UITableViewController {
         
         storedOffsets[(indexPath as NSIndexPath).row] = tableViewCell.collectionViewOffset
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowDetail" {
+            if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                    if let destination = segue.destination as? VideoViewController {
+                        
+                        
+                        
+                        
+                        let indexPath = collectionView.indexPath(for: collectionCell)!
+                        
+                        
+                        let selectedVideo = videos[collectionView.tag][indexPath.row]
+                        
+                        
+                        
+                        // Pass some data to YourViewController
+                        // collectionView.tag will give your selected tableView index
+                        
+                        
+                        destination.video = selectedVideo
+                        
+                        
+                        
+                        destination.setDefaultSession(defaultSession: &defaultSession)
+                        
+                        destination.setDataTask(dataTask: &dataTask)
+                        
+                        
+                        destination.setDownloadsSession(downloadsSession: &downloadsSession)
+                        
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    
 }
 
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        
+        
+        
+        return videos[collectionView.tag].count
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
        // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
@@ -141,14 +199,17 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         cells = cell as! HorizontalCollectionViewCell
         
         
-        if ((videos[indexPath.item].fileName) != nil) {
-        cells.thumbnail.image = search.getThumbnail(id: (videos[indexPath.item].fileName!))
+        if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
+            
+        cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
             
             cells.thumbnail.setRadius(radius: 4)
             
-        cells.titleLabel.text = videos[indexPath.item].title
+        cells.titleLabel.text = videos[collectionView.tag][indexPath.item].title
             
-            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
+            cells.dateLabel.text = convertDateToString(date: videos[collectionView.tag][indexPath.item].eventDate!)
+            
+            
             
            
             
@@ -167,8 +228,17 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         
     }
+    
+    
+    
+    
 
-   }
+    
+
+}
+
+
+
 
 
 extension UIImage{
@@ -209,7 +279,7 @@ extension HorizontalTableViewController: URLSessionDownloadDelegate {
             if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
                 
                 DispatchQueue.main.async(execute: {
-                    
+             
                     
                     
                     videoCell.progressView.progress = download.progress

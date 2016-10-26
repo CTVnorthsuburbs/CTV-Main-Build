@@ -157,7 +157,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa"/>
@@ -181,7 +181,7 @@
                                     <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
                                 <frame key="frameInset" minY="201" width="375"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
@@ -586,8 +586,8 @@
         <scene sceneID="prj-gp-SKf">
             <objects>
                 <tableViewController id="gpH-Zq-bv7" customClass="HorizontalTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="164" sectionHeaderHeight="28" sectionFooterHeight="28" id="ctB-hf-W55">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="164" sectionHeaderHeight="28" sectionFooterHeight="28" id="ctB-hf-W55">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -676,18 +676,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2c-2J-tyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-428" y="325"/>
+            <point key="canvasLocation" x="-929" y="905"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Home-->
         <scene sceneID="LiK-Wm-ZyV">
             <objects>
                 <tableViewController id="mBe-2v-0ic" customClass="MainTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="158" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Jt-ae-ZDz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="158" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Jt-ae-ZDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <containerView key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="center" id="yxY-I6-t7A" userLabel="Slide Show View">
-                            <rect key="frame" x="0.0" y="64" width="375" height="158"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="308"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -695,11 +695,11 @@
                                 <segue destination="6MW-Qi-IGN" kind="embed" id="cXf-bT-0kl"/>
                             </connections>
                         </containerView>
-                        <containerView key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="ev5-hw-sCL" userLabel="Featured Video View">
-                            <rect key="frame" x="0.0" y="222" width="375" height="169"/>
+                        <containerView key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="5SI-EU-JXy" userLabel="Featured Video View">
+                            <rect key="frame" x="0.0" y="372" width="375" height="704"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <connections>
-                                <segue destination="gpH-Zq-bv7" kind="embed" id="WZe-Xe-VED"/>
+                                <segue destination="gpH-Zq-bv7" kind="embed" id="F7V-dN-6wc"/>
                             </connections>
                         </containerView>
                         <connections>
@@ -707,8 +707,7 @@
                             <outlet property="delegate" destination="mBe-2v-0ic" id="ohU-g6-Xo5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="AVP-Sh-0yg" userLabel="Featured Videos"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="375" height="667"/>
+                    <navigationItem key="navigationItem" title="Home" id="AVP-Sh-0yg" userLabel="Featured Videos"/>
                     <connections>
                         <outlet property="slideShowView" destination="yxY-I6-t7A" id="RGS-ww-w95"/>
                     </connections>
@@ -800,11 +799,11 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
-                            <rect key="frame" x="0.0" y="64" width="375" height="138"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
@@ -871,7 +870,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="Ow7-cb-4ZL" customClass="MainVideoCell" customModule="HalfTunes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="230" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="166" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ow7-cb-4ZL" id="KRS-Nl-9ay">
                                     <frame key="frameInset" width="375" height="67"/>
@@ -964,14 +963,13 @@
         <!--Slide Show-->
         <scene sceneID="yG0-sh-0Yx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UEU-Kz-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="6MW-Qi-IGN" customClass="SlideShow" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RlY-Dc-XxV"/>
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="73C-lE-TT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-MW-DGo">
@@ -991,6 +989,7 @@
                         <outlet property="mainScrollView" destination="h8E-MW-DGo" id="fwB-JI-Q7U"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEU-Kz-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1207.2" y="-418.29085457271367"/>
         </scene>
@@ -1000,6 +999,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="V9M-Yj-v2K"/>
-        <segue reference="yAc-d4-MEQ"/>
+        <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>
