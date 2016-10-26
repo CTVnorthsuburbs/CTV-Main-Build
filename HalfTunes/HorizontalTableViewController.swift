@@ -58,7 +58,7 @@ class HorizontalTableViewController: UITableViewController {
       sectionTitles.append("Recent Videos")
    
         
-      videos.append(search.getRecent())
+      videos.append(search.getHockeyLimited())
         
         sectionTitles.append("Hockey")
         
@@ -104,7 +104,14 @@ class HorizontalTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
+        
+       
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        
+   
         
         return cell
     }
@@ -116,7 +123,7 @@ class HorizontalTableViewController: UITableViewController {
         
         guard let tableViewCell = cell as? HorizontalTableViewCell else { return }
         
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: (indexPath as NSIndexPath).row)
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
         tableViewCell.collectionViewOffset = storedOffsets[(indexPath as NSIndexPath).row] ?? 0
     }
     
@@ -199,6 +206,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         cells = cell as! HorizontalCollectionViewCell
         
         
+      
+        
         if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
             
         cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
@@ -221,7 +230,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+      //  print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
         
         
         
