@@ -10,7 +10,7 @@ import UIKit
 
 import AVFoundation
 
-class SlideShow: UIViewController {
+class SlideShowViewController: UIViewController {
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     

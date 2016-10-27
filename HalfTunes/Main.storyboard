@@ -157,7 +157,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa"/>
@@ -181,8 +181,7 @@
                                     <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFP-ax-umZ"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
-                                <frame key="frameInset" minY="201" width="375"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
                                 </connections>
@@ -516,14 +515,12 @@
                                                 <action selector="pauseOrResumeTapped:" destination="hjh-Pc-twj" eventType="touchUpInside" id="cuv-98-aSw"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-2W-ZQY">
-                                            <frame key="frameInset" minX="133" minY="55" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-2W-ZQY">
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvk-hz-fIc">
-                                            <frame key="frameInset" minX="13" minY="14" width="113" height="63.5"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvk-hz-fIc">
                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -698,7 +695,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2c-2J-tyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-428" y="350"/>
+            <point key="canvasLocation" x="-176" y="476"/>
         </scene>
         <!--Home-->
         <scene sceneID="LiK-Wm-ZyV">
@@ -714,7 +711,7 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             <connections>
-                                <segue destination="6MW-Qi-IGN" kind="embed" id="cXf-bT-0kl"/>
+                                <segue destination="6MW-Qi-IGN" kind="embed" id="yMg-rn-3an"/>
                             </connections>
                         </containerView>
                         <containerView key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="5SI-EU-JXy" userLabel="Featured Video View">
@@ -731,7 +728,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="AVP-Sh-0yg" userLabel="Featured Videos"/>
                     <connections>
-                        <outlet property="slideShowView" destination="yxY-I6-t7A" id="RGS-ww-w95"/>
+                        <outlet property="slideShowView" destination="yxY-I6-t7A" id="26B-A0-UTg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqM-JQ-Sd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -821,7 +818,7 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
@@ -982,10 +979,10 @@
             </objects>
             <point key="canvasLocation" x="238" y="1739"/>
         </scene>
-        <!--Slide Show-->
+        <!--Slide Show View Controller-->
         <scene sceneID="yG0-sh-0Yx">
             <objects>
-                <viewController id="6MW-Qi-IGN" customClass="SlideShow" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6MW-Qi-IGN" userLabel="Slide Show View Controller" customClass="SlideShowViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RlY-Dc-XxV"/>
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
@@ -1008,19 +1005,19 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mainScrollView" destination="h8E-MW-DGo" id="fwB-JI-Q7U"/>
+                        <outlet property="mainScrollView" destination="h8E-MW-DGo" id="9rr-u2-XR4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEU-Kz-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1153" y="-582"/>
+            <point key="canvasLocation" x="-1150" y="-586"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2bE-88-7Mo"/>
+        <segue reference="V9M-Yj-v2K"/>
         <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>
