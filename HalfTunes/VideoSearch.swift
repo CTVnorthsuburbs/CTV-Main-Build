@@ -115,6 +115,28 @@ fileprivate func search(_ savedSearchID: Int)-> [Video] {
 }
 
 
+    func trimVideos(videoArray: [Video], numberToReturn: Int) -> [Video] {
+        
+       
+        var reducedResults = [Video]()
+        
+        var count = numberToReturn
+        
+        for result in videoArray {
+            
+            
+            if (count > 0) {
+                reducedResults.append(result)
+            }
+            
+            count = count - 1
+            
+            
+        }
+     
+        return reducedResults
+   
+    }
     
     
     

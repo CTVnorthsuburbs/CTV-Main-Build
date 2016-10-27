@@ -15,6 +15,10 @@ class SlideShow: UIViewController {
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     var imageArray = [UIImage]()
+    
+     var timer : Timer?
+    
+    var timerDelay = 6.0
   
     override func viewDidLayoutSubviews() {
         
@@ -53,6 +57,50 @@ class SlideShow: UIViewController {
         
         
         
+    }
+    
+    func slideshowTick() {
+        
+        print("tick")
+        
+        let page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
+        var nextPage = page + 1
+        
+        if(nextPage >= imageArray.count) {
+            
+            
+            nextPage = 0
+        }
+        
+   print(nextPage)
+        
+        
+      //  self.mainScrollView.scrollRectToVisible(CGRect(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height ), animated:true)
+        
+        
+        self.mainScrollView.setContentOffset(CGPoint(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0), animated: true)
+        
+      //  scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: 1, height: 1), animated: true)
+        
+        
+      //  self.setCurrentPageForScrollViewPage(nextPage);
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+      timer?.invalidate()
         
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: timerDelay, target: self, selector: "slideshowTick", userInfo: nil, repeats: true)
+
+    }
+    
+    
+    
+
+    
+    
 }

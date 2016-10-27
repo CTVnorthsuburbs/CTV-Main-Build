@@ -13,7 +13,9 @@ class HorizontalTableViewCell: UITableViewCell {
     
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var seeAllLabel: UILabel!
       
+    @IBOutlet weak var sectionLabel: UILabel!
     
     
 }

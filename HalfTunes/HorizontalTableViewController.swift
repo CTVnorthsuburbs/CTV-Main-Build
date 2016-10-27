@@ -17,6 +17,7 @@ class HorizontalTableViewController: UITableViewController {
     var search = VideoSearch()
     
    
+   
     
 
     var videos = [[Video]]()
@@ -53,18 +54,20 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Featured Events")
         
-        videos.append(search.getRecent())
+        videos.append(search.trimVideos(videoArray: search.getRecent(), numberToReturn: 10))
         
       sectionTitles.append("Recent Videos")
    
         
-      videos.append(search.getHockeyLimited())
+     videos.append(search.trimVideos(videoArray: search.getHockeyLimited(), numberToReturn: 10))
         
-        sectionTitles.append("Hockey")
+        sectionTitles.append("Recent Baseball")
         
         
     }
     
+    
+    /*
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
 
@@ -73,9 +76,9 @@ class HorizontalTableViewController: UITableViewController {
         
     }
     
-    
+    */
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print("number of sections: \(videos.count)")
+        
         
         return videos.count
         
@@ -102,18 +105,18 @@ class HorizontalTableViewController: UITableViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HorizontalTableViewCell {
         
         
         
-       
+      
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? HorizontalTableViewCell
+         cell!.sectionLabel.text = sectionTitles[indexPath.section]
         
    
         
-        return cell
+        return cell!
     }
     
 
