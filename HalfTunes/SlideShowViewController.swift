@@ -20,7 +20,21 @@ class SlideShowViewController: UIViewController {
     
     var timerDelay = 6.0
   
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var titleTextLabel: UILabel!
+    
+    
+ 
+    
+    
+    
+    
     override func viewDidLayoutSubviews() {
+        
+        
+        
+        
         
         
        // super.viewDidLoad()
@@ -59,26 +73,45 @@ class SlideShowViewController: UIViewController {
         
     }
     
+
     func slideshowTick() {
         
-        print("tick")
         
-        let page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
-        var nextPage = page + 1
         
-        if(nextPage >= imageArray.count) {
+    
+        var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
+        
+        page = page + 1
+        
+        if(page == 4) {
             
             
-            nextPage = 0
+            page = 0
         }
         
-   print(nextPage)
+        
+       
+        
+        
+        var nextPage = page
+   
+     
+      
+        
+        
+    
+        
+   //print(nextPage)
         
         
       //  self.mainScrollView.scrollRectToVisible(CGRect(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height ), animated:true)
         
         
         self.mainScrollView.setContentOffset(CGPoint(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0), animated: true)
+        
+        
+    
+      
         
       //  scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: 1, height: 1), animated: true)
         
