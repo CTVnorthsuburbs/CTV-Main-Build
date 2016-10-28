@@ -64,6 +64,8 @@ class HorizontalTableViewController: UITableViewController {
         sectionTitles.append("Recent Baseball")
         
         
+  
+        
     }
     
     
@@ -109,14 +111,38 @@ class HorizontalTableViewController: UITableViewController {
         
         
         
-      
+     
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? HorizontalTableViewCell
+        if (indexPath.section == 1) {
+            
+        
+            
+            self.tableView.rowHeight = 100.0
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailCell", for: indexPath) as? HorizontalTableViewCell
+           // cell!.sectionLabel.text = sectionTitles[indexPath.section]
+            
+            
+            return cell!
+            
+            
+            
+            
+            
+        } else {
+            
+            
+             self.tableView.rowHeight = 160.0
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
          cell!.sectionLabel.text = sectionTitles[indexPath.section]
+            
+            
+            return cell!
+        
+        }
+            
         
    
-        
-        return cell!
     }
     
 
@@ -199,37 +225,75 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
-       // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
-        var cells : HorizontalCollectionViewCell
-        
-        
-        cells = cell as! HorizontalCollectionViewCell
-        
-        
-      
-        
-        if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
+  if collectionView.tag == 1  {
             
-        cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
             
-            cells.thumbnail.setRadius(radius: 4)
-            
-        cells.titleLabel.text = videos[collectionView.tag][indexPath.item].title
-            
-            cells.dateLabel.text = convertDateToString(date: videos[collectionView.tag][indexPath.item].eventDate!)
+
             
             
             
-           
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCollectionCell", for: indexPath)
+            
+            // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
+            var cells : ThumbnailButtonCell
+            
+            cells = cell as! ThumbnailButtonCell
+            
+            
+            if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
+                
+                cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
+                
+                cells.thumbnail.setRadius(radius: 4)
+                
+    
+            return cell
+            
+            
+            
             
             
         }
+    
+    
+    
+    
+    
+        }
+        
+    
+        
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionCell", for: indexPath)
+            
+            // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
+            var cells : HorizontalCollectionViewCell
+            
+            cells = cell as! HorizontalCollectionViewCell
+            
+            
+            if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
+                
+                cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
+                
+                cells.thumbnail.setRadius(radius: 4)
+                
+                cells.titleLabel.text = videos[collectionView.tag][indexPath.item].title
+                
+                cells.dateLabel.text = convertDateToString(date: videos[collectionView.tag][indexPath.item].eventDate!)
+                
+                
+           
+    }
+    
+            
+            return cell
+            
         
         
-        return cell
+     
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
