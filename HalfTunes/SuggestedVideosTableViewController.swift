@@ -168,6 +168,8 @@ class SuggestedVideosTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+      
        
         if segue.identifier == "ShowDetail" {
             
@@ -175,11 +177,12 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
+     
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? MainVideoCell {
                 
-                
+              
                 
                 let indexPath = tableView.indexPath(for: selectedVideoCell)!
                 

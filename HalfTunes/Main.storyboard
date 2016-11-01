@@ -222,13 +222,7 @@
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="top" constant="16" id="w9s-eO-O8X"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Video" id="qx4-RS-RMK">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="L5E-Mp-bGp">
-                            <connections>
-                                <action selector="cancel:" destination="BYZ-38-t0r" id="Q9j-L2-iw5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="New Video" id="qx4-RS-RMK"/>
                     <connections>
                         <outlet property="child" destination="QYm-X3-9WW" id="cJc-ey-d5B"/>
                         <outlet property="thumbnailButton" destination="Y8Q-20-O1c" id="kFc-Sx-DTj"/>
@@ -936,12 +930,12 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
-                            <rect key="frame" x="0.0" y="64" width="375" height="138"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
@@ -1161,7 +1155,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mDZ-RG-fvs"/>
-        <segue reference="yAc-d4-MEQ"/>
+        <segue reference="2bE-88-7Mo"/>
+        <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>
