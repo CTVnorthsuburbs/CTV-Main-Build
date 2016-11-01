@@ -22,6 +22,12 @@ class HorizontalTableViewController: UITableViewController {
 
     var videos = [[Video]]()
     
+    var thumbnailButtons = [ThumbnailButton]()
+    
+    
+    
+    
+    
   
     
     var sectionTitles = [String]()
@@ -54,17 +60,56 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Featured Events")
         
+        
+        
+        
         videos.append(search.trimVideos(videoArray: search.getRecent(), numberToReturn: 10))
         
       sectionTitles.append("Recent Videos")
+    
    
+        
         
      videos.append(search.trimVideos(videoArray: search.getHockeyLimited(), numberToReturn: 10))
         
         sectionTitles.append("Recent Baseball")
         
         
+        
+        videos.append(search.trimVideos(videoArray: search.getNSB(), numberToReturn: 10))
+        
+        sectionTitles.append("Local News")
+        
+        
+        
+        videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
+        
+        sectionTitles.append("Basketball Season")
+        
+        
+        
+        
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: Category.hockey))
+        
+        
+        
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: Category.hockey))
+        
+        
+         thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: Category.hockey))
+        
+         thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: Category.hockey))
+        
   
+        
+        
+        
+        
+        
+        
+        
+        
+ // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
         
     }
     
@@ -216,8 +261,15 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        
+        if(collectionView.tag == 1) {
+            
+            
+            return thumbnailButtons.count
+        }
         return videos[collectionView.tag].count
+        
+        
+        
     }
     
     
@@ -240,21 +292,32 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             cells = cell as! ThumbnailButtonCell
             
-            
-            if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
-                
-                cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
-                
-                cells.thumbnail.setRadius(radius: 4)
+    
                 
     
-            return cell
+                    
+                    
+                     cells.thumbnail.image = thumbnailButtons[indexPath.row].thumbnail
+                    
+                      cells.thumbnail.setRadius(radius: 4)
+                    
+                    
+                        return cells
+                
+                
+        
+                
+                
+               // cells.thumbnail.setRadius(radius: 4)
+                
+    
+           // return cell
             
             
             
             
             
-        }
+    
     
     
     

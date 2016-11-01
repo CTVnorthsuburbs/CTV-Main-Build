@@ -120,9 +120,9 @@
     fileprivate func customizeAppearance() {
         window?.tintColor = tintColor
         UISearchBar.appearance().barTintColor = tintColor
-        UINavigationBar.appearance().barTintColor = tintColor
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+       // UINavigationBar.appearance().barTintColor = tintColor
+       // UINavigationBar.appearance().tintColor = UIColor.white
+       // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
     }
  }
  

@@ -33,7 +33,7 @@ fileprivate var searchResults = [Video]()
 
 // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
-let arrayLength = 50
+let arrayLength = 55
 
 /// Creates the NSURL session necessary to download content from remote URL.
     
@@ -198,7 +198,11 @@ fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
         
     
             
-            tempArray = Array(idArray[position + 1...position + range])
+          //  tempArray = Array(idArray[position...position + range])
+            
+            
+             tempArray = Array(idArray[position + 1...position + range])
+            
         }
         
         
@@ -317,6 +321,34 @@ func getRecent() -> [Video] {
         return searchResults
         
     }
+    
+    
+    
+    
+    func getBasketball() -> [Video] {
+        
+        search(66589)
+        
+        
+        
+        return searchResults
+        
+    }
+    
+    
+
+    
+    
+    func getNSB() -> [Video] {
+        
+        search(66603)
+        
+        
+        
+        return searchResults
+        
+    }
+    
 
 
 /// getSport() accepts a String Keyword that is passed as a search parameter.

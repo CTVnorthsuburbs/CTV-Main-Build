@@ -169,14 +169,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
-                                <rect key="frame" x="20" y="16" width="344" height="194"/>
+                                <rect key="frame" x="20" y="80" width="344" height="194"/>
                             </stackView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="202"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -189,7 +189,7 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Q-20-O1c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="202"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="202" id="Nxj-0b-aB5"/>
                                 </constraints>
@@ -204,7 +204,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Y8Q-20-O1c" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" constant="-20" id="3mT-yE-g62"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="201" id="3zP-6I-dMA"/>
@@ -261,9 +261,12 @@
             <objects>
                 <navigationController id="2b5-yv-vK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="featured" id="DH8-cD-YPT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vUW-7Z-693">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="vUW-7Z-693">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="mBe-2v-0ic" kind="relationship" relationship="rootViewController" id="TXt-fy-oKE"/>
@@ -277,13 +280,12 @@
         <scene sceneID="7je-2f-DnQ">
             <objects>
                 <tabBarController id="Vlo-aP-QO0" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="rOF-rp-xmt">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="rOF-rp-xmt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                        <color key="barTintColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.92156862745098034" green="0.52549019607843139" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="2b5-yv-vK7" kind="relationship" relationship="viewControllers" id="sHm-jz-3ZM"/>
@@ -848,9 +850,12 @@
             <objects>
                 <navigationController title="My Videos" id="ORE-BY-ojh" userLabel="My Videos" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="MRj-x4-S27" userLabel="My Videos"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WQE-nC-7wq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WQE-nC-7wq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="OKr-i4-2ts" kind="relationship" relationship="rootViewController" id="Ffy-K3-Z8u"/>
@@ -928,7 +933,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
                             <rect key="frame" x="0.0" y="64" width="375" height="138"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -936,7 +942,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
                                     <rect key="frame" x="8" y="25" width="359" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-Dp-JWl">
@@ -945,13 +951,13 @@
                                         <constraint firstAttribute="width" constant="121" id="Uf9-MY-M2T"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-Zv-VlL">
                                     <rect key="frame" x="8" y="72" width="288" height="13.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIR-Vs-heM">
@@ -960,13 +966,26 @@
                                         <constraint firstAttribute="width" constant="98" id="hsO-qE-mHZ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <state key="normal" title="+ Add"/>
+                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="+ Add">
+                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="selected">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="focused">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
                                         <action selector="addVideoPressed:" destination="fDR-0I-hgL" eventType="touchUpInside" id="0Ff-7l-wCd"/>
                                     </connections>
                                 </button>
                                 <progressView hidden="YES" opaque="NO" tag="40" contentMode="scaleToFill" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZT-cd-wDS">
                                     <rect key="frame" x="79" y="128" width="217" height="2"/>
+                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="217" id="MlT-xA-KUK"/>
                                         <constraint firstAttribute="height" constant="2" id="pzP-cp-igF"/>
@@ -975,7 +994,9 @@
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4o-Cn-Lid" userLabel="Cancel Button">
                                     <rect key="frame" x="301" y="106" width="34" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Cancel">
+                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -983,7 +1004,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="jX8-Dp-JWl" firstAttribute="leading" secondItem="ocX-Zv-VlL" secondAttribute="leading" id="0wM-mM-Zcw"/>
                                 <constraint firstItem="SZT-cd-wDS" firstAttribute="leading" secondItem="IgG-1h-fRX" secondAttribute="leadingMargin" constant="71" id="3w7-Ek-SGY"/>
@@ -1012,7 +1033,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-QN-Cs2" userLabel="Title Label">
                                             <rect key="frame" x="340" y="8" width="0.0" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="5um-VE-cb3">
@@ -1031,10 +1052,11 @@
                                                 <constraint firstAttribute="width" constant="74" id="TzR-7o-BXF"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="7Aq-QN-Cs2" secondAttribute="trailing" constant="27" id="3cT-eg-nG6"/>
                                         <constraint firstItem="ZNC-Po-KZt" firstAttribute="leading" secondItem="7Aq-QN-Cs2" secondAttribute="leading" id="O1G-H9-Afw"/>
@@ -1134,7 +1156,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V9M-Yj-v2K"/>
+        <segue reference="mDZ-RG-fvs"/>
         <segue reference="yAc-d4-MEQ"/>
     </inferredMetricsTieBreakers>
 </document>
