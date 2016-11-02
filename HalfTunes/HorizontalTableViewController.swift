@@ -12,7 +12,7 @@ class HorizontalTableViewController: UITableViewController {
     
     
  
-    var storedOffsets = [Int: CGFloat]()
+   // var storedOffsets = [Int: CGFloat]()
     
     var search = VideoSearch()
     
@@ -54,6 +54,10 @@ class HorizontalTableViewController: UITableViewController {
     @IBOutlet weak var tableCollection: UICollectionView!
     
     override func viewDidLoad() {
+        
+ 
+        
+        
         
         
         videos.append(search.getRecentLimited())
@@ -136,7 +140,6 @@ class HorizontalTableViewController: UITableViewController {
     
 
 
-
  
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,7 +158,7 @@ class HorizontalTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HorizontalTableViewCell {
         
         
-        
+     
      
         
         if (indexPath.section == 1) {
@@ -181,7 +184,9 @@ class HorizontalTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
          cell!.sectionLabel.text = sectionTitles[indexPath.section]
             
-            
+
+         
+ 
             return cell!
         
         }
@@ -193,19 +198,23 @@ class HorizontalTableViewController: UITableViewController {
 
     
     
+    
+    
+ 
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? HorizontalTableViewCell else { return }
         
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
-        tableViewCell.collectionViewOffset = storedOffsets[(indexPath as NSIndexPath).row] ?? 0
+       
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? HorizontalTableViewCell else { return }
         
-        storedOffsets[(indexPath as NSIndexPath).row] = tableViewCell.collectionViewOffset
+       
     }
     
     
@@ -251,11 +260,46 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
+        if segue.identifier == "seeAll" {
+            
+
+            if let destination = segue.destination as? CategoryTableViewController {
+                
+           
+                let indexPath : IndexPath
+                if let button = sender as? UIButton {
+                    let cell = button.superview?.superview as! UITableViewCell
+                    indexPath = self.tableView.indexPath(for: cell)!
+                    
+                    
+                      
+                    
+                    
+                    destination.title = sectionTitles[indexPath.section]
+                    
+                    destination.category = Category.recent
+                    
+                    
+                }
+                
+                
+            
+                
+                
+                
+                
+                
+            
+            }
+        
+        
+        }
     }
-    
-    
-    
 }
+
+    
+    
+
 
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

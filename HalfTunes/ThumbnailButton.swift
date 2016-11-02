@@ -11,15 +11,14 @@ import Foundation
 import UIKit
 
 
-enum Category: String {
+enum Category: Int {
     
-    case recent
+    case recent = 52966
     
-    case baseball
+    case baseball = 66589
+    case hockey = 65797
     
-    case hockey
-    
-    case nsb
+    case nsb = 66603
     
     
     
