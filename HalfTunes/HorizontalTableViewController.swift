@@ -33,6 +33,10 @@ class HorizontalTableViewController: UITableViewController {
     var sectionTitles = [String]()
     
     
+    var sectionSearchCategories = [Category]()
+    
+    
+    
     
     
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
@@ -64,6 +68,7 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Featured Events")
         
+        sectionSearchCategories.append(Category.recent)
         
         
         
@@ -71,12 +76,15 @@ class HorizontalTableViewController: UITableViewController {
         
       sectionTitles.append("Recent Videos")
     
+        sectionSearchCategories.append(Category.recent)
    
         
         
-     videos.append(search.trimVideos(videoArray: search.getHockeyLimited(), numberToReturn: 10))
+     videos.append(search.trimVideos(videoArray: search.search(67200) , numberToReturn: 10))
         
         sectionTitles.append("Recent Baseball")
+        
+        sectionSearchCategories.append(Category.baseball)
         
         
         
@@ -84,11 +92,15 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Local News")
         
+        sectionSearchCategories.append(Category.nsb)
+        
         
         
         videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
         
         sectionTitles.append("Basketball Season")
+        
+        sectionSearchCategories.append(Category.basketball)
         
         
         
@@ -277,7 +289,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     destination.title = sectionTitles[indexPath.section]
                     
-                    destination.category = Category.recent
+                    destination.category = sectionSearchCategories[indexPath.section]
                     
                     
                 }

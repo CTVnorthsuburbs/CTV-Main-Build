@@ -22,6 +22,29 @@ import UIKit
     - Finally the results are appended to the searchResults Video Array and this is returned to the orignal calling function getRecent().
 */
 
+
+
+enum Category: Int {
+    
+    case recent = 52966
+    
+    case baseball = 67200
+   // case baseball = 65794
+    case hockey = 65797
+    
+    case basketball = 67204
+    
+    case nsb = 66603
+    
+    
+    
+    
+    
+}
+
+
+
+
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
 fileprivate var searchResults = [Video]()
@@ -52,7 +75,7 @@ fileprivate func getNSURLSession() -> URLSession {
 - parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
 */
     
-fileprivate func search(_ savedSearchID: Int)-> [Video] {
+ func search(_ savedSearchID: Int)-> [Video] {
     
     searchResults.removeAll()
     

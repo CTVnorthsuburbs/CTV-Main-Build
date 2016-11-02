@@ -11,20 +11,7 @@ import Foundation
 import UIKit
 
 
-enum Category: Int {
-    
-    case recent = 52966
-    
-    case baseball = 66589
-    case hockey = 65797
-    
-    case nsb = 66603
-    
-    
-    
-    
-    
-}
+
 
 class ThumbnailButton {
     

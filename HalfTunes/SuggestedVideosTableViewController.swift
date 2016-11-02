@@ -9,6 +9,9 @@
 import UIKit
 
 class SuggestedVideosTableViewController: UITableViewController {
+    
+    
+    
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var dateLabel: UILabel!
