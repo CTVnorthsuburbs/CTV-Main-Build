@@ -20,6 +20,7 @@
 		8D5109B11D3931DD00CFFDAC /* MyVideosSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B01D3931DD00CFFDAC /* MyVideosSearchViewController.swift */; };
 		8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */; };
 		8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */; };
+		8D57BA3D1DCB8EC9008AFF0D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */; };
 		8D60652E1D95777C00D45F3F /* MyVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */; };
 		8D63F29A1D64B22900689693 /* VideoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2991D64B22900689693 /* VideoSearch.swift */; };
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
@@ -57,6 +58,7 @@
 		8D5109B01D3931DD00CFFDAC /* MyVideosSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVideosSearchViewController.swift; sourceTree = "<group>"; };
 		8D5109B21D3936FC00CFFDAC /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllVideosResultControllerView.swift; sourceTree = "<group>"; };
+		8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVideosViewController.swift; sourceTree = "<group>"; };
 		8D63F2991D64B22900689693 /* VideoSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSearch.swift; sourceTree = "<group>"; };
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				8D9CE6461DBA5A02008F9EA0 /* HorizontalCollectionViewCell.swift */,
 				8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */,
 				8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */,
+				8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */,
 			);
 			name = "Featured Videos";
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				8D9CE6471DBA5A02008F9EA0 /* HorizontalCollectionViewCell.swift in Sources */,
 				8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */,
 				8D9CE6411DBA4FD2008F9EA0 /* HorizontalTableViewCell.swift in Sources */,
+				8D57BA3D1DCB8EC9008AFF0D /* CategoryViewController.swift in Sources */,
 				8DB606991D303934005029DB /* Gloss.swift in Sources */,
 				8DB606971D303934005029DB /* Dictionary.swift in Sources */,
 				8D399C2A1DBFA2F2006C536E /* SlideShowViewController.swift in Sources */,

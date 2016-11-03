@@ -89,17 +89,24 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+       
         
+        
+  
         
         super.viewDidLoad()
         
         
-        
-        recommendedVideos = search.search(category.rawValue )
-        
+    
         
         
-        myVideos = recommendedVideos
+  
+        
+    //    recommendedVideos = search.search(category.rawValue )
+        
+        
+        
+     //   myVideos = recommendedVideos
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -115,9 +122,12 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        if (recommendedVideos.count == 0) {
+        recommendedVideos = search.search(category.rawValue )
         
         
-        
+        }
+        myVideos = recommendedVideos
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,7 +137,40 @@ class CategoryTableViewController: UITableViewController {
     
     
     
+    func releaseDateOrder() {
+        
+  //  let sortedMovies = myVideos.sort { $0.title < $1.title }
+        
+        
+        
+        
+        let sortedVideos: [Video] = myVideos.sorted { $0.eventDate! > $1.eventDate! }
+        
+        
+            recommendedVideos = sortedVideos
     
+        myVideos = sortedVideos
+        
+        self.tableView.reloadData()
+        
+        
+        
+    }
+    
+    
+    func nameOrder() {
+        
+        
+        
+        let sortedVideos: [Video] = myVideos.sorted { $0.title! < $1.title! }
+        
+        recommendedVideos = sortedVideos
+          myVideos = sortedVideos
+
+        self.tableView.reloadData()
+        
+        
+    }
     
     // MARK: - Table view data source
     

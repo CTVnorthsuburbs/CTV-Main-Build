@@ -119,6 +119,12 @@ class HorizontalTableViewController: UITableViewController {
   
         
         
+        videos.append(search.trimVideos(videoArray: search.search(67318), numberToReturn: 10))
+        
+        sectionTitles.append("Concerts")
+        
+        sectionSearchCategories.append(Category.concerts)
+        
         
         
         
@@ -233,6 +239,12 @@ class HorizontalTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
+        
+      
+        
+        
         if segue.identifier == "ShowDetail" {
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
@@ -275,7 +287,7 @@ class HorizontalTableViewController: UITableViewController {
         if segue.identifier == "seeAll" {
             
 
-            if let destination = segue.destination as? CategoryTableViewController {
+            if let destination = segue.destination as? CategoryViewController {
                 
            
                 let indexPath : IndexPath
@@ -286,6 +298,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                       
                     
+                 
                     
                     destination.title = sectionTitles[indexPath.section]
                     
