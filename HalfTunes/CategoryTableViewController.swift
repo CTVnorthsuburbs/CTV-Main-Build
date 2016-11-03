@@ -21,6 +21,7 @@ class CategoryTableViewController: UITableViewController {
     var category: Category = Category.hockey
     
     
+ 
     
     
    
@@ -384,6 +385,13 @@ extension CategoryTableViewController: URLSessionDownloadDelegate {
             
         }
         
+    }
+    
+}
+extension CategoryTableViewController: UIToolbarDelegate {
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
     
 }

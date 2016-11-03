@@ -106,6 +106,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
          _ = self.downloadsSession
       //  self.filtered = self.myVideos
         
+      
         
      
     }
