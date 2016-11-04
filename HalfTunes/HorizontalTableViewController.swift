@@ -22,7 +22,7 @@ class HorizontalTableViewController: UITableViewController {
 
     var videos = [[Video]]()
     
-    var thumbnailButtons = [ThumbnailButton]()
+    var thumbnailButtons : [[ThumbnailButton]] = [[],[]]
     
     
     
@@ -88,6 +88,11 @@ class HorizontalTableViewController: UITableViewController {
         
         
         
+         sectionTitles.append("Browse by Sport")
+        
+        
+        
+        
         videos.append(search.trimVideos(videoArray: search.getNSB(), numberToReturn: 10))
         
         sectionTitles.append("Local News")
@@ -104,19 +109,44 @@ class HorizontalTableViewController: UITableViewController {
         
         
         
-        
-        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: Category.hockey))
-        
+        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: Category.hockey))
         
         
-        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: Category.hockey))
+        
+        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: Category.hockey))
         
         
-         thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: Category.hockey))
+         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: Category.hockey))
         
-         thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: Category.hockey))
+         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: Category.hockey))
+        
+        
+        
+        
+        
+        
         
   
+          thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: Category.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: Category.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: Category.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: Category.hockey))
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: Category.hockey))
+        
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: Category.hockey))
+        
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: Category.hockey))
+
+        
+        
+        
         
         
         videos.append(search.trimVideos(videoArray: search.search(67318), numberToReturn: 10))
@@ -194,10 +224,31 @@ class HorizontalTableViewController: UITableViewController {
             
             
             
-        } else {
+        }
+        
+        if (indexPath.section == 3) {
             
             
-             self.tableView.rowHeight = 160.0
+            
+            self.tableView.rowHeight = 120.0
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailTitleCell", for: indexPath) as? HorizontalTableViewCell
+             cell!.sectionLabel.text = sectionTitles[indexPath.section]
+            
+            
+            return cell!
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        else {
+            
+            
+             self.tableView.rowHeight = 165.0
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
          cell!.sectionLabel.text = sectionTitles[indexPath.section]
@@ -333,8 +384,20 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         if(collectionView.tag == 1) {
             
             
-            return thumbnailButtons.count
+            return thumbnailButtons[0].count
         }
+        
+        
+        if(collectionView.tag == 3) {
+            
+            
+            return thumbnailButtons[1].count
+        }
+        
+        
+        
+        
+        
         return videos[collectionView.tag].count
         
         
@@ -346,12 +409,31 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-  if collectionView.tag == 1  {
-            
+  if (collectionView.tag == 1)  {
             
 
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCollectionCell", for: indexPath)
             
+            // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
+            var cells : ThumbnailButtonCell
             
+            cells = cell as! ThumbnailButtonCell
+  
+                     cells.thumbnail.image = thumbnailButtons[0][indexPath.row].thumbnail
+                    
+                      cells.thumbnail.setRadius(radius: 4)
+                    
+                    
+                        return cells
+ 
+               // cells.thumbnail.setRadius(radius: 4)
+                
+    
+           // return cell
+   
+        }
+        
+        if (collectionView.tag == 3)  {
             
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCollectionCell", for: indexPath)
@@ -361,38 +443,21 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             cells = cell as! ThumbnailButtonCell
             
-    
-                
-    
-                    
-                    
-                     cells.thumbnail.image = thumbnailButtons[indexPath.row].thumbnail
-                    
-                      cells.thumbnail.setRadius(radius: 4)
-                    
-                    
-                        return cells
-                
-                
-        
-                
-                
-               // cells.thumbnail.setRadius(radius: 4)
-                
-    
-           // return cell
+            cells.thumbnail.image = thumbnailButtons[1][indexPath.row].thumbnail
+            
+            cells.thumbnail.setRadius(radius: 4)
             
             
+            return cells
+            
+            // cells.thumbnail.setRadius(radius: 4)
             
             
+            // return cell
             
-    
-    
-    
-    
-    
-    
         }
+        
+        
         
     
         
