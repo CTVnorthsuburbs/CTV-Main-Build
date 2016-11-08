@@ -11,6 +11,10 @@ import Foundation
 
 import UIKit
 
+
+
+var imageRadius: CGFloat = 3.5
+
 func generateRandomData() -> [[UIColor]] {
     let numberOfRows = 20
     let numberOfItemsPerRow = 15

@@ -421,7 +421,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
   
                      cells.thumbnail.image = thumbnailButtons[0][indexPath.row].thumbnail
                     
-                      cells.thumbnail.setRadius(radius: 4)
+                      cells.thumbnail.setRadius(radius: imageRadius)
                     
                     
                         return cells
@@ -445,7 +445,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             cells.thumbnail.image = thumbnailButtons[1][indexPath.row].thumbnail
             
-            cells.thumbnail.setRadius(radius: 4)
+            cells.thumbnail.setRadius(radius: imageRadius)
             
             
             return cells
@@ -474,7 +474,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
                 
-                cells.thumbnail.setRadius(radius: 4)
+                cells.thumbnail.setRadius(radius: imageRadius)
                 
                 cells.titleLabel.text = videos[collectionView.tag][indexPath.item].title
                 

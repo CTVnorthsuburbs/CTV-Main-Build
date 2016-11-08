@@ -26,6 +26,8 @@
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
 		8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */; };
 		8D6B2D091DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B2D081DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift */; };
+		8D90BBE31DD2262F007B4C76 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90BBE21DD2262F007B4C76 /* CategoriesTableViewController.swift */; };
+		8D90BBE51DD22CD4007B4C76 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90BBE41DD22CD4007B4C76 /* CategoriesTableViewCell.swift */; };
 		8D9CE63F1DBA4D31008F9EA0 /* HorizontalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CE63E1DBA4D31008F9EA0 /* HorizontalTableViewController.swift */; };
 		8D9CE6411DBA4FD2008F9EA0 /* HorizontalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CE6401DBA4FD2008F9EA0 /* HorizontalTableViewCell.swift */; };
 		8D9CE6431DBA5595008F9EA0 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CE6421DBA5595008F9EA0 /* helpers.swift */; };
@@ -64,6 +66,8 @@
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		8D6B2D081DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedVideosTableViewController.swift; sourceTree = "<group>"; };
+		8D90BBE21DD2262F007B4C76 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		8D90BBE41DD22CD4007B4C76 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		8D9CE63E1DBA4D31008F9EA0 /* HorizontalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalTableViewController.swift; sourceTree = "<group>"; };
 		8D9CE6401DBA4FD2008F9EA0 /* HorizontalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalTableViewCell.swift; sourceTree = "<group>"; };
 		8D9CE6421DBA5595008F9EA0 /* helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */,
 				8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */,
 				8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */,
+				8D90BBE21DD2262F007B4C76 /* CategoriesTableViewController.swift */,
+				8D90BBE41DD22CD4007B4C76 /* CategoriesTableViewCell.swift */,
 			);
 			name = "Featured Videos";
 			sourceTree = "<group>";
@@ -313,7 +319,9 @@
 			files = (
 				D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */,
 				8DB606981D303934005029DB /* Encoder.swift in Sources */,
+				8D90BBE51DD22CD4007B4C76 /* CategoriesTableViewCell.swift in Sources */,
 				8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */,
+				8D90BBE31DD2262F007B4C76 /* CategoriesTableViewController.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				8DB4DA321DC2751900AD980B /* ThumbnailButtonCell.swift in Sources */,
 				8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */,

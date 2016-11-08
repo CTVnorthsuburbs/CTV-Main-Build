@@ -151,7 +151,7 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         cell.thumbnailView.image = video!.thumbnail
         
-         cell.thumbnailView.setRadius(radius: 4)
+         cell.thumbnailView.setRadius(radius: imageRadius)
         
         var showDownloadControls = false
         

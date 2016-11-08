@@ -30,7 +30,7 @@ enum Category: Int {
     
     case baseball = 67200
    // case baseball = 65794
-    case hockey = 65797
+    case hockey = 65794
     
     case basketball = 67204
     
@@ -139,6 +139,75 @@ fileprivate func getNSURLSession() -> URLSession {
     return searchResults
 }
 
+    
+    func searchForSingle(_ savedSearchID: Int)-> [Video] {
+        
+        searchResults.removeAll()
+        
+        
+        let session = getNSURLSession()
+        
+        let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
+        
+        let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
+        
+        if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
+            
+            let splitResults = splitIdArray(results!)
+            
+            
+            
+            if (splitResults != nil) {
+                
+                
+                
+                var searchURLs = [URL]()
+                
+                var counter = 0
+                
+                
+                
+                for splitArray in splitResults! {
+                    
+                    let searchURL = convertIdArrayToSearchURL(splitArray)
+                    
+                    
+                    
+                    searchURLs.append(searchURL!)
+                    
+                    counter = counter + 1
+                    
+                }
+                
+                for url in searchURLs {
+                    
+                    getSearchResults(session, url: url, isIDSearchURL: true)
+                    
+                }
+                
+            } }
+            
+            
+        else {        //if array is smaller than maximum, just process it
+            
+            let searchIdURL =  convertIdArrayToSearchURL(results!)
+            
+            
+            getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
+            
+        }
+        
+        
+        var result = trimVideos(videoArray: searchResults, numberToReturn: 1)
+        
+        return result
+    }
+    
+    
+    
+    
+    
+    
 
     func trimVideos(videoArray: [Video], numberToReturn: Int) -> [Video] {
         
