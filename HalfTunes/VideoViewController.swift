@@ -48,6 +48,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
   
     
     
+    let playerViewController = YourVideoPlayer()
+    
     var moviePlayer : AVPlayer?
     
     var video: Video?
@@ -109,10 +111,39 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     
+
+    
+    
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.thumbnailButton.isHidden = false
+        
+        
+        
+        playerViewController.player?.pause()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.shouldRotate = false // or false to disable rotation
+        
+        
+        
+        
+    }
+    
+    
+    
+ 
+        
+        
+        
+        
+        
     override func viewDidLoad() {
         
         
       
+
         
         var search = VideoSearch()
         
@@ -472,18 +503,49 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
                 
+                
+                
+           
+                
+                
+                
                 let fileUrl = URL(string: urlString)
                 
                 let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
                 
-                let playerViewController = AVPlayerViewController()
+                
+          
                 
                 playerViewController.player = moviePlayer
+                 
+                 
+                 self.addChildViewController(playerViewController)
+                 self.thumbnailView.addSubview(playerViewController.view)
+                 playerViewController.view.frame = self.thumbnailView.bounds
+                 
+                playerViewController.allowsPictureInPicturePlayback = true
                 
-                self.present(playerViewController, animated: true) {
-                    
+                playerViewController.showsPlaybackControls = true
+                
+                
+             
+                
+                
+             
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+             //  let value = UIInterfaceOrientation.portrait.rawValue
+             // UIDevice.current.setValue(value, forKey: "orientation")
+              
+                
+             
+         
+                   self.thumbnailButton.isHidden = true
                     playerViewController.player!.play()
-                }
+                
+             //  appDelegate.shouldRotate = true // or false to disable rotation
+                
+
                 
             }
             
@@ -497,9 +559,18 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+
+    
+    
     func playDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
+            
+        
+            
+            
+        
+            
             
             let moviePlayer:AVPlayer! = AVPlayer(url: url)
             
@@ -512,6 +583,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.present(playerViewController, animated: true) {
                 playerViewController.player!.play()
             }
+ 
+ 
+ 
             
         }
         
@@ -771,10 +845,34 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
 
 
+class YourVideoPlayer: AVPlayerViewController {
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if view.bounds == contentOverlayView?.bounds {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.shouldRotate = false
+            
+            
+        } else {
+            
+            
+          //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.shouldRotate = true // or false to disable rotation
+      
+
+        }
+}
 
 
 
-
+}
 
 
 

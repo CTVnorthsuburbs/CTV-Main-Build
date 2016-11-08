@@ -113,6 +113,29 @@
             }
         }
     }
+    
+    
+    var shouldRotate = false
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if shouldRotate {
+            return .allButUpsideDown
+        }
+        else {
+            return .portrait
+        }
+    }
+    
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        guard let vc = (window?.rootViewController?.presentedViewController) else {
+            return .portrait
+        }
+       
+        if (vc.isKind(of: NSClassFromString("AVFullScreenViewController")!)) {
+            return .allButUpsideDown
+        }
+        
+        return .portrait
+    }
 
     
     // MARK - App Theme Customization
