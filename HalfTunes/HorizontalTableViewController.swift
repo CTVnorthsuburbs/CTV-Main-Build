@@ -494,7 +494,23 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      //  print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+      // print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+        if(collectionView.tag == 1 && indexPath.row == 0) {
+            
+            let viewController:CategoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Category") as! CategoriesViewController
+            // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+            
+            var parent = self.parent as! MainTableViewController
+            
+            
+            viewController.category = parent.currentCategory
+         
+            
+            self.present(viewController, animated: true, completion: nil)
+        }
+        
+        
         
         
         

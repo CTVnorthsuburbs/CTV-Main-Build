@@ -219,7 +219,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="887"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
@@ -290,9 +290,10 @@
             <objects>
                 <navigationController id="2b5-yv-vK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="featured" id="DH8-cD-YPT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vUW-7Z-693">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="vUW-7Z-693">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -344,6 +345,7 @@
                                     <segment title="All Videos"/>
                                     <segment title="My Videos"/>
                                 </segments>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="indexChanged:" destination="IWB-if-PBU" eventType="valueChanged" id="zoS-cC-Xz3"/>
                                 </connections>
@@ -384,21 +386,27 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bss-Jy-A6a">
                                         <rect key="frame" x="132" y="90" width="112" height="30"/>
-                                        <state key="normal" title="Hockey"/>
+                                        <state key="normal" title="Hockey">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="oIK-3u-rXu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXY-Lf-FCQ">
                                         <rect key="frame" x="132" y="134" width="112" height="30"/>
-                                        <state key="normal" title="RAHS"/>
+                                        <state key="normal" title="RAHS">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="4ue-Bn-5Ym"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-CZ-1gh">
                                         <rect key="frame" x="132" y="178" width="112" height="30"/>
-                                        <state key="normal" title="Boys Soccer"/>
+                                        <state key="normal" title="Boys Soccer">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="2jh-Vr-YtZ"/>
                                         </connections>
@@ -408,21 +416,27 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="112" id="62Y-DH-5w1"/>
                                         </constraints>
-                                        <state key="normal" title="Girls Swimming"/>
+                                        <state key="normal" title="Girls Swimming">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="erq-FV-4rQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FA-lF-Zuu">
                                         <rect key="frame" x="132" y="266" width="112" height="30"/>
-                                        <state key="normal" title="16-01-22"/>
+                                        <state key="normal" title="16-01-22">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="rpv-oW-eUr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04V-au-nNr">
                                         <rect key="frame" x="132" y="310" width="112" height="30"/>
-                                        <state key="normal" title="Mounds View"/>
+                                        <state key="normal" title="Mounds View">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="JQ2-cm-udD"/>
                                         </connections>
@@ -435,7 +449,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-uq-ZWE">
                                         <rect key="frame" x="132" y="46" width="112" height="30"/>
-                                        <state key="normal" title="Lacrosse"/>
+                                        <state key="normal" title="Lacrosse">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="IWB-if-PBU" eventType="touchUpInside" id="mQ5-Dz-ETq"/>
                                         </connections>
@@ -911,10 +927,10 @@
             </objects>
             <point key="canvasLocation" x="-1292" y="-287.85607196401799"/>
         </scene>
-        <!--Categories-->
+        <!--Category-->
         <scene sceneID="etM-HI-FlT">
             <objects>
-                <tableViewController id="qcd-wa-l5I" customClass="CategoriesTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Category" id="qcd-wa-l5I" customClass="CategoriesTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wkL-rU-rw6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -977,10 +993,10 @@
             </objects>
             <point key="canvasLocation" x="-2255" y="-963"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Categories View Controller-->
         <scene sceneID="495-9H-ozc">
             <objects>
-                <navigationController id="RMz-5t-zj9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Category" id="RMz-5t-zj9" customClass="CategoriesViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tyX-1y-ZDD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1300,7 +1316,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JV-cy-AUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1292" y="1013"/>
+            <point key="canvasLocation" x="-1063" y="1281"/>
         </scene>
         <!--Slide Show View Controller-->
         <scene sceneID="yG0-sh-0Yx">
@@ -1434,6 +1450,6 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V9M-Yj-v2K"/>
+        <segue reference="l6J-Ru-YsW"/>
     </inferredMetricsTieBreakers>
 </document>

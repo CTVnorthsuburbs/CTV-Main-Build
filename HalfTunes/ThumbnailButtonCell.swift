@@ -20,9 +20,7 @@ class ThumbnailButtonCell: UICollectionViewCell {
     
     
     
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var dateLabel: UILabel!
+
     
     
     
