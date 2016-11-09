@@ -13,13 +13,13 @@ class MainTableViewController: UITableViewController {
     @IBOutlet weak var slideShowView: UIView!
     
     
-    
-    
+    var currentCategory = Category.recent
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        
+       
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
         
@@ -30,6 +30,32 @@ class MainTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let search = VideoSearch()
+        
+        
+        let categories = search.getCategories()
+        
+        
+        
+        
+        for (key, value) in categories {
+            
+            
+            if (value.rawValue == currentCategory.rawValue) {
+                
+                
+                
+                self.title = key
+            }
+            
+            
+            
+        }
+     
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,15 +119,43 @@ class MainTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
+    
+    
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
+        
+        var sourceController = segue.source as! CategoriesTableViewController
+        
+  
+        self.currentCategory = sourceController.currentCategory
+        
+        
+        
+        
+    }
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        
+        if segue.identifier == "categoryPressed" {
+            
+            let destination = segue.destination as! UINavigationController
+            
+            
+            let categoryViewController = destination.viewControllers[0] as! CategoriesTableViewController
+            
+            
+            categoryViewController.currentCategory = self.currentCategory
+
+        }
+        
     }
-    */
+        
+        
+    
+
 
 }

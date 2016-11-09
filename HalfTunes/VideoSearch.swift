@@ -28,7 +28,7 @@ enum Category: Int {
     
     case recent = 52966
     
-    case baseball = 67200
+        case baseball = 67200
    // case baseball = 65794
     case hockey = 65794
     
@@ -47,7 +47,15 @@ enum Category: Int {
 
 
 
+
+
+
+
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
+    
+    
+    
+    var categories: [String: Category] = ["All Categories": Category.recent, "Hockey": Category.hockey, "Baseball": Category.baseball, "Basketball": Category.basketball, "North Suburban Beat": Category.nsb, "Concerts": Category.concerts]
     
 fileprivate var searchResults = [Video]()
     
@@ -71,6 +79,15 @@ fileprivate func getNSURLSession() -> URLSession {
     return defaultSession
     
 }
+    
+    
+    func getCategories() -> [String: Category] {
+        
+        
+        return categories
+        
+        
+    }
 
 /**
  Search returns results from saved search stored in cablecast frontdoor. The function calls the getNSURLSession, accessing the searchURL, receives the results from the API as IDs, it then parses the results array into smaller slices defined by the arrayLength Int value, and then creates new urls from these slices, that are sent to the API in order to receive the necessary Shows

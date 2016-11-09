@@ -924,7 +924,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kbm-0p-myS" id="hOs-CK-nOn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="iLb-eZ-Lb3">
@@ -969,17 +969,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="Ngb-1l-mmu" id="TRx-v8-eXo"/>
+                        <segue destination="KPC-7t-Xjn" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMenuWithSegue:" id="nPE-vv-c3d"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqZ-sQ-PH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KPC-7t-Xjn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2255.1999999999998" y="-929.68515742128943"/>
+            <point key="canvasLocation" x="-2255" y="-963"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="495-9H-ozc">
             <objects>
                 <navigationController id="RMz-5t-zj9" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="tyX-1y-ZDD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tyX-1y-ZDD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14515793323516846" green="0.1448918879032135" blue="0.15315660834312439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1029,7 +1031,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Categories" id="sCL-5L-xew">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="RMz-5t-zj9" kind="presentation" id="BCS-v2-xju"/>
+                                <segue destination="RMz-5t-zj9" kind="presentation" identifier="categoryPressed" id="14Z-g7-E6E"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1332,7 +1334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEU-Kz-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2073" y="-1411"/>
+            <point key="canvasLocation" x="-2210" y="-1620"/>
         </scene>
         <!--Category-->
         <scene sceneID="mVw-pC-H1G">

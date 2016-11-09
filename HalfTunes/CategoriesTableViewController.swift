@@ -10,12 +10,11 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
     
-    var currentCategory = Category.recent.rawValue
+    var currentCategory = Category.nsb
     
     
     
-    var categories: [String: Category] = ["All Categories": Category.recent, "Hockey": Category.hockey, "Baseball": Category.baseball, "Basketball": Category.basketball, "North Suburban Beat": Category.nsb, "Concerts": Category.concerts]
-    
+    var categories =  [String: Category]()
     
     
     var search = VideoSearch()
@@ -24,6 +23,8 @@ class CategoriesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         categories = search.getCategories()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,6 +34,7 @@ class CategoriesTableViewController: UITableViewController {
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -57,11 +59,24 @@ class CategoriesTableViewController: UITableViewController {
          self.dismiss(animated: true, completion: {})
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+         let sortedKeys = Array(self.categories.keys).sorted()
+        
+        currentCategory = categories[sortedKeys[indexPath.row]]!
+        
+     
+        
+        performSegue(withIdentifier: "unwindToMenu", sender: self)
+        
+   
+        
+        
+        
+    }
     
-    
-    
-    
-    
+
+ 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> CategoriesTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell", for: indexPath) as? CategoriesTableViewCell
 
@@ -73,6 +88,9 @@ class CategoriesTableViewController: UITableViewController {
         
         cell?.thumbnailImage.setRadius(radius: imageRadius)
         
+        
+    
+        
        //generate thumbnail in bacground
        
        
@@ -83,14 +101,23 @@ class CategoriesTableViewController: UITableViewController {
         
             let searchID = self.categories[categoryTitle]
         
+        
+        
+                    cell?.setCategory(category: Category.nsb)
+        
+        
+        
+        
+    
             
-            
-        if (searchID?.rawValue == currentCategory) {
+        if (searchID?.rawValue == currentCategory.rawValue) {
             
             cell?.categoryTitle.isHighlighted = true
             
             cell?.accessoryType = .checkmark
             
+            
+         
             
         } else {
             
@@ -138,6 +165,15 @@ class CategoriesTableViewController: UITableViewController {
         return cell!
     }
     
+    
+
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -174,14 +210,11 @@ class CategoriesTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
+    
+ 
 
 }

@@ -16,7 +16,15 @@ class CategoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     
     
+    var category = Category.recent
     
+    func setCategory(category: Category) {
+        
+        
+        self.category = category
+        
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
