@@ -18,11 +18,10 @@ class CategoryTableViewController: UITableViewController {
     
     
     
-    var category: Category = Category.hockey
+    var category: CategorySearches = CategorySearches.hockey
     
     
- 
-    
+
     
    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -97,8 +96,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
-    
-        
+  
         
   
         

@@ -8,12 +8,20 @@
 
 import UIKit
 
+
+ var category = Category()
+
 class MainTableViewController: UITableViewController {
 
     @IBOutlet weak var slideShowView: UIView!
     
     
-    var currentCategory = Category.recent
+    var currentCategory = CategorySearches.recent
+    
+   
+    
+    
+ 
     
     override func viewDidLoad() {
         
@@ -22,6 +30,16 @@ class MainTableViewController: UITableViewController {
        
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
+        
+        
+        
+      
+        
+        
+        category.createListing()
+        
+        
+  
         
         
         

@@ -21,7 +21,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UIView!
     
     
-    var category = Category.recent
+    var category = CategorySearches.recent
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     

@@ -18,6 +18,7 @@ class HorizontalTableViewController: UITableViewController {
     
    
    
+   
     
 
     var videos = [[Video]]()
@@ -33,7 +34,7 @@ class HorizontalTableViewController: UITableViewController {
     var sectionTitles = [String]()
     
     
-    var sectionSearchCategories = [Category]()
+    var sectionSearchCategories = [CategorySearches]()
     
     
     
@@ -59,7 +60,7 @@ class HorizontalTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
- 
+
         
         
         
@@ -68,7 +69,7 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Featured Events")
         
-        sectionSearchCategories.append(Category.recent)
+        sectionSearchCategories.append(CategorySearches.recent)
         
         
         
@@ -76,7 +77,7 @@ class HorizontalTableViewController: UITableViewController {
         
       sectionTitles.append("Recent Videos")
     
-        sectionSearchCategories.append(Category.recent)
+        sectionSearchCategories.append(CategorySearches.recent)
    
         
         
@@ -84,7 +85,7 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Recent Baseball")
         
-        sectionSearchCategories.append(Category.baseball)
+        sectionSearchCategories.append(CategorySearches.baseball)
         
         
         
@@ -97,7 +98,7 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Local News")
         
-        sectionSearchCategories.append(Category.nsb)
+        sectionSearchCategories.append(CategorySearches.nsb)
         
         
         
@@ -105,20 +106,20 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Basketball Season")
         
-        sectionSearchCategories.append(Category.basketball)
+        sectionSearchCategories.append(CategorySearches.basketball)
         
         
         
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: Category.hockey))
+        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: CategorySearches.hockey))
         
         
         
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: Category.hockey))
+        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: CategorySearches.hockey))
         
         
-         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: Category.hockey))
+         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: CategorySearches.hockey))
         
-         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: Category.hockey))
+         thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: CategorySearches.hockey))
         
         
         
@@ -127,22 +128,22 @@ class HorizontalTableViewController: UITableViewController {
         
         
   
-          thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: Category.hockey))
+          thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: CategorySearches.hockey))
         
         
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: Category.hockey))
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: CategorySearches.hockey))
         
         
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: Category.hockey))
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: CategorySearches.hockey))
         
         
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: Category.hockey))
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: CategorySearches.hockey))
         
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: Category.hockey))
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: CategorySearches.hockey))
         
-         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: Category.hockey))
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: CategorySearches.hockey))
         
-         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: Category.hockey))
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: CategorySearches.hockey))
 
         
         
@@ -153,7 +154,7 @@ class HorizontalTableViewController: UITableViewController {
         
         sectionTitles.append("Concerts")
         
-        sectionSearchCategories.append(Category.concerts)
+        sectionSearchCategories.append(CategorySearches.concerts)
         
         
         

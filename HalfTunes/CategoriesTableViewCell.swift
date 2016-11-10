@@ -16,9 +16,9 @@ class CategoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     
     
-    var category = Category.recent
+    var category = CategorySearches.recent
     
-    func setCategory(category: Category) {
+    func setCategory(category: CategorySearches) {
         
         
         self.category = category

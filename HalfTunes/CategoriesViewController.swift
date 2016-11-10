@@ -11,7 +11,7 @@ import UIKit
 class CategoriesViewController: UINavigationController {
     
     
-    var category = Category.recent
+    var category = CategorySearches.recent
 
     override func viewDidLoad() {
         super.viewDidLoad()

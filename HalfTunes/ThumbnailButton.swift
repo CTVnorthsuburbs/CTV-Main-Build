@@ -17,10 +17,10 @@ class ThumbnailButton {
     
     var thumbnail: UIImage
     
-    var category: Category
+    var category: CategorySearches
     
     
-    init(thumbnail: UIImage, category: Category) {
+    init(thumbnail: UIImage, category: CategorySearches) {
         
         
         self.thumbnail = thumbnail
@@ -28,23 +28,15 @@ class ThumbnailButton {
         self.category = category
         
         
-        
-        
-        
-        
+  
     }
     
     
-    convenience init?(thumbnail: String, category: Category) {
-        
-        
-        
+    convenience init?(thumbnail: String, category: CategorySearches) {
         
         var image: UIImage
         
         let escapedString = thumbnail.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
-        
-        
         
         let url = NSURL(string: escapedString! )
         
@@ -57,13 +49,9 @@ class ThumbnailButton {
             
             imageView.image = image
             
-            
-            
-            
-            
+
           self.init(thumbnail: image, category: category)
        
-        
         }
         
       return nil

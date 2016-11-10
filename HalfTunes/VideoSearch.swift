@@ -24,7 +24,7 @@ import UIKit
 
 
 
-enum Category: Int {
+enum CategorySearches: Int {
     
     case recent = 52966
     
@@ -38,12 +38,431 @@ enum Category: Int {
     
     case concerts = 67318
     
-    
-    
-    
+
     
 }
 
+
+
+enum button {
+    
+    case category
+    
+    case show
+    
+    case event
+    
+    case about
+    
+    case schedule
+    
+    case hockey
+    
+    case baseball
+    
+    case basketball
+    
+    case gymnastics
+    
+    case swimming
+    
+    case soccer
+    
+    case lacrosse
+    
+    case volleyball
+    
+    case football
+
+}
+
+enum Listing {
+    
+    case category
+    
+    case show
+    
+    case event
+    
+    case about
+    
+    case schedule
+    
+    case hockey
+    
+    case baseball
+    
+    case basketball
+    
+    case gymnastics
+    
+    case swimming
+    
+    case soccer
+    
+    case lacrosse
+    
+    case volleyball
+    
+    case football
+    
+}
+
+
+protocol CategoryFactory {
+    
+ 
+    
+    func addSlide() -> Section
+    
+ 
+    
+    func addRecentSection() -> Section
+    func addFeaturedSection() -> Section
+    
+    func addRecentBoysSection() -> Section
+    
+    func addRecentGirlsSection() -> Section
+    
+    func addPopularSection() -> Section
+    
+    func addButtons() -> Section
+ 
+    
+}
+
+class hockeyFactory: CategoryFactory {
+    
+    
+    /*
+ 
+ class Section {
+ 
+ var sectionType: SectionType
+ 
+ var sectionTitle: String?
+ 
+ var searchID: Int?
+ 
+ var videoList: [Int]?
+ 
+ var buttons: [button]?
+ 
+ init(sectionType: SectionType) {
+ 
+ self.sectionType = sectionType
+ 
+ }
+ 
+ }
+ 
+ 
+ */
+    
+    
+    
+ 
+    internal func addPopularSection() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Popular Hockey Videos"
+        
+        let searchID = 68483
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+    }
+
+    internal func addRecentGirlsSection() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Girls Hockey Games"
+        
+        let searchID = 68489
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+        
+    }
+
+    internal func addRecentBoysSection() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Boys Hockey Games"
+        
+        let searchID = 68492
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+    }
+
+    internal func addFeaturedSection() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Featured Hockey Videos"
+        
+        let searchID = 65794
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+    }
+
+    internal func addRecentSection() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Recent Hockey Videos"
+        
+        let searchID = 65794
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+    }
+    
+    internal func addButtons() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Recent Girls Hockey Games"
+        
+        let searchID = 68489
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+    }
+
+
+
+    internal func addSlide() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = "Recent Girls Hockey Games"
+        
+        let searchID = 68489
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [button]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        
+        return section
+        
+    }
+    
+}
+
+
+class Category: CategoryListing {
+  
+ 
+    var categoryFactory: CategoryFactory
+
+    
+    
+    var sections = [Section]()
+    
+    
+    required init() {
+        
+        categoryFactory = hockeyFactory()
+        
+        
+       
+        
+    }
+    
+    
+    func createListing() {
+        
+        createFeaturedSection()
+        
+        createPopularSection()
+        
+        createRecentBoysSection()
+        
+        createRecentGirlsSection()
+        
+   
+    }
+    
+    func createFeaturedSection() {
+        
+        sections.append(categoryFactory.addFeaturedSection())
+        
+    
+
+    }
+    
+    func createSlider() {
+        
+        sections.append(categoryFactory.addSlide())
+        
+
+        
+    }
+    
+    func createRecentSection() {
+        
+        sections.append(categoryFactory.addRecentSection())
+        
+   
+    
+        
+    }
+    
+    func createRecentBoysSection() {
+        
+        sections.append(categoryFactory.addRecentBoysSection())
+        
+ 
+        
+    }
+    
+    func createRecentGirlsSection() {
+        
+        sections.append(categoryFactory.addRecentGirlsSection())
+        
+      
+        
+    }
+    
+    func createPopularSection() {
+        
+        sections.append(categoryFactory.addPopularSection())
+        
+        
+        
+    }
+    
+    func createSpecificSection() {
+        
+        
+        
+       
+        
+    }
+    
+    func createSpecificSearchSection() {
+        
+      //  sectionSearches.append()
+        
+        
+    }
+    
+    
+
+    
+    func getSection(row: Int) -> Section {
+        
+        return sections[row]
+        
+    }
+
+}
+
+class Section {
+    
+    var sectionType: SectionType
+    
+    var sectionTitle: String?
+    
+    var searchID: Int?
+    
+    var videoList: [Int]?
+    
+    var buttons: [button]?
+    
+    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [button]?) {
+        
+        self.sectionType = sectionType
+        
+        self.sectionTitle = sectionTitle
+        
+        self.searchID = searchID
+        
+        self.videoList = videoList
+        
+        self.buttons = buttons
+        
+    }
+
+
+}
+
+enum SectionType {
+    
+    case buttonNoTitle
+    
+    case videoList
+    
+    case buttonWithTitle
+    
+    case slider
+    
+    case specificVideoList
+    
+}
+
+
+protocol CategoryListing {
+    
+ 
+    
+   
+    
+    var categoryFactory: CategoryFactory {get set}
+    
+ 
+ 
+    
+
+        
+        
+        
+        
+}
+    
 
 
 
@@ -55,7 +474,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     
-    var categories: [String: Category] = ["All Categories": Category.recent, "Hockey": Category.hockey, "Baseball": Category.baseball, "Basketball": Category.basketball, "North Suburban Beat": Category.nsb, "Concerts": Category.concerts]
+    var categories: [String: CategorySearches] = ["All Categories": CategorySearches.recent, "Hockey": CategorySearches.hockey, "Baseball": CategorySearches.baseball, "Basketball": CategorySearches.basketball, "North Suburban Beat": CategorySearches.nsb, "Concerts": CategorySearches.concerts]
     
 fileprivate var searchResults = [Video]()
     
@@ -81,7 +500,7 @@ fileprivate func getNSURLSession() -> URLSession {
 }
     
     
-    func getCategories() -> [String: Category] {
+    func getCategories() -> [String: CategorySearches] {
         
         
         return categories

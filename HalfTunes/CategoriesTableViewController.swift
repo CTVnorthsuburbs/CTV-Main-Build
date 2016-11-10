@@ -10,11 +10,11 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
     
-    var currentCategory = Category.nsb
+    var currentCategory = CategorySearches.nsb
     
     
     
-    var categories =  [String: Category]()
+    var categories =  [String: CategorySearches]()
     
     
     var search = VideoSearch()
@@ -103,7 +103,7 @@ class CategoriesTableViewController: UITableViewController {
         
         
         
-                    cell?.setCategory(category: Category.nsb)
+                    cell?.setCategory(category: CategorySearches.nsb)
         
         
         
