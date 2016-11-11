@@ -21,7 +21,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UIView!
     
     
-    var category = CategorySearches.recent
+    var categorySection: Section?
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
@@ -35,7 +35,7 @@ class CategoryViewController: UIViewController {
          child = (self.childViewControllers.first as? CategoryTableViewController)!
         
 
-       child?.category = self.category
+       child?.categorySection = self.categorySection
         
         
    

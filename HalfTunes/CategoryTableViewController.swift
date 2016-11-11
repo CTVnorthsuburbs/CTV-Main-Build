@@ -18,7 +18,7 @@ class CategoryTableViewController: UITableViewController {
     
     
     
-    var category: CategorySearches = CategorySearches.hockey
+    var categorySection: Section?
     
     
 
@@ -121,7 +121,7 @@ class CategoryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if (recommendedVideos.count == 0) {
-        recommendedVideos = search.search(category.rawValue )
+        recommendedVideos = search.search((categorySection?.searchID!)! )
         
         
         }

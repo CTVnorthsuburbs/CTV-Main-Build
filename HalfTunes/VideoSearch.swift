@@ -172,7 +172,7 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -189,7 +189,7 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -208,7 +208,7 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -226,7 +226,7 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -244,7 +244,7 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -254,15 +254,61 @@ class hockeyFactory: CategoryFactory {
     
     internal func addButtons() -> Section {
         
-        let sectionType = SectionType.videoList
+        let sectionType = SectionType.buttonNoTitle
         
-        let sectionTitle = "Recent Girls Hockey Games"
+        let sectionTitle: String? = nil
         
-        let searchID = 68489
+        let searchID: Int?  = nil
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+      
+        
+        
+        
+        var thumbnailButtons = [ThumbnailButton]()
+            
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: CategorySearches.hockey))
+        
+        
+        
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: CategorySearches.hockey))
+        
+        
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: CategorySearches.hockey))
+        
+        thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: CategorySearches.hockey))
+        
+        
+        
+        
+        
+        
+        
+        /*
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: CategorySearches.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: CategorySearches.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: CategorySearches.hockey))
+        
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: CategorySearches.hockey))
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: CategorySearches.hockey))
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: CategorySearches.hockey))
+        
+        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: CategorySearches.hockey))
+ 
+ 
+ */
+        
+        
+          let buttons = thumbnailButtons
+        
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -274,15 +320,15 @@ class hockeyFactory: CategoryFactory {
 
     internal func addSlide() -> Section {
         
-        let sectionType = SectionType.videoList
+        let sectionType = SectionType.slider
         
-        let sectionTitle = "Recent Girls Hockey Games"
+        let sectionTitle = "Slider listing"
         
         let searchID = 68489
         
         let videoList: [Int]? = nil
         
-        let buttons: [button]? = nil
+        let buttons: [ThumbnailButton]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
         
@@ -302,10 +348,14 @@ class Category: CategoryListing {
     
     var sections = [Section]()
     
+    var listing: CategorySearches
+    
     
     required init() {
         
         categoryFactory = hockeyFactory()
+        
+        listing = CategorySearches.hockey
         
         
        
@@ -315,13 +365,25 @@ class Category: CategoryListing {
     
     func createListing() {
         
+       
+    
         createFeaturedSection()
         
+        
+        createButtonSection()
+        
         createPopularSection()
+        
+        createButtonSection()
         
         createRecentBoysSection()
         
         createRecentGirlsSection()
+        
+        
+        
+        
+      
         
    
     }
@@ -390,6 +452,14 @@ class Category: CategoryListing {
         
     }
     
+    func createButtonSection() {
+        
+        
+            sections.append(categoryFactory.addButtons())
+        
+        
+    }
+    
     
 
     
@@ -405,15 +475,17 @@ class Section {
     
     var sectionType: SectionType
     
+    var listing = CategorySearches.hockey
+    
     var sectionTitle: String?
     
     var searchID: Int?
     
     var videoList: [Int]?
     
-    var buttons: [button]?
+    var buttons: [ThumbnailButton]?
     
-    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [button]?) {
+    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [ThumbnailButton]?) {
         
         self.sectionType = sectionType
         
@@ -424,6 +496,8 @@ class Section {
         self.videoList = videoList
         
         self.buttons = buttons
+        
+    
         
     }
 
