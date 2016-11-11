@@ -12,6 +12,11 @@ import UIKit
 
 
 
+    
+    
+    
+    
+
 
 class ThumbnailButton {
     
@@ -28,7 +33,7 @@ class ThumbnailButton {
         self.category = category
         
         
-  
+        
     }
     
     
@@ -49,26 +54,17 @@ class ThumbnailButton {
             
             imageView.image = image
             
-
-          self.init(thumbnail: image, category: category)
-       
+            
+            self.init(thumbnail: image, category: category)
+            
         }
         
-      return nil
+        return nil
         
-    
+        
     }
-
+    
 }
-    
-    
-
-    
-    
-    
-    
-
-
 
 
     

@@ -32,9 +32,9 @@ class MainTableViewController: UITableViewController {
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
         
         
-        
+        var button = Button(factory: baseballButtonFactory())
       
-        
+        print("button: \(button.title) type: \(button.type)")
         
      //   category.createListing()
         

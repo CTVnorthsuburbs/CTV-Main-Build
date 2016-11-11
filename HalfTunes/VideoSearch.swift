@@ -11,16 +11,16 @@ import UIKit
 
 /** The VideoSearch Class handles the URL session, searches sent to the CableCast API, handling of the results, and splitting of result arrays that are sent back to the API in order to get the video objects. The class functions by first creating a NSURLSession to handle the JSON download. Next, a searchURL is created. This URL is accessed and the results are stored in the results Array. These results consist of an Int Array containing the ID's of the videos returned from the search. The ID Array must then be sent back to the API in order to receive the JSON Video objects that contain both a title and a video source URL. If the result Array containing the IDs is longer than the maxium limit, then it is split into smaller Arrays using the splitIdArray function. This function accepts the Int Array and returns an Array of Int Arrays. The size of each split Array is determined by the arrayLength variable. Once the Array is split, separate URLs are created for each split Array and these URLs are accessed in order to receive the JSON Video Objects that are appended to a single results array.
  
-    Steps when recent Videos are requested:
-    - getRecent() is called by an outside class.
-    - search(52966) is called by getRecent(). The Int value passed is the Saved Search ID supplied by the CableCast Frontdoor.
-    - search(savedSearchID: Int) removes the previous searchResults. Creates a new NSURL session and uses this session to access the searchURL.
-    - The getSearchResults() returns the Array of Video IDs.
-    - If the results array exceeds the maximum defined by the arrayLength property, then the results are passed to splitIdArray().
-    - splitIdArray() returns the Array of Int Arrays. The Int Arrays are converted to Search URLs through convertIdArrayToSearchURL().
-    - Each searchURL returned from convertIdArrayToSearchURL() are passed to getSearchResults() in order to receive the JSON Video Objects.
-    - Finally the results are appended to the searchResults Video Array and this is returned to the orignal calling function getRecent().
-*/
+ Steps when recent Videos are requested:
+ - getRecent() is called by an outside class.
+ - search(52966) is called by getRecent(). The Int value passed is the Saved Search ID supplied by the CableCast Frontdoor.
+ - search(savedSearchID: Int) removes the previous searchResults. Creates a new NSURL session and uses this session to access the searchURL.
+ - The getSearchResults() returns the Array of Video IDs.
+ - If the results array exceeds the maximum defined by the arrayLength property, then the results are passed to splitIdArray().
+ - splitIdArray() returns the Array of Int Arrays. The Int Arrays are converted to Search URLs through convertIdArrayToSearchURL().
+ - Each searchURL returned from convertIdArrayToSearchURL() are passed to getSearchResults() in order to receive the JSON Video Objects.
+ - Finally the results are appended to the searchResults Video Array and this is returned to the orignal calling function getRecent().
+ */
 
 
 
@@ -28,8 +28,8 @@ enum CategorySearches: Int {
     
     case recent = 52966
     
-        case baseball = 67200
-   // case baseball = 65794
+    case baseball = 67200
+    // case baseball = 65794
     case hockey = 65794
     
     case basketball = 67204
@@ -38,7 +38,7 @@ enum CategorySearches: Int {
     
     case concerts = 67318
     
-
+    
     
 }
 
@@ -73,7 +73,7 @@ enum button {
     case volleyball
     
     case football
-
+    
 }
 
 enum Listing {
@@ -111,11 +111,11 @@ enum Listing {
 
 protocol CategoryFactory {
     
- 
+    
     
     func addSlide() -> Section
     
- 
+    
     
     func addRecentSection() -> Section
     func addFeaturedSection() -> Section
@@ -127,7 +127,7 @@ protocol CategoryFactory {
     func addPopularSection() -> Section
     
     func addButtons() -> Section
- 
+    
     
 }
 
@@ -135,33 +135,33 @@ class hockeyFactory: CategoryFactory {
     
     
     /*
- 
- class Section {
- 
- var sectionType: SectionType
- 
- var sectionTitle: String?
- 
- var searchID: Int?
- 
- var videoList: [Int]?
- 
- var buttons: [button]?
- 
- init(sectionType: SectionType) {
- 
- self.sectionType = sectionType
- 
- }
- 
- }
- 
- 
- */
+     
+     class Section {
+     
+     var sectionType: SectionType
+     
+     var sectionTitle: String?
+     
+     var searchID: Int?
+     
+     var videoList: [Int]?
+     
+     var buttons: [button]?
+     
+     init(sectionType: SectionType) {
+     
+     self.sectionType = sectionType
+     
+     }
+     
+     }
+     
+     
+     */
     
     
     
- 
+    
     internal func addPopularSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -178,7 +178,7 @@ class hockeyFactory: CategoryFactory {
         
         return section
     }
-
+    
     internal func addRecentGirlsSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -197,7 +197,7 @@ class hockeyFactory: CategoryFactory {
         
         
     }
-
+    
     internal func addRecentBoysSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -215,7 +215,7 @@ class hockeyFactory: CategoryFactory {
         return section
         
     }
-
+    
     internal func addFeaturedSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -233,7 +233,7 @@ class hockeyFactory: CategoryFactory {
         return section
         
     }
-
+    
     internal func addRecentSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -262,12 +262,12 @@ class hockeyFactory: CategoryFactory {
         
         let videoList: [Int]? = nil
         
-      
+        
         
         
         
         var thumbnailButtons = [ThumbnailButton]()
-            
+        
         thumbnailButtons.append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: CategorySearches.hockey))
         
         
@@ -286,28 +286,28 @@ class hockeyFactory: CategoryFactory {
         
         
         /*
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: CategorySearches.hockey))
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: CategorySearches.hockey))
+         
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: CategorySearches.hockey))
+         
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: CategorySearches.hockey))
+         
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: CategorySearches.hockey))
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: CategorySearches.hockey))
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: CategorySearches.hockey))
+         
+         thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: CategorySearches.hockey))
+         
+         
+         */
         
         
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: CategorySearches.hockey))
- 
- 
- */
-        
-        
-          let buttons = thumbnailButtons
+        let buttons = thumbnailButtons
         
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
@@ -315,9 +315,9 @@ class hockeyFactory: CategoryFactory {
         return section
         
     }
-
-
-
+    
+    
+    
     internal func addSlide() -> Section {
         
         let sectionType = SectionType.slider
@@ -340,10 +340,10 @@ class hockeyFactory: CategoryFactory {
 
 
 class Category: CategoryListing {
-  
- 
+    
+    
     var categoryFactory: CategoryFactory
-
+    
     
     
     var sections = [Section]()
@@ -358,15 +358,15 @@ class Category: CategoryListing {
         listing = CategorySearches.hockey
         
         
-       
+        
         
     }
     
     
     func createListing() {
         
-       
-    
+        
+        
         createFeaturedSection()
         
         
@@ -383,24 +383,24 @@ class Category: CategoryListing {
         
         
         
-      
         
-   
+        
+        
     }
     
     func createFeaturedSection() {
         
         sections.append(categoryFactory.addFeaturedSection())
         
-    
-
+        
+        
     }
     
     func createSlider() {
         
         sections.append(categoryFactory.addSlide())
         
-
+        
         
     }
     
@@ -408,8 +408,8 @@ class Category: CategoryListing {
         
         sections.append(categoryFactory.addRecentSection())
         
-   
-    
+        
+        
         
     }
     
@@ -417,7 +417,7 @@ class Category: CategoryListing {
         
         sections.append(categoryFactory.addRecentBoysSection())
         
- 
+        
         
     }
     
@@ -425,7 +425,7 @@ class Category: CategoryListing {
         
         sections.append(categoryFactory.addRecentGirlsSection())
         
-      
+        
         
     }
     
@@ -441,13 +441,13 @@ class Category: CategoryListing {
         
         
         
-       
+        
         
     }
     
     func createSpecificSearchSection() {
         
-      //  sectionSearches.append()
+        //  sectionSearches.append()
         
         
     }
@@ -455,20 +455,20 @@ class Category: CategoryListing {
     func createButtonSection() {
         
         
-            sections.append(categoryFactory.addButtons())
+        sections.append(categoryFactory.addButtons())
         
         
     }
     
     
-
+    
     
     func getSection(row: Int) -> Section {
         
         return sections[row]
         
     }
-
+    
 }
 
 class Section {
@@ -497,11 +497,11 @@ class Section {
         
         self.buttons = buttons
         
-    
+        
         
     }
-
-
+    
+    
 }
 
 enum SectionType {
@@ -521,22 +521,187 @@ enum SectionType {
 
 protocol CategoryListing {
     
- 
-    
-   
-    
     var categoryFactory: CategoryFactory {get set}
     
- 
- 
-    
-
-        
-        
-        
-        
 }
+
+
+
+
+
+
+class baseballButtonFactory: ButtonFactory {
     
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "baseball")
+        
+        self.title = "Baseball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category()
+        
+    }
+    
+}
+
+class hockeyButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "hockey")
+        
+        self.title = "Hockey"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category()
+        
+    }
+    
+}
+
+class ButtonFactory {
+    
+    var type: ButtonType? = nil
+    
+    var image: UIImage? = nil
+    
+    var title: String? = nil
+    
+    var imageOverlay: String? = nil
+    
+    var page: String? = nil
+    
+    var category: Category? = nil
+    
+    
+    func getType() -> ButtonType? {
+        
+        return type
+        
+    }
+    
+    
+    func getImage() -> UIImage? {
+        
+        return image
+        
+    }
+    
+    func setImage(url: String) {
+        
+        let escapedString = url.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        
+        let url = NSURL(string: escapedString! )
+        
+        if(url != nil) {
+            let data = NSData(contentsOf: url! as URL)
+            
+            self.image = UIImage(data: data! as Data)!
+            
+        }
+        
+    }
+    
+    func getTitle() -> String? {
+        
+        
+        
+        return title
+        
+    }
+    
+    func getImageOverlay() -> String? {
+        
+        
+        
+        
+        return imageOverlay
+        
+    }
+    
+    func getPage() -> String? {
+        
+        
+        
+        return page
+    }
+    
+    func getCategory() -> Category? {
+        
+        
+        
+        
+        return category
+        
+    }
+    
+}
+
+
+
+enum ButtonType {
+    
+    case video
+    
+    case category
+    
+    case page
+    
+}
+
+
+class Button {
+    
+    var factory: ButtonFactory
+    
+    var type: ButtonType?
+    
+    var image: UIImage?
+    
+    var imageURL: String?
+    
+    var title: String?
+    
+    var imageOverlay: String?
+    
+    var page: String?
+    
+    var category: Category?
+    
+    
+    init(factory: ButtonFactory) {
+        
+        self.factory = factory
+        
+        self.type = factory.getType()
+        
+        self.image = factory.getImage()
+        
+        self.title = factory.getTitle()
+        
+        self.imageOverlay = factory.getImageOverlay()
+        
+        self.page = factory.getPage()
+        
+        self.category = factory.getCategory()
+    }
+    
+}
 
 
 
@@ -550,28 +715,28 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     var categories: [String: CategorySearches] = ["All Categories": CategorySearches.recent, "Hockey": CategorySearches.hockey, "Baseball": CategorySearches.baseball, "Basketball": CategorySearches.basketball, "North Suburban Beat": CategorySearches.nsb, "Concerts": CategorySearches.concerts]
     
-fileprivate var searchResults = [Video]()
+    fileprivate var searchResults = [Video]()
     
     fileprivate var thumbnailResults = [Thumbnail]()
     
     
-
-
-// This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
-let arrayLength = 55
-
-/// Creates the NSURL session necessary to download content from remote URL.
     
-fileprivate func getNSURLSession() -> URLSession {
+    // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
-    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    let arrayLength = 55
     
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    /// Creates the NSURL session necessary to download content from remote URL.
     
-    return defaultSession
-    
-}
+    fileprivate func getNSURLSession() -> URLSession {
+        
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+        return defaultSession
+        
+    }
     
     
     func getCategories() -> [String: CategorySearches] {
@@ -581,74 +746,74 @@ fileprivate func getNSURLSession() -> URLSession {
         
         
     }
-
-/**
- Search returns results from saved search stored in cablecast frontdoor. The function calls the getNSURLSession, accessing the searchURL, receives the results from the API as IDs, it then parses the results array into smaller slices defined by the arrayLength Int value, and then creates new urls from these slices, that are sent to the API in order to receive the necessary Shows
-- parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
-*/
     
- func search(_ savedSearchID: Int)-> [Video] {
+    /**
+     Search returns results from saved search stored in cablecast frontdoor. The function calls the getNSURLSession, accessing the searchURL, receives the results from the API as IDs, it then parses the results array into smaller slices defined by the arrayLength Int value, and then creates new urls from these slices, that are sent to the API in order to receive the necessary Shows
+     - parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
+     */
     
-    searchResults.removeAll()
-    
+    func search(_ savedSearchID: Int)-> [Video] {
         
-    let session = getNSURLSession()
-        
-    let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
-    
-    let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
-    
-    if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
-    
-    let splitResults = splitIdArray(results!)
-        
-    
-
-    if (splitResults != nil) {
+        searchResults.removeAll()
         
         
+        let session = getNSURLSession()
         
-        var searchURLs = [URL]()
+        let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
-        var counter = 0
+        let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
         
-        
-       
-        for splitArray in splitResults! {
-
-            let searchURL = convertIdArrayToSearchURL(splitArray)
+        if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
             
-          
-          
-            searchURLs.append(searchURL!)
+            let splitResults = splitIdArray(results!)
             
-            counter = counter + 1
+            
+            
+            if (splitResults != nil) {
+                
+                
+                
+                var searchURLs = [URL]()
+                
+                var counter = 0
+                
+                
+                
+                for splitArray in splitResults! {
+                    
+                    let searchURL = convertIdArrayToSearchURL(splitArray)
+                    
+                    
+                    
+                    searchURLs.append(searchURL!)
+                    
+                    counter = counter + 1
+                    
+                }
+                
+                for url in searchURLs {
+                    
+                    getSearchResults(session, url: url, isIDSearchURL: true)
+                    
+                }
+                
+            } }
+            
+            
+        else {        //if array is smaller than maximum, just process it
+            
+            let searchIdURL =  convertIdArrayToSearchURL(results!)
+            
+            
+            getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
             
         }
         
-        for url in searchURLs {
-      
-             getSearchResults(session, url: url, isIDSearchURL: true)
-            
-        }
         
-        } }
+        
+        return searchResults
+    }
     
-    
-    else {        //if array is smaller than maximum, just process it
-        
-   let searchIdURL =  convertIdArrayToSearchURL(results!)
-        
-        
-   getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
-        
-        }
-        
-    
-    
-    return searchResults
-}
-
     
     func searchForSingle(_ savedSearchID: Int)-> [Video] {
         
@@ -718,10 +883,10 @@ fileprivate func getNSURLSession() -> URLSession {
     
     
     
-
+    
     func trimVideos(videoArray: [Video], numberToReturn: Int) -> [Video] {
         
-       
+        
         var reducedResults = [Video]()
         
         var count = numberToReturn
@@ -737,152 +902,152 @@ fileprivate func getNSURLSession() -> URLSession {
             
             
         }
-     
+        
         return reducedResults
-   
-    }
-    
-    
-    
-/**
-Search by string returns an array of video objects corresponding to the search string passed
-- parameter searchString: Search Keyword
-*/
-    
-fileprivate func search(_ searchString: String)-> [Video] {
-    
-    searchResults.removeAll()
-        
-    let session = getNSURLSession()
-        
-    let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
-        
-    getSearchResults(session, url: searchURL!, isIDSearchURL: true)
-        
-    return searchResults
-}
-    
-/** splitIdArray accepts an Int Array and splits the array into smaller Arrays, the size of which are defined by the arrayLength var. The return is an Array of Int Arrays.
-- parameter idArray: Array of IDs supplied by getSearchResults()
-*/
-    
-    
-fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
-    
-    var resultArray = [[Int]]()
-    
-    let arrayCount = idArray.count
-    
-    let numberOfArrays = arrayCount / arrayLength
-    
-    for _ in 0...numberOfArrays {
-        
-        resultArray.append([])
         
     }
     
-    let count = numberOfArrays
     
-    var position = -1
     
-    for index in 0...count {
+    /**
+     Search by string returns an array of video objects corresponding to the search string passed
+     - parameter searchString: Search Keyword
+     */
+    
+    fileprivate func search(_ searchString: String)-> [Video] {
         
-        var tempArray : [Int]
-    
-        if  (idArray.indices.contains(position + arrayLength) ){
-            
-             tempArray = Array(idArray[(position + 1 )...position + arrayLength])
-            
-        } else {
-        // if there is less than arrayLength indexes left in array, calculate remainder and assign.
-         
-        var range = idArray.count
-            
-        range = range % arrayLength
+        searchResults.removeAll()
         
+        let session = getNSURLSession()
+        
+        let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
+        
+        getSearchResults(session, url: searchURL!, isIDSearchURL: true)
+        
+        return searchResults
+    }
     
+    /** splitIdArray accepts an Int Array and splits the array into smaller Arrays, the size of which are defined by the arrayLength var. The return is an Array of Int Arrays.
+     - parameter idArray: Array of IDs supplied by getSearchResults()
+     */
+    
+    
+    fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
+        
+        var resultArray = [[Int]]()
+        
+        let arrayCount = idArray.count
+        
+        let numberOfArrays = arrayCount / arrayLength
+        
+        for _ in 0...numberOfArrays {
             
-          //  tempArray = Array(idArray[position...position + range])
-            
-            
-             tempArray = Array(idArray[position + 1...position + range])
+            resultArray.append([])
             
         }
         
+        let count = numberOfArrays
         
-        for id in tempArray {
+        var position = -1
+        
+        for index in 0...count {
             
-               resultArray[index].append(id)
+            var tempArray : [Int]
             
-        }
-        
-        position = position + arrayLength
-        
-    }
-    
-    var totalCount = 0
-    
-    for i in resultArray {
-        
-                  totalCount = totalCount + i.count
-        
-    }
-    
-//This bit below compares the results of the split with the orignal input array and prints an error if comparision fails.
-    
-    var testArray = [Int]()
-    
-    for array in resultArray {
-        
-
-        for index in array {
+            if  (idArray.indices.contains(position + arrayLength) ){
+                
+                tempArray = Array(idArray[(position + 1 )...position + arrayLength])
+                
+            } else {
+                // if there is less than arrayLength indexes left in array, calculate remainder and assign.
+                
+                var range = idArray.count
+                
+                range = range % arrayLength
+                
+                
+                
+                //  tempArray = Array(idArray[position...position + range])
+                
+                
+                tempArray = Array(idArray[position + 1...position + range])
+                
+            }
             
-                    testArray.append(index)
             
-        }
-        
-    }
-    
-    var testResult = true
-    
-    var countPosition = 0
-    
-    for element in idArray {
-        
-        
-        if (element != testArray[countPosition]) {
+            for id in tempArray {
+                
+                resultArray[index].append(id)
+                
+            }
             
-          testResult = false
-            
-        print(element)
+            position = position + arrayLength
             
         }
         
-        countPosition = countPosition + 1
+        var totalCount = 0
+        
+        for i in resultArray {
+            
+            totalCount = totalCount + i.count
+            
+        }
+        
+        //This bit below compares the results of the split with the orignal input array and prints an error if comparision fails.
+        
+        var testArray = [Int]()
+        
+        for array in resultArray {
+            
+            
+            for index in array {
+                
+                testArray.append(index)
+                
+            }
+            
+        }
+        
+        var testResult = true
+        
+        var countPosition = 0
+        
+        for element in idArray {
+            
+            
+            if (element != testArray[countPosition]) {
+                
+                testResult = false
+                
+                print(element)
+                
+            }
+            
+            countPosition = countPosition + 1
+            
+        }
+        
+        if(testResult == false) {
+            
+            print("split array does not match original id array")
+            
+            return nil
+            
+        }
+        
+        return resultArray
         
     }
     
-    if(testResult == false) {
+    /// getRecent() returns the most recent Videos from CableCast as defined by the Saved Search 'App Basic Search'.
+    
+    func getRecent() -> [Video] {
         
-        print("split array does not match original id array")
+        search(52966)
         
-        return nil
+        return searchResults
         
     }
-    
-   return resultArray
-   
-}
-
-/// getRecent() returns the most recent Videos from CableCast as defined by the Saved Search 'App Basic Search'.
-    
-func getRecent() -> [Video] {
-        
-    search(52966)
-       
-    return searchResults
-        
-}
     
     
     func getRecentLimited() -> [Video] {
@@ -894,13 +1059,13 @@ func getRecent() -> [Video] {
         
         var reducedResults = [Video]()
         
-       
+        
         
         for result in searchResults {
             
             
             if (count > 0) {
-            reducedResults.append(result)
+                reducedResults.append(result)
             }
             
             count = count - 1
@@ -918,9 +1083,9 @@ func getRecent() -> [Video] {
     
     func getHockeyLimited() -> [Video] {
         
-       search(65797)
+        search(65797)
         
-      
+        
         
         return searchResults
         
@@ -940,7 +1105,7 @@ func getRecent() -> [Video] {
     }
     
     
-
+    
     
     
     func getNSB() -> [Video] {
@@ -953,78 +1118,78 @@ func getRecent() -> [Video] {
         
     }
     
-
-
-/// getSport() accepts a String Keyword that is passed as a search parameter.
     
-func getSport(_ sport: String)->[Video]{
-        
-    search(sport)
-        
-    return searchResults
-        
-}
-
-
-fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
     
-    var dataTask: URLSessionDataTask?
+    /// getSport() accepts a String Keyword that is passed as a search parameter.
     
-    var results : [Int]?
-    
-    if dataTask != nil {
+    func getSport(_ sport: String)->[Video]{
         
-        dataTask?.cancel()
+        search(sport)
+        
+        return searchResults
         
     }
     
-    var complete = false
     
-    dataTask = defaultSession.dataTask(with: url, completionHandler: {
+    fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
         
-        data, response, error in
+        var dataTask: URLSessionDataTask?
         
-        DispatchQueue.main.async {
+        var results : [Int]?
+        
+        if dataTask != nil {
             
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            dataTask?.cancel()
             
         }
-
-        if let error = error {
+        
+        var complete = false
+        
+        dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
-            print(error.localizedDescription)
+            data, response, error in
             
-        } else if let httpResponse = response as? HTTPURLResponse {
-            
-            if httpResponse.statusCode == 200 {
+            DispatchQueue.main.async {
                 
-                if (isIDSearchURL == true) {
-                    
-                   complete = self.updateSearchResults(data)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
+            }
+            
+            if let error = error {
+                
+                print(error.localizedDescription)
+                
+            } else if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode == 200 {
                     
-                } else {
-                    
-                    results = self.getSavedSearchResults(data)!
+                    if (isIDSearchURL == true) {
+                        
+                        complete = self.updateSearchResults(data)
+                        
+                        
+                    } else {
+                        
+                        results = self.getSavedSearchResults(data)!
+                        
+                    }
                     
                 }
                 
             }
             
+        })
+        
+        dataTask?.resume()
+        
+        while (results == nil && complete == false) {
+            
+            //wait till results are received
         }
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        return results
         
-    }) 
-    
-    dataTask?.resume()
-    
-    while (results == nil && complete == false) {
-        
-        //wait till results are received
     }
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    return results
-    
-}
     
     
     fileprivate func searchThumbnail(_ savedSearchID: Int)-> String?{
@@ -1044,7 +1209,7 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
         
     }
     
-
+    
     
     
     
@@ -1060,7 +1225,7 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
             
         }
         
-       
+        
         
         dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
@@ -1080,8 +1245,8 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
                 
                 if httpResponse.statusCode == 200 {
                     
-               
-                        
+                    
+                    
                     var json: [String: AnyObject]!
                     
                     
@@ -1100,28 +1265,28 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
                     
                     
                     guard let results = Thumbnail(json: json) else {
-                       
-                        return 
+                        
+                        return
                     }
                     
                     guard let result = results.thumbnail else {
                         
                         return
                     }
-
-                  
-                   thumbnail = result.url
                     
-                   
+                    
+                    thumbnail = result.url
+                    
+                    
                     
                     
                 }
                 
             }
             
-        }) 
+        })
         
-    
+        
         
         
         dataTask?.resume()
@@ -1133,120 +1298,120 @@ fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSe
         }
         
         
-              UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         return thumbnail
         
     }
-
-fileprivate func convertIdArrayToSearchURL(_ idArray: [Int]) -> URL? {
     
-    var url = "http://trms.ctv15.org/Cablecastapi/v1/shows/?"
-    
-    var count = arrayLength //set a limit to results by matching split array length var
-    
-    for id in idArray {
+    fileprivate func convertIdArrayToSearchURL(_ idArray: [Int]) -> URL? {
         
-        count = count - 1
+        var url = "http://trms.ctv15.org/Cablecastapi/v1/shows/?"
         
-        if (count >= 0) {
+        var count = arrayLength //set a limit to results by matching split array length var
         
-        url = url + "ids=\(id)&"
+        for id in idArray {
+            
+            count = count - 1
+            
+            if (count >= 0) {
+                
+                url = url + "ids=\(id)&"
+                
+            }
             
         }
         
+        url += "include=vod,thumbnail&page_size=\(arrayLength)"
+        
+        let searchURL = URL(string: url)
+        
+        return searchURL
+        
     }
     
-    url += "include=vod,thumbnail&page_size=\(arrayLength)"
-    
-    let searchURL = URL(string: url)
-    
-    return searchURL
-    
-}
-    
-fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
+    fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
         
-    searchResults.removeAll()
+        searchResults.removeAll()
         
-    var json: [String: AnyObject]!
+        var json: [String: AnyObject]!
         
         
-    do {
+        do {
             
-        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
-        
-    
+            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
-    } catch {
-        
-        print(error)
             
+            
+        } catch {
+            
+            print(error)
+            
+        }
+        
+        guard let VideosResult = AllVideos(json: json) else {
+            
+            return nil
+            
+        }
+        
+        guard let results = VideosResult.results else {
+            
+            return nil
+        }
+        
+        guard let result = results["results"] else {
+            
+            return nil
+        }
+        
+        
+        
+        
+        let finalResult = result as! [Int]
+        
+        
+        
+        
+        
+        return finalResult
+        
     }
+    
+    
+    
+    public  func getThumbnail(id: Int)-> UIImage? {
         
-    guard let VideosResult = AllVideos(json: json) else {
-            
-        return nil
-            
-    }
-        
-    guard let results = VideosResult.results else {
-            
-        return nil
-    }
-        
-    guard let result = results["results"] else {
-            
-        return nil
-    }
-    
-    
-
-        
-    let finalResult = result as! [Int]
-    
-   
-    
-    
-        
-    return finalResult
-        
-}
-
-    
-    
-  public  func getThumbnail(id: Int)-> UIImage? {
-
         var image : UIImage?
         
-
+        
         var thumbnailURL = searchThumbnail(id)
         
         
         if(thumbnailURL != nil ) {
             
             
-                 let escapedString = thumbnailURL!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+            let escapedString = thumbnailURL!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
             
             
             
             let url = NSURL(string: escapedString! )
-       
+            
             if(url != nil) {
                 let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 image = UIImage(data: data! as Data)
                 
-            
+                
                 var imageView = UIImageView()
                 imageView.image = image
-           
+                
                 
                 
                 return(image)
             } 
             
         }
-    
-    return image
+        
+        return image
         
     }
     
@@ -1254,90 +1419,90 @@ fileprivate func getSavedSearchResults(_ data: Data?) -> [Int]? {
     
     
     
-fileprivate func updateSearchResults(_ data: Data?)-> Bool {
+    fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
-    //searchResults.removeAll()
+        //searchResults.removeAll()
         
-    var json: [String: AnyObject]!
+        var json: [String: AnyObject]!
         
         
-    do {
+        do {
             
-        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
-    } catch {
+        } catch {
             
-        print(error)
+            print(error)
             
-    }
-    
-    guard let VideosResult = VideosResult(json: json) else {
-     
-        return false
-            
-    }
-        
-    guard VideosResult.show != nil else {
-        
-  
-        return false
-            
-    }
-    
-
-    
-    
-    
-
-    
-  
-    var count = 0
-
- 
-    var fileName : Int?
-
-    
-    for show in VideosResult.show! {
-        
-   
-        
-        if(show.showThumbnail.count != 0) {
-            
-            fileName = show.showThumbnail[2]
-            
-        } else {
-            
-            fileName = nil
-        
-    
         }
         
-   
-        var date = convertStringToDate(dateString: show.date)
+        guard let VideosResult = VideosResult(json: json) else {
+            
+            return false
+            
+        }
         
-        if(VideosResult.show?.count != VideosResult.vod?.count) {
+        guard VideosResult.show != nil else {
             
-            print("video results do not match!!")
             
+            return false
             
         }
         
         
         
-        searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date)!)
         
-
-    
         
-        count += 1
-
-
+        
+        
+        
+        var count = 0
+        
+        
+        var fileName : Int?
+        
+        
+        for show in VideosResult.show! {
+            
+            
+            
+            if(show.showThumbnail.count != 0) {
+                
+                fileName = show.showThumbnail[2]
+                
+            } else {
+                
+                fileName = nil
+                
+                
+            }
+            
+            
+            var date = convertStringToDate(dateString: show.date)
+            
+            if(VideosResult.show?.count != VideosResult.vod?.count) {
+                
+                print("video results do not match!!")
+                
+                
+            }
+            
+            
+            
+            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date)!)
+            
+            
+            
+            
+            count += 1
+            
+            
+        }
+        
+        
+        
+        return true
+        
     }
     
-
-
-    return true
-        
-    }
-
 }
