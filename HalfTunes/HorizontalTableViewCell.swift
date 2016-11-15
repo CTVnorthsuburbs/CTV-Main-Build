@@ -46,6 +46,13 @@ extension HorizontalTableViewCell {
         
     }
     
+    func reloadCell() {
+        
+        
+        
+        self.collectionView.reloadData()
+    }
+    
     var collectionViewOffset: CGFloat {
         set {
             collectionView.contentOffset.x = newValue

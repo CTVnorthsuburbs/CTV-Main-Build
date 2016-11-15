@@ -16,7 +16,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var search = VideoSearch()
     
-    
+    var currentCategory: Category?
     
     
     
@@ -58,55 +58,16 @@ class HorizontalTableViewController: UITableViewController {
     
     @IBOutlet weak var tableCollection: UICollectionView!
     
+ 
+    
     override func viewDidLoad() {
         
+ 
+
+        self.preferredContentSize = CGSize(width: 280, height: 300)
         
-        
-        
-        
-        
-        
-        /*
-        
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "categories"), category: CategorySearches.hockey))
-        
-        
-        
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "schedule"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "shows"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[0].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "events"), category: CategorySearches.hockey))
-        
-        
-        
-        
-        
-        
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "basketball"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "volleyball"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "hockey"), category: CategorySearches.hockey))
-        
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "swimming"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "football"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "gymnastics"), category: CategorySearches.hockey))
-        
-        thumbnailButtons[1].append(ThumbnailButton(thumbnail: #imageLiteral(resourceName: "baseball"), category: CategorySearches.hockey))
-        
-       */ 
-        
-        
-        print(category.categoryTitle)
+     /*
+
         category.createListing()
         
         
@@ -146,26 +107,15 @@ class HorizontalTableViewController: UITableViewController {
         
         
    
+        */
         
         
-        
-        
-        
-        
-        
-        // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        print(category.categoryTitle)
-                category.createListing()
-        
+        self.currentCategory = category
+        category.createListing()
         
         
         videos.removeAll()
-       
+        
         var index = 0
         
         
@@ -199,7 +149,84 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
-         self.tableView.reloadData()
+        self.tableView.reloadData()
+        
+        
+        
+        
+        // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        
+        
+               self.preferredContentSize = CGSize(width: 280, height: 100)
+        
+        
+        if(currentCategory?.categoryTitle != category.categoryTitle ) {
+        
+        category.createListing()
+        currentCategory = category
+        
+        videos.removeAll()
+        
+        var index = 0
+        
+        
+        
+        
+        while (index < category.sections.count) {
+            
+            if(category.sections[index].searchID != nil) {
+                
+                
+                if(category.sections[index].getDisplayCount() == nil) {
+                
+                videos.append(search.search(category.sections[index].searchID!))
+                
+                } else {
+                    
+                    
+                   
+                    var vids = search.search(category.sections[index].searchID!)
+                    
+                    
+                    var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                    
+                videos.append(trimmedVids)
+                    
+               
+                    
+                }
+                
+                
+            } else {
+                
+                
+                videos.append([nil])
+                
+                
+                
+                
+            }
+            
+            
+            index = index + 1
+            
+            
+            
+            
+            
+        }
+        
+        self.tableView.reloadData()
+        }
+
+        
+ 
 
     }
     
@@ -245,15 +272,7 @@ class HorizontalTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HorizontalTableViewCell {
-        
-        
-        
-        
-        
-        
-        
-        
-        
+ 
         var section = category.getSection(row: indexPath.section)
         
         if (section.sectionType == SectionType.slider) {
@@ -266,8 +285,6 @@ class HorizontalTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
             
-            
-            print(" aslider index: \(indexPath.section) and title \(section.sectionTitle)")
             
             return cell!
             
@@ -368,6 +385,7 @@ class HorizontalTableViewController: UITableViewController {
         
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
         
+        tableViewCell.reloadCell()
     }
     
     
@@ -475,27 +493,6 @@ class HorizontalTableViewController: UITableViewController {
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        
-        
-        
-        /*
-         
-         if(collectionView.tag == 1) {
-         
-         
-         return thumbnailButtons[0].count
-         }
-         
-         
-         if(collectionView.tag == 3) {
-         
-         
-         return thumbnailButtons[1].count
-         }
-         
-         
-         
-         */
         
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {

@@ -290,7 +290,7 @@
             <objects>
                 <navigationController id="2b5-yv-vK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="featured" id="DH8-cD-YPT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="vUW-7Z-693">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vUW-7Z-693">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1052,6 +1052,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mainTableView" destination="5SI-EU-JXy" id="eVO-vb-LCe"/>
                         <outlet property="slideShowView" destination="yxY-I6-t7A" id="26B-A0-UTg"/>
                     </connections>
                 </tableViewController>

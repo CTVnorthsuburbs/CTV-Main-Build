@@ -9,17 +9,17 @@
 import UIKit
 
 
-var category = Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings()))
+var category = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
 
 class MainTableViewController: UITableViewController {
 
     @IBOutlet weak var slideShowView: UIView!
     
+    @IBOutlet weak var mainTableView: UIView!
     
     var currentCategory = category
     
    
-    
     
  
     
@@ -37,7 +37,9 @@ class MainTableViewController: UITableViewController {
      //   category.createListing()
         
         
-  
+ 
+        
+        
         
         
         
@@ -58,6 +60,15 @@ class MainTableViewController: UITableViewController {
         category = currentCategory
         
      
+    }
+    
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        
+        mainTableView.sizeToFit()
+        
+        print("executses'")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

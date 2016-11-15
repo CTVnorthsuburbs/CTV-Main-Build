@@ -10,7 +10,7 @@ import UIKit
 
 class HorizontalCollectionViewCell: UICollectionViewCell {
     
-    
+   
     
     @IBOutlet weak var thumbnail: UIImageView!
 
@@ -21,6 +21,7 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     
+   
     
     
 }

@@ -87,21 +87,49 @@ class CategoryFactorySettings {
     
     var popularSectionSearchID: Int?
     
+    var popularSectionDisplayCount: Int?
+    
     var recentGirlsSectionTitle: String?
     
     var recentGirlsSectionSearchID: Int?
+    
+    var recentGirlsSectionDisplayCount: Int?
     
     var recentBoysSectionTitle: String?
     
     var recentBoysSectionSearchID: Int?
     
+    var recentBoysSectionDisplayCount: Int?
+    
     var featuredSectionTitle: String?
     
     var featuredSectionSearchID: Int?
     
+    var featuredSectionDisplayCount: Int?
+    
     var recentSectionTitle: String?
     
     var recentSectionSearchID: Int?
+    
+    var recentSectionDisplayCount: Int?
+    
+    var categoryOrder: [CategoryOrder]?
+    
+}
+
+enum CategoryOrder {
+    
+    case recent
+    
+    case featured
+    
+    case popular
+    
+    case girls
+    
+    case boys
+    
+    case button
 
 }
 
@@ -114,26 +142,72 @@ class hockeyFactorySettings: CategoryFactorySettings {
         super.init()
         
         self.categoryTitle = "Hockey"
+        
+        self.popularSectionTitle = "Popular Hockey Videos"
+        
+        self.popularSectionSearchID = 68483
+        
+        self.recentGirlsSectionTitle = "Girls Recent Hockey Games"
+        
+        self.recentGirlsSectionSearchID = 68489
+        
+        self.recentBoysSectionTitle = "Boys Hockey Games"
+        
+        self.recentBoysSectionSearchID = 68492
+        
+        self.featuredSectionTitle = "Featured Hockey Games"
+        
+        self.featuredSectionSearchID = 65794
+        
+        self.recentSectionTitle = "Recent Hockey Games"
+        
+        self.recentSectionSearchID = 65794
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.button, CategoryOrder.boys, CategoryOrder.girls]
+        
+    }
     
-     self.popularSectionTitle = "Popular Hockey Videos"
+}
+
+
+class featuredFactorySettings: CategoryFactorySettings {
     
-    self.popularSectionSearchID = 68483
     
-    self.recentGirlsSectionTitle = "Girls Recent Hockey Games"
-    
-    self.recentGirlsSectionSearchID = 68489
-    
-    self.recentBoysSectionTitle = "Boys Hockey Games"
-    
-    self.recentBoysSectionSearchID = 68492
-    
-    self.featuredSectionTitle = "Featured Hockey Games"
-    
-    self.featuredSectionSearchID = 65794
-    
-    self.recentSectionTitle = "Recent Hockey Games"
-    
-    self.recentSectionSearchID = 65794
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Featured Videos"
+        
+        self.popularSectionTitle = "Recent Videos"
+        
+        self.popularSectionSearchID = 52966
+        
+        self.popularSectionDisplayCount = 15
+        
+        self.recentGirlsSectionTitle = "Concerts"
+        
+        self.recentGirlsSectionSearchID = 67318
+        
+        self.recentGirlsSectionDisplayCount = 10
+        
+        self.recentBoysSectionTitle = "Local News"
+        
+        self.recentBoysSectionSearchID = 66603
+        
+        self.recentBoysSectionDisplayCount = 5
+        
+        self.featuredSectionTitle = "Baseball Season"
+        
+        self.featuredSectionSearchID = 67200
+        
+        self.featuredSectionDisplayCount = 20
+        
+        self.recentSectionTitle = "Recent Hockey Games"
+        
+        self.recentSectionSearchID = 65794
+        
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button, CategoryOrder.boys, CategoryOrder.girls, CategoryOrder.button, CategoryOrder.featured]
         
     }
     
@@ -150,11 +224,11 @@ class baseballFactorySettings: CategoryFactorySettings {
         
         self.popularSectionTitle = "Popular Baseball Videos"
         
-        self.popularSectionSearchID = 68483
+        self.popularSectionSearchID = 68755
         
-        self.recentGirlsSectionTitle = "Girls Recent Baseball Games"
+        self.recentGirlsSectionTitle = "Softball Games"
         
-        self.recentGirlsSectionSearchID = 68489
+        self.recentGirlsSectionSearchID = 68774
         
         self.recentBoysSectionTitle = "Boys Baseball Games"
         
@@ -162,15 +236,19 @@ class baseballFactorySettings: CategoryFactorySettings {
         
         self.featuredSectionTitle = "Featured Baseball Games"
         
-        self.featuredSectionSearchID = 65794
+        self.featuredSectionSearchID = 65797
         
         self.recentSectionTitle = "Recent Baseball Games"
         
-        self.recentSectionSearchID = 65794
+        self.recentSectionSearchID = 65797
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.button,  CategoryOrder.girls, CategoryOrder.button]
         
     }
     
 }
+
+
 
 class CategoryFactory {
     
@@ -184,20 +262,22 @@ class CategoryFactory {
         self.settings = factorySettings
         
     }
-
+    
     internal func addPopularSection() -> Section {
         
         let sectionType = SectionType.videoList
         
-        let sectionTitle = settings.featuredSectionTitle
+        let sectionTitle = settings.popularSectionTitle
         
-        let searchID = settings.featuredSectionSearchID
+        let searchID = settings.popularSectionSearchID
+        
+        var displayCount = settings.popularSectionDisplayCount
         
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
         
         return section
     }
@@ -210,11 +290,13 @@ class CategoryFactory {
         
         let searchID = settings.recentGirlsSectionSearchID
         
+        var displayCount = settings.recentGirlsSectionDisplayCount
+        
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
         
         return section
         
@@ -229,11 +311,13 @@ class CategoryFactory {
         
         let searchID = settings.recentBoysSectionSearchID
         
+        var displayCount = settings.recentBoysSectionDisplayCount
+        
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
         
         return section
         
@@ -245,13 +329,15 @@ class CategoryFactory {
         
         let sectionTitle = settings.featuredSectionTitle
         
-        let searchID = settings.recentBoysSectionSearchID
+        let searchID = settings.featuredSectionSearchID
+        
+        var displayCount = settings.featuredSectionDisplayCount
         
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
         
         return section
         
@@ -265,11 +351,13 @@ class CategoryFactory {
         
         let searchID = settings.recentSectionSearchID
         
+        var displayCount = settings.recentSectionDisplayCount
+        
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
         
         return section
         
@@ -291,10 +379,10 @@ class CategoryFactory {
         
         buttons.append(Button(factory:hockeyButtonFactory()))
         
-         buttons.append(Button(factory:baseballButtonFactory()))
+        buttons.append(Button(factory:baseballButtonFactory()))
         
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil)
         
         return section
         
@@ -314,12 +402,18 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil)
         
         return section
         
     }
     
+    internal func getOrder() -> [CategoryOrder] {
+        
+        return settings.categoryOrder!
+        
+        
+    }
 }
 
 
@@ -343,25 +437,55 @@ class Category {
         self.categoryFactory = categoryFactory
         
         self.categoryTitle = categoryFactory.settings.categoryTitle!
-       
-
+        
+        
     }
     
     
     func createListing() {
         
-        createFeaturedSection()
+       var order = categoryFactory.getOrder()
         
-        createButtonSection()
         
-        createPopularSection()
         
-        createButtonSection()
+        for section in order {
+            
+            switch section {
+                
+            case CategoryOrder.recent:
+                
+                createRecentSection()
+                
+            case CategoryOrder.popular:
+                
+                createPopularSection()
+                
+            case CategoryOrder.featured:
+                
+                createFeaturedSection()
+                
+            case CategoryOrder.button:
+                
+                createButtonSection()
+                
+            case CategoryOrder.boys:
+                
+                createRecentBoysSection()
+            
+            case CategoryOrder.girls:
+                
+                createRecentGirlsSection()
+                
+            default: break
+     
+                
+            }
+            
+            
+            
+        }
+     
         
-        createRecentBoysSection()
-        
-        createRecentGirlsSection()
-
     }
     
     func createFeaturedSection() {
@@ -375,51 +499,51 @@ class Category {
     func createSlider() {
         
         sections.append(categoryFactory.addSlide())
-
+        
     }
     
     func createRecentSection() {
         
         sections.append(categoryFactory.addRecentSection())
-
+        
     }
     
     func createRecentBoysSection() {
         
         sections.append(categoryFactory.addRecentBoysSection())
-
+        
     }
     
     func createRecentGirlsSection() {
         
         sections.append(categoryFactory.addRecentGirlsSection())
-
+        
     }
     
     func createPopularSection() {
         
         sections.append(categoryFactory.addPopularSection())
-
+        
     }
     
     func createSpecificSection() {
         
-
+        
     }
     
     func createSpecificSearchSection() {
         
- 
+        
     }
     
     func createButtonSection() {
         
         
         sections.append(categoryFactory.addButtons())
-
+        
     }
     
-
+    
     func getSection(row: Int) -> Section {
         
         return sections[row]
@@ -434,6 +558,8 @@ class Section {
     
     var listing = CategorySearches.hockey
     
+    var displayCount:  Int?
+    
     var sectionTitle: String?
     
     var searchID: Int?
@@ -442,7 +568,7 @@ class Section {
     
     var buttons: [Button]?
     
-    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [Button]?) {
+    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [Button]?, displayCount: Int?) {
         
         self.sectionType = sectionType
         
@@ -454,8 +580,16 @@ class Section {
         
         self.buttons = buttons
         
+        self.displayCount = displayCount
         
         
+        
+    }
+    
+    func getDisplayCount() -> Int? {
+    
+    return displayCount
+
     }
     
     
@@ -659,7 +793,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     
-    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings()))]
+    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings()))]
     
     fileprivate var searchResults = [Video]()
     
@@ -1353,7 +1487,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 
                 
                 return(image)
-            } 
+            }
             
         }
         
