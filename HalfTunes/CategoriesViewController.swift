@@ -11,14 +11,18 @@ import UIKit
 class CategoriesViewController: UINavigationController {
     
     
-    var category = CategorySearches.recent
+    var category: Category?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 var child = self.childViewControllers.first as! CategoriesTableViewController
         
         
-        child.currentCategory = self.category
+        if(self.category != nil) {
+        child.currentCategory = self.category!
+            
+        }
         // Do any additional setup after loading the view.
     }
     

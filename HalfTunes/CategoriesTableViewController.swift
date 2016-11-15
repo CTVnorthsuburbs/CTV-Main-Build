@@ -10,11 +10,11 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
     
-    var currentCategory = CategorySearches.nsb
+    var currentCategory = category
     
     
     
-    var categories =  [String: CategorySearches]()
+    var categories =  [Category]()
     
     
     var search = VideoSearch()
@@ -61,15 +61,13 @@ class CategoriesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-         let sortedKeys = Array(self.categories.keys).sorted()
+       
         
-        currentCategory = categories[sortedKeys[indexPath.row]]!
-        
-     
+        currentCategory = categories[indexPath.row]
         
         performSegue(withIdentifier: "unwindToMenu", sender: self)
         
-   
+   category = currentCategory
         
         
         
@@ -80,9 +78,9 @@ class CategoriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> CategoriesTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell", for: indexPath) as? CategoriesTableViewCell
 
-         let sortedKeys = Array(self.categories.keys).sorted()
+       //  let sortedKeys = Array(self.categories.keys).sorted()
         
-        cell?.categoryTitle.text = sortedKeys[indexPath.row]
+        cell?.categoryTitle.text = categories[indexPath.row].categoryTitle
         
               var thumbnail: UIImage?
         
@@ -96,21 +94,22 @@ class CategoriesTableViewController: UITableViewController {
        
         
         
-            let categoryTitle = sortedKeys[indexPath.row]
+            let categoryTitle = categories[indexPath.row].categoryTitle
             
         
-            let searchID = self.categories[categoryTitle]
+        //    let searchID = self.categories[categoryTitle]
+        
+     
         
         
-        
-                    cell?.setCategory(category: CategorySearches.nsb)
+                    cell?.setCategory(category: categories[indexPath.row])
         
         
         
         
     
             
-        if (searchID?.rawValue == currentCategory.rawValue) {
+        if (categoryTitle == currentCategory.categoryTitle) {
             
             cell?.categoryTitle.isHighlighted = true
             
@@ -130,13 +129,13 @@ class CategoriesTableViewController: UITableViewController {
         
 
         
-            let recentVideo = self.search.searchForSingle((searchID?.rawValue)!)
+         //   let recentVideo = self.search.searchForSingle((categories[indexPath.row].sections[0].searchID)!)
             
      
         
         
       
-                thumbnail = self.search.getThumbnail(id: (recentVideo.first?.fileName)!)
+           //     thumbnail = self.search.getThumbnail(id: (recentVideo.first?.fileName)!)
                 
             
                 

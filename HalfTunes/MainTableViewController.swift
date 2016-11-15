@@ -9,14 +9,14 @@
 import UIKit
 
 
- var category = Category()
+var category = Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings()))
 
 class MainTableViewController: UITableViewController {
 
     @IBOutlet weak var slideShowView: UIView!
     
     
-    var currentCategory = CategorySearches.recent
+    var currentCategory = category
     
    
     
@@ -32,9 +32,7 @@ class MainTableViewController: UITableViewController {
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
         
         
-        var button = Button(factory: baseballButtonFactory())
       
-        print("button: \(button.title) type: \(button.type)")
         
      //   category.createListing()
         
@@ -55,24 +53,10 @@ class MainTableViewController: UITableViewController {
         let search = VideoSearch()
         
         
-        let categories = search.getCategories()
+    self.title = currentCategory.categoryTitle
+            
+        category = currentCategory
         
-        
-        
-        
-        for (key, value) in categories {
-            
-            
-            if (value.rawValue == currentCategory.rawValue) {
-                
-                
-                
-                self.title = key
-            }
-            
-            
-            
-        }
      
     }
 

@@ -34,7 +34,7 @@ class HorizontalTableViewController: UITableViewController {
     var sectionTitles = [String]()
     
     
-    var sectionSearchCategories = [CategorySearches]()
+   var sectionSearchCategories = [CategorySearches]()
     
     
     
@@ -106,7 +106,7 @@ class HorizontalTableViewController: UITableViewController {
        */ 
         
         
-        
+        print(category.categoryTitle)
         category.createListing()
         
         
@@ -155,6 +155,52 @@ class HorizontalTableViewController: UITableViewController {
         
         // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print(category.categoryTitle)
+                category.createListing()
+        
+        
+        
+        videos.removeAll()
+       
+        var index = 0
+        
+        
+        
+        
+        while (index < category.sections.count) {
+            
+            if(category.sections[index].searchID != nil) {
+                
+                videos.append(search.search(category.sections[index].searchID!))
+                
+                
+                
+                
+            } else {
+                
+                
+                videos.append([nil])
+                
+                
+                
+                
+            }
+            
+            
+            index = index + 1
+            
+            
+            
+            
+            
+        }
+        
+         self.tableView.reloadData()
+
     }
     
     
@@ -498,7 +544,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         // cells.thumbnail.image = thumbnailButtons[0][indexPath.row].thumbnail
                     
                     
-        cells.thumbnail.image = category.sections[collectionView.tag].buttons?[indexPath.row].thumbnail
+        cells.thumbnail.image = category.sections[collectionView.tag].buttons?[indexPath.row].image
          
          cells.thumbnail.setRadius(radius: imageRadius)
          
