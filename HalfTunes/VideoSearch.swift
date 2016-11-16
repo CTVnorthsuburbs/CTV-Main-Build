@@ -249,6 +249,45 @@ class baseballFactorySettings: CategoryFactorySettings {
 }
 
 
+class volleyballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Volleyball"
+        
+        self.popularSectionTitle = "Popular Volleyball Videos"
+        
+        self.popularSectionSearchID = 68755
+        
+        self.recentGirlsSectionTitle = "Softball Games"
+        
+        self.recentGirlsSectionSearchID = 68774
+        
+        self.recentBoysSectionTitle = "Boys Baseball Games"
+        
+        self.recentBoysSectionSearchID = 68492
+        
+        self.featuredSectionTitle = "Featured Baseball Games"
+        
+        self.featuredSectionSearchID = 65797
+        
+        self.recentSectionTitle = "Recent Volleyball Games"
+        
+        self.recentSectionSearchID = 65797
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.button,  CategoryOrder.girls, CategoryOrder.button]
+        
+    }
+    
+}
+
+
+
+
+
 
 class CategoryFactory {
     
@@ -380,6 +419,8 @@ class CategoryFactory {
         buttons.append(Button(factory:hockeyButtonFactory()))
         
         buttons.append(Button(factory:baseballButtonFactory()))
+        
+        buttons.append(Button(factory:volleyballButtonFactory()))
         
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil)
@@ -654,6 +695,28 @@ class hockeyButtonFactory: ButtonFactory {
     
 }
 
+class volleyballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "volleyball")
+        
+        self.title = "Volleyball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings()))
+        
+    }
+    
+}
+
 class ButtonFactory {
     
     var type: ButtonType? = nil
@@ -793,7 +856,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     
-    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings()))]
+    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings()))]
     
     fileprivate var searchResults = [Video]()
     

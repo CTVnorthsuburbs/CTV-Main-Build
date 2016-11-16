@@ -1027,7 +1027,7 @@
                             <color key="backgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             <connections>
-                                <segue destination="6MW-Qi-IGN" kind="embed" id="yMg-rn-3an"/>
+                                <segue destination="6MW-Qi-IGN" kind="embed" identifier="slideShow" id="yMg-rn-3an"/>
                             </connections>
                         </containerView>
                         <containerView key="tableFooterView" autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" id="5SI-EU-JXy" userLabel="Featured Video View">

@@ -137,13 +137,13 @@ class CategoriesTableViewController: UITableViewController {
         
 
         
-         //   let recentVideo = self.search.searchForSingle((categories[indexPath.row].sections[0].searchID)!)
+        //   let recentVideo = self.search.searchForSingle((categories[indexPath.row].sections[0].searchID)!)
             
      
         
         
       
-           //     thumbnail = self.search.getThumbnail(id: (recentVideo.first?.fileName)!)
+         //      thumbnail = self.search.getThumbnail(id: (recentVideo.first?.fileName)!)
                 
             
                 

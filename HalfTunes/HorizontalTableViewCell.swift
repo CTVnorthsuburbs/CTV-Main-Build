@@ -51,6 +51,8 @@ extension HorizontalTableViewCell {
         
         
         self.collectionView.reloadData()
+        self.collectionView.setContentOffset(CGPoint.zero, animated: false)
+        
     }
     
     var collectionViewOffset: CGFloat {

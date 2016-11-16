@@ -19,7 +19,7 @@ class MainTableViewController: UITableViewController {
     
     @IBOutlet var tableView1: UITableView!
     
-    
+    var vc: SlideShowViewController?
     
     var currentCategory = category
     
@@ -82,6 +82,15 @@ class MainTableViewController: UITableViewController {
         self.tableView1.reloadData()
         
      self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        
+        
+        
+        if(vc != nil) {
+            
+            
+            vc?.resetSlidePosition()
+        }
+     
         
     }
  
@@ -182,10 +191,18 @@ class MainTableViewController: UITableViewController {
 
         }
         
-    }
-        
+   
+        if (segue.identifier == "slideShow") {
+            vc = segue.destination as! SlideShowViewController
+            
+            
+            
+        }
         
     
+        
+        
+    }
 
 
 }

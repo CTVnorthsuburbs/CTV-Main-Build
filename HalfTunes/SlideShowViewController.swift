@@ -125,13 +125,25 @@ class SlideShowViewController: UIViewController {
         
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: timerDelay, target: self, selector: "slideshowTick", userInfo: nil, repeats: true)
-
+    func resetSlidePosition() {
+        
+        if(self.mainScrollView != nil) {
+        
+         self.mainScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
+        
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: timerDelay, target: self, selector: "slideshowTick", userInfo: nil, repeats: true)
+        
+        
+        
+
+    }
+    
+
     
 
     
