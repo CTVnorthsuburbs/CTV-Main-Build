@@ -66,9 +66,17 @@ class CategoriesTableViewController: UITableViewController {
         currentCategory = categories[indexPath.row]
         
         performSegue(withIdentifier: "unwindToMenu", sender: self)
+
+   
+       
         
-   category = currentCategory
+    
         
+        
+        
+        
+        
+     //   parentVC.changeTableSize()
         
         
     }

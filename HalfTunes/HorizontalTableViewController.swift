@@ -64,7 +64,6 @@ class HorizontalTableViewController: UITableViewController {
         
  
 
-        self.preferredContentSize = CGSize(width: 280, height: 300)
         
      /*
 
@@ -110,12 +109,13 @@ class HorizontalTableViewController: UITableViewController {
         */
         
         
-        self.currentCategory = category
-        category.createListing()
+      //  self.currentCategory = category
+     //   category.createListing()
         
         
-        videos.removeAll()
+     //   videos.removeAll()
         
+        /*
         var index = 0
         
         
@@ -125,9 +125,25 @@ class HorizontalTableViewController: UITableViewController {
             
             if(category.sections[index].searchID != nil) {
                 
-                videos.append(search.search(category.sections[index].searchID!))
                 
-                
+                if(category.sections[index].getDisplayCount() == nil) {
+                    
+                    videos.append(search.search(category.sections[index].searchID!))
+                    
+                } else {
+                    
+                    
+                    
+                    var vids = search.search(category.sections[index].searchID!)
+                    
+                    
+                    var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                    
+                    videos.append(trimmedVids)
+                    
+                    
+                    
+                }
                 
                 
             } else {
@@ -144,26 +160,29 @@ class HorizontalTableViewController: UITableViewController {
             index = index + 1
             
             
-            
+ 
             
             
         }
+     //   self.tableView.reloadData()
         
-        self.tableView.reloadData()
+     
+      //  self.tableView.reloadData()
         
+       
+     */
         
         
         
         // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
         
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         
         
         
-        
-               self.preferredContentSize = CGSize(width: 280, height: 100)
+  
         
         
         if(currentCategory?.categoryTitle != category.categoryTitle ) {
@@ -184,6 +203,9 @@ class HorizontalTableViewController: UITableViewController {
                 
                 
                 if(category.sections[index].getDisplayCount() == nil) {
+                    
+                    
+                    
                 
                 videos.append(search.search(category.sections[index].searchID!))
                 
@@ -223,11 +245,86 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         self.tableView.reloadData()
+            
+            self.changeTableSize()
+            
+            
+            
         }
 
         
+      
+        
+         
+  
+   
+    }
+    
  
 
+
+    
+    func changeTableSize() {
+        
+        
+        var tableSize: CGFloat = 0
+        
+        for section in (currentCategory?.sections)! {
+            
+            
+            switch section.sectionType {
+                
+            case .videoList:
+                
+                tableSize = tableSize + CGFloat(165)
+                
+            case .buttonNoTitle:
+                
+                tableSize = tableSize + CGFloat(100)
+                
+            case .buttonWithTitle:
+                
+                tableSize = tableSize + CGFloat(120)
+                
+            default:
+                
+                tableSize = tableSize + CGFloat(165)
+                
+            }
+            
+            
+            
+        }
+        
+ 
+        
+        
+        
+  
+        
+        //  var frame =  CGRect(x: 0, y: 0, width: (parent?.view.frame.size.width)!, height: tableSize)
+        
+        //     print("frame: \(frame.height)")
+        
+        
+        var parentVC = self.parent as! MainTableViewController
+        
+        
+        parentVC.changeSize(height: Int(tableSize))
+        
+        self.tableView.frame.size.height = tableSize
+        
+        self.tableView.reloadData()
+        
+      
+        
+        //   self.parent?.view.frame = frame
+        
+        
+        //  self.view.layoutIfNeeded()
+        
+  
+        
     }
     
     
@@ -618,16 +715,25 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         if (videos[indexPath.item].fileName != nil) {
             
-            cells.thumbnail.image = search.getThumbnail(id: (videos[indexPath.item].fileName)!)
             
-            cells.thumbnail.setRadius(radius: imageRadius)
             
-            cells.titleLabel.text = videos[indexPath.item].title
             
-            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
+           
+                    
+                    cells.thumbnail.image = self.search.getThumbnail(id: (videos[indexPath.item].fileName)!)
+                    
+                    cells.thumbnail.setRadius(radius: imageRadius)
+                    
+                    
+                    cells.titleLabel.text = videos[indexPath.item].title
+                    
+                    cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
+                    
+                  
+
+        
+        
         }
-        
-        
         }
         
         return cell

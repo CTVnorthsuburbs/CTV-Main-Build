@@ -17,6 +17,10 @@ class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var mainTableView: UIView!
     
+    @IBOutlet var tableView1: UITableView!
+    
+    
+    
     var currentCategory = category
     
    
@@ -31,17 +35,11 @@ class MainTableViewController: UITableViewController {
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
         
-        
-      
+ 
         
      //   category.createListing()
         
-        
  
-        
-        
-        
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,17 +57,34 @@ class MainTableViewController: UITableViewController {
             
         category = currentCategory
         
+        
+        
+      
+        
+
      
     }
     
-    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+    
+    func changeSize(height: Int) {
+
         
-        mainTableView.sizeToFit()
+         mainTableView.frame.size.height = CGFloat(height)
+    //    tableView1.frame.size.height = CGFloat(height)
         
-        print("executses'")
+     
+     
         
+            self.tableView1.layoutMarginsDidChange()
+        
+
+        
+        self.tableView1.reloadData()
+        
+     self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
         
     }
+ 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,6 +155,8 @@ class MainTableViewController: UITableViewController {
         
   
         self.currentCategory = sourceController.currentCategory
+        
+   
         
         
         

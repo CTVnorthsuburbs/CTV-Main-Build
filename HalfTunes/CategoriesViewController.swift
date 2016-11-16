@@ -28,8 +28,7 @@ var child = self.childViewControllers.first as! CategoriesTableViewController
     
     
  
-    
-  
+
     
 
     override func didReceiveMemoryWarning() {
