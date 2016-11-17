@@ -11,34 +11,24 @@ import UIKit
 class HorizontalTableViewController: UITableViewController {
     
     
-    
     // var storedOffsets = [Int: CGFloat]()
     
     var search = VideoSearch()
     
     var currentCategory: Category?
     
-    
-    
-    
+
     var videos : [[Video?]]  = [[Video?]]()
     
  //   var thumbnailButtons : [[ThumbnailButton]] = [[],[]]
-    
-    
-    
-    
-    
-    
+
     
     var sectionTitles = [String]()
     
     
    var sectionSearchCategories = [CategorySearches]()
     
-    
-    
-    
+
     
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
@@ -54,17 +44,12 @@ class HorizontalTableViewController: UITableViewController {
         
     }()
     
-    
-    
+
     @IBOutlet weak var tableCollection: UICollectionView!
-    
- 
+
     
     override func viewDidLoad() {
-        
- 
 
-        
      /*
 
         category.createListing()
@@ -180,23 +165,20 @@ class HorizontalTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         
-        
-        
-  
-        
-        
+
         if(currentCategory?.categoryTitle != category.categoryTitle ) {
-        
+       
+         
+            if(category.sections.count == 0) {
         category.createListing()
+                
+            }
         currentCategory = category
         
         videos.removeAll()
         
         var index = 0
-        
-        
-        
-        
+  
         while (index < category.sections.count) {
             
             if(category.sections[index].searchID != nil) {
@@ -230,17 +212,12 @@ class HorizontalTableViewController: UITableViewController {
                 
                 videos.append([nil])
                 
-                
-                
-                
+
             }
             
             
             index = index + 1
-            
-            
-            
-            
+ 
             
         }
         
@@ -252,16 +229,7 @@ class HorizontalTableViewController: UITableViewController {
             
         }
 
-        
-      
-        
-         
-  
-   
     }
-    
- 
-
 
     
     func changeTableSize() {
@@ -295,13 +263,7 @@ class HorizontalTableViewController: UITableViewController {
             
             
         }
-        
- 
-        
-        
-        
-  
-        
+
         //  var frame =  CGRect(x: 0, y: 0, width: (parent?.view.frame.size.width)!, height: tableSize)
         
         //     print("frame: \(frame.height)")
@@ -348,11 +310,7 @@ class HorizontalTableViewController: UITableViewController {
         
     }
     
-    
-    
-    
-    
-    
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -374,45 +332,34 @@ class HorizontalTableViewController: UITableViewController {
         if (section.sectionType == SectionType.slider) {
             
             
-            
-            
             self.tableView.rowHeight = 165.0
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
             
-            
             return cell!
             
-            
-            
+ 
         }
         
         
         if (section.sectionType == SectionType.videoList) {
             
-            
-            
-            
+
             self.tableView.rowHeight = 165.0
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
             
-            
-         
-            
+
             return cell!
-            
             
             
         }
         
         if (section.sectionType == SectionType.buttonWithTitle) {
             
-            
-            
-            
+
             self.tableView.rowHeight = 120.0
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailTitleCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
@@ -420,15 +367,11 @@ class HorizontalTableViewController: UITableViewController {
             
             return cell!
        
-            
         }
         
         
         if (section.sectionType == SectionType.buttonNoTitle) {
-            
-            
-            
-            
+ 
             
             self.tableView.rowHeight = 100.0
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailCell", for: indexPath) as? HorizontalTableViewCell
@@ -437,31 +380,17 @@ class HorizontalTableViewController: UITableViewController {
             
             return cell!
             
-            
-            
-            
-            
-            
-            
+ 
         }
         
-        
-        
-        
-        
-        
-        
-        
+  
         self.tableView.rowHeight = 165.0
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
         cell!.sectionLabel.text = section.sectionTitle
         
         
-        
-        
         return cell!
-        
         
         
         
@@ -498,30 +427,18 @@ class HorizontalTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
-        
-        
+
         if segue.identifier == "ShowDetail" {
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
-                        
-                        
-                        
-                        
+        
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
-                        
                         let selectedVideo = videos[collectionView.tag][indexPath.row]
-                        
-                        
-                        
-                        // Pass some data to YourViewController
-                        // collectionView.tag will give your selected tableView index
-                        
+
                         
                         destination.video = selectedVideo
-                        
                         
                         
                         destination.setDefaultSession(defaultSession: &defaultSession)
@@ -530,12 +447,57 @@ class HorizontalTableViewController: UITableViewController {
                         
                         
                         destination.setDownloadsSession(downloadsSession: &downloadsSession)
-                        
-                        
-                        
+          
                     }
                 }
             }
+            
+        }
+        
+        
+        if segue.identifier == "categoryPressed" {
+         
+        
+            
+            
+            if let collectionCell: ThumbnailButtonCell = sender as? ThumbnailButtonCell {
+                
+        
+                
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+ 
+             let indexPath = collectionView.indexPath(for: collectionCell)!
+            var buttons = category.sections[collectionView.tag].buttons
+            
+            
+
+            
+            var button = buttons[indexPath.row]
+            
+            
+            
+            
+            if(button?.type == ButtonType.category) {
+                
+          
+                
+                category = (button?.category)!
+                
+                
+                
+      var destination = segue.destination as? MainTableViewController
+                
+                destination?.currentCategory = (button?.category)!
+                
+                
+                
+                
+            }
+                }}
+            
+            
+            
+            
             
         }
         
@@ -551,11 +513,7 @@ class HorizontalTableViewController: UITableViewController {
                     let cell = button.superview?.superview as! UITableViewCell
                     indexPath = self.tableView.indexPath(for: cell)!
                     
-                    
-                    
-                    
-                    
-                    
+
                    //destination.title = sectionTitles[indexPath.section]
                     
                     
@@ -566,15 +524,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
             }
             
             
@@ -604,7 +554,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         } else if(category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle || category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle) {
             
             
-            return category.sections[collectionView.tag].buttons!.count
+            return category.sections[collectionView.tag].buttons.count
             
             
             
@@ -637,7 +587,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         // cells.thumbnail.image = thumbnailButtons[0][indexPath.row].thumbnail
                     
                     
-        cells.thumbnail.image = category.sections[collectionView.tag].buttons?[indexPath.row].image
+        cells.thumbnail.image = category.sections[collectionView.tag].buttons[indexPath.row]?.image
          
          cells.thumbnail.setRadius(radius: imageRadius)
          
@@ -715,10 +665,6 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         if (videos[indexPath.item].fileName != nil) {
             
             
-            
-            
-           
-                    
                     cells.thumbnail.image = self.search.getThumbnail(id: (videos[indexPath.item].fileName)!)
                     
                     cells.thumbnail.setRadius(radius: imageRadius)
@@ -737,18 +683,135 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         return cell
         
+    }
+    
+    func setCategory(newCategory: Category) {
         
+        self.currentCategory = newCategory
+        
+        category = newCategory
+        
+        var parentVC = self.parent as! MainTableViewController
+        
+        
+        
+        parentVC.currentCategory = newCategory
+        
+        
+        
+        
+        category.createListing()
+        currentCategory = category
+        
+        videos.removeAll()
+        
+        var index = 0
+        
+        while (index < category.sections.count) {
+            
+            if(category.sections[index].searchID != nil) {
+                
+                
+                if(category.sections[index].getDisplayCount() == nil) {
+                    
+                    
+                    
+                    
+                    videos.append(search.search(category.sections[index].searchID!))
+                    
+                } else {
+                    
+                    
+                    
+                    var vids = search.search(category.sections[index].searchID!)
+                    
+                    
+                    var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                    
+                    videos.append(trimmedVids)
+                    
+                    
+                    
+                }
+                
+                
+            } else {
+                
+                
+                videos.append([nil])
+                
+                
+            }
+            
+            
+            index = index + 1
+            
+            
+        }
+        
+        self.tableView.reloadData()
+        
+        self.changeTableSize()
+        
+        
+        
+    
+
+        
+        
+       
+        
+        
+ 
         
         
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+
+        
+        /*
+        
+        if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
+            
+            var buttons = category.sections[collectionView.tag].buttons
+           
+         
+            
+            
+            
+            var button = buttons[indexPath.row]
+            
+            
+            
+            
+            if(button?.type == ButtonType.category) {
+                
+               // print("button type pressed: \(button?.title) category: \(button?.category?.categoryTitle)")
+                
+                category = (button?.category)!
+                
+       
+
+            //   self.setCategory(newCategory: (button?.category)!)
+                
+                
+                
+                
+            }
+            
+          
+            
+            
+        }
+ 
+ */
         
         if(collectionView.tag == 1 && indexPath.row == 0) {
             
             let viewController:CategoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Category") as! CategoriesViewController
+            
             // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
             
             var parent = self.parent as! MainTableViewController
@@ -760,20 +823,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             self.present(viewController, animated: true, completion: nil)
         }
         
-        
-        
-        
-        
-        
+
         
     }
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 

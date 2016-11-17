@@ -165,8 +165,7 @@ class MainTableViewController: UITableViewController {
   
         self.currentCategory = sourceController.currentCategory
         
-   
-        
+
         
         
         
@@ -190,6 +189,10 @@ class MainTableViewController: UITableViewController {
             categoryViewController.currentCategory = self.currentCategory
 
         }
+        
+        
+        
+     
         
    
         if (segue.identifier == "slideShow") {
