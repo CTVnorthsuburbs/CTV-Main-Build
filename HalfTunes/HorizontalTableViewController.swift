@@ -343,7 +343,6 @@ class HorizontalTableViewController: UITableViewController {
         
         //   return videos.count
         
-        
         return category.sections.count
         
         

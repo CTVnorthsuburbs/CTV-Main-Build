@@ -23,6 +23,7 @@
 		8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */; };
 		8D57BA3D1DCB8EC9008AFF0D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */; };
 		8D60652E1D95777C00D45F3F /* MyVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */; };
+		8D6101561DDDF8C9007A3FC6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6101551DDDF8C9007A3FC6 /* Category.swift */; };
 		8D63F29A1D64B22900689693 /* VideoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63F2991D64B22900689693 /* VideoSearch.swift */; };
 		8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65C39D1D3FAD630078B86B /* JSON.swift */; };
 		8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		8D52F9081D67631C00FB6883 /* AllVideosResultControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllVideosResultControllerView.swift; sourceTree = "<group>"; };
 		8D57BA3C1DCB8EC9008AFF0D /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8D60652D1D95777C00D45F3F /* MyVideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVideosViewController.swift; sourceTree = "<group>"; };
+		8D6101551DDDF8C9007A3FC6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8D63F2991D64B22900689693 /* VideoSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSearch.swift; sourceTree = "<group>"; };
 		8D65C39D1D3FAD630078B86B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		8D66CF171D8C29A000C600F4 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				8D6101551DDDF8C9007A3FC6 /* Category.swift */,
 				8D63F2991D64B22900689693 /* VideoSearch.swift */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 			);
@@ -326,6 +329,7 @@
 				8D52F9091D67631C00FB6883 /* AllVideosResultControllerView.swift in Sources */,
 				8D90BBE31DD2262F007B4C76 /* CategoriesTableViewController.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
+				8D6101561DDDF8C9007A3FC6 /* Category.swift in Sources */,
 				8DB4DA321DC2751900AD980B /* ThumbnailButtonCell.swift in Sources */,
 				8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* MyVideosSearchViewController.swift in Sources */,
