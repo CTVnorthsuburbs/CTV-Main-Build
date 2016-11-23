@@ -136,63 +136,13 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
         
-        
         let session = getNSURLSession()
         
-        let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
+        let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?ids=\(savedSearchID)&include=vod,thumbnail")
         
-        let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
+        getSearchResults(session, url: searchURL!, isIDSearchURL: true)
         
-        if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
-            
-            let splitResults = splitIdArray(results!)
-            
-            
-            
-            if (splitResults != nil) {
-                
-                
-                
-                var searchURLs = [URL]()
-                
-                var counter = 0
-                
-                
-                
-                for splitArray in splitResults! {
-                    
-                    let searchURL = convertIdArrayToSearchURL(splitArray)
-                    
-                    
-                    
-                    searchURLs.append(searchURL!)
-                    
-                    counter = counter + 1
-                    
-                }
-                
-                for url in searchURLs {
-                    
-                    getSearchResults(session, url: url, isIDSearchURL: true)
-                    
-                }
-                
-            } }
-            
-            
-        else {        //if array is smaller than maximum, just process it
-            
-            let searchIdURL =  convertIdArrayToSearchURL(results!)
-            
-            
-            getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
-            
-        }
-        
-        
-        var result = trimVideos(videoArray: searchResults, numberToReturn: 1)
-        
-        return result
+        return searchResults
     }
     
     

@@ -109,10 +109,7 @@ class MainTableViewController: UITableViewController {
 
   
     override func viewDidDisappear(_ animated: Bool) {
-        
 
-        
-        
         featured = false
         
         if(previousCategory?.categoryTitle == featuredCategory.categoryTitle) {

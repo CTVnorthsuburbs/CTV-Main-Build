@@ -439,6 +439,13 @@ class HorizontalTableViewController: UITableViewController {
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
                         
+                        
+                  
+                        
+                        
+                        
+                        
+                        
                        suggestedSearch = category.sections[collectionView.tag]
                         
                         let selectedVideo = videos[collectionView.tag][indexPath.row]
@@ -465,7 +472,7 @@ class HorizontalTableViewController: UITableViewController {
         if segue.identifier == "categoryPressed" {
          
         
-            
+            print("caetgeory pressed")
             
             if let collectionCell: ThumbnailButtonCell = sender as? ThumbnailButtonCell {
                 
@@ -481,16 +488,36 @@ class HorizontalTableViewController: UITableViewController {
             
             var button = buttons[indexPath.row]
             
-            
-            
+                 
+                    if(button?.type == ButtonType.video) {
+                        
+                        
+                        
+                        print("VIDEO PRESSED!!")
+                        
+       
+                        var button =  category.sections[collectionView.tag].buttons[indexPath.row]
+                        
+                        var video  = search.searchForSingle((button?.videoID)!)
+                        
+   
+                        let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+                        
+                        vc.video = video[0]
+                        self.navigationController?.pushViewController(vc, animated:true)
+                        
+           
+                        
+                    }
+                    
+                    
             
             if(button?.type == ButtonType.category) {
                 
           
                 
                 category = (button?.category)!
-                
-                
+
                 
       var destination = segue.destination as? MainTableViewController
                 
@@ -502,6 +529,9 @@ class HorizontalTableViewController: UITableViewController {
                 featured = false
                 
             }
+                    
+
+                    
                 }}
             
             
@@ -509,6 +539,57 @@ class HorizontalTableViewController: UITableViewController {
             
             
         }
+        
+        
+        
+        if segue.identifier == "ShowButtonDetail" {
+        
+        
+        if let collectionCell: ThumbnailButtonCell = sender as? ThumbnailButtonCell {
+            
+            
+            
+            if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                
+                let indexPath = collectionView.indexPath(for: collectionCell)!
+                var buttons = category.sections[collectionView.tag].buttons
+                
+                
+                
+                
+                var button = buttons[indexPath.row]
+                
+                if(button?.type == ButtonType.video) {
+                    
+                    
+                    
+                    print("VIDEO PRESSED!!")
+                    
+                    
+                    
+                    
+                    var button =  category.sections[collectionView.tag].buttons[indexPath.row]
+                    
+                    var video  = search.searchForSingle((button?.videoID)!)
+                    
+                    
+                    
+                    
+                    
+                    let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+                    
+                    vc.video = video[0]
+                    self.navigationController?.pushViewController(vc, animated:true)
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                
+
+            }}}
         
         
         if segue.identifier == "seeAll" {
@@ -594,12 +675,46 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
          cells = cell as! ThumbnailButtonCell
          
         // cells.thumbnail.image = thumbnailButtons[0][indexPath.row].thumbnail
+                  
+                    
+                    if (category.sections[collectionView.tag].buttons[indexPath.row]?.type == ButtonType.video) {
+                        
+                        
+                        
+                        DispatchQueue.global(qos: .background).async {
+                        
+                            
+                             var thumbnail = self.search.getThumbnail(id: (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                            
+                        
+                            
+                            DispatchQueue.main.async {
+                                
+                                
+                                cells.thumbnail.image = thumbnail
+                                
+                                cells.thumbnail.alpha = 0.5
+                                
+                                cells.textOverlay.text = category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay
+                                
+                            }
+                        }
+                        
+                      
+                        
+                        
+                        
+                        
+                    }
                     
                     
         cells.thumbnail.image = category.sections[collectionView.tag].buttons[indexPath.row]?.image
          
          cells.thumbnail.setRadius(radius: imageRadius)
          
+                    
+                    
+                 
          
          return cells
          
@@ -811,11 +926,11 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             }
             
           
-            
+        
             
         }
  
- 
+/*
         
         if(collectionView.tag == 1 && indexPath.row == 0) {
             

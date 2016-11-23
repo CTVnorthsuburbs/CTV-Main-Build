@@ -339,6 +339,30 @@ class baseballButtonFactory: ButtonFactory {
     
 }
 
+class featuredButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.video
+        
+        self.image = #imageLiteral(resourceName: "defaultPhoto")
+        
+        self.title = "City Commision Meeting Live"
+        
+        self.imageOverlay = "City Commision Meeting Live"
+        
+        self.page = nil
+        
+        self.videoID = 10463
+        
+        self.category = nil
+        
+    }
+
+}
+
 class hockeyButtonFactory: ButtonFactory {
     
     override init() {
@@ -545,7 +569,7 @@ class CategoryFactory {
         
         var buttons = [Button]()
         
-        
+           buttons.append(Button(factory:featuredButtonFactory()))
         
         buttons.append(Button(factory:hockeyButtonFactory()))
         
@@ -837,11 +861,18 @@ class ButtonFactory {
     
     var category: Category? = nil
     
+    var videoID: Int? = nil
+    
     
     func getType() -> ButtonType? {
         
         return type
         
+    }
+    
+    func getVideoID() -> Int? {
+        
+        return videoID
     }
     
     
@@ -932,6 +963,8 @@ class Button {
     
     var category: Category?
     
+    var videoID: Int?
+    
     
     init(factory: ButtonFactory) {
         
@@ -948,6 +981,10 @@ class Button {
         self.page = factory.getPage()
         
         self.category = factory.getCategory()
+        
+        self.videoID = factory.getVideoID()
+        
+        
     }
     
 }
