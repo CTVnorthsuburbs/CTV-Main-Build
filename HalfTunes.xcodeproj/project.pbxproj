@@ -41,7 +41,6 @@
 		8DB606991D303934005029DB /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606931D303934005029DB /* Gloss.swift */; };
 		8DB6069B1D303934005029DB /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB606951D303934005029DB /* Operators.swift */; };
 		8DB6069D1D303E1F005029DB /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6069C1D303E1F005029DB /* Download.swift */; };
-		8DDEC7AA1DC3BD40006B40D5 /* Screen Shot 2016-10-28 at 12.06.48 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDEC7A91DC3BD40006B40D5 /* Screen Shot 2016-10-28 at 12.06.48 PM.png */; };
 		8DE12DFD1DA7F06200749072 /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE12DFC1DA7F06200749072 /* VideoTableViewController.swift */; };
 		8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */; };
 		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
@@ -84,7 +83,6 @@
 		8DB606931D303934005029DB /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gloss.swift; path = Gloss/Gloss.swift; sourceTree = "<group>"; };
 		8DB606951D303934005029DB /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Gloss/Operators.swift; sourceTree = "<group>"; };
 		8DB6069C1D303E1F005029DB /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
-		8DDEC7A91DC3BD40006B40D5 /* Screen Shot 2016-10-28 at 12.06.48 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2016-10-28 at 12.06.48 PM.png"; sourceTree = "<group>"; };
 		8DE12DFC1DA7F06200749072 /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
 		8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVideoCell.swift; sourceTree = "<group>"; };
 		8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */,
 				8D2431CD1D391FC10024F1D6 /* Main.storyboard */,
 				8D2431CF1D391FF30024F1D6 /* Assets.xcassets */,
-				8DDEC7A91DC3BD40006B40D5 /* Screen Shot 2016-10-28 at 12.06.48 PM.png */,
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
 				8D1F2EE11D88396400F2308D /* Model.xcdatamodeld */,
@@ -312,7 +309,6 @@
 				8D2431CE1D391FC10024F1D6 /* Main.storyboard in Resources */,
 				8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */,
 				8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */,
-				8DDEC7AA1DC3BD40006B40D5 /* Screen Shot 2016-10-28 at 12.06.48 PM.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

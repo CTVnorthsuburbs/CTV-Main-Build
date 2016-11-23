@@ -13,7 +13,7 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     
     @IBOutlet weak var titleLabel: UILabel!
-
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addVideoButton: UIButton!
     
@@ -45,147 +45,87 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        
-        
         super.viewDidLoad()
-
-  
         
-         recommendedVideos = search.getRecentLimited()
+        
+        
+    }
+    
+    
+    func setVideo(video: Video) {
+        
+        
+        var searchID = suggestedSearch?.searchID
+        
+        
+        if (searchID != nil) {
+            
+            var results = search.search(searchID!)
+            
+            results = search.trimVideos(videoArray: results, numberToReturn: 10)
+            
+            recommendedVideos = results
+            
+          
+        } else {
+            
+             recommendedVideos = search.getRecentLimited()
+        }
       
-   
         
         myVideos = recommendedVideos
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        self.video = video
         
+        if( removeDuplicateVideo(video: video, videoList: recommendedVideos) ) {
+            
+            tableView.reloadData()
+        }
         
-        
- 
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    func removeDuplicateVideo(video: Video, videoList: [Video]) -> Bool {
         
-        
-        
-        
-           }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-
-    
-
-    // MARK: - Table view data source
-
-
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func removeDuplicateVideo() {
+        var videoList = videoList
         
         var count = 0
         
-        for vid in recommendedVideos {
+        for vid in videoList {
             
-            
-            
-            
-            if(video?.title == vid.title) {
+            if(video.title == vid.title) {
                 
-                recommendedVideos.remove(at: count)
+              
                 
-                tableView.reloadData()
+                videoList.remove(at: count)
                 
+                self.recommendedVideos = videoList
+                
+                self.myVideos  = videoList
+                
+                return true
             }
             
             count += 1
             
-            
-            
         }
-
         
+        return false
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-      
-       
         if segue.identifier == "ShowDetail" {
-            
-           
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
-     
+            
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? MainVideoCell {
                 
-              
+                
                 
                 let indexPath = tableView.indexPath(for: selectedVideoCell)!
                 
@@ -194,12 +134,12 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 videoDetailViewController.video = selectedVideo
                 
-               //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
+                //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
                 
                 
-                        videoDetailViewController.setDefaultSession(defaultSession: &parentView.defaultSession!)
+                videoDetailViewController.setDefaultSession(defaultSession: &parentView.defaultSession!)
                 
-                        videoDetailViewController.setDataTask(dataTask: &parentView.dataTask!)
+                videoDetailViewController.setDataTask(dataTask: &parentView.dataTask!)
                 
                 
                 videoDetailViewController.setDownloadsSession(downloadsSession: &parentView.downloadsSession!)
@@ -222,15 +162,17 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as? MainVideoCell
         
+        video = recommendedVideos[indexPath.row]
+        
         
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
         
         
-         cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
+        cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
         
         cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
         
-         cell?.thumbnailView.setRadius(radius: imageRadius)
+        cell?.thumbnailView.setRadius(radius: imageRadius)
         
         
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
@@ -265,7 +207,6 @@ class SuggestedVideosTableViewController: UITableViewController {
         }
         return cell!
         
-        
     }
     
     
@@ -288,10 +229,10 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     
     @IBAction func addVideoPressed(_ sender: AnyObject) {
-   
-     
-    parentView.addVideo(self.addVideoButton)
-
+        
+        
+        parentView.addVideo(self.addVideoButton)
+        
     }
     
     @IBAction func cancelPressed(_ sender: AnyObject) {
@@ -301,6 +242,6 @@ class SuggestedVideosTableViewController: UITableViewController {
         
     }
     
- 
-
+    
+    
 }

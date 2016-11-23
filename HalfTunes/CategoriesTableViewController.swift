@@ -9,10 +9,7 @@
 import UIKit
 
 class CategoriesTableViewController: UITableViewController {
-    
-    var currentCategory = category
-    
-    
+
     
     var categories =  [Category]()
     
@@ -26,11 +23,15 @@ class CategoriesTableViewController: UITableViewController {
         
          categories = search.getCategories()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+         tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,23 +56,33 @@ class CategoriesTableViewController: UITableViewController {
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
         
-        
+   previousCategory = nil
          self.dismiss(animated: true, completion: {})
+        
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       
-        
-        currentCategory = categories[indexPath.row]
-        
-        performSegue(withIdentifier: "unwindToMenu", sender: self)
+        if(category.categoryTitle   != categories[indexPath.row].categoryTitle ) {
 
-     //   parentVC.changeTableSize()
+            category = categories[indexPath.row]
+
+           previousCategory = category
+
         
+        }
+  
+         featured = false
         
+        self.dismiss(animated: true, completion: nil)
+            
+
     }
     
+    
+
 
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> CategoriesTableViewCell {
@@ -85,30 +96,19 @@ class CategoriesTableViewController: UITableViewController {
         
         cell?.thumbnailImage.setRadius(radius: imageRadius)
         
-        
-    
-        
-       //generate thumbnail in bacground
-       
-       
-        
+
         
             let categoryTitle = categories[indexPath.row].categoryTitle
             
-        
-        //    let searchID = self.categories[categoryTitle]
-        
-     
-        
-        
+
                     cell?.setCategory(category: categories[indexPath.row])
         
         
-        
+
         
     
             
-        if (categoryTitle == currentCategory.categoryTitle) {
+        if (categoryTitle == category.categoryTitle) {
             
             cell?.categoryTitle.isHighlighted = true
             
@@ -123,26 +123,7 @@ class CategoriesTableViewController: UITableViewController {
             
             cell?.accessoryType = .none
         }
-        
-        
-        
 
-        
-        //   let recentVideo = self.search.searchForSingle((categories[indexPath.row].sections[0].searchID)!)
-            
-     
-        
-        
-      
-         //      thumbnail = self.search.getThumbnail(id: (recentVideo.first?.fileName)!)
-                
-            
-                
-            
-     
-            
-    
-                
                 if(thumbnail != nil ) {
                     
                     cell?.thumbnailImage.image = thumbnail
@@ -165,53 +146,7 @@ class CategoriesTableViewController: UITableViewController {
     
     
 
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
 
-    
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-
-    
-    
     
  
 

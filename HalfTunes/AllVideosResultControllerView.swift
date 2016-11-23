@@ -90,12 +90,14 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                       
                         videoDetailViewController.video = selectedVideo
                         
-                        
+                      
                         var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
                         
                         var dataTask = URLSessionDataTask()
                         
                         var downloadsSession: Foundation.URLSession = {
+                            
+                            
                             
                             let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
                             

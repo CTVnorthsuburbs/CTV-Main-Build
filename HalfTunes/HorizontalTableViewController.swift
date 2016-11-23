@@ -170,6 +170,8 @@ class HorizontalTableViewController: UITableViewController {
        
          
             if(category.sections.count == 0) {
+                
+                
         category.createListing()
                 
             }
@@ -429,16 +431,28 @@ class HorizontalTableViewController: UITableViewController {
         
 
         if segue.identifier == "ShowDetail" {
+            
+            
+            
+            
+    
+            
+            
+            
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
         
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
+                        
+                       suggestedSearch = category.sections[collectionView.tag]
+                        
                         let selectedVideo = videos[collectionView.tag][indexPath.row]
 
                         
                         destination.video = selectedVideo
+                        
                         
                         
                         destination.setDefaultSession(defaultSession: &defaultSession)
@@ -487,10 +501,12 @@ class HorizontalTableViewController: UITableViewController {
                 
       var destination = segue.destination as? MainTableViewController
                 
-                destination?.currentCategory = (button?.category)!
+            //    destination?.currentCategory = (button?.category)!
                 
                 
+               previousCategory = category
                 
+                featured = false
                 
             }
                 }}
@@ -695,7 +711,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         
         
-        parentVC.currentCategory = newCategory
+      //  parentVC.currentCategory = newCategory
         
         
         
@@ -806,9 +822,12 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
         }
  
- */
+ 
         
         if(collectionView.tag == 1 && indexPath.row == 0) {
+            
+            
+            print("THSI IS WEHRE IT GETS WERIED")
             
             let viewController:CategoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Category") as! CategoriesViewController
             
@@ -817,13 +836,13 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             var parent = self.parent as! MainTableViewController
             
             
-            viewController.category = parent.currentCategory
+        //    viewController.category = parent.currentCategory
             
-            
+            previousCategory = category
             self.present(viewController, animated: true, completion: nil)
         }
         
-
+*/
         
     }
 

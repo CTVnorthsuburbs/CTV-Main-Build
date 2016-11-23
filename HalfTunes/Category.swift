@@ -317,7 +317,7 @@ class baseballButtonFactory: ButtonFactory {
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "baseball")
+        self.image = #imageLiteral(resourceName: "softball_slider")
         
         self.title = "Baseball"
         

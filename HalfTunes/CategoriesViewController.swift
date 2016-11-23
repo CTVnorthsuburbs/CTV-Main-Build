@@ -18,17 +18,19 @@ class CategoriesViewController: UINavigationController {
         
 var child = self.childViewControllers.first as! CategoriesTableViewController
         
-        
+        /*
         if(self.category != nil) {
         child.currentCategory = self.category!
             
         }
+ 
+ */
         // Do any additional setup after loading the view.
     }
     
     
- 
 
+    
     
 
     override func didReceiveMemoryWarning() {

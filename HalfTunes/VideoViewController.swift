@@ -16,9 +16,8 @@ import AVKit
 
 class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-
-    
     var childView: SuggestedVideosTableViewController {
+        
         get {
             let ctrl = childViewControllers.first(where: { $0 is SuggestedVideosTableViewController })
             
@@ -27,27 +26,14 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
     }
     
-
-
     @IBOutlet weak var child: UIView!
-    
-    
-    
+   
     // MARK: Properties
     
     @IBOutlet weak var thumbnailView: UIImageView!
-    
-   
-    
 
-    
     @IBOutlet weak var thumbnailButton: UIButton!
-    
-   
-    
-  
-    
-    
+
     let playerViewController = YourVideoPlayer()
     
     var moviePlayer : AVPlayer?
@@ -113,12 +99,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
 
     
-    
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         self.thumbnailButton.isHidden = false
-        
         
         
         playerViewController.player?.pause()
@@ -131,24 +113,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
-    
-    
- 
-        
-        
-        
-        
-        
+
     override func viewDidLoad() {
         
-        
-      
+    
 
-        
         var search = VideoSearch()
-        
-     
-        
+
         childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
@@ -156,28 +127,17 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         _ = self.downloadsSession
         
         if let video = video {
-            
-            
-            
+
             var date =  video.eventDate
             
             childView.dateLabel.text = convertDateToString(date: date!)
-            
-            
-            
-            
-            
-            
+
             navigationItem.title = video.title
             
             childView.titleLabel.text   = video.title
             
             childView.descriptionLabel.text = video.comments
-            
-            
-            
-            
-            
+
             DispatchQueue.global(qos: .background).async {
                 
                 if(video.fileName != nil) {
@@ -218,13 +178,14 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 }
             }
             
+             self.video = video
+            
             
             childView.parentView = self
             
+       
             
-            childView.video = self.video
-            
-            
+            childView.setVideo(video: self.video!)
             
             //thumbnailView.image = video.thumbnail
             
@@ -234,10 +195,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
             self.myVideos = loadVideos()!
-            
-            
-            
-            
+
         }
         
         if (hasSavedVideo()) {

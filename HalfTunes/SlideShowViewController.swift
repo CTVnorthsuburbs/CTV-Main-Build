@@ -28,14 +28,15 @@ class SlideShowViewController: UIViewController {
  
     
     
-    
+    func setSlideImages(images: [UIImage]) {
+        
+        self.imageArray = images
+        
+        
+        
+    }
     
     override func viewDidLayoutSubviews() {
-        
-        
-        
-        
-        
         
        // super.viewDidLoad()
         
@@ -43,7 +44,7 @@ class SlideShowViewController: UIViewController {
         
        
         
-        imageArray = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-exterior"),#imageLiteral(resourceName: "mobile-roseparade")]
+        imageArray = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-roseparade"), #imageLiteral(resourceName: "softball_slider") ]
         
         for i in  0..<imageArray.count {
             
@@ -75,32 +76,19 @@ class SlideShowViewController: UIViewController {
     
 
     func slideshowTick() {
-        
-        
-        
-    
+
         var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
         
         page = page + 1
         
-        if(page == 4) {
+        if(page == imageArray.count) {
             
             
             page = 0
         }
-        
-        
-       
-        
-        
+
         var nextPage = page
-   
-     
-      
-        
-        
-    
-        
+
    //print(nextPage)
         
         
@@ -108,11 +96,7 @@ class SlideShowViewController: UIViewController {
         
         
         self.mainScrollView.setContentOffset(CGPoint(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0), animated: true)
-        
-        
-    
-      
-        
+
       //  scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: 1, height: 1), animated: true)
         
         
@@ -136,16 +120,11 @@ class SlideShowViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
         timer = Timer.scheduledTimer(timeInterval: timerDelay, target: self, selector: "slideshowTick", userInfo: nil, repeats: true)
         
         
-        
-
     }
     
 
-    
-
-    
-    
 }
