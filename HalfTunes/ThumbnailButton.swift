@@ -27,15 +27,14 @@ class ThumbnailButton {
     var textOverlay: String?
     
     
-    init(thumbnail: UIImage, category: CategorySearches, textOverlay: String?) {
+    init(thumbnail: UIImage, category: CategorySearches) {
         
         
         self.thumbnail = thumbnail
         
         self.category = category
         
-        self.textOverlay = textOverlay
-        
+     
     }
     
     
@@ -57,7 +56,7 @@ class ThumbnailButton {
             imageView.image = image
             
             
-            self.init(thumbnail: image, category: category, textOverlay: nil)
+            self.init(thumbnail: image, category: category)
             
         }
         

@@ -349,13 +349,13 @@ class featuredButtonFactory: ButtonFactory {
         
         self.image = #imageLiteral(resourceName: "defaultPhoto")
         
-        self.title = "City Commision Meeting Live"
+        self.title = "Section Girls Basketball Roseville v Champlin Park"
         
-        self.imageOverlay = "City Commision Meeting Live"
+        self.imageOverlay = "Roseville v Champlin Park"
         
         self.page = nil
         
-        self.videoID = 10463
+        self.videoID = 10069
         
         self.category = nil
         

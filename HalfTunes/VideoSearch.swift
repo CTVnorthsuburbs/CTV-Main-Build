@@ -142,6 +142,10 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         getSearchResults(session, url: searchURL!, isIDSearchURL: true)
         
+        
+        print(searchResults.first?.title)
+        
+        
         return searchResults
     }
     

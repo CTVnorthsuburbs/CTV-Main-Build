@@ -50,116 +50,7 @@ class HorizontalTableViewController: UITableViewController {
     
     override func viewDidLoad() {
 
-     /*
-
-        category.createListing()
-        
-        
-        
-        var index = 0
-        
-        
-        
-        
-        while (index < category.sections.count) {
-            
-            if(category.sections[index].searchID != nil) {
-            
-            videos.append(search.search(category.sections[index].searchID!))
-            
-           
-            
-            
-            } else {
-                
-                
-                videos.append([nil])
-                
-            
-                
-                
-            }
-            
-            
-            index = index + 1
-            
-            
-            
-            
-            
-        }
-        
-        
-   
-        */
-        
-        
-      //  self.currentCategory = category
-     //   category.createListing()
-        
-        
-     //   videos.removeAll()
-        
-        /*
-        var index = 0
-        
-        
-        
-        
-        while (index < category.sections.count) {
-            
-            if(category.sections[index].searchID != nil) {
-                
-                
-                if(category.sections[index].getDisplayCount() == nil) {
-                    
-                    videos.append(search.search(category.sections[index].searchID!))
-                    
-                } else {
-                    
-                    
-                    
-                    var vids = search.search(category.sections[index].searchID!)
-                    
-                    
-                    var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
-                    
-                    videos.append(trimmedVids)
-                    
-                    
-                    
-                }
-                
-                
-            } else {
-                
-                
-                videos.append([nil])
-                
-                
-                
-                
-            }
-            
-            
-            index = index + 1
-            
-            
- 
-            
-            
-        }
-     //   self.tableView.reloadData()
-        
-     
-      //  self.tableView.reloadData()
-        
-       
-     */
-        
-        
-        
-        // videos.append(search.trimVideos(videoArray: search.getBasketball(), numberToReturn: 10))
+    
         
     }
 
@@ -469,127 +360,11 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
-        if segue.identifier == "categoryPressed" {
-         
+     
         
-            print("caetgeory pressed")
-            
-            if let collectionCell: ThumbnailButtonCell = sender as? ThumbnailButtonCell {
-                
         
-                
-                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
- 
-             let indexPath = collectionView.indexPath(for: collectionCell)!
-            var buttons = category.sections[collectionView.tag].buttons
-            
-            
+        
 
-            
-            var button = buttons[indexPath.row]
-            
-                 
-                    if(button?.type == ButtonType.video) {
-                        
-                        
-                        
-                        print("VIDEO PRESSED!!")
-                        
-       
-                        var button =  category.sections[collectionView.tag].buttons[indexPath.row]
-                        
-                        var video  = search.searchForSingle((button?.videoID)!)
-                        
-   
-                        let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
-                        
-                        vc.video = video[0]
-                        self.navigationController?.pushViewController(vc, animated:true)
-                        
-           
-                        
-                    }
-                    
-                    
-            
-            if(button?.type == ButtonType.category) {
-                
-          
-                
-                category = (button?.category)!
-
-                
-      var destination = segue.destination as? MainTableViewController
-                
-            //    destination?.currentCategory = (button?.category)!
-                
-                
-               previousCategory = category
-                
-                featured = false
-                
-            }
-                    
-
-                    
-                }}
-            
-            
-            
-            
-            
-        }
-        
-        
-        
-        if segue.identifier == "ShowButtonDetail" {
-        
-        
-        if let collectionCell: ThumbnailButtonCell = sender as? ThumbnailButtonCell {
-            
-            
-            
-            if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
-                
-                let indexPath = collectionView.indexPath(for: collectionCell)!
-                var buttons = category.sections[collectionView.tag].buttons
-                
-                
-                
-                
-                var button = buttons[indexPath.row]
-                
-                if(button?.type == ButtonType.video) {
-                    
-                    
-                    
-                    print("VIDEO PRESSED!!")
-                    
-                    
-                    
-                    
-                    var button =  category.sections[collectionView.tag].buttons[indexPath.row]
-                    
-                    var video  = search.searchForSingle((button?.videoID)!)
-                    
-                    
-                    
-                    
-                    
-                    let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
-                    
-                    vc.video = video[0]
-                    self.navigationController?.pushViewController(vc, animated:true)
-                    
-                    
-                    
-                    
-                    
-                    
-                }
-                
-
-            }}}
         
         
         if segue.identifier == "seeAll" {
@@ -680,11 +455,33 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     if (category.sections[collectionView.tag].buttons[indexPath.row]?.type == ButtonType.video) {
                         
                         
+                        if(category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay != nil) {
+                        
+                            
+                            print("this: \(category.sections[collectionView.tag].buttons[indexPath.row]?.title)")
+                            
+                             cells.textOverlay.text = category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay
+                                                    } else {
+                            
+                            
+                            cells.textOverlay.text = nil
+                        }
                         
                         DispatchQueue.global(qos: .background).async {
                         
                             
-                             var thumbnail = self.search.getThumbnail(id: (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                            
+                            var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                            
+                          
+                            
+                            
+                            
+                          var thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
+                            
+                           
+                            
+                            // var thumbnail = self.search.getThumbnail(id: (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
                             
                         
                             
@@ -694,8 +491,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                                 cells.thumbnail.image = thumbnail
                                 
                                 cells.thumbnail.alpha = 0.5
-                                
-                                cells.textOverlay.text = category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay
+                        
                                 
                             }
                         }
@@ -705,10 +501,19 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                         
                         
-                    }
+                    } else {
+                    
+                    
                     
                     
         cells.thumbnail.image = category.sections[collectionView.tag].buttons[indexPath.row]?.image
+                        
+                        
+                        cells.textOverlay.text = nil
+                        
+                        cells.thumbnail.alpha = 1.0
+                        
+                    }
          
          cells.thumbnail.setRadius(radius: imageRadius)
          
@@ -895,7 +700,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
-        /*
+        
         
         if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
             
@@ -912,18 +717,71 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.category) {
                 
-               // print("button type pressed: \(button?.title) category: \(button?.category?.categoryTitle)")
+                print("button type pressed: \(button?.title) category: \(button?.category?.categoryTitle)")
                 
                 category = (button?.category)!
-                
        
+                previousCategory = category
+                
+                featured = false
 
-            //   self.setCategory(newCategory: (button?.category)!)
+                let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
+                
+              
+                self.navigationController?.pushViewController(vc, animated:true)
+       
+            }
+            
+            
+            if(button?.type == ButtonType.video) {
+                
+     
+                
+                var button =  category.sections[collectionView.tag].buttons[indexPath.row]
+                
+                var video  = search.searchForSingle((button?.videoID)!)
+                
+                
+                
+                
+                
+                let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+                
+               
+                
+                
+                
+                
+                
+                
+                suggestedSearch = category.sections[collectionView.tag]
+                
+                let selectedVideo = videos[collectionView.tag][indexPath.row]
+                
+                
+                destination.video = video.first
+                
+                
+                
+                destination.setDefaultSession(defaultSession: &defaultSession)
+                
+                destination.setDataTask(dataTask: &dataTask)
+                
+                
+                destination.setDownloadsSession(downloadsSession: &downloadsSession)
+                
+                
+                
+                
+                self.navigationController?.pushViewController(destination, animated:true)
+                
+                
                 
                 
                 
                 
             }
+            
             
           
         

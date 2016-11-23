@@ -24,7 +24,12 @@ class ThumbnailButtonCell: UICollectionViewCell {
     
     @IBOutlet weak var textOverlay: UILabel!
     
+   
+ 
     
-    
+   
+
 }
+    
+
 
