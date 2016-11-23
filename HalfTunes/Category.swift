@@ -104,6 +104,10 @@ class CategoryFactorySettings {
     
     var categoryOrder: [CategoryOrder]?
     
+    var sliderImages: [UIImage]?
+    
+    
+    
 }
 
 enum CategoryOrder {
@@ -151,6 +155,8 @@ class hockeyFactorySettings: CategoryFactorySettings {
         self.recentSectionTitle = "Recent Hockey Games"
         
         self.recentSectionSearchID = 65794
+        
+        self.sliderImages = nil
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.boys, CategoryOrder.girls]
         
@@ -230,6 +236,8 @@ class baseballFactorySettings: CategoryFactorySettings {
         self.recentSectionTitle = "Recent Baseball Games"
         
         self.recentSectionSearchID = 65797
+        
+        self.sliderImages = [#imageLiteral(resourceName: "softball_slider")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
         
@@ -429,7 +437,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
         
         return section
     }
@@ -448,7 +458,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
         
         return section
         
@@ -469,7 +481,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
         
         return section
         
@@ -489,7 +503,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
         
         return section
         
@@ -509,7 +525,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
         
         return section
         
@@ -538,7 +556,9 @@ class CategoryFactory {
         buttons.append(Button(factory:basketballButtonFactory()))
         
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil)
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
         
         return section
         
@@ -558,7 +578,9 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil)
+        let images: [UIImage]? = settings.sliderImages
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
         
         return section
         
@@ -585,7 +607,19 @@ class Category {
     
     var sections = [Section]()
     
+    var slider: Section?
     
+    func getSlider() -> Section? {
+        
+        
+        if(slider != nil) {
+           
+          return slider!
+        }
+      
+      return nil
+        
+    }
     
     
     required init(categoryFactory: CategoryFactory) {
@@ -599,6 +633,8 @@ class Category {
     
     
     func createListing() {
+        
+        createSlider()
         
         var order = categoryFactory.getOrder()
         
@@ -654,7 +690,11 @@ class Category {
     
     func createSlider() {
         
-        sections.append(categoryFactory.addSlide())
+       
+        
+        slider = (categoryFactory.addSlide())
+        
+     
         
     }
     
@@ -724,7 +764,9 @@ class Section {
     
     var buttons = [Button?]()
     
-    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [Button]?, displayCount: Int?) {
+    var images = [UIImage?]()
+    
+    init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [Button]?, displayCount: Int?, images: [UIImage]?) {
         
         self.sectionType = sectionType
         
@@ -739,6 +781,14 @@ class Section {
           self.buttons = buttons!
             
         }
+        
+        if(images != nil) {
+            
+              self.images = images!
+        
+        }
+        
+      
         
         
         

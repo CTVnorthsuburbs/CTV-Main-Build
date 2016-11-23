@@ -28,10 +28,40 @@ class SlideShowViewController: UIViewController {
  
     
     
-    func setSlideImages(images: [UIImage]) {
+    func setSlider(slider: Section) {
         
-        self.imageArray = images
+      
+        var images = slider.images as! [UIImage]
         
+        if(images.count > 0) {
+            
+         
+            self.imageArray = images
+        }
+        
+        
+        for i in  0..<imageArray.count {
+            
+            let imageView = UIImageView()
+            imageView.image = imageArray[i]
+            imageView.contentMode  = .scaleAspectFit
+            
+            let xPostion = self.view.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height )
+            
+            
+            // imageView.frame = CGRect(x: xPostion ,y: 0, width: self.view.frame.width,height: self.view.frame.height)
+            
+            //    imageView.frame = AVMakeRect(aspectRatio: (imageView.image?.size)!, insideRect: imageView.bounds)
+            
+            
+            
+            mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i + 1)
+            
+            mainScrollView.addSubview(imageView)
+            
+            
+        }
         
         
     }
@@ -41,9 +71,7 @@ class SlideShowViewController: UIViewController {
        // super.viewDidLoad()
         
         mainScrollView.frame = view.frame
-        
-       
-        
+  
         imageArray = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-roseparade"), #imageLiteral(resourceName: "softball_slider") ]
         
         for i in  0..<imageArray.count {
@@ -69,8 +97,10 @@ class SlideShowViewController: UIViewController {
           
         }
         
+        var parent = self.parent as! MainTableViewController
         
         
+        parent.vc = self
         
     }
     

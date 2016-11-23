@@ -37,7 +37,38 @@ class MainTableViewController: UITableViewController {
        
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
+        
+        
+       
 
+    }
+    
+    func setSliderImages() {
+        
+        var slider = category.getSlider()
+       
+        
+        
+        
+     
+      
+        
+        if(slider != nil) {
+            
+     
+            
+            
+        if((slider!.images.count) > 0) {
+            
+     
+            vc?.setSlider(slider: slider!)
+            
+            
+            
+        }
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +95,14 @@ class MainTableViewController: UITableViewController {
     self.title = category.categoryTitle
         
 
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        self.setSliderImages()
+        
+       
         
     }
     

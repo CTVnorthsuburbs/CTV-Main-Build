@@ -431,14 +431,7 @@ class HorizontalTableViewController: UITableViewController {
         
 
         if segue.identifier == "ShowDetail" {
-            
-            
-            
-            
-    
-            
-            
-            
+      
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
