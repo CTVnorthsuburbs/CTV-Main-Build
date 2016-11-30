@@ -77,6 +77,8 @@ open class Video: NSObject, NSCoding {
     var comments: String?
     
     var eventDate: Date?
+    
+    var thumbnailUrl: NSURL?
 
     // MARK: Archiving Paths
     
@@ -100,6 +102,8 @@ open class Video: NSObject, NSCoding {
         
         static let eventDateKey = "eventDate"
         
+        static let thumbnailUrlKey = "thumbnailUrl"
+        
     }
     
     // MARK: Initialization
@@ -109,7 +113,7 @@ open class Video: NSObject, NSCoding {
   
     
     
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?) {
         
         // Initialize stored properties.
         
@@ -126,6 +130,10 @@ open class Video: NSObject, NSCoding {
         self.comments = comments
         
         self.eventDate = eventDate
+        
+        self.thumbnailUrl = thumbnailUrl
+        
+        
 
         var str = title
         var newString = ""
@@ -186,7 +194,62 @@ open class Video: NSObject, NSCoding {
     }
     
     
-
+    func hasThumbnailUrl() -> Bool {
+        
+        
+     
+        
+        
+        if(self.thumbnailUrl != nil) {
+            
+            
+            
+            return true
+        } else {
+            
+            
+            return false
+        }
+        
+    }
+    
+    
+    func generateThumbnailUrl() {
+        
+        
+      var search = VideoSearch()
+        
+        var thumbnail : String?
+        
+        var url : NSURL?
+        
+        if(self.fileName != nil ) {
+            
+            
+     
+        
+        thumbnail = search.searchThumbnail(self.fileName!)
+        
+        
+        let escapedString = thumbnail!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        
+        
+        
+        url = NSURL(string: escapedString! )
+            
+            
+         
+          self.thumbnailUrl = url
+        
+        
+        
+        }
+        
+          }
+    
+    
+    
+    
     
     open func generateThumbnail()  {
         
@@ -244,6 +307,8 @@ open class Video: NSObject, NSCoding {
         
         aCoder.encode(eventDate, forKey: PropertyKey.eventDateKey)
         
+        
+           aCoder.encode(thumbnailUrl, forKey: PropertyKey.thumbnailUrlKey)
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
@@ -258,7 +323,7 @@ open class Video: NSObject, NSCoding {
         
         let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! Date
         
-        
+        let thumbnailUrl =  aDecoder.decodeObject(forKey: PropertyKey.thumbnailUrlKey) as? NSURL
         
         // Because photo is an optional property of Video, use conditional cast.
         
@@ -266,7 +331,7 @@ open class Video: NSObject, NSCoding {
         
         // Must call designated initializer.
         
-        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate )
+        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl )
         
     }
 

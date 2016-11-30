@@ -11,6 +11,7 @@ import UIKit
 class HorizontalTableViewController: UITableViewController {
     
     
+    var listOfVideos = [Int: [Video]]()
     // var storedOffsets = [Int: CGFloat]()
     
     var search = VideoSearch()
@@ -586,15 +587,74 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
  */
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
+            
+            
+      
+            
+            var videos : [Video]
+            
+           
+            
+            if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
+                
+                
+                videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                
+                
+            } else {
+                
+                 listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
+                
+                
+                videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                
+
+                
+            }
         
-        var videos = search.search(category.sections[collectionView.tag].searchID!)
+     //  var videos = search.search(category.sections[collectionView.tag].searchID!)
         
         
         
         if (videos[indexPath.item].fileName != nil) {
             
+           
+                
+                
+            if( videos[indexPath.item].hasThumbnailUrl()) {
+                
+                
+              
+               
+                
+                   cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                
+                
+            } else {
+                
+                
+               
+                
+                videos[indexPath.item].generateThumbnailUrl()
+                
+              
+                
+                
+                cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                
+                
+                
+            }
             
-                    cells.thumbnail.image = self.search.getThumbnail(id: (videos[indexPath.item].fileName)!)
+            
+            
+            //   cells.thumbnail.image = self.search.getThumbnail(id: (videos[indexPath.item].fileName)!)
+                
+            
+            
+          
+            
+            
                     
                     cells.thumbnail.setRadius(radius: imageRadius)
                     

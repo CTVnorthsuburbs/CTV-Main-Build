@@ -323,6 +323,10 @@ class CategoryTableViewController: UITableViewController {
          
                 
             if(self.recommendedVideos[indexPath.row].fileName != nil ) {
+                
+                
+                
+                
             var thumbnail: UIImage? = self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
                 
                 

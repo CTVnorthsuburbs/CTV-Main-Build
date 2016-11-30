@@ -143,14 +143,21 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         getSearchResults(session, url: searchURL!, isIDSearchURL: true)
         
         
-        print(searchResults.first?.title)
-        
-        
         return searchResults
     }
     
     
     
+    func searchForSingleCategory(_ savedSearchID: Int)-> [Video] {
+        
+        searchResults.removeAll()
+        
+        search(savedSearchID)
+        
+        
+        
+        return searchResults
+    }
     
     
     
@@ -463,7 +470,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     
-    fileprivate func searchThumbnail(_ savedSearchID: Int)-> String?{
+    public func searchThumbnail(_ savedSearchID: Int)-> String?{
         
         thumbnailResults.removeAll()
         
@@ -652,6 +659,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     public  func getThumbnail(id: Int)-> UIImage? {
         
+     
         var image : UIImage?
         
         
@@ -668,6 +676,15 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             let url = NSURL(string: escapedString! )
             
             if(url != nil) {
+                
+                
+                
+        
+                    
+                     image = returnImageUsingCacheWithURLString(url: url!)
+                
+                /*
+            
                 let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 image = UIImage(data: data! as Data)
                 
@@ -675,7 +692,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 var imageView = UIImageView()
                 imageView.image = image
                 
-                
+                */
                 
                 return(image)
             }
@@ -687,7 +704,58 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     
+    public  func getThumbnail(url: NSURL)-> UIImage? {
+        
+        var image : UIImage?
+        
+      
+  
+                image = returnImageUsingCacheWithURLString(url: url)
+        
+        
+   
+                
+                /*
+                 
+                 let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                 image = UIImage(data: data! as Data)
+                 
+                 
+                 var imageView = UIImageView()
+                 imageView.image = image
+                 
+                 */
+                
+                return(image)
+        
+   
+        
+    }
     
+    
+    public func generateThumbnailUrl(id: Int) -> NSURL? {
+        
+        
+        var thumbnailUrl : String?
+        
+        var url : NSURL?
+        
+        
+            
+            thumbnailUrl = searchThumbnail(id)
+            
+            
+            let escapedString = thumbnailUrl!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+            
+            
+            
+            url = NSURL(string: escapedString! )
+        
+        
+        return url
+        
+        
+    }
     
     
     fileprivate func updateSearchResults(_ data: Data?)-> Bool {
@@ -758,9 +826,17 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 
             }
             
+        
+                
+          
+                
+               
+                    
+                    
+                    
             
             
-            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date)!)
+            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil)!)
             
             
             
