@@ -23,12 +23,12 @@ class CategoriesTableViewController: UITableViewController {
         
         categories = search.getCategories()
         
-        for cat in categories {
+        for category in categories {
             
             
-            cat.createListing()
+            category.createListing()
             
-            print(cat.sections.first?.sectionTitle)
+            
         }
         
     }

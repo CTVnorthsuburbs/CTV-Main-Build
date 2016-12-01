@@ -113,6 +113,14 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
+        
+        
+        self.tableView.reloadData()
+        
+        
+        
         if(loadVideos() != nil) {
             
             
@@ -135,7 +143,6 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
   
-            
         
     }
         

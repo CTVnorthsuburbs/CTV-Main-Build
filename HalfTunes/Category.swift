@@ -106,6 +106,18 @@ class CategoryFactorySettings {
     
     var sliderImages: [UIImage]?
     
+    var buttonsSectionTitle: String?
+    
+    var buttonsSectionType: SectionType?
+    
+    var buttonsSecondTitle: String?
+    
+    var buttonsSecondSectionType: SectionType?
+    
+    var buttons = [Button]()
+    
+    var buttonsSecond = [Button]()
+    
     
     
 }
@@ -123,6 +135,8 @@ enum CategoryOrder {
     case boys
     
     case button
+    
+    case buttonSecond
     
 }
 
@@ -156,9 +170,371 @@ class hockeyFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 65794
         
-        self.sliderImages = nil
+     
+        
+        self.sliderImages = [#imageLiteral(resourceName: "hockey-1")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.boys, CategoryOrder.girls]
+        
+    }
+    
+}
+
+class meetingsFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "City Meetings"
+        
+        self.popularSectionTitle = "City Government"
+        
+        self.popularSectionSearchID = 52966
+        
+        self.popularSectionDisplayCount = 15
+        
+     
+        
+        self.featuredSectionTitle = "School Districts"
+        
+        self.featuredSectionSearchID = 67200
+        
+        self.featuredSectionDisplayCount = 20
+        
+     
+        
+        self.buttonsSectionTitle = "City Government"
+        self.buttonsSectionType = SectionType.buttonWithTitle
+        
+        
+         self.buttons.append(Button(factory:nsccMeetingsButtonFactory()))
+        
+         self.buttons.append(Button(factory:saintMeetingsButtonFactory()))
+         self.buttons.append(Button(factory:moundsMeetingsButtonFactory()))
+        
+        
+        
+        self.buttonsSecondSectionType = SectionType.buttonWithTitle
+        
+        
+        self.buttonsSecondTitle = "School Districts"
+        
+        
+        self.buttonsSecond.append(Button(factory:ardenMeetingsButtonFactory()))
+        
+
+         self.buttonsSecond.append(Button(factory:falconMeetingsButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:lauderdaleMeetingsButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:canadaMeetingsButtonFactory()))
+        
+         self.buttonsSecond.append(Button(factory:moundsViewMeetingsButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:northMeetingsButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:rosevilleMeetingsButtonFactory()))
+        
+        
+        self.buttonsSecond.append(Button(factory:saintAnthonyMeetingsButtonFactory()))
+      
+        
+        self.sliderImages = [#imageLiteral(resourceName: "meetings-header")]
+        
+        self.categoryOrder = [CategoryOrder.button, CategoryOrder.buttonSecond]
+        
+    }
+    
+}
+
+
+
+class meetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "meetings-header")
+        
+        self.title = "Meetings"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: meetingsFactorySettings()))
+        
+    }
+    
+}
+
+class nsccMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "nscc-16-9")
+        
+        self.title = "NSCC/NSAC Meetings"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class moundsMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "mvsd")
+        
+        self.title = "Mounds View Meetings"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class saintMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "sasd-16-9")
+        
+        self.title = "Saint Anthony/New Brighton Meetings"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+
+class ardenMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "ah-16-9")
+        
+        self.title = "Arden Hills"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class falconMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "fh-16-9")
+        
+        self.title = "Falcon Heights"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class lauderdaleMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "ld-16-9")
+        
+        self.title = "Lauderdale"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class canadaMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "lc-16-9")
+        
+        self.title = "Little Canada"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+
+class moundsViewMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "mv-16-9")
+        
+        self.title = "Mounds View"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class northMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "no-16-9")
+        
+        self.title = "North Oaks"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+class rosevilleMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "rv-16-9")
+        
+        self.title = "Roseville"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+    }
+    
+}
+
+
+class saintAnthonyMeetingsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "sav-16-9")
+        
+        self.title = "Saint Anthony"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
         
     }
     
@@ -202,7 +578,34 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 65794
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.featured]
+        self.buttonsSectionTitle = "Browse By Sport"
+        
+         self.buttonsSectionType = SectionType.buttonWithTitle
+        
+        self.buttons.append(Button(factory:hockeyButtonFactory()))
+        
+        self.buttons.append(Button(factory:baseballButtonFactory()))
+        
+        self.buttons.append(Button(factory:volleyballButtonFactory()))
+        
+        self.buttons.append(Button(factory:basketballButtonFactory()))
+        
+        
+         self.buttonsSecondSectionType = SectionType.buttonNoTitle
+        
+            self.buttonsSecond.append(Button(factory:showsButtonFactory()))
+      
+        
+        self.buttonsSecond.append(Button(factory:featuredButtonFactory()))
+        
+          self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
+        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
+        
+    
+        
+        self.sliderImages = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-roseparade")]
+        
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
     }
     
@@ -312,6 +715,8 @@ class basketballFactorySettings: CategoryFactorySettings {
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
         
+    
+        
     }
     
 }
@@ -367,11 +772,11 @@ class hockeyButtonFactory: ButtonFactory {
     
     override init() {
         
-        super.init()
+       super.init()
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "hockey")
+        self.image = #imageLiteral(resourceName: "hockey-1")
         
         self.title = "Hockey"
         
@@ -381,9 +786,37 @@ class hockeyButtonFactory: ButtonFactory {
         
         self.category = Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings()))
         
+        
+        
     }
     
 }
+
+
+
+
+class showsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "about-header")
+        
+        self.title = "Shows"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: meetingsFactorySettings()))
+        
+    }
+    
+}
+
 
 class volleyballButtonFactory: ButtonFactory {
     
@@ -393,9 +826,30 @@ class volleyballButtonFactory: ButtonFactory {
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "volleyball")
+        self.image = #imageLiteral(resourceName: "volleyball-header")
         
         self.title = "Volleyball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings()))
+        
+    }
+    
+}
+class scheduleButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "schedule-header")
+        
+        self.title = "Schedule"
         
         self.imageOverlay = nil
         
@@ -415,7 +869,7 @@ class basketballButtonFactory: ButtonFactory {
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "basketball")
+        self.image = #imageLiteral(resourceName: "swimming-header")
         
         self.title = "Basketball"
         
@@ -428,6 +882,8 @@ class basketballButtonFactory: ButtonFactory {
     }
     
 }
+
+
 
 
 
@@ -461,6 +917,8 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
+      
+        
         let images: [UIImage]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
@@ -481,6 +939,8 @@ class CategoryFactory {
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
+        
+       
         
         let images: [UIImage]? = nil
         
@@ -505,6 +965,8 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
+       
+        
         let images: [UIImage]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
@@ -526,6 +988,8 @@ class CategoryFactory {
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
+        
+      
         
         let images: [UIImage]? = nil
         
@@ -549,6 +1013,8 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
+        
+        
         let images: [UIImage]? = nil
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images)
@@ -559,30 +1025,52 @@ class CategoryFactory {
     
     internal func addButtons() -> Section {
         
-        let sectionType = SectionType.buttonWithTitle
+        let sectionType = settings.buttonsSectionType
         
-        let sectionTitle: String? = "Browse By Sport"
+        let sectionTitle = settings.buttonsSectionTitle
+        
+        
         
         let searchID: Int?  = nil
         
         let videoList: [Int]? = nil
         
-        var buttons = [Button]()
+        var buttons = settings.buttons
         
-           buttons.append(Button(factory:featuredButtonFactory()))
+      
+     
         
-        buttons.append(Button(factory:hockeyButtonFactory()))
-        
-        buttons.append(Button(factory:baseballButtonFactory()))
-        
-        buttons.append(Button(factory:volleyballButtonFactory()))
-        
-        buttons.append(Button(factory:basketballButtonFactory()))
+   
         
         
         let images: [UIImage]? = nil
         
-        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
+        
+        return section
+        
+    }
+    
+    
+    internal func addButtonsSecond() -> Section {
+        
+        let sectionType = settings.buttonsSecondSectionType
+        let sectionTitle = settings.buttonsSecondTitle
+        
+        let searchID: Int?  = nil
+        
+        let videoList: [Int]? = nil
+        
+        var buttons = settings.buttonsSecond
+        
+
+        
+     
+        
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
         
         return section
         
@@ -601,6 +1089,8 @@ class CategoryFactory {
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
+        
+      
         
         let images: [UIImage]? = settings.sliderImages
         
@@ -684,6 +1174,10 @@ class Category {
                 
                 createButtonSection()
                 
+            case CategoryOrder.buttonSecond:
+                
+                createButtonSectionSecond()
+                
             case CategoryOrder.boys:
                 
                 createRecentBoysSection()
@@ -714,11 +1208,7 @@ class Category {
     
     func createSlider() {
         
-       
-        
         slider = (categoryFactory.addSlide())
-        
-     
         
     }
     
@@ -761,6 +1251,11 @@ class Category {
         
         sections.append(categoryFactory.addButtons())
         
+    }
+    
+    func createButtonSectionSecond() {
+        
+        sections.append(categoryFactory.addButtonsSecond())
     }
     
     
@@ -812,13 +1307,7 @@ class Section {
         
         }
         
-      
-        
-        
-        
         self.displayCount = displayCount
-        
-        
         
     }
     
@@ -862,6 +1351,8 @@ class ButtonFactory {
     var category: Category? = nil
     
     var videoID: Int? = nil
+    
+    var webURL: URL? = nil
     
     
     func getType() -> ButtonType? {
@@ -930,6 +1421,13 @@ class ButtonFactory {
         
     }
     
+    func getWebURL() -> URL? {
+        
+        return webURL
+        
+    }
+    
+    
 }
 
 
@@ -941,6 +1439,8 @@ enum ButtonType {
     case category
     
     case page
+    
+    case webPage
     
 }
 
@@ -965,6 +1465,8 @@ class Button {
     
     var videoID: Int?
     
+    var webURL: URL?
+    
     
     init(factory: ButtonFactory) {
         
@@ -983,6 +1485,8 @@ class Button {
         self.category = factory.getCategory()
         
         self.videoID = factory.getVideoID()
+        
+        self.webURL = factory.getWebURL()
         
         
     }

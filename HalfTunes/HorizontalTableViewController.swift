@@ -411,7 +411,6 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
    
             
-           
         
         return videos[collectionView.tag].count
                 
@@ -459,9 +458,11 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         if(category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay != nil) {
                         
                             
-                            print("this: \(category.sections[collectionView.tag].buttons[indexPath.row]?.title)")
+                         
                             
                              cells.textOverlay.text = category.sections[collectionView.tag].buttons[indexPath.row]?.imageOverlay
+                            
+                            
                                                     } else {
                             
                             
@@ -614,7 +615,16 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
      //  var videos = search.search(category.sections[collectionView.tag].searchID!)
         
-        
+            
+           if(category.sections[collectionView.tag].displayCount != nil) {
+            
+            if(category.sections[collectionView.tag].displayCount! < videos.count) {
+                
+                
+               //THIS IS WHERE SEE ALL CAN BE REMOVED
+                
+            }
+            }
         
         if (videos[indexPath.item].fileName != nil) {
             
@@ -757,6 +767,11 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
     }
     
+    
+    
+    
+ 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
@@ -793,6 +808,64 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             }
             
             
+            
+            
+            if(button?.type == ButtonType.webPage) {
+                
+                print("button type pressed: \(button?.title) category: \(button?.webURL)")
+                
+               
+
+                var webview = UIWebView();
+                
+                
+                
+                webview.frame = CGRect(x: 0,y: 0, width: (self.parent?.view.frame.size.width)!, height: (self.parent?.view.frame.size.height)!);
+                
+                var url = button?.webURL
+                
+                var request = NSURLRequest(url: url! )
+                
+                webview.scalesPageToFit=true
+                
+                webview.loadRequest(request as URLRequest)
+                
+                self.parent?.view.addSubview(webview)
+                
+             
+                
+                
+                
+                
+           
+                
+            
+                /*
+                
+                category = (button?.category)!
+                
+                previousCategory = category
+                
+                featured = false
+                
+                let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
+                
+                
+                self.navigationController?.pushViewController(vc, animated:true)
+ 
+ 
+ */
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
             if(button?.type == ButtonType.video) {
                 
      
@@ -816,9 +889,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 suggestedSearch = category.sections[collectionView.tag]
                 
-                let selectedVideo = videos[collectionView.tag][indexPath.row]
-                
-                
+                //let selectedVideo = videos[collectionView.tag][indexPath.row]
+              
                 destination.video = video.first
                 
                 

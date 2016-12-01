@@ -198,12 +198,12 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                    self.recommendedVideos[indexPath.row].generateThumbnailUrl()
                     
+                  
                     
-                    
-           
+                    if( self.recommendedVideos[indexPath.row].thumbnailUrl != nil) {
                     
                     self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
-
+                    }
                     
                 }
                 

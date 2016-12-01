@@ -72,7 +72,7 @@ class SlideShowViewController: UIViewController {
         
         mainScrollView.frame = view.frame
   
-        imageArray = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-roseparade"), #imageLiteral(resourceName: "softball_slider") ]
+        imageArray = [#imageLiteral(resourceName: "mobile-saints") ]
         
         for i in  0..<imageArray.count {
             

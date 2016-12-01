@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 
 
+var imageRadius: CGFloat = 3.5
 
 
 let imageCache = NSCache<AnyObject, AnyObject>()

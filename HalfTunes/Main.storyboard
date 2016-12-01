@@ -304,7 +304,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbV-De-whZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-428" y="-1198"/>
+            <point key="canvasLocation" x="-297" y="-1500"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7je-2f-DnQ">
@@ -820,6 +820,13 @@
                                                                     <constraint firstAttribute="width" secondItem="rXn-II-gWf" secondAttribute="height" multiplier="16:9" id="7Ic-Rg-hJZ"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4C-rA-7Xw" userLabel="OptionalText">
+                                                                <rect key="frame" x="8" y="7.5" width="119" height="52"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                     </view>
                                                     <color key="backgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -830,6 +837,7 @@
                                                     </constraints>
                                                     <size key="customSize" width="135" height="68"/>
                                                     <connections>
+                                                        <outlet property="textOverlay" destination="P4C-rA-7Xw" id="Nq6-8j-R7K"/>
                                                         <outlet property="thumbnail" destination="rXn-II-gWf" id="wlN-cL-BU3"/>
                                                     </connections>
                                                 </collectionViewCell>
@@ -999,7 +1007,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqZ-sQ-PH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KPC-7t-Xjn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2727" y="-1048"/>
+            <point key="canvasLocation" x="-2270" y="-1136"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="495-9H-ozc">
@@ -1020,7 +1028,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQi-pY-zLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2726" y="-1749"/>
+            <point key="canvasLocation" x="-3340" y="-1291"/>
         </scene>
         <!--Home-->
         <scene sceneID="LiK-Wm-ZyV">
@@ -1069,7 +1077,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqM-JQ-Sd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1258" y="-1749"/>
+            <point key="canvasLocation" x="-1252" y="-1757"/>
         </scene>
         <!--My Videos-->
         <scene sceneID="65m-dH-m7g">
@@ -1355,7 +1363,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="73C-lE-TT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-MW-DGo">
@@ -1534,7 +1542,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfP-Wc-VZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1972" y="-1749"/>
+            <point key="canvasLocation" x="-2226" y="-1879"/>
         </scene>
     </scenes>
     <resources>
@@ -1542,9 +1550,9 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2XC-rQ-lli"/>
+        <segue reference="F7V-dN-6wc"/>
+        <segue reference="yMg-rn-3an"/>
         <segue reference="V9M-Yj-v2K"/>
-        <segue reference="rnq-VC-yil"/>
-        <segue reference="Hpx-XP-cwh"/>
+        <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>
