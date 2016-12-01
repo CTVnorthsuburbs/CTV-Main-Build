@@ -469,25 +469,18 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                             cells.textOverlay.text = nil
                         }
                         
-                        DispatchQueue.global(qos: .background).async {
                         
-                            
-                            
-                            var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
-                            
-                          
-                            
-                            
-                            
-                          var thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
-                            
-                           
-                            
-                            // var thumbnail = self.search.getThumbnail(id: (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
-                            
                         
-                            
-                            DispatchQueue.main.async {
+                        
+                        var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                        
+                        
+                        
+                        
+                        
+                        var thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
+                        
+                 
                                 
                                 
                                 cells.thumbnail.image = thumbnail
@@ -495,8 +488,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                                 cells.thumbnail.alpha = 0.5
                         
                                 
-                            }
-                        }
+                        
+                        
                         
                       
                         
@@ -887,7 +880,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-                suggestedSearch = category.sections[collectionView.tag]
+                suggestedSearch = category.sections[1]
                 
                 //let selectedVideo = videos[collectionView.tag][indexPath.row]
               

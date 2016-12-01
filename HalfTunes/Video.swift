@@ -79,6 +79,8 @@ open class Video: NSObject, NSCoding {
     var eventDate: Date?
     
     var thumbnailUrl: NSURL?
+    
+    var id: Int?
 
     // MARK: Archiving Paths
     
@@ -104,6 +106,10 @@ open class Video: NSObject, NSCoding {
         
         static let thumbnailUrlKey = "thumbnailUrl"
         
+        static let idKey = "id"
+        
+        
+        
     }
     
     // MARK: Initialization
@@ -113,7 +119,7 @@ open class Video: NSObject, NSCoding {
   
     
     
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?, id: Int?) {
         
         // Initialize stored properties.
         
@@ -132,6 +138,8 @@ open class Video: NSObject, NSCoding {
         self.eventDate = eventDate
         
         self.thumbnailUrl = thumbnailUrl
+        
+        self.id = id
         
         
 
@@ -309,6 +317,10 @@ open class Video: NSObject, NSCoding {
         
         
            aCoder.encode(thumbnailUrl, forKey: PropertyKey.thumbnailUrlKey)
+        
+        aCoder.encode(id, forKey: PropertyKey.idKey)
+        
+        
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
@@ -325,13 +337,14 @@ open class Video: NSObject, NSCoding {
         
         let thumbnailUrl =  aDecoder.decodeObject(forKey: PropertyKey.thumbnailUrlKey) as? NSURL
         
+        let id =  aDecoder.decodeObject(forKey: PropertyKey.idKey) as? Int
         // Because photo is an optional property of Video, use conditional cast.
         
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         
         // Must call designated initializer.
         
-        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl )
+        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl, id: id )
         
     }
 

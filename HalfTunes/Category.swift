@@ -140,6 +140,173 @@ enum CategoryOrder {
     
 }
 
+class baseballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Baseball"
+        
+        self.popularSectionTitle = "Popular Baseball Videos"
+        
+        self.popularSectionSearchID = 68755
+        
+        self.recentGirlsSectionTitle = "Softball Games"
+        
+        self.recentGirlsSectionSearchID = 68774
+        
+        self.recentBoysSectionTitle = "Boys Baseball Games"
+        
+        self.recentBoysSectionSearchID = 68492
+        
+        self.featuredSectionTitle = "Featured Baseball Games"
+        
+        self.featuredSectionSearchID = 65797
+        
+        self.recentSectionTitle = "Recent Baseball Games"
+        
+        self.recentSectionSearchID = 65797
+        
+        self.sliderImages = [#imageLiteral(resourceName: "softball_slider")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
+        
+    }
+    
+}
+
+
+class footballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Football"
+        
+        self.popularSectionTitle = "Most Viewed Football Videos"
+        
+        self.popularSectionSearchID = 69223
+        
+        
+        
+        self.recentSectionTitle = "Recent Games"
+        
+        
+        
+        
+        self.recentSectionSearchID = 69238
+        
+        self.sliderImages = [#imageLiteral(resourceName: "football-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular ]
+        
+    }
+    
+}
+
+
+class volleyballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Volleyball"
+        
+        self.popularSectionTitle = "Most Viewed Volleyball Videos"
+        
+        self.popularSectionSearchID = 69299
+        
+
+        
+        self.recentSectionTitle = "Recent Volleyball Games"
+        
+        
+        
+        
+        self.recentSectionSearchID = 69308
+        
+        self.sliderImages = [#imageLiteral(resourceName: "volleyball-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular ]
+        
+    }
+    
+}
+
+class basketballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Basketball"
+        
+        self.popularSectionTitle = "Popular Basketball Videos"
+        
+        self.popularSectionSearchID = 69103
+        
+       
+        
+        self.recentGirlsSectionTitle = "Girls Games"
+        
+        self.recentGirlsSectionSearchID = 69126
+        
+        self.recentBoysSectionTitle = "Boys Basketball Games"
+        
+        self.recentBoysSectionSearchID = 69146
+        
+        
+        self.recentSectionTitle = "Recent Basketball Games"
+        
+        self.recentSectionSearchID = 69113
+        
+        
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
+        
+        
+        
+    }
+    
+}
+
+class soccerFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Soccer"
+        
+        self.popularSectionTitle = "Popular Soccer Videos"
+        
+        self.popularSectionSearchID = 69278
+        
+   
+        
+        
+        self.recentSectionTitle = "Recent Games"
+        
+        self.recentSectionSearchID = 69275
+        
+        
+        
+        self.sliderImages = [#imageLiteral(resourceName: "soccer-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        
+    }
+    
+}
+
 
 class hockeyFactorySettings: CategoryFactorySettings {
     
@@ -150,31 +317,154 @@ class hockeyFactorySettings: CategoryFactorySettings {
         
         self.categoryTitle = "Hockey"
         
-        self.popularSectionTitle = "Popular Hockey Videos"
+        self.popularSectionTitle = "Popular Games"
         
         self.popularSectionSearchID = 68483
         
-        self.recentGirlsSectionTitle = "Girls Recent Hockey Games"
+        self.recentGirlsSectionTitle = "Girls Games"
         
         self.recentGirlsSectionSearchID = 68489
         
         self.recentBoysSectionTitle = "Boys Hockey Games"
         
-        self.recentBoysSectionSearchID = 68492
+        self.recentBoysSectionSearchID = 69388
         
-        self.featuredSectionTitle = "Featured Hockey Games"
         
-        self.featuredSectionSearchID = 65794
+        self.recentSectionTitle = "Recent Games"
         
-        self.recentSectionTitle = "Recent Hockey Games"
+        self.recentSectionSearchID = 68492
         
-        self.recentSectionSearchID = 65794
+        self.buttonsSectionTitle = "Our Favorite Games of the Year"
         
-     
+        
+        self.buttonsSectionType = SectionType.buttonWithTitle
+
+         self.buttons.append(Button(factory:featuredButtonFactory()))
+        
+        self.buttons.append(Button(factory:featured2ButtonFactory()))
+        
+         self.buttons.append(Button(factory:featured3ButtonFactory()))
+        
+      //  self.buttons.append(Button(factory:featuredButtonFactory()))
         
         self.sliderImages = [#imageLiteral(resourceName: "hockey-1")]
         
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.boys, CategoryOrder.girls]
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.button, CategoryOrder.boys, CategoryOrder.girls]
+        
+    }
+    
+}
+
+class swimmingFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Swimming"
+        
+        self.popularSectionTitle = "Most Viewed Swimming Videos"
+        
+        self.popularSectionSearchID = 69532
+        
+        
+        
+        
+        self.recentSectionTitle = "Recent Swimming Videos"
+        
+        self.recentSectionSearchID = 69320
+        
+        
+        
+        self.sliderImages = [#imageLiteral(resourceName: "swimming-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        
+    }
+    
+}
+
+class softballFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Softball"
+        
+        self.popularSectionTitle = "Most Viewed Softball Videos"
+        
+        self.popularSectionSearchID = 69203
+        
+        
+        
+        
+        self.recentSectionTitle = "Recent Softball Games"
+        
+        self.recentSectionSearchID = 68774
+        
+        
+        
+        self.sliderImages = [#imageLiteral(resourceName: "softball")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        
+    }
+    
+}
+
+class lacrosseFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Lacrosse"
+        
+  
+
+        
+        self.recentSectionTitle = "Recent Lacrosse Videos"
+        
+        self.recentSectionSearchID = 69263
+        
+        
+        
+        self.sliderImages = [#imageLiteral(resourceName: "swimming-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent]
+        
+    }
+    
+}
+
+
+class gymnasticsFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Gymnastics"
+        
+       
+        
+        
+        
+        
+        self.recentSectionTitle = "Recent Swimming Videos"
+        
+        self.recentSectionSearchID = 69325
+        
+        
+        
+      
+        
+        self.categoryOrder = [CategoryOrder.recent]
         
     }
     
@@ -564,7 +854,9 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.recentBoysSectionTitle = "Local News"
         
-        self.recentBoysSectionSearchID = 66603
+       self.recentBoysSectionSearchID = 71296
+        
+       // self.recentBoysSectionSearchID = 66603
         
         self.recentBoysSectionDisplayCount = 5
         
@@ -586,9 +878,14 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.buttons.append(Button(factory:baseballButtonFactory()))
         
+        
+          self.buttons.append(Button(factory:footballButtonFactory()))
+        
         self.buttons.append(Button(factory:volleyballButtonFactory()))
         
-        self.buttons.append(Button(factory:basketballButtonFactory()))
+        self.buttons.append(Button(factory:soccerButtonFactory()))
+        
+        self.buttons.append(Button(factory:swimmingButtonFactory()))
         
         
          self.buttonsSecondSectionType = SectionType.buttonNoTitle
@@ -596,7 +893,7 @@ class featuredFactorySettings: CategoryFactorySettings {
             self.buttonsSecond.append(Button(factory:showsButtonFactory()))
       
         
-        self.buttonsSecond.append(Button(factory:featuredButtonFactory()))
+       
         
           self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
         self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
@@ -611,115 +908,7 @@ class featuredFactorySettings: CategoryFactorySettings {
     
 }
 
-class baseballFactorySettings: CategoryFactorySettings {
-    
-    
-    override init() {
-        
-        super.init()
-        
-        self.categoryTitle = "Baseball"
-        
-        self.popularSectionTitle = "Popular Baseball Videos"
-        
-        self.popularSectionSearchID = 68755
-        
-        self.recentGirlsSectionTitle = "Softball Games"
-        
-        self.recentGirlsSectionSearchID = 68774
-        
-        self.recentBoysSectionTitle = "Boys Baseball Games"
-        
-        self.recentBoysSectionSearchID = 68492
-        
-        self.featuredSectionTitle = "Featured Baseball Games"
-        
-        self.featuredSectionSearchID = 65797
-        
-        self.recentSectionTitle = "Recent Baseball Games"
-        
-        self.recentSectionSearchID = 65797
-        
-        self.sliderImages = [#imageLiteral(resourceName: "softball_slider")]
-        
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
-        
-    }
-    
-}
 
-
-class volleyballFactorySettings: CategoryFactorySettings {
-    
-    
-    override init() {
-        
-        super.init()
-        
-        self.categoryTitle = "Volleyball"
-        
-        self.popularSectionTitle = "Popular Volleyball Videos"
-        
-        self.popularSectionSearchID = 68755
-        
-        self.recentGirlsSectionTitle = "Softball Games"
-        
-        self.recentGirlsSectionSearchID = 68774
-        
-        self.recentBoysSectionTitle = "Boys Baseball Games"
-        
-        self.recentBoysSectionSearchID = 68492
-        
-        self.featuredSectionTitle = "Featured Baseball Games"
-        
-        self.featuredSectionSearchID = 65797
-        
-        self.recentSectionTitle = "Recent Volleyball Games"
-        
-        self.recentSectionSearchID = 65797
-        
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,   CategoryOrder.girls, ]
-        
-    }
-    
-}
-
-class basketballFactorySettings: CategoryFactorySettings {
-    
-    
-    override init() {
-        
-        super.init()
-        
-        self.categoryTitle = "Basketball"
-        
-        self.popularSectionTitle = "Popular Basketball Videos"
-        
-        self.popularSectionSearchID = 68755
-        
-        self.recentGirlsSectionTitle = "Softball Games"
-        
-        self.recentGirlsSectionSearchID = 68774
-        
-        self.recentBoysSectionTitle = "Boys Basketball Games"
-        
-        self.recentBoysSectionSearchID = 68492
-        
-        self.featuredSectionTitle = "Featured Basketball Games"
-        
-        self.featuredSectionSearchID = 65797
-        
-        self.recentSectionTitle = "Recent Basketball Games"
-        
-        self.recentSectionSearchID = 65797
-        
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
-        
-    
-        
-    }
-    
-}
 
 
 class baseballButtonFactory: ButtonFactory {
@@ -754,19 +943,94 @@ class featuredButtonFactory: ButtonFactory {
         
         self.image = #imageLiteral(resourceName: "defaultPhoto")
         
-        self.title = "Section Girls Basketball Roseville v Champlin Park"
+        self.title = "RAHS Girls Hockey Roseville v Edina"
         
-        self.imageOverlay = "Roseville v Champlin Park"
+        self.imageOverlay = "RAHS Girls Hockey Roseville v Edina"
         
         self.page = nil
         
-        self.videoID = 10069
+        self.videoID = 8469
         
         self.category = nil
         
     }
 
 }
+
+class featured2ButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.video
+        
+        self.image = #imageLiteral(resourceName: "defaultPhoto")
+        
+        self.title = "Boys Hockey Roseville v Woodbury"
+        
+        self.imageOverlay = "Boys Hockey Roseville v Woodbury"
+        
+        self.page = nil
+        
+        self.videoID = 9936
+        
+        self.category = nil
+        
+    }
+    
+}
+
+class featured3ButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.video
+        
+        self.image = #imageLiteral(resourceName: "defaultPhoto")
+        
+        self.title = "Section Boys Hockey Roseville v WBL"
+        
+        self.imageOverlay = "Section Boys Hockey Roseville v WBL"
+        
+        self.page = nil
+        
+        self.videoID = 10021
+        
+        self.category = nil
+        
+    }
+    
+}
+
+
+class footballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "football-header")
+        
+        self.title = "Football"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings()))
+        
+        
+        
+    }
+    
+}
+
+
 
 class hockeyButtonFactory: ButtonFactory {
     
@@ -861,7 +1125,30 @@ class scheduleButtonFactory: ButtonFactory {
     
 }
 
-class basketballButtonFactory: ButtonFactory {
+
+class soccerButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "soccer-header")
+        
+        self.title = "Soccer"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings()))
+        
+    }
+    
+}
+
+class swimmingButtonFactory: ButtonFactory {
     
     override init() {
         
@@ -871,13 +1158,13 @@ class basketballButtonFactory: ButtonFactory {
         
         self.image = #imageLiteral(resourceName: "swimming-header")
         
-        self.title = "Basketball"
+        self.title = "Swimming"
         
         self.imageOverlay = nil
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings()))
         
     }
     

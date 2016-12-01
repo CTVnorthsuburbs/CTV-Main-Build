@@ -30,7 +30,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     
-    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings()))]
+    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())) ]
     
     fileprivate var searchResults = [Video]()
     
@@ -72,7 +72,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func search(_ savedSearchID: Int)-> [Video] {
         
         searchResults.removeAll()
-        
+      
         
         let session = getNSURLSession()
         
@@ -80,11 +80,14 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
         
+        
+        var originalResults = results
+        
         if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
             
             let splitResults = splitIdArray(results!)
             
-            
+         
             
             if (splitResults != nil) {
                 
@@ -121,14 +124,54 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             let searchIdURL =  convertIdArrayToSearchURL(results!)
             
-            
+          
             getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
             
         }
         
         
         
-        return searchResults
+        var sortedSearchResults = [Video]()
+        
+        
+     
+            
+            
+            
+            //FIX TO maintain the result order by comparing to original id order. !!!!Very inefficient FIX!!
+            
+            for id in originalResults! {
+                
+                
+                for result in searchResults {
+                    
+                    
+                    
+                if(result.id == id) {
+                    
+                    
+                    
+                    sortedSearchResults.append(result)
+                    
+                }
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        return sortedSearchResults
     }
     
     
@@ -465,6 +508,8 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             //wait till results are received
         }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+   
         return results
         
     }
@@ -836,14 +881,13 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     
             
             
-            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil)!)
+            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id)!)
             
-            
+       
             
             
             count += 1
-            
-            
+       
         }
         
         
