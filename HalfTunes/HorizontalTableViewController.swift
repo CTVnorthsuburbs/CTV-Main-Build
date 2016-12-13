@@ -609,6 +609,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
      //  var videos = search.search(category.sections[collectionView.tag].searchID!)
         
             
+            /*
+            
            if(category.sections[collectionView.tag].displayCount != nil) {
             
             if(category.sections[collectionView.tag].displayCount! < videos.count) {
@@ -618,6 +620,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
             }
             }
+ 
+ 
+ 
+ */
         
         if (videos[indexPath.item].fileName != nil) {
             
@@ -640,8 +646,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 videos[indexPath.item].generateThumbnailUrl()
                 
-              
-                
+          
                 
                 cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                 
@@ -670,7 +675,26 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
 
         
         
-        }
+        } else {
+            
+            
+            
+    
+            
+            
+            
+            cells.thumbnail.image = #imageLiteral(resourceName: "placeholder-header")
+            
+            cells.thumbnail.setRadius(radius: imageRadius)
+            
+            
+            cells.titleLabel.text = videos[indexPath.item].title
+            
+            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
+            
+            
+            
+            }
         }
         
         return cell

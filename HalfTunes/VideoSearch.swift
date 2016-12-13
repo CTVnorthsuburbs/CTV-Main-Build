@@ -28,9 +28,7 @@ import UIKit
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
-    
-    
-    var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())) ]
+
     
     fileprivate var searchResults = [Video]()
     

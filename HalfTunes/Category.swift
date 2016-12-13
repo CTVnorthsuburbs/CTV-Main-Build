@@ -12,6 +12,7 @@ import UIKit
 
 
 
+var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())) ]
 
 enum CategorySearches: Int {
     
@@ -114,9 +115,15 @@ class CategoryFactorySettings {
     
     var buttonsSecondSectionType: SectionType?
     
+    var buttonsThirdTitle: String?
+    
+    var buttonsThirdSectionType: SectionType?
+    
     var buttons = [Button]()
     
     var buttonsSecond = [Button]()
+    
+    var buttonsThird = [Button]()
     
     
     
@@ -137,6 +144,8 @@ enum CategoryOrder {
     case button
     
     case buttonSecond
+    
+    case buttonThird
     
 }
 
@@ -176,6 +185,77 @@ class baseballFactorySettings: CategoryFactorySettings {
     }
     
 }
+
+
+
+class communityFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Community"
+        
+        self.popularSectionTitle = "Popular Community Videos"
+        
+        self.popularSectionSearchID = 71301
+        
+ 
+        
+        self.recentSectionTitle = "Recent Community Videos"
+        
+        self.recentSectionSearchID = 71296
+        
+        self.sliderImages = [#imageLiteral(resourceName: "community-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        
+    }
+    
+}
+
+
+
+class programsFactorySettings: CategoryFactorySettings {
+    
+    
+    override init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Programs"
+        
+        self.popularSectionTitle = "Parades"
+        
+        self.popularSectionSearchID = 71341
+        
+        self.recentGirlsSectionTitle = "What's Brewin'"
+        
+        self.recentGirlsSectionSearchID = 71346
+        
+        self.recentBoysSectionTitle = "Disability Viewpoints"
+        
+        self.recentBoysSectionSearchID = 71349
+        
+        self.featuredSectionTitle = "Tales of Our Cities"
+        
+        self.featuredSectionSearchID = 71328
+        
+        self.recentSectionTitle = "North Suburban Beat"
+        
+        self.recentSectionSearchID = 66603
+        
+        self.sliderImages = [#imageLiteral(resourceName: "programs-header")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.featured,   CategoryOrder.girls,  CategoryOrder.popular, CategoryOrder.boys]
+        
+    }
+    
+}
+
+
+
 
 
 class footballFactorySettings: CategoryFactorySettings {
@@ -521,25 +601,79 @@ class meetingsFactorySettings: CategoryFactorySettings {
         
         self.buttonsSecond.append(Button(factory:canadaMeetingsButtonFactory()))
         
-         self.buttonsSecond.append(Button(factory:moundsViewMeetingsButtonFactory()))
+    
         
-        self.buttonsSecond.append(Button(factory:northMeetingsButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:rosevilleMeetingsButtonFactory()))
+  
         
         
-        self.buttonsSecond.append(Button(factory:saintAnthonyMeetingsButtonFactory()))
+        self.buttonsThirdSectionType = SectionType.buttonNoTitle
+        
+        self.buttonsThird.append(Button(factory:moundsViewMeetingsButtonFactory()))
+        
+        self.buttonsThird.append(Button(factory:northMeetingsButtonFactory()))
+        
+        
+        self.buttonsThird.append(Button(factory:rosevilleMeetingsButtonFactory()))
+        
+        
+        self.buttonsThird.append(Button(factory:saintAnthonyMeetingsButtonFactory()))
       
         
         self.sliderImages = [#imageLiteral(resourceName: "meetings-header")]
         
-        self.categoryOrder = [CategoryOrder.button, CategoryOrder.buttonSecond]
+        self.categoryOrder = [CategoryOrder.button, CategoryOrder.buttonSecond, CategoryOrder.buttonThird]
+        
+    }
+    
+}
+
+class programsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "programs-header")
+        
+        self.title = "Programs"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings()))
         
     }
     
 }
 
 
+
+
+
+class communityButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "community-header")
+        
+        self.title = "Community"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings()))
+        
+    }
+    
+}
 
 class meetingsButtonFactory: ButtonFactory {
     
@@ -858,17 +992,19 @@ class featuredFactorySettings: CategoryFactorySettings {
         
        // self.recentBoysSectionSearchID = 66603
         
-        self.recentBoysSectionDisplayCount = 5
+        self.recentBoysSectionDisplayCount = 10
         
-        self.featuredSectionTitle = "Baseball Season"
+        self.featuredSectionTitle = "Community Favorites"
         
-        self.featuredSectionSearchID = 67200
+        self.featuredSectionSearchID = 71301
         
         self.featuredSectionDisplayCount = 20
         
-        self.recentSectionTitle = "Recent Hockey Games"
+        self.recentSectionTitle = "Basketball Season"
         
-        self.recentSectionSearchID = 65794
+        self.recentSectionSearchID = 69113
+        
+        self.recentSectionDisplayCount = 15
         
         self.buttonsSectionTitle = "Browse By Sport"
         
@@ -892,15 +1028,17 @@ class featuredFactorySettings: CategoryFactorySettings {
         
             self.buttonsSecond.append(Button(factory:showsButtonFactory()))
       
-        
+        self.buttonsSecond.append(Button(factory:programsButtonFactory()))
+        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
        
-        
+           self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
           self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
-        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
+     
         
+   
     
         
-        self.sliderImages = [#imageLiteral(resourceName: "mobile-saints"),#imageLiteral(resourceName: "mobile-grad-slide"),#imageLiteral(resourceName: "mobile-roseparade")]
+        self.sliderImages = [#imageLiteral(resourceName: "santa-header"), #imageLiteral(resourceName: "slide-basketball-header"), #imageLiteral(resourceName: "slide-baskketball1-header"), #imageLiteral(resourceName: "slide-meeting-header")]
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
@@ -1364,6 +1502,32 @@ class CategoryFactory {
     }
     
     
+    internal func addButtonsThird() -> Section {
+        
+        let sectionType = settings.buttonsThirdSectionType
+        let sectionTitle = settings.buttonsThirdTitle
+        
+        let searchID: Int?  = nil
+        
+        let videoList: [Int]? = nil
+        
+        var buttons = settings.buttonsThird
+        
+        
+        
+        
+        
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
+        
+        return section
+        
+    }
+    
+    
+    
     
     internal func addSlide() -> Section {
         
@@ -1465,6 +1629,10 @@ class Category {
                 
                 createButtonSectionSecond()
                 
+            case CategoryOrder.buttonThird:
+                
+                createButtonSectionThird()
+                
             case CategoryOrder.boys:
                 
                 createRecentBoysSection()
@@ -1545,6 +1713,10 @@ class Category {
         sections.append(categoryFactory.addButtonsSecond())
     }
     
+    func createButtonSectionThird() {
+        
+        sections.append(categoryFactory.addButtonsThird())
+    }
     
     func getSection(row: Int) -> Section {
         
