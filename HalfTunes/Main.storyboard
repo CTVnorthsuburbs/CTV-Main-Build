@@ -1163,6 +1163,84 @@
             </objects>
             <point key="canvasLocation" x="1975" y="253"/>
         </scene>
+        <!--About CTV-->
+        <scene sceneID="Hjf-Hj-biZ">
+            <objects>
+                <navigationController title="About CTV" toolbarHidden="NO" id="wfB-vb-eeN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTq-OM-L9F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="FHn-hm-V7m">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Rms-sc-FYj" kind="relationship" relationship="rootViewController" id="RvZ-AN-8G5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vrq-Ko-1Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3127" y="332"/>
+        </scene>
+        <!--About CTV-->
+        <scene sceneID="FOe-ao-VrY">
+            <objects>
+                <viewController storyboardIdentifier="About" title="About CTV" id="Rms-sc-FYj" customClass="AboutViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lWO-WZ-IaE"/>
+                        <viewControllerLayoutGuide type="bottom" id="z4g-mC-AY4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jUZ-1T-1Gh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXv-wi-Lqr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kXv-wi-Lqr" secondAttribute="height" multiplier="16:9" id="pS4-i2-x0L"/>
+                                </constraints>
+                            </mapView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-OP-xys">
+                                <rect key="frame" x="16" y="283" width="349" height="332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.26266473531723022" green="0.27037334442138672" blue="0.27867752313613892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <mutableString key="text">Contact Info &amp; Hours
+
+2670 Arthur Street, MN 55113
+Phone: 651-792-7515, Fax: 651-792-7501
+Monday through Thursday: 9:00 am to 9:00 pm
+Friday: 9:00 am to 6:30 pm, Saturday: 9:00 am to 4:30 pm on the first Saturday of the month, Sunday: Closed
+
+About CTV
+
+While watching yet another night of television, have you ever said to yourself, "I could do this"? The truth is, you really can do this. It's called public access community television, and it is here for people just like you.
+
+CTV is a nonprofit organization operated by the North Suburban Access Corporation. The nine commission members represent the cities of Arden Hills, Falcon Heights, Lauderdale, Little Canada, Mounds View, New Brighton, North Oaks, Roseville and St. Anthony. They have come together to offer you a station with programming created by the community, for the community.
+
+Any resident within our nine city coverage area can receive the PEG (Public, Educational and Government) channels at no charge through a universal access service agreement with Comcast. There is no fee for installation and no monthly fee unless a cable converter is required. Just call CTV at 651-792-7515 and ask to receive "Universal Access Service."</mutableString>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26266473531723022" green="0.27037334442138672" blue="0.27867752313613892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kXv-wi-Lqr" secondAttribute="trailing" id="4dE-Or-9LN"/>
+                            <constraint firstItem="kXv-wi-Lqr" firstAttribute="leading" secondItem="jUZ-1T-1Gh" secondAttribute="leading" id="ZFc-Zg-u1F"/>
+                            <constraint firstItem="kXv-wi-Lqr" firstAttribute="top" secondItem="jUZ-1T-1Gh" secondAttribute="top" constant="64" id="nxi-nm-XZS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="22b-kh-uc6"/>
+                    <connections>
+                        <outlet property="mapView" destination="kXv-wi-Lqr" id="dbq-6o-Dhv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yq6-SQ-kud" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2335.1999999999998" y="333.28335832083962"/>
+        </scene>
         <!--Suggested Videos Table View Controller-->
         <scene sceneID="pDL-I2-2vn">
             <objects>

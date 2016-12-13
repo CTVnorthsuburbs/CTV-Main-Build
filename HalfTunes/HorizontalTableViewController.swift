@@ -526,35 +526,6 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
          }
         
         
-        /*
-         
-         if (collectionView.tag == 3)  {
-         
-         
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCollectionCell", for: indexPath)
-         
-         // cell.backgroundColor = model[collectionView.tag][(indexPath as NSIndexPath).item]
-         var cells : ThumbnailButtonCell
-         
-         cells = cell as! ThumbnailButtonCell
-         
-         cells.thumbnail.image = thumbnailButtons[1][indexPath.row].thumbnail
-         
-         cells.thumbnail.setRadius(radius: imageRadius)
-         
-         
-         return cells
-         
-         // cells.thumbnail.setRadius(radius: 4)
-         
-         
-         // return cell
-         
-         }
-         
-         
-         
-         */
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionCell", for: indexPath)
@@ -565,20 +536,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         cells = cell as! HorizontalCollectionViewCell
         
         
-        
-        /*
-        if ((videos[collectionView.tag][indexPath.item].fileName) != nil) {
-            
-            cells.thumbnail.image = search.getThumbnail(id: (videos[collectionView.tag][indexPath.item].fileName!))
-            
-            cells.thumbnail.setRadius(radius: imageRadius)
-            
-            cells.titleLabel.text = videos[collectionView.tag][indexPath.item].title
-            
-            cells.dateLabel.text = convertDateToString(date: videos[collectionView.tag][indexPath.item].eventDate!)
-        }
- 
- */
+
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
             
@@ -655,8 +613,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             }
             
             
-            
-            //   cells.thumbnail.image = self.search.getThumbnail(id: (videos[indexPath.item].fileName)!)
+         
                 
             
             
@@ -826,6 +783,28 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             
+            if(button?.type == ButtonType.page) {
+                
+                print("button type pressed: \(button?.title) page: \(button?.page)")
+                
+                var page = button?.page
+                
+        
+      
+                
+                let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: page!)
+                
+                
+                vc.title = button?.title
+                
+                
+                self.navigationController?.pushViewController(vc, animated:true)
+                
+            }
+            
+            
+            
+            
             
             if(button?.type == ButtonType.webPage) {
                 
@@ -849,8 +828,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 self.parent?.view.addSubview(webview)
                 
-             
                 
+        
+        
                 
                 
                 

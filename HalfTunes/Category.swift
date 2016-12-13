@@ -1026,7 +1026,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
          self.buttonsSecondSectionType = SectionType.buttonNoTitle
         
-            self.buttonsSecond.append(Button(factory:showsButtonFactory()))
+            self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
       
         self.buttonsSecond.append(Button(factory:programsButtonFactory()))
         self.buttonsSecond.append(Button(factory:communityButtonFactory()))
@@ -1197,23 +1197,23 @@ class hockeyButtonFactory: ButtonFactory {
 
 
 
-class showsButtonFactory: ButtonFactory {
+class aboutButtonFactory: ButtonFactory {
     
     override init() {
         
         super.init()
         
-        self.type = ButtonType.category
+        self.type = ButtonType.page
         
         self.image = #imageLiteral(resourceName: "about-header")
         
-        self.title = "Shows"
+        self.title = "About CTV"
         
         self.imageOverlay = nil
         
-        self.page = nil
+        self.page = "About"
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: meetingsFactorySettings()))
+        
         
     }
     
@@ -1247,7 +1247,7 @@ class scheduleButtonFactory: ButtonFactory {
         
         super.init()
         
-        self.type = ButtonType.category
+        self.type = ButtonType.webPage
         
         self.image = #imageLiteral(resourceName: "schedule-header")
         
@@ -1255,9 +1255,9 @@ class scheduleButtonFactory: ButtonFactory {
         
         self.imageOverlay = nil
         
-        self.page = nil
+        self.webURL = URL(string: "http://www.ctv15.org/schedules/class-schedule#year=2016&month=12&day=13&view=month")
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings()))
+
         
     }
     
