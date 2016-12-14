@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7V-op-pfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-682" y="-393"/>
+            <point key="canvasLocation" x="-1100" y="-871"/>
         </scene>
         <!--Detail Video-->
         <scene sceneID="tne-QT-ifu">
@@ -219,14 +219,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
-                                <rect key="frame" x="20" y="16" width="344" height="194"/>
+                                <rect key="frame" x="20" y="80" width="344" height="194"/>
                             </stackView>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="201.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="201.5"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -245,7 +245,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Q-20-O1c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="202"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="202" id="Nxj-0b-aB5"/>
                                 </constraints>
@@ -283,7 +283,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="obw-ho-oen"/>
             </objects>
-            <point key="canvasLocation" x="-428" y="802"/>
+            <point key="canvasLocation" x="-338" y="197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gwO-WK-hl6">
@@ -668,7 +668,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s1-BW-xEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="334"/>
+            <point key="canvasLocation" x="414" y="288"/>
         </scene>
         <!--Horizontal Table View Controller-->
         <scene sceneID="prj-gp-SKf">
@@ -941,7 +941,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2c-2J-tyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1586.4000000000001" y="-963.86806596701661"/>
+            <point key="canvasLocation" x="-1946" y="-870"/>
         </scene>
         <!--Category-->
         <scene sceneID="etM-HI-FlT">
@@ -1007,7 +1007,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqZ-sQ-PH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KPC-7t-Xjn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2270" y="-1136"/>
+            <point key="canvasLocation" x="-1946" y="-1500"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="495-9H-ozc">
@@ -1028,7 +1028,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQi-pY-zLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3340" y="-1291"/>
+            <point key="canvasLocation" x="-2684" y="-1500"/>
         </scene>
         <!--Home-->
         <scene sceneID="LiK-Wm-ZyV">
@@ -1077,7 +1077,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqM-JQ-Sd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1252" y="-1757"/>
+            <point key="canvasLocation" x="-1100" y="-1500"/>
         </scene>
         <!--My Videos-->
         <scene sceneID="65m-dH-m7g">
@@ -1181,7 +1181,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vrq-Ko-1Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3127" y="332"/>
+            <point key="canvasLocation" x="-2722" y="77"/>
         </scene>
         <!--About CTV-->
         <scene sceneID="FOe-ao-VrY">
@@ -1202,23 +1202,10 @@
                                 </constraints>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-OP-xys">
-                                <rect key="frame" x="16" y="283" width="349" height="332"/>
+                                <rect key="frame" x="9" y="283" width="358" height="332"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.26266473531723022" green="0.27037334442138672" blue="0.27867752313613892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <mutableString key="text">Contact Info &amp; Hours
-
-2670 Arthur Street, MN 55113
-Phone: 651-792-7515, Fax: 651-792-7501
-Monday through Thursday: 9:00 am to 9:00 pm
-Friday: 9:00 am to 6:30 pm, Saturday: 9:00 am to 4:30 pm on the first Saturday of the month, Sunday: Closed
-
-About CTV
-
-While watching yet another night of television, have you ever said to yourself, "I could do this"? The truth is, you really can do this. It's called public access community television, and it is here for people just like you.
-
-CTV is a nonprofit organization operated by the North Suburban Access Corporation. The nine commission members represent the cities of Arden Hills, Falcon Heights, Lauderdale, Little Canada, Mounds View, New Brighton, North Oaks, Roseville and St. Anthony. They have come together to offer you a station with programming created by the community, for the community.
-
-Any resident within our nine city coverage area can receive the PEG (Public, Educational and Government) channels at no charge through a universal access service agreement with Comcast. There is no fee for installation and no monthly fee unless a cable converter is required. Just call CTV at 651-792-7515 and ask to receive "Universal Access Service."</mutableString>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1235,23 +1222,24 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                     <navigationItem key="navigationItem" id="22b-kh-uc6"/>
                     <connections>
                         <outlet property="mapView" destination="kXv-wi-Lqr" id="dbq-6o-Dhv"/>
+                        <outlet property="textView" destination="yk0-OP-xys" id="bOJ-Az-PoC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yq6-SQ-kud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2335.1999999999998" y="333.28335832083962"/>
+            <point key="canvasLocation" x="-1918" y="77"/>
         </scene>
         <!--Suggested Videos Table View Controller-->
         <scene sceneID="pDL-I2-2vn">
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IgG-1h-fRX">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="138"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-vB-Kf4" userLabel="Title Label">
@@ -1414,7 +1402,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JV-cy-AUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1537" y="946"/>
+            <point key="canvasLocation" x="-1100" y="197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="483-cw-09D">
@@ -1430,7 +1418,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSF-Nm-d4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2354" y="1243"/>
+            <point key="canvasLocation" x="-1100" y="923"/>
         </scene>
         <!--Slide Show View Controller-->
         <scene sceneID="yG0-sh-0Yx">
@@ -1441,7 +1429,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="73C-lE-TT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-MW-DGo">
@@ -1464,7 +1452,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEU-Kz-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-430" y="-1950"/>
+            <point key="canvasLocation" x="-338" y="-1972"/>
         </scene>
         <!--Category-->
         <scene sceneID="mVw-pC-H1G">
@@ -1556,7 +1544,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Xc-ZI-cdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1412" y="197"/>
+            <point key="canvasLocation" x="-1100" y="-355"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rBk-66-OT9">
@@ -1572,7 +1560,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3BX-sT-0iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2727" y="-360"/>
+            <point key="canvasLocation" x="-2684" y="-784"/>
         </scene>
         <!--Home-->
         <scene sceneID="c4C-3b-qoK">
@@ -1620,7 +1608,7 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfP-Wc-VZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2226" y="-1879"/>
+            <point key="canvasLocation" x="-1100" y="-2186"/>
         </scene>
     </scenes>
     <resources>
@@ -1628,9 +1616,9 @@ Any resident within our nine city coverage area can receive the PEG (Public, Edu
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F7V-dN-6wc"/>
-        <segue reference="yMg-rn-3an"/>
-        <segue reference="V9M-Yj-v2K"/>
-        <segue reference="2XC-rQ-lli"/>
+        <segue reference="mDZ-RG-fvs"/>
+        <segue reference="TiQ-iG-Egd"/>
+        <segue reference="Hpx-XP-cwh"/>
+        <segue reference="rnq-VC-yil"/>
     </inferredMetricsTieBreakers>
 </document>
