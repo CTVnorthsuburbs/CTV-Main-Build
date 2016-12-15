@@ -961,18 +961,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
 
 
 
-extension UIImage{
-    
-    func alpha(value:CGFloat)->UIImage
-    {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
-        
-    }
-}
+
 
 extension HorizontalTableViewController: URLSessionDownloadDelegate {
     
@@ -982,43 +971,7 @@ extension HorizontalTableViewController: URLSessionDownloadDelegate {
     
 }
 
-func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-    
-    if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString,
-        
-        let download = GlobalVariables.sharedManager.activeDownloads[downloadUrl] {
-        // 2
-        
-        download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-        // 3
-        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
-        // 4
-        
-        
-        /*
-         if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
-         
-         DispatchQueue.main.async(execute: {
-         
-         
-         
-         videoCell.progressView.progress = download.progress
-         
-         var temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
-         
-         temp?.progress = download.progress
-         
-         
-         
-         
-         
-         })
-         
-         }
-         */
-    }
-    
-}
+
 
 
 

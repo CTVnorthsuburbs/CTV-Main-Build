@@ -351,7 +351,7 @@ class basketballFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 69113
         
-        
+        self.sliderImages = [#imageLiteral(resourceName: "slide-basketball-header")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
         
@@ -1048,13 +1048,25 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         var slide1 = Slide(slideType: ButtonType.video, searchID: nil, videoList: [11193], page: nil, category: nil, image: #imageLiteral(resourceName: "santa-header"), title: "Letters to Santa", webURL: nil)
         
-        var slide2 = Slide(slideType: ButtonType.category, searchID: nil, videoList: [11193], page: nil, category: basketballFactorySettings(), image: nil, title: "Basketball", webURL: nil)
+        var slide2 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: basketballFactorySettings(), image:#imageLiteral(resourceName: "slide-basketball-header"), title: "Basketball", webURL: nil)
+        
+        var slide3 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: meetingsFactorySettings(), image: #imageLiteral(resourceName: "slide-meeting-header"), title: "Meetings", webURL: nil)
         
         
+        
+      //  var slide4 = Slide(slideType: ButtonType.webPage, searchID: nil, videoList: nil, page: nil, category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: URL(string: "http://www.ctvnorthsuburbs.org/content/pdfs/job-ptr.pdf"))
+        
+        
+             var slide4 = Slide(slideType: ButtonType.page, searchID: nil, videoList: nil, page: "About", category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "About CTV", webURL: nil)
+
         
         self.slides.append(slide1)
         
         self.slides.append(slide2)
+        
+        self.slides.append(slide3)
+        
+        self.slides.append(slide4)
         
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
