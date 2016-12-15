@@ -19,14 +19,29 @@ class SlideShowViewController: UIViewController {
      var timer : Timer?
     
     var timerDelay = 6.0
+    
+    var slides: [Slide]?
   
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var titleTextLabel: UILabel!
     
     
- 
     
+    
+ 
+    func setSlides(slides: [Slide]) {
+        
+        
+        
+        self.slides = slides
+        
+        
+     
+        
+        
+        
+    }
     
     func setSlider(slider: Section) {
         

@@ -43,6 +43,18 @@ class MainTableViewController: UITableViewController {
 
     }
     
+    
+    func setSlides() {
+        
+        
+        if(category.slider?.slides != nil) {
+        vc?.setSlides(slides: (category.slider?.slides)!)
+            
+        }
+        
+        
+    }
+    
     func setSliderImages() {
         
         var slider = category.getSlider()
@@ -101,6 +113,8 @@ class MainTableViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         
         self.setSliderImages()
+        
+        self.setSlides()
         
        
         

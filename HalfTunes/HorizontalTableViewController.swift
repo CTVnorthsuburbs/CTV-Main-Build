@@ -766,7 +766,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.category) {
                 
-                print("button type pressed: \(button?.title) category: \(button?.category?.categoryTitle)")
+                
                 
                 category = (button?.category)!
        
@@ -785,7 +785,6 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.page) {
                 
-                print("button type pressed: \(button?.title) page: \(button?.page)")
                 
                 var page = button?.page
                 
@@ -808,9 +807,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.webPage) {
                 
-                print("button type pressed: \(button?.title) category: \(button?.webURL)")
                 
-               
+                
+               /*
 
                 var webview = UIWebView();
                 
@@ -828,13 +827,28 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 self.parent?.view.addSubview(webview)
                 
+                */
+                
+                
                 
         
         
                 
                 
                 
+                let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "webView") as! WebViewController
+                
+                
+                vc.setTitle(title: (button?.title)!)
+                
+                vc.setPage(url: (button?.webURL)!)
+              
            
+                
+                
+                self.navigationController?.pushViewController(vc, animated:true)
+                
+            
                 
             
                 /*
@@ -902,10 +916,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-                self.navigationController?.pushViewController(destination, animated:true)
+             //   self.navigationController?.pushViewController(destination, animated:true)
                 
                 
-                
+                self.navigationController?.present(destination, animated:true)
                 
                 
                 

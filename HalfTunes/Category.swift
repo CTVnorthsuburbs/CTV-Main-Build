@@ -107,6 +107,10 @@ class CategoryFactorySettings {
     
     var sliderImages: [UIImage]?
     
+    var slides = [Slide]()
+    
+
+    
     var buttonsSectionTitle: String?
     
     var buttonsSectionType: SectionType?
@@ -1040,6 +1044,19 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.sliderImages = [#imageLiteral(resourceName: "santa-header"), #imageLiteral(resourceName: "slide-basketball-header"), #imageLiteral(resourceName: "slide-baskketball1-header"), #imageLiteral(resourceName: "slide-meeting-header")]
         
+        
+        
+        var slide1 = Slide(slideType: ButtonType.video, searchID: nil, videoList: [11193], page: nil, category: nil, image: #imageLiteral(resourceName: "santa-header"), title: "Letters to Santa", webURL: nil)
+        
+        var slide2 = Slide(slideType: ButtonType.category, searchID: nil, videoList: [11193], page: nil, category: basketballFactorySettings(), image: nil, title: "Basketball", webURL: nil)
+        
+        
+        
+        self.slides.append(slide1)
+        
+        self.slides.append(slide2)
+        
+        
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
     }
@@ -1531,11 +1548,33 @@ class CategoryFactory {
     
     internal func addSlide() -> Section {
         
+        /*
+        var sliderImages: [UIImage]?
+        
+        var sliderType: Category.Type?
+        
+        var sliderURL: URL?
+        
+        var sliderPage: String?
+        
+        var sliderSearchID: Int?
+        
+        var sliderCategory: Category?
+        */
+        
+        
+        let slides = settings.slides
+        
+        
+        
         let sectionType = SectionType.slider
         
         let sectionTitle = "Slider listing"
         
-        let searchID = 68489
+        let searchID = 000
+        
+    
+
         
         let videoList: [Int]? = nil
         
@@ -1546,6 +1585,16 @@ class CategoryFactory {
         let images: [UIImage]? = settings.sliderImages
         
         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images)
+        
+        
+        for slide in slides {
+            
+            
+            
+            section.addSlide(slide: slide)
+            
+            
+        }
         
         return section
         
@@ -1726,6 +1775,52 @@ class Category {
     
 }
 
+
+class Slide {
+    
+    var slideType: ButtonType?
+    
+    var searchID: Int?
+    
+    var videoList: [Int]?
+    
+    var page: String?
+    
+    var category: CategoryFactorySettings?
+    
+    var image: UIImage?
+    
+    var title: String?
+    
+    var webURL: URL?
+    
+    init(slideType: ButtonType?, searchID: Int?, videoList: [Int]?, page: String?, category: CategoryFactorySettings?, image: UIImage?, title: String?, webURL: URL?) {
+        
+        self.slideType = slideType
+        
+        self.searchID = searchID
+        
+        self.videoList = videoList
+        
+        self.page = page
+        
+        self.category = category
+        
+        self.image = image
+        
+        self.title = title
+        
+        self.webURL = webURL
+        
+        
+        
+        
+    }
+    
+    
+    
+}
+
 class Section {
     
     var sectionType: SectionType
@@ -1743,6 +1838,8 @@ class Section {
     var buttons = [Button?]()
     
     var images = [UIImage?]()
+    
+    var slides = [Slide]()
     
     init(sectionType: SectionType, sectionTitle: String?, searchID: Int?, videoList: [Int]?, buttons: [Button]?, displayCount: Int?, images: [UIImage]?) {
         
@@ -1767,6 +1864,27 @@ class Section {
         }
         
         self.displayCount = displayCount
+        
+    }
+    
+    func addSlide(slide: Slide) {
+        
+        slides.append(slide)
+        
+        
+    }
+    
+    func getSlide(position: Int) -> Slide? {
+        
+        
+        if(slides.count >= position - 1) {
+            
+            
+            
+            return slides[position - 1]
+        }
+        
+        return nil
         
     }
     
