@@ -203,8 +203,20 @@ class SlideShowViewController: UIViewController {
         }
         
         
-        
+       /*
         if(slide.slideType == ButtonType.page) {
+            
+            
+            
+            
+            
+            
+            var search = VideoSearch()
+            
+            
+            search.getYouTubePlaylists()
+            
+            
             
             
             var page = slide.page
@@ -221,6 +233,103 @@ class SlideShowViewController: UIViewController {
             self.parent?.navigationController?.pushViewController(vc, animated:true)
             
         }
+        
+        */
+        
+        
+        
+        if(slide.slideType == ButtonType.page) {
+            
+            
+            
+           /*
+            
+            
+            var search = VideoSearch()
+            
+            
+           var video = search.getYouTubePlaylists()
+            
+            
+            
+            
+            var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+            
+            var dataTask = URLSessionDataTask()
+            
+            var downloadsSession: Foundation.URLSession = {
+                
+                let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                
+                let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+                
+                return session
+                
+            }()
+            
+            
+            if(slide.category != nil) {
+                category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
+            }
+            
+            
+            
+       
+            
+         
+            
+            
+            
+            
+            
+            let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+            
+        
+            
+            
+            
+            
+            
+            
+            suggestedSearch = category.sections[0]
+            
+            //let selectedVideo = videos[collectionView.tag][indexPath.row]
+            
+            
+            var thumbnail = search.getThumbnail(url: (video?.first?.thumbnailUrl)!)
+            
+            video?.first?.thumbnail = thumbnail
+            
+            destination.video = video?.first
+            
+            
+            
+            destination.setDefaultSession(defaultSession: &defaultSession)
+            
+            destination.setDataTask(dataTask: &dataTask)
+            
+            
+            destination.setDownloadsSession(downloadsSession: &downloadsSession)
+            
+            
+        
+            
+            //   self.navigationController?.pushViewController(destination, animated:true)
+            
+            
+            
+        
+            
+            self.parent?.navigationController?.pushViewController(destination, animated:true)
+          
+ 
+ 
+ 
+ 
+ */
+            
+        }
+        
         
         
         

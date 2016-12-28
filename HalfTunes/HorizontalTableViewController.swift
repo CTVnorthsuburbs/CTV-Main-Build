@@ -75,9 +75,18 @@ class HorizontalTableViewController: UITableViewController {
   
         while (index < category.sections.count) {
             
+            
+            
+            
+            
             if(category.sections[index].searchID != nil) {
                 
                 
+                
+                if(category.videoType == VideoType.cablecast) {
+                    
+                    
+                    
                 if(category.sections[index].getDisplayCount() == nil) {
                     
                     
@@ -100,6 +109,58 @@ class HorizontalTableViewController: UITableViewController {
                     
                 }
                 
+             
+                } else if(category.videoType == VideoType.youtube) {
+                    
+                    
+                    
+                    if(category.sections[index].getDisplayCount() == nil) {
+                        
+                        
+                        print("display count = nil")
+                        
+                       // videos.append(search.search(category.sections[index].searchID!))
+                        
+                        
+                        videos.append(search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
+                        
+                        
+                        
+                        
+                        
+                    } else {
+                        
+                        print("display count = \(category.sections[index].getDisplayCount())")
+                        
+                        var vids = search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
+                        print("playlist \(category.sections[index].sectionPlaylist!) ")
+                        
+                        var trimmedVids = search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
+                        
+                        videos.append(trimmedVids)
+                        
+                        
+                        
+                    }
+                    
+
+                    
+                    
+                    
+                    
+                    
+                }
+                    
+                    
+                    
+                    
+                    
+                    
+                
+            
+            
+                
+                
                 
             } else {
                 
@@ -119,6 +180,28 @@ class HorizontalTableViewController: UITableViewController {
             
             self.changeTableSize()
             
+            
+            
+        }
+        
+        
+        for vid in videos[0] {
+            
+            
+            
+            
+            print("here: \(vid?.title)")
+            
+            
+        }
+        
+        
+        for vid in videos[1] {
+            
+            
+            
+            
+            print("here2: \(vid?.title)")
             
             
         }
@@ -324,16 +407,20 @@ class HorizontalTableViewController: UITableViewController {
 
         if segue.identifier == "ShowDetail" {
       
+            
+            print("maybe here")
+            
+            
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
         
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
-                        
+                        print(indexPath)
                         
                   
-                        
+                        print("collectionView: \(collectionView.tag)")
                         
                         
                         
@@ -353,7 +440,14 @@ class HorizontalTableViewController: UITableViewController {
                         
                         
                         destination.setDownloadsSession(downloadsSession: &downloadsSession)
+                        
+                        
+                        
+                        print("ehg0000000")
           
+                        
+                        
+                        
                     }
                 }
             }
@@ -403,16 +497,25 @@ class HorizontalTableViewController: UITableViewController {
 
 
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
             
-   
+           
+                
+                
+                
+                    return videos[collectionView.tag].count
+                
+                
             
+            
+    
         
-        return videos[collectionView.tag].count
+       
                 
             
             
@@ -472,12 +575,17 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                         
                         
+                 
+                
+          
+                        
+                        
+                        
                         var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
                         
                         
                         
-                        
-                        
+
                         var thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
                         
                  
@@ -487,17 +595,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                                 
                                 cells.thumbnail.alpha = 0.5
                         
-                                
-                        
-                        
-                        
-                      
-                        
-                        
-                        
+      
                         
                     } else {
-                    
                     
                     
                     
@@ -541,28 +641,83 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
             
             
-      
+            var videos = [Video]()
             
-            var videos : [Video]
             
-           
             
-            if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
+            
+            
+            
+            
+            
+            
+ 
+            
+            
+            
+            if(category.videoType == VideoType.youtube) {
                 
                 
-                videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+               
                 
                 
-            } else {
+                if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
+                    
+                    
+                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                    
+                    
+                } else {
+                    
+                    listOfVideos[category.sections[collectionView.tag].searchID!] = search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)
+                    
+                    
+                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                    
+                    
+                    
+                }
+              
                 
-                 listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
                 
                 
-                videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+            } else if(category.videoType == VideoType.cablecast) {
                 
-
+                
+                
+                
+                
+                
+                if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
+                    
+                    
+                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                    
+                    
+                } else {
+                    
+                    listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
+                    
+                    
+                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
+                    
+                    
+                    
+                }
+                
+                
+                
                 
             }
+            
+            
+            
+            
+            
+            
+      
+            
+       
         
      //  var videos = search.search(category.sections[collectionView.tag].searchID!)
         
@@ -749,7 +904,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
-        
+       
         
         if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
             
@@ -878,8 +1033,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             if(button?.type == ButtonType.video) {
-                
-     
+                print("thosisisisisiiiiiii")
                 
                 var button =  category.sections[collectionView.tag].buttons[indexPath.row]
                 
@@ -952,6 +1106,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         }
         
 */
+        
+        
+        
         
     }
 

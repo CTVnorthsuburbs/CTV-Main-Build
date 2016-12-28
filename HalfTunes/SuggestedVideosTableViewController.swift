@@ -58,7 +58,7 @@ class SuggestedVideosTableViewController: UITableViewController {
         var searchID = suggestedSearch?.searchID
         
         
-        if (searchID != nil) {
+        if (searchID != nil && searchID != 1 && searchID != 2) {
             
             var results = search.search(searchID!)
             

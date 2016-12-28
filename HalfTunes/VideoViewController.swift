@@ -43,6 +43,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     var myVideos = [Video]()
     
     
+    var webView: UIWebView?
+    
+    
     
     //   var activeDownloads = [String: Download]()
     
@@ -127,10 +130,18 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         _ = self.downloadsSession
         
         if let video = video {
+            
+            
+            print("even gets here")
 
             var date =  video.eventDate
             
+            
+        
+            
             childView.dateLabel.text = convertDateToString(date: date!)
+                
+            
 
             navigationItem.title = video.title
             
@@ -140,7 +151,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
             DispatchQueue.global(qos: .background).async {
                 
-                if(video.fileName != nil) {
+                if(video.fileName != nil && category.videoType != VideoType.youtube) {
                     
                     
                     
@@ -165,12 +176,22 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     self.thumbnailView.image = video.thumbnail
                     
                     
-                    if(   self.thumbnailView.image == nil) {
+                    if(   self.thumbnailView.image == nil && category.videoType != VideoType.youtube) {
                         
                         
                         
                         video.generateThumbnail()
                         self.thumbnailView.image = video.thumbnail
+                        
+                    } else if (self.thumbnailView.image == nil && category.videoType == VideoType.youtube) {
+                        
+                        
+                        if(video.hasThumbnailUrl()) {
+                       video.thumbnail = search.getThumbnail(url: video.thumbnailUrl!)
+                        
+                        self.thumbnailView.image = video.thumbnail
+                        
+                        }
                         
                     }
                     
@@ -354,6 +375,30 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
        childView.cancelButton.isHidden = !showDownloadControls
         
+        
+        
+        
+        
+        
+        if(category.videoType == VideoType.youtube) {
+            
+            
+            
+            
+            if(webView != nil) {
+                
+                
+                print("thios RUNNSSSS")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.shouldRotate = true // or false to disable rotation
+                
+                
+            }
+            
+         
+        }
+        
     }
     
     
@@ -451,6 +496,64 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBAction func playVideo(_ sender: AnyObject) {
         
+        
+        if(category.videoType == VideoType.youtube) {
+            
+            
+            
+            
+  webView = UIWebView(frame: self.thumbnailView.frame)
+            
+            self.view.addSubview(webView!)
+            self.view.bringSubview(toFront: webView!)
+            
+            webView?.allowsInlineMediaPlayback = true
+            webView?.mediaPlaybackRequiresUserAction = false
+            
+            var videoID = ""
+            
+            
+            videoID = (video?.sourceUrl)!     // https://www.youtube.com/watch?v=28myxjncnDM     http://www.youtube.com/embed/28myxjncnDM
+            
+            let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
+            
+    
+            
+            if view.bounds == webView?.bounds {
+                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.shouldRotate = true
+                
+                
+            } else {
+                
+                
+                //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.shouldRotate = false // or false to disable rotation
+                
+                
+            }
+
+            
+            
+            
+            webView?.loadHTMLString(embededHTML, baseURL: Bundle.main.resourceURL)
+            
+            
+            
+            
+            
+            
+        } else {
+        
+        
+        
+        
         let videoPath = Bundle.main.path(forResource: video?.sourceUrl, ofType:"mp4")
         
         //Make a URL from your path
@@ -514,6 +617,41 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             playDownload(video!)
             
         }
+        
+        }
+ 
+        
+        
+        
+      /*
+        
+        let webView = UIWebView(frame: self.thumbnailView.frame)
+        
+        self.view.addSubview(webView)
+        self.view.bringSubview(toFront: webView)
+        
+        webView.allowsInlineMediaPlayback = true
+        webView.mediaPlaybackRequiresUserAction = false
+        
+        var videoID = ""
+        
+        
+        videoID = (video?.sourceUrl)!     // https://www.youtube.com/watch?v=28myxjncnDM     http://www.youtube.com/embed/28myxjncnDM
+        
+        let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
+        
+        
+        
+        
+        
+        
+        webView.loadHTMLString(embededHTML, baseURL: Bundle.main.resourceURL)
+        
+        
+        */
+ 
+        
+        
         
     }
     
@@ -831,6 +969,9 @@ class YourVideoPlayer: AVPlayerViewController {
 
 
 }
+
+
+
 
 
 
