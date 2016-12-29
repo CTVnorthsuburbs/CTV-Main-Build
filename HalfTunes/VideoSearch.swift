@@ -225,7 +225,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
       var video =   self.getYoutubePlaylists(session, url: urlString! as URL)
         
-        print(urlString)
         
         
 return video
