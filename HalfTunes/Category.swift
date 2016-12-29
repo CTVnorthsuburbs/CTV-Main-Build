@@ -334,6 +334,8 @@ class programsFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 66603
         
+        self.recentSectionDisplayCount = 15
+        
         self.sliderImages = [#imageLiteral(resourceName: "programs-header")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.featured,   CategoryOrder.girls,  CategoryOrder.popular, CategoryOrder.boys]
@@ -536,14 +538,14 @@ class swimmingFactorySettings: CategoryFactorySettings {
         
         self.popularSectionSearchID = 69532
         
-        
+        self.popularSectionDisplayCount = 15
         
         
         self.recentSectionTitle = "Recent Swimming Videos"
         
         self.recentSectionSearchID = 69320
         
-        
+        self.recentSectionDisplayCount = 15
         
         self.sliderImages = [#imageLiteral(resourceName: "swimming-header")]
         
@@ -1072,7 +1074,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.recentGirlsSectionSearchID = 67318
         
-        self.recentGirlsSectionDisplayCount = 10
+        self.recentGirlsSectionDisplayCount = 15
         
         self.recentBoysSectionTitle = "Local News"
         
@@ -1080,7 +1082,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
        // self.recentBoysSectionSearchID = 66603
         
-        self.recentBoysSectionDisplayCount = 10
+        self.recentBoysSectionDisplayCount = 15
         
         self.featuredSectionTitle = "Community Favorites"
         
@@ -1140,7 +1142,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         
         
-      //  var slide4 = Slide(slideType: ButtonType.webPage, searchID: nil, videoList: nil, page: nil, category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: URL(string: "http://www.ctvnorthsuburbs.org/content/pdfs/job-ptr.pdf"))
+   // var slide4 = Slide(slideType: ButtonType.webPage, searchID: nil, videoList: nil, page: nil, category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: URL(string: "http://www.ctvnorthsuburbs.org/content/pdfs/job-ptr.pdf"))
         
         
              var slide4 = Slide(slideType: ButtonType.page, searchID: nil, videoList: nil, page: "About", category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "About CTV", webURL: nil)
@@ -1511,7 +1513,7 @@ class CategoryFactory {
         
         let images: [UIImage]? = nil
         
-         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: nil)
         
         return section
         
@@ -1536,7 +1538,7 @@ class CategoryFactory {
         
         let images: [UIImage]? = nil
         
-           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: nil)
         
         return section
         
@@ -1560,7 +1562,7 @@ class CategoryFactory {
         
         let images: [UIImage]? = nil
         
-           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: nil)
         
         return section
         

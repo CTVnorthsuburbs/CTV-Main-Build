@@ -203,7 +203,7 @@ class SlideShowViewController: UIViewController {
         }
         
         
-       /*
+       
         if(slide.slideType == ButtonType.page) {
             
             
@@ -211,10 +211,6 @@ class SlideShowViewController: UIViewController {
             
             
             
-            var search = VideoSearch()
-            
-            
-            search.getYouTubePlaylists()
             
             
             
@@ -234,7 +230,7 @@ class SlideShowViewController: UIViewController {
             
         }
         
-        */
+        /*
         
         
         
@@ -242,7 +238,7 @@ class SlideShowViewController: UIViewController {
             
             
             
-           /*
+         
             
             
             var search = VideoSearch()
@@ -326,12 +322,12 @@ class SlideShowViewController: UIViewController {
  
  
  
- */
+ 
             
         }
         
         
-        
+        */
         
         
         

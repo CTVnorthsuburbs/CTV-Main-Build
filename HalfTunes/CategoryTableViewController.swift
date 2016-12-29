@@ -121,8 +121,18 @@ class CategoryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if (recommendedVideos.count == 0) {
-        recommendedVideos = search.search((categorySection?.searchID!)! )
-        
+            
+            if(category.videoType == VideoType.youtube) {
+                
+            
+            recommendedVideos = search.getYouTubeVideos(playlist: (categorySection?.sectionPlaylist!)!)!
+                
+                
+            } else {
+            
+            
+      recommendedVideos = search.search((categorySection?.searchID!)! )
+            }
         
         }
         myVideos = recommendedVideos
@@ -324,9 +334,16 @@ class CategoryTableViewController: UITableViewController {
                 
             if(self.recommendedVideos[indexPath.row].fileName != nil ) {
                 
-                
-                
-                
+                if(self.recommendedVideos[indexPath.row].hasThumbnailUrl() == true) {
+                    
+                  self.recommendedVideos[indexPath.row].thumbnail = self.search.getThumbnail(url:  self.recommendedVideos[indexPath.row].thumbnailUrl!)
+                    
+                   // self.thumbnailView.image = video.thumbnail
+                    
+                    
+                    
+                } else {
+             
             var thumbnail: UIImage? = self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
                 
                 
@@ -342,6 +359,7 @@ class CategoryTableViewController: UITableViewController {
             }
             
             
+                }
             } else {
                 
                 
@@ -352,6 +370,7 @@ class CategoryTableViewController: UITableViewController {
                 
                 
             }
+            
             
             
             

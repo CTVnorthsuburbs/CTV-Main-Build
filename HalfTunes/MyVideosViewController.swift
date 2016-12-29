@@ -210,11 +210,20 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VideoCell
             
+            
+            
             // Fetches the appropriate video for the data source layout.
             
             let video : Video?
                 video = myVideos[(indexPath as NSIndexPath).row]
   
+            if(video?.fileName == 1) {
+                
+                
+                
+                cell.downloadButton.isHidden = true
+            }
+            
             cell.delegate = self
             
             cell.titleLabel.text = video!.title

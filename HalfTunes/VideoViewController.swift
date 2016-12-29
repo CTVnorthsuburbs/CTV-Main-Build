@@ -103,18 +103,27 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
     
     override func viewWillDisappear(_ animated: Bool) {
+        
+        
+        
+        
+        
+    
+        
+        
+        
         self.thumbnailButton.isHidden = false
         
         
         playerViewController.player?.pause()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.shouldRotate = false // or false to disable rotation
-        
-        
+ 
         
         
     }
+  
+    
+
     
 
     override func viewDidLoad() {
@@ -132,7 +141,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if let video = video {
             
             
-            print("even gets here")
+          
 
             var date =  video.eventDate
             
@@ -378,29 +387,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         
-        
-        
-        if(category.videoType == VideoType.youtube) {
-            
-            
-            
-            
-            if(webView != nil) {
-                
-                
-                print("thios RUNNSSSS")
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.shouldRotate = true // or false to disable rotation
-                
-                
-            }
-            
-         
-        }
+
         
     }
     
+
     
     func loadVideos() -> [Video]? {
         
@@ -494,6 +485,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+    
+    
+    
     @IBAction func playVideo(_ sender: AnyObject) {
         
         
@@ -503,11 +497,22 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
   webView = UIWebView(frame: self.thumbnailView.frame)
-            
+          
+        
             self.view.addSubview(webView!)
-            self.view.bringSubview(toFront: webView!)
+           self.view.bringSubview(toFront: webView!)
+        
+   
             
-            webView?.allowsInlineMediaPlayback = true
+            //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.shouldRotate = true // or false to disable rotation
+            
+            
+            
+           webView?.allowsInlineMediaPlayback = true
             webView?.mediaPlaybackRequiresUserAction = false
             
             var videoID = ""
@@ -518,27 +523,6 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
             
     
-            
-            if view.bounds == webView?.bounds {
-                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                appDelegate.shouldRotate = true
-                
-                
-            } else {
-                
-                
-                //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                appDelegate.shouldRotate = false // or false to disable rotation
-                
-                
-            }
-
             
             
             
@@ -744,7 +728,20 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 
                 if(hasSavedVideo()) {
+                    
+                    
+                    if(category.videoType != VideoType.youtube) {
+                        
                     childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+                        
+                    } else {
+                        
+                        
+                        childView.addVideoButton.setTitle("Added", for: UIControlState.selected)
+                        
+                    }
+                    
+                    
                     childView.addVideoButton.isSelected = true
                     
                 } else {

@@ -54,7 +54,16 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     func setVideo(video: Video) {
         
-        
+        if(category.videoType == VideoType.youtube) {
+            
+           recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[selectedSection].sectionPlaylist!)!
+            
+            
+            recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
+            
+            
+           
+        } else {
         var searchID = suggestedSearch?.searchID
         
         
@@ -71,7 +80,9 @@ class SuggestedVideosTableViewController: UITableViewController {
             
              recommendedVideos = search.getRecentLimited()
         }
-      
+        }
+        
+        
         
         myVideos = recommendedVideos
         
@@ -81,6 +92,11 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             tableView.reloadData()
         }
+       
+            
+        
+        
+        
         
     }
     

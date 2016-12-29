@@ -18,7 +18,14 @@ class HorizontalTableViewCell: UITableViewCell {
       
     @IBOutlet weak var sectionLabel: UILabel!
     
-    
+    func disableSeeAllButton() {
+        
+        
+        
+        seeAllButton.isHidden = true
+        
+        
+    }
 }
 
 extension HorizontalTableViewCell {

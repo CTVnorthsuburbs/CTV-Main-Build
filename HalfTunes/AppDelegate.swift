@@ -147,5 +147,16 @@
        // UINavigationBar.appearance().tintColor = UIColor.white
        // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
     }
+    
+    
+    
+    
+    
+
+       
+    
  }
  
+
+    
+

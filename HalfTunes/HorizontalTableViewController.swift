@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+ var selectedSection = 1
 class HorizontalTableViewController: UITableViewController {
     
     
@@ -18,6 +18,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var currentCategory: Category?
     
+   
 
     var videos : [[Video?]]  = [[Video?]]()
     
@@ -184,27 +185,7 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
-        
-        for vid in videos[0] {
-            
-            
-            
-            
-            print("here: \(vid?.title)")
-            
-            
-        }
-        
-        
-        for vid in videos[1] {
-            
-            
-            
-            
-            print("here2: \(vid?.title)")
-            
-            
-        }
+   
 
     }
 
@@ -306,6 +287,11 @@ class HorizontalTableViewController: UITableViewController {
  
         var section = category.getSection(row: indexPath.section)
         
+        
+        
+      
+        
+        
         if (section.sectionType == SectionType.slider) {
             
             
@@ -313,6 +299,11 @@ class HorizontalTableViewController: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
+            
+            
+            
+          
+            
             
             return cell!
             
@@ -322,13 +313,29 @@ class HorizontalTableViewController: UITableViewController {
         
         if (section.sectionType == SectionType.videoList) {
             
-
+   
             self.tableView.rowHeight = 165.0
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
             
-
+            if(section.displayCount == nil){
+                
+                section.displayCount = 15
+                
+            }
+            if(section.displayCount != nil) {
+                
+                if(section.displayCount! >  videos[indexPath.section].count) {
+                
+                    cell!.disableSeeAllButton()
+                    //THIS IS WHERE SEE ALL CAN BE REMOVED
+                    
+                }
+            }
+            
+            
+            
             return cell!
             
             
@@ -341,6 +348,7 @@ class HorizontalTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailTitleCell", for: indexPath) as? HorizontalTableViewCell
             cell!.sectionLabel.text = section.sectionTitle
             
+           
             
             return cell!
        
@@ -355,6 +363,9 @@ class HorizontalTableViewController: UITableViewController {
             // cell!.sectionLabel.text = sectionTitles[indexPath.section]
             
             
+            
+            
+            
             return cell!
             
  
@@ -365,6 +376,9 @@ class HorizontalTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
         cell!.sectionLabel.text = section.sectionTitle
+        
+     
+        
         
         
         return cell!
@@ -408,7 +422,7 @@ class HorizontalTableViewController: UITableViewController {
         if segue.identifier == "ShowDetail" {
       
             
-            print("maybe here")
+      
             
             
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
@@ -427,11 +441,13 @@ class HorizontalTableViewController: UITableViewController {
                         
                        suggestedSearch = category.sections[collectionView.tag]
                         
-                        let selectedVideo = videos[collectionView.tag][indexPath.row]
+                        var selectedVideo = videos[collectionView.tag][indexPath.row]
 
                         
                         destination.video = selectedVideo
                         
+                        
+                        selectedSection = collectionView.tag
                         
                         
                         destination.setDefaultSession(defaultSession: &defaultSession)
@@ -635,8 +651,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         cells = cell as! HorizontalCollectionViewCell
         
+      
         
-
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
             
@@ -1033,7 +1049,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             if(button?.type == ButtonType.video) {
-                print("thosisisisisiiiiiii")
+              
                 
                 var button =  category.sections[collectionView.tag].buttons[indexPath.row]
                 
@@ -1045,15 +1061,16 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
                 
-               
+            
                 
-                
-                
+              
                 
                 
                 
                 suggestedSearch = category.sections[1]
                 
+
+          
                 //let selectedVideo = videos[collectionView.tag][indexPath.row]
               
                 destination.video = video.first
