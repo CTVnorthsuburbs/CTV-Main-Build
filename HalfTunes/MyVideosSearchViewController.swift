@@ -272,6 +272,44 @@ class MyVideosSearchViewController: MyVideosViewController {
                         
                         videoDetailViewController.video = selectedVideo
                         
+                        
+                        
+                   
+                        
+                        if(selectedVideo.fileName == 1) {
+                            
+                            
+                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                            
+                            
+                            
+                            sections.createListing()
+                            
+                            
+                            videoDetailViewController.setCategory(category: sections)
+                            
+                            
+                            
+                        } else {
+                            
+                            
+                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+                            
+                            
+                            sections.createListing()
+                            
+                            
+                            videoDetailViewController.setCategory(category: sections)
+                            
+                            
+                            
+                        }
+                        
+                        
+
+                        
+                        
+                        
                         videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
                         
                         videoDetailViewController.setDataTask(dataTask: &dataTask)

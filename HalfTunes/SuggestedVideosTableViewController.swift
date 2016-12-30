@@ -34,6 +34,8 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     var myVideos = [Video]()
     
+    var section: Int?
+    
     
     var search = VideoSearch()
     
@@ -43,6 +45,8 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     var parentView : VideoViewController!
     
+    var currentCategory: Category?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -50,19 +54,53 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         
     }
+    func setCategory(category: Category) {
+        
+        
+        currentCategory = category
+        
+    }
     
+    func setCategory(category: Category, section: Int) {
+        
+        
+        currentCategory = category
+        
+        self.section = section
+        
+    }
     
     func setVideo(video: Video) {
         
-        if(category.videoType == VideoType.youtube) {
+      
             
-           recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[selectedSection].sectionPlaylist!)!
+  
+            
+        if( currentCategory?.videoType == VideoType.youtube) {
+            
+            
+              if(self.section == nil) {
+                print("the first")
+           recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
             
             
             recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
             
             
-           
+            
+            } else {
+                
+                  print("the second")
+                
+                recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[self.section!].sectionPlaylist!)!
+                
+                
+                recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
+                
+                
+            }
+            
+            
         } else {
         var searchID = suggestedSearch?.searchID
         
@@ -151,6 +189,49 @@ class SuggestedVideosTableViewController: UITableViewController {
                 videoDetailViewController.video = selectedVideo
                 
                 //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
+                
+                
+                
+                
+                
+                
+                
+                suggestedSearch = category.sections[indexPath.section]
+                
+             
+                
+                
+                
+                
+                selectedSection = indexPath.section
+                
+                
+            
+                
+                
+                
+                
+                
+                if(selectedVideo.fileName == 1) {
+                    
+                    
+                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                    
+                    
+                    
+                    sections.createListing()
+                    
+                    
+                    videoDetailViewController.setCategory(category: sections)
+                    
+                    
+                    
+                } 
+                
+                
+                
+                
+                
                 
                 
                 videoDetailViewController.setDefaultSession(defaultSession: &parentView.defaultSession!)

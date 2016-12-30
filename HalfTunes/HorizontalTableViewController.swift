@@ -390,9 +390,7 @@ class HorizontalTableViewController: UITableViewController {
     
     
     
-    
-    
-    
+
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -431,10 +429,7 @@ class HorizontalTableViewController: UITableViewController {
         
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
-                        print(indexPath)
-                        
-                  
-                        print("collectionView: \(collectionView.tag)")
+                       
                         
                         
                         
@@ -459,7 +454,7 @@ class HorizontalTableViewController: UITableViewController {
                         
                         
                         
-                        print("ehg0000000")
+                    
           
                         
                         
@@ -492,7 +487,9 @@ class HorizontalTableViewController: UITableViewController {
 
                    //destination.title = sectionTitles[indexPath.section]
                     
+                    selectedSection = indexPath.section
                     
+                    print("THE SELECTED IS \(indexPath.section)")
                     destination.title = category.sections[indexPath.section].sectionTitle
                     
                     destination.categorySection = category.sections[indexPath.section]
@@ -513,6 +510,9 @@ class HorizontalTableViewController: UITableViewController {
 
 
 extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -626,7 +626,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                     }
          
-         cells.thumbnail.setRadius(radius: imageRadius)
+         cells.thumbnail.setRadius(radius: buttonRadius)
          
                     
                     
@@ -1087,10 +1087,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-             //   self.navigationController?.pushViewController(destination, animated:true)
+                self.navigationController?.pushViewController(destination, animated:true)
                 
                 
-                self.navigationController?.present(destination, animated:true)
+              //  self.navigationController?.present(destination, animated:true)
                 
                 
                 

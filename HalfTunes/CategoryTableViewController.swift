@@ -289,6 +289,44 @@ class CategoryTableViewController: UITableViewController {
                 
                 videoDetailViewController.video = selectedVideo
                 
+                
+                
+                
+                
+                
+                
+                if(selectedVideo.fileName == 1) {
+                    
+                    
+                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                    
+                    
+                    
+                    sections.createListing()
+                  
+                    
+                   // videoDetailViewController.setCategory(category: sections)
+                    
+                    
+                    
+                } else {
+                    
+                    
+                 
+                    
+
+                    
+                      suggestedSearch = category.sections[selectedSection]
+                    
+                    
+                    
+                    videoDetailViewController.setCategory(category: category)
+                    
+                    
+                    
+                }
+                
+                
                 //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
                 
                 

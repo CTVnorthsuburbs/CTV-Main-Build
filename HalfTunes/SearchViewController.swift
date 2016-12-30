@@ -85,7 +85,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-
+    func loadVideos() -> [Video]? {
+        
+        var loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+        
+        return  loaded
+        
+    }
     
     
     override func viewDidLoad() {
@@ -122,10 +128,27 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                         //perform search list update in background
                 
                 self.searchResults = savedResults
-                
-                
             
-                    
+            var otherVideos = [Video]()
+            
+            if(loadVideos() != nil) {
+                
+                
+                otherVideos = loadVideos()!
+                
+            }
+            var counter = 0
+            
+          
+            
+            for vid in otherVideos {
+                
+              searchResults.append(vid)
+            }
+            
+            
+            
+            
                     
                     self.updateSearchResults(self.searchResults)
             

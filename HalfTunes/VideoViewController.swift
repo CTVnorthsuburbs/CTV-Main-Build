@@ -42,7 +42,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var myVideos = [Video]()
     
-    
+    var currentCategory: Category?
     var webView: UIWebView?
     
     
@@ -100,7 +100,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     
-
+    func setCategory(category: Category) {
+        
+        self.currentCategory = category
+        
+        
+        
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -138,9 +144,31 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         _ = self.downloadsSession
         
+        if(currentCategory != nil) {
+            
+            
+            
+            childView.setCategory(category: currentCategory!)
+            
+            
+            
+        } else {
+            
+           
+            currentCategory = category
+            
+            
+            print("selected se tion \(selectedSection)")
+            
+            childView.setCategory(category: currentCategory!, section: selectedSection)
+            
+            
+            
+        }
+        
         if let video = video {
             
-            
+        
           
 
             var date =  video.eventDate
@@ -160,7 +188,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
             DispatchQueue.global(qos: .background).async {
                 
-                if(video.fileName != nil && category.videoType != VideoType.youtube) {
+                if(video.fileName != nil  && self.currentCategory?.videoType != VideoType.youtube) {
                     
                     
                     
@@ -183,19 +211,22 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     
                     
                     self.thumbnailView.image = video.thumbnail
+                  
                     
-                    
-                    if(   self.thumbnailView.image == nil && category.videoType != VideoType.youtube) {
+                    if(   self.thumbnailView.image == nil &&  video.fileName != 1) {
                         
                         
                         
                         video.generateThumbnail()
                         self.thumbnailView.image = video.thumbnail
                         
-                    } else if (self.thumbnailView.image == nil && category.videoType == VideoType.youtube) {
+                    } else if (self.thumbnailView.image == nil  && video.fileName == 1) {
                         
-                        
+                       
                         if(video.hasThumbnailUrl()) {
+                            
+                            
+                       
                        video.thumbnail = search.getThumbnail(url: video.thumbnailUrl!)
                         
                         self.thumbnailView.image = video.thumbnail
@@ -203,6 +234,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         }
                         
                     }
+                    
+                
                     
                     
                 }
@@ -216,6 +249,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
        
             
             childView.setVideo(video: self.video!)
+            
+            
+          
             
             //thumbnailView.image = video.thumbnail
             
@@ -491,7 +527,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBAction func playVideo(_ sender: AnyObject) {
         
         
-        if(category.videoType == VideoType.youtube) {
+        if(currentCategory?.videoType == VideoType.youtube) {
             
             
             
@@ -730,7 +766,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 if(hasSavedVideo()) {
                     
                     
-                    if(category.videoType != VideoType.youtube) {
+                    if(currentCategory?.videoType != VideoType.youtube) {
                         
                     childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
                         
