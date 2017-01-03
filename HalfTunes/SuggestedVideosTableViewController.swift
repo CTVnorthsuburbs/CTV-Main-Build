@@ -80,7 +80,7 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             
               if(self.section == nil) {
-                print("the first")
+               
            recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
             
             
@@ -90,7 +90,7 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             } else {
                 
-                  print("the second")
+                
                 
                 recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[self.section!].sectionPlaylist!)!
                 

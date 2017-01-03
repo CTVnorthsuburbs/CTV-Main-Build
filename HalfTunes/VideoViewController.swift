@@ -158,7 +158,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             currentCategory = category
             
             
-            print("selected se tion \(selectedSection)")
+           
             
             childView.setCategory(category: currentCategory!, section: selectedSection)
             

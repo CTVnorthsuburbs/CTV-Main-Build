@@ -96,7 +96,7 @@ class MainTableViewController: UITableViewController {
             
         } else {
             
-            previousCategory = featuredCategory
+           previousCategory = featuredCategory
             featured = true
            // previousCategory = featuredCategory
             
