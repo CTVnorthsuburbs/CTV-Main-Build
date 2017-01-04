@@ -16,7 +16,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var search = VideoSearch()
     
-    var currentCategory: Category?
+  //  var currentCategory: Category?
     
    
 
@@ -59,13 +59,13 @@ class HorizontalTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
 
-        if(currentCategory?.categoryTitle != category.categoryTitle ) {
+    
        
             
             
          
             
-            currentCategory = category
+       //     currentCategory = category
             
             
             videos.removeAll()
@@ -77,7 +77,7 @@ class HorizontalTableViewController: UITableViewController {
                 
                 
             }
-        currentCategory = category
+   //    currentCategory = category
         
             
             print(videos.count)
@@ -210,7 +210,7 @@ class HorizontalTableViewController: UITableViewController {
             
             
             
-        }
+        
         
    
 
@@ -222,7 +222,7 @@ class HorizontalTableViewController: UITableViewController {
         
         var tableSize: CGFloat = 0
         
-        for section in (currentCategory?.sections)! {
+        for section in (category.sections) {
             
             
             switch section.sectionType {
@@ -858,7 +858,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     
     func setCategory(newCategory: Category) {
         
-        self.currentCategory = newCategory
+        category = newCategory
         
         category = newCategory
         
@@ -872,7 +872,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         
         category.createListing()
-        currentCategory = category
+      //  currentCategory = category
         
         videos.removeAll()
         
@@ -983,7 +983,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
               
              vc.setCategory(newCategory: (button?.category)!)
-                currentCategory = button?.category!
+             //   currentCategory = button?.category!
                 
                // self.navigationController?.pushViewController(vc, animated:true)
                 
