@@ -310,7 +310,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="7je-2f-DnQ">
             <objects>
-                <tabBarController id="Vlo-aP-QO0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="Vlo-aP-QO0" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="rOF-rp-xmt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

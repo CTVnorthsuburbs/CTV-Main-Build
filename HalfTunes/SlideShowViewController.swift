@@ -185,20 +185,45 @@ class SlideShowViewController: UIViewController {
             
             
          
-            previousCategory = category
+          
             
             
             
             category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
             
-            featured = false
+         
             
+            //  category = (button?.category)!
+            
+            
+            
+            
+            //  previousCategory = category
+            
+            // featured = false
+            
+            
+            
+            
+            //  let viewController = MainTableViewController(category: (button?.category)!)
             
             
             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
             
+            vc.setCategory(newCategory: (category))
             
-            self.parent?.navigationController?.pushViewController(vc, animated:true)
+            
+         //   currentCategory = category
+            
+            // self.navigationController?.pushViewController(vc, animated:true)
+            
+            
+            
+            self.parent?.navigationController?.show(vc, sender: self)
+            
+            
+            
+         
             
         }
         

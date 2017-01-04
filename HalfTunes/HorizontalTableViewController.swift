@@ -61,17 +61,41 @@ class HorizontalTableViewController: UITableViewController {
 
         if(currentCategory?.categoryTitle != category.categoryTitle ) {
        
+            
+            
          
+            
+            currentCategory = category
+            
+            
+            videos.removeAll()
             if(category.sections.count == 0) {
                 
                 
         category.createListing()
                 
+                
+                
             }
         currentCategory = category
         
-        videos.removeAll()
+            
+            print(videos.count)
+            
+            for vid in videos {
+                
+                
+                
+                print(vid.count)
+                
+                
+            }
+            
+            if(videos.count == 0) {
         
+            
+            
+         
         var index = 0
   
         while (index < category.sections.count) {
@@ -175,6 +199,9 @@ class HorizontalTableViewController: UITableViewController {
             index = index + 1
  
             
+            
+            
+                }
         }
         
         self.tableView.reloadData()
@@ -937,18 +964,34 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.category) {
                 
+               
+              //  category = (button?.category)!
                 
                 
-                category = (button?.category)!
+                
        
-                previousCategory = category
+              //  previousCategory = category
                 
-                featured = false
-
-                let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
+               // featured = false
                 
+                
+                
+                
+               //  let viewController = MainTableViewController(category: (button?.category)!)
+                
+                
+            let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
               
-                self.navigationController?.pushViewController(vc, animated:true)
+             vc.setCategory(newCategory: (button?.category)!)
+                currentCategory = button?.category!
+                
+               // self.navigationController?.pushViewController(vc, animated:true)
+                
+            
+                
+               self.navigationController?.show(vc, sender: self)
+                
+           
        
             }
             

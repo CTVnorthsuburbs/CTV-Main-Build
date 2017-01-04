@@ -26,7 +26,7 @@ func returnImageUsingCacheWithURLString(url: NSURL) -> (UIImage) {
     // First check if there is an image in the cache
     if let cachedImage = imageCache.object(forKey: url) as? UIImage {
         
-       
+     //  print("RETURNED CAHCED IMAGE")
         return cachedImage
     }
         

@@ -469,6 +469,42 @@ return video
         return searchResults
     }
     
+    func searchForSingleArray(_ savedSearchID: [Int])-> [Video] {
+        
+        searchResults.removeAll()
+        
+        var searches = savedSearchID
+        
+        
+       var url =   "http://trms.ctv15.org/Cablecastapi/v1/shows/?ids="
+        
+        for id in searches {
+            
+            
+            
+            
+            url += String(id)
+            
+            url += "&"
+            
+            
+        }
+        
+        url += "include=vod,thumbnail"
+        
+        
+        
+        let session = getNSURLSession()
+        
+        print(url)
+        let searchURL = URL(fileURLWithPath: url)
+        
+        getSearchResults(session, url: searchURL, isIDSearchURL: true)
+        
+        
+        return searchResults
+    }
+    
     
     
     func searchForSingleCategory(_ savedSearchID: Int)-> [Video] {
@@ -481,6 +517,9 @@ return video
         
         return searchResults
     }
+    
+    
+    
     
     
     

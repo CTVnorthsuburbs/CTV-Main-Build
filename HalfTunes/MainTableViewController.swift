@@ -11,15 +11,15 @@ import UIKit
 
 var category = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
 
-var featuredCategory = category
-
-var previousCategory : Category? = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
-
-var featured = false
+var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
 
 var suggestedSearch : Section?
 
 class MainTableViewController: UITableViewController {
+    
+    
+    
+    var category1 = featuredCategory
 
     @IBOutlet weak var slideShowView: UIView!
     
@@ -30,25 +30,127 @@ class MainTableViewController: UITableViewController {
     var vc: SlideShowViewController?
 
     
+    
+    
+    convenience init() {
+        
+        self.init()
+        
+        
+        
+       category = self.category1
+        
+    }
+    
+    
+    
+    
+    
+    init(category: Category) {
+        
+        
+        self.category1 = category
+        
+        
+        
+        
+       super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        
+        self.category1 = featuredCategory
+        
+        super.init(coder: aDecoder)
+    }
+    
+    
+    func setCategory(newCategory: Category) {
+        
+        
+        
+        self.category1 = newCategory
+        
+        category = self.category1
+        
+        
+        
+        self.setSliderImages()
+        
+        self.setSlides()
+        
+       
+        
+    }
+    
+
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
 
        
-        
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
         
         
-       
 
+        DispatchQueue.global(qos: .background).async {
+            
+            
+            if(categoriesVideos.count == 0) {
+           self.generateCategories()
+            
+     
+                
+            }
+        }
+
+    
+
+    }
+    
+    
+    func generateCategories() {
+        
+        
+        var search = VideoSearch()
+        
+        for video in categories {
+            
+            video.createListing()
+            
+            
+            
+            var vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
+            
+            
+            
+            
+            if (vid.first?.fileName != nil) {
+                
+                search.getThumbnail(id: (vid.first?.fileName)!)
+                categoriesVideos.append(vid.first!)
+                
+                
+            }
+        }
+        
+        
+
+        
+        
+        
     }
     
     
     func setSlides() {
         
         
-        if(category.slider?.slides != nil) {
-        vc?.setSlides(slides: (category.slider?.slides)!)
+        if(category1.slider?.slides != nil) {
+        vc?.setSlides(slides: (self.category1.slider?.slides)!)
             
         }
         
@@ -57,7 +159,7 @@ class MainTableViewController: UITableViewController {
     
     func setSliderImages() {
         
-        var slider = category.getSlider()
+        var slider = self.category1.getSlider()
        
         
         
@@ -83,8 +185,19 @@ class MainTableViewController: UITableViewController {
         
     }
     
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        
+        category = self.category1
+        
+        
+        
+        
+        /*
 
         if (featured == true) {
             
@@ -96,15 +209,15 @@ class MainTableViewController: UITableViewController {
             
         } else {
             
-           previousCategory = featuredCategory
+           //previousCategory = featuredCategory
             featured = true
            // previousCategory = featuredCategory
             
         }
         
+*/
 
-
-    self.title = category.categoryTitle
+     self.title = self.category1.categoryTitle
         
 
         
@@ -116,13 +229,15 @@ class MainTableViewController: UITableViewController {
         
         self.setSlides()
         
-       
+     
         
     }
     
 
   
     override func viewDidDisappear(_ animated: Bool) {
+        
+        /*
 
         featured = false
         
@@ -134,6 +249,10 @@ class MainTableViewController: UITableViewController {
         }
         
         previousCategory = category
+ 
+ 
+ 
+ */
      
     }
     
@@ -142,6 +261,7 @@ class MainTableViewController: UITableViewController {
     func categoryPressed() {
         
         self.performSegue(withIdentifier: "categoryPressed", sender: self)
+        
         
     }
     

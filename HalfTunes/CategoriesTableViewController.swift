@@ -8,11 +8,15 @@
 
 import UIKit
 
+//    var categories =  [Category]()
+
+var categoriesVideos = [Video]()
+
 class CategoriesTableViewController: UITableViewController {
     
     
-    var categories =  [Category]()
-    
+
+    var parentView: MainTableViewController?
     
     var search = VideoSearch()
     
@@ -21,12 +25,19 @@ class CategoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
         categories = search.getCategories()
         
         for category in categories {
             
-            
-            category.createListing()
+            if(category.sections.first?.images == nil) {
+                
+               category.createListing()
+                
+            }
+           // category.createListing()
             
             
         }
@@ -38,7 +49,7 @@ class CategoriesTableViewController: UITableViewController {
         
         
         
-        tableView.reloadData()
+      //  tableView.reloadData()
         
     }
     
@@ -64,7 +75,7 @@ class CategoriesTableViewController: UITableViewController {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         
-        previousCategory = nil
+        
         self.dismiss(animated: true, completion: {})
         
         
@@ -77,15 +88,41 @@ class CategoriesTableViewController: UITableViewController {
             
             category = categories[indexPath.row]
             
-            previousCategory = category
+            
+            
+        //    let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "home") as! MainTableViewController
+            
+         //   vc.setCategory(newCategory: (categories[indexPath.row]))
+            
+          let parentView =  self.presentingViewController?.childViewControllers.first?.childViewControllers.first as! MainTableViewController
+            
+            
+            parentView.setCategory(newCategory: categories[indexPath.row])
+            
+            
+           
+          
+            
+            //currentCategory = categories[indexPath.row]
+            
+            
+         //    let tc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            
+            
+         //   self.navigationController?.pushViewController(tc, animated:true)
+            
+            
+            
+         //   self.navigationController?.pushViewController(vc, animated:true)
+            
+            
+            
+        //  self.navigationController?.show(vc, sender: nil)
             
             
         }
         
-        featured = false
-        
-        self.dismiss(animated: true, completion: nil)
-        
+          self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -111,6 +148,16 @@ class CategoriesTableViewController: UITableViewController {
         cell?.setCategory(category: categories[indexPath.row])
         
         
+        
+        
+        if(categoriesVideos.count == categories.count) {
+            
+           thumbnail = self.search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
+            
+            
+        } else {
+        
+     
         if (categories[indexPath.row].sections.first?.searchID != nil) {
             
             
@@ -119,15 +166,21 @@ class CategoriesTableViewController: UITableViewController {
             
             
             
+            
             if (vid.first?.fileName != nil) {
                 
-                thumbnail = self.search.getThumbnail(id: (vid.first?.fileName)!)
                 
+                print("GETTTING STHUMBNAIL")
+                thumbnail = self.search.getThumbnail(id: (vid.first?.fileName)!)
+                categoriesVideos.append(vid.first!)
+
                 
             }
             
         }
         
+        
+        }
         
         
         
