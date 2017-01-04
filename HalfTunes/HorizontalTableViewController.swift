@@ -18,7 +18,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var currentCategory: Category?
     
-   
+   var featuredVideos: [[Video?]]  = [[Video?]]()
 
     var videos : [[Video?]]  = [[Video?]]()
     
@@ -52,17 +52,42 @@ class HorizontalTableViewController: UITableViewController {
     
     override func viewDidLoad() {
 
-    
+        print("View did load")
+        
         
     }
 
     override func viewWillAppear(_ animated: Bool) {
         
-
+        if(category.categoryTitle == featuredCategory.categoryTitle && currentCategory?.categoryTitle == featuredCategory.categoryTitle) {
+            
+           
+            saveFeaturedVideos()
+            
+    
+            
+        }
+        
+        
+    
+        
+        
+        
         if(currentCategory?.categoryTitle != category.categoryTitle ) {
        
             
-            
+            if(category.categoryTitle == featuredCategory.categoryTitle && featuredVideos.count > 5 ) {
+                
+                
+                 currentCategory = category
+             
+                loadFeaturedVideos()
+                
+                self.tableView.reloadData()
+                
+                self.changeTableSize()
+                
+            } else  {
          
             
             currentCategory = category
@@ -212,10 +237,30 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
-   
+        }
+       
 
     }
+    
 
+    func saveFeaturedVideos() {
+        
+        
+        featuredVideos = videos
+        
+        
+        print("saved")
+  
+    }
+    
+    func loadFeaturedVideos() {
+        
+        videos = featuredVideos
+        
+        
+        print("loaded")
+        
+    }
     
     func changeTableSize() {
         
