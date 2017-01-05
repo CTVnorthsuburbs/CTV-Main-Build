@@ -19,6 +19,18 @@ import Foundation
 
 import UIKit
 
+
+
+
+    
+    
+    
+    let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+    
+
+    
+    
+
 class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegate, UISearchDisplayDelegate {
     
     var searchResults = [Video]()
@@ -110,7 +122,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                             
                             
                             
-                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                          //  let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
                             
                             let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
                             

@@ -50,7 +50,7 @@ class GlobalVariables {
 
 
 
- var myVideos = [Video]()
+var myVideos = [Video]()
 
 
 
@@ -62,7 +62,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     var searchResults = [Video]()          //this holds the list of all videos
     
-                //this holds the videos saved to myVideos
+    //this holds the videos saved to myVideos
     
     var searchActive : Bool = false
     
@@ -130,7 +130,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if(loadVideos() != nil) {
             
             
-           myVideos = loadVideos()!
+            myVideos = loadVideos()!
             
         }
         self.filtered = myVideos
@@ -224,7 +224,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         video = myVideos[(indexPath as NSIndexPath).row]
         
-      
+        
         
         cell.delegate = self
         
@@ -270,7 +270,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         cell.cancelButton.isHidden = !showDownloadControls
         
         if(video?.fileName == 1) {
-        
+            
             
             
             cell.downloadButton.isHidden = true
@@ -437,69 +437,69 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 
                 
-              
-            let videoDetailViewController = segue.destination as! VideoViewController
-            
-            // Get the cell that generated this segue.
-            
-            if let selectedVideoCell = sender as? VideoCell {
                 
-                let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
+                let videoDetailViewController = segue.destination as! VideoViewController
                 
+                // Get the cell that generated this segue.
                 
-                let selectedVideo = myVideos[indexPath.row]
-                
-                videoDetailViewController.video = selectedVideo
-                
-                //    videoDetailViewController.setActiveDownloads(downloads: &activeDownloads)
-                
-                
-               
-                
-           
-             
-                if(selectedVideo.fileName == 1) {
+                if let selectedVideoCell = sender as? VideoCell {
+                    
+                    let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                     
                     
-                var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                    let selectedVideo = myVideos[indexPath.row]
+                    
+                    videoDetailViewController.video = selectedVideo
+                    
+                    //    videoDetailViewController.setActiveDownloads(downloads: &activeDownloads)
                     
                     
                     
-                    sections.createListing()
-                    
-     
-                    videoDetailViewController.setCategory(category: sections)
                     
                     
                     
-                } else {
+                    if(selectedVideo.fileName == 1) {
+                        
+                        
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                        
+                        
+                        
+                        sections.createListing()
+                        
+                        
+                        videoDetailViewController.setCategory(category: sections)
+                        
+                        
+                        
+                    } else {
+                        
+                        
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+                        
+                        
+                        sections.createListing()
+                        
+                        
+                        videoDetailViewController.setCategory(category: sections)
+                        
+                        
+                        
+                    }
                     
                     
-                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
                     
                     
-                    sections.createListing()
+                    videoDetailViewController.setDefaultSession(defaultSession: &self.defaultSession)
+                    
+                    videoDetailViewController.setDataTask(dataTask: &self.dataTask)
                     
                     
-                    videoDetailViewController.setCategory(category: sections)
-                    
-                    
+                    videoDetailViewController.setDownloadsSession(downloadsSession: &self.downloadsSession)
                     
                 }
                 
                 
-                
-                
-                videoDetailViewController.setDefaultSession(defaultSession: &self.defaultSession)
-                
-                videoDetailViewController.setDataTask(dataTask: &self.dataTask)
-                
-                
-                videoDetailViewController.setDownloadsSession(downloadsSession: &self.downloadsSession)
-                
-            }
-                
-         
                 
                 
                 DispatchQueue.main.async( execute: {

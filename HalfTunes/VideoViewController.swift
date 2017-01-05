@@ -400,7 +400,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 childView.addVideoButton.setTitle("Resume", for: UIControlState.selected)
                 childView.addVideoButton.isSelected = true
                 
-                timer!.invalidate()
+                timer?.invalidate()
             }
             
             
@@ -426,6 +426,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
 
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        timer?.invalidate()
     }
     
 
@@ -888,7 +892,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 
                 print("paused")
                 
-                timer!.invalidate()
+                timer?.invalidate()
                 
                 childView.addVideoButton.setTitle("Resume", for: UIControlState.selected)
                 
