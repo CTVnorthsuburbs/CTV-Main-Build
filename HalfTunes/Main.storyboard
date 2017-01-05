@@ -15,13 +15,13 @@
         <!--Video Table View Controller-->
         <scene sceneID="GkY-Yy-XVW">
             <objects>
-                <tableViewController id="X4D-Xd-ZHY" userLabel="Video Table View Controller" customClass="MyVideosSearchViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="X4D-Xd-ZHY" userLabel="Video Table View Controller" customClass="MyVideosSearchViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="yuI-Fm-teB">
                         <rect key="frame" x="0.0" y="0.0" width="383" height="466"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="YQV-Wp-cdh" customClass="VideoCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="YQV-Wp-cdh" customClass="VideoCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="383" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
@@ -164,7 +164,7 @@
         <!--Category View Controller-->
         <scene sceneID="MzD-Zo-2gt">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="jpY-pa-stY" customClass="CategoryViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="jpY-pa-stY" customClass="CategoryViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J65-i8-Bzq"/>
                         <viewControllerLayoutGuide type="bottom" id="e08-z7-CfW"/>
@@ -214,13 +214,13 @@
         <!--Detail Video-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="detailView" id="BYZ-38-t0r" userLabel="Detail Video" customClass="VideoViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailView" id="BYZ-38-t0r" userLabel="Detail Video" customClass="VideoViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
@@ -239,7 +239,7 @@
                                     <outletCollection property="gestureRecognizers" destination="obw-ho-oen" appends="YES" id="ooK-tQ-UCV"/>
                                 </connections>
                             </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
                                 <rect key="frame" x="0.0" y="201" width="375" height="101"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
@@ -331,7 +331,7 @@
         <!--Search View Controller-->
         <scene sceneID="2X1-Od-1cs">
             <objects>
-                <viewController id="IWB-if-PBU" userLabel="Search View Controller" customClass="SearchViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IWB-if-PBU" userLabel="Search View Controller" customClass="SearchViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vog-Pl-pmw"/>
                         <viewControllerLayoutGuide type="bottom" id="qjm-sf-yre"/>
@@ -534,13 +534,13 @@
         <!--My Videos-->
         <scene sceneID="xAm-Ot-2Ud">
             <objects>
-                <tableViewController title="My Videos" id="OKr-i4-2ts" customClass="MyVideosViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="My Videos" id="OKr-i4-2ts" customClass="MyVideosViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="lak-1y-pHH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="hjh-Pc-twj" customClass="VideoCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="hjh-Pc-twj" customClass="VideoCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjh-Pc-twj" id="teq-9P-kCw">
@@ -674,14 +674,14 @@
         <!--Horizontal Table View Controller-->
         <scene sceneID="prj-gp-SKf">
             <objects>
-                <tableViewController id="gpH-Zq-bv7" customClass="HorizontalTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gpH-Zq-bv7" customClass="HorizontalTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" id="ctB-hf-W55">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="165" id="uEq-ab-eat" customClass="HorizontalTableViewCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="165" id="uEq-ab-eat" customClass="HorizontalTableViewCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="165"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uEq-ab-eat" id="8au-AF-fqe">
@@ -719,7 +719,7 @@
                                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCollectionCell" id="AxC-cG-fKI" customClass="HorizontalCollectionViewCell" customModule="HalfTunes" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCollectionCell" id="AxC-cG-fKI" customClass="HorizontalCollectionViewCell" customModule="CTV_App" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="3" width="112" height="113"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -791,7 +791,7 @@
                                     <outlet property="seeAllButton" destination="hGi-K0-B7r" id="zNO-BN-2tk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThumbnailCell" rowHeight="100" id="n4l-bA-DDL" customClass="HorizontalTableViewCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThumbnailCell" rowHeight="100" id="n4l-bA-DDL" customClass="HorizontalTableViewCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="193" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n4l-bA-DDL" id="cez-w1-fD6">
@@ -808,7 +808,7 @@
                                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCollectionCell" id="UC3-ga-2rH" customClass="ThumbnailButtonCell" customModule="HalfTunes" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCollectionCell" id="UC3-ga-2rH" customClass="ThumbnailButtonCell" customModule="CTV_App" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="11.5" width="135" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -858,7 +858,7 @@
                                     <outlet property="collectionView" destination="I30-Al-hsY" id="pwR-G7-ddy"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThumbnailTitleCell" rowHeight="120" id="8Mu-8v-7fu" userLabel="ThumbnailTitleCell" customClass="HorizontalTableViewCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThumbnailTitleCell" rowHeight="120" id="8Mu-8v-7fu" userLabel="ThumbnailTitleCell" customClass="HorizontalTableViewCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="293" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Mu-8v-7fu" id="z7r-a9-R9H">
@@ -882,7 +882,7 @@
                                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCollectionCell" id="Iyd-34-wbN" customClass="ThumbnailButtonCell" customModule="HalfTunes" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCollectionCell" id="Iyd-34-wbN" customClass="ThumbnailButtonCell" customModule="CTV_App" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="10" width="135" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -947,13 +947,13 @@
         <!--Category-->
         <scene sceneID="etM-HI-FlT">
             <objects>
-                <tableViewController title="Category" id="qcd-wa-l5I" customClass="CategoriesTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Category" id="qcd-wa-l5I" customClass="CategoriesTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wkL-rU-rw6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoriesCell" id="kbm-0p-myS" customClass="CategoriesTableViewCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoriesCell" id="kbm-0p-myS" customClass="CategoriesTableViewCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kbm-0p-myS" id="hOs-CK-nOn">
@@ -1013,7 +1013,7 @@
         <!--Categories View Controller-->
         <scene sceneID="495-9H-ozc">
             <objects>
-                <navigationController storyboardIdentifier="Category" id="RMz-5t-zj9" customClass="CategoriesViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Category" id="RMz-5t-zj9" customClass="CategoriesViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tyX-1y-ZDD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1034,7 +1034,7 @@
         <!--Home-->
         <scene sceneID="LiK-Wm-ZyV">
             <objects>
-                <tableViewController storyboardIdentifier="home" id="mBe-2v-0ic" customClass="MainTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="home" id="mBe-2v-0ic" customClass="MainTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="158" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Jt-ae-ZDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1133,7 +1133,7 @@
         <!--All Videos Table View Controller-->
         <scene sceneID="CN9-KN-8Yh">
             <objects>
-                <tableViewController id="iuF-de-PR6" userLabel="All Videos Table View Controller" customClass="AllVideosResultsViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iuF-de-PR6" userLabel="All Videos Table View Controller" customClass="AllVideosResultsViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jwh-T5-Ghw">
                         <rect key="frame" x="0.0" y="0.0" width="383" height="466"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1213,7 +1213,7 @@
         <!--Web View Controller-->
         <scene sceneID="jSJ-D7-koS">
             <objects>
-                <viewController storyboardIdentifier="webView" id="tLK-Dt-VJA" customClass="WebViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="webView" id="tLK-Dt-VJA" customClass="WebViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Qt-jJ-spI"/>
                         <viewControllerLayoutGuide type="bottom" id="G9n-oA-Jas"/>
@@ -1257,7 +1257,7 @@
         <!--About CTV-->
         <scene sceneID="FOe-ao-VrY">
             <objects>
-                <viewController storyboardIdentifier="About" title="About CTV" id="Rms-sc-FYj" customClass="AboutViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="About" title="About CTV" id="Rms-sc-FYj" customClass="AboutViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lWO-WZ-IaE"/>
                         <viewControllerLayoutGuide type="bottom" id="z4g-mC-AY4"/>
@@ -1303,7 +1303,7 @@
         <!--Suggested Videos Table View Controller-->
         <scene sceneID="pDL-I2-2vn">
             <objects>
-                <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1397,7 +1397,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LabelCell" id="Ow7-cb-4ZL" customClass="MainVideoCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LabelCell" id="Ow7-cb-4ZL" customClass="MainVideoCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="166" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ow7-cb-4ZL" id="KRS-Nl-9ay">
@@ -1494,7 +1494,7 @@
         <!--Slide Show View Controller-->
         <scene sceneID="yG0-sh-0Yx">
             <objects>
-                <viewController id="6MW-Qi-IGN" userLabel="Slide Show View Controller" customClass="SlideShowViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6MW-Qi-IGN" userLabel="Slide Show View Controller" customClass="SlideShowViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RlY-Dc-XxV"/>
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
@@ -1528,14 +1528,14 @@
         <!--Category-->
         <scene sceneID="mVw-pC-H1G">
             <objects>
-                <tableViewController title="Category" id="Wv0-Vz-WvW" customClass="CategoryTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Category" id="Wv0-Vz-WvW" customClass="CategoryTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wav-fN-ngx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="365"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MainVideoCell" id="xuI-0f-5zZ" customClass="MainVideoCell" customModule="HalfTunes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MainVideoCell" id="xuI-0f-5zZ" customClass="MainVideoCell" customModule="CTV_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xuI-0f-5zZ" id="0PZ-xw-7C9">
@@ -1636,7 +1636,7 @@
         <!--Home-->
         <scene sceneID="c4C-3b-qoK">
             <objects>
-                <tableViewController storyboardIdentifier="mainTable2" id="xcD-Co-IU3" customClass="MainTableViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="mainTable2" id="xcD-Co-IU3" customClass="MainTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="158" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTB-rX-H4U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1687,9 +1687,9 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yMg-rn-3an"/>
         <segue reference="F7V-dN-6wc"/>
-        <segue reference="V9M-Yj-v2K"/>
+        <segue reference="yMg-rn-3an"/>
+        <segue reference="fNp-cp-4gu"/>
         <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>

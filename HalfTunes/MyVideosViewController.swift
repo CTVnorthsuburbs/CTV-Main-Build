@@ -423,16 +423,25 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if segue.identifier == "ShowDetail" {
             
+            
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+            
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                
+                
+              
             let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? VideoCell {
                 
-                let indexPath = tableView.indexPath(for: selectedVideoCell)!
+                let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                 
                 
-                let selectedVideo = myVideos[indexPath.row]
+                let selectedVideo = self.myVideos[indexPath.row]
                 
                 videoDetailViewController.video = selectedVideo
                 
@@ -475,13 +484,22 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 
                 
-                videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                videoDetailViewController.setDefaultSession(defaultSession: &self.defaultSession)
                 
-                videoDetailViewController.setDataTask(dataTask: &dataTask)
+                videoDetailViewController.setDataTask(dataTask: &self.dataTask)
                 
                 
-                videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+                videoDetailViewController.setDownloadsSession(downloadsSession: &self.downloadsSession)
                 
+            }
+                
+                //Do the main task here
+                
+                
+                DispatchQueue.main.async( execute: {
+                    
+                    LoadingOverlay.shared.hideOverlayView()
+                })
             }
             
         }

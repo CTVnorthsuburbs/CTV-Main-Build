@@ -17,7 +17,7 @@ var categoriesVideos = [Video]()
 class CategoriesTableViewController: UITableViewController {
     
     
-
+    
     var parentView: MainTableViewController?
     
     var search = VideoSearch()
@@ -36,10 +36,10 @@ class CategoriesTableViewController: UITableViewController {
             
             if(category.sections.first?.images == nil) {
                 
-               category.createListing()
+                category.createListing()
                 
             }
-           // category.createListing()
+            // category.createListing()
             
             
         }
@@ -51,7 +51,7 @@ class CategoriesTableViewController: UITableViewController {
         
         
         
-      //  tableView.reloadData()
+        //  tableView.reloadData()
         
     }
     
@@ -88,43 +88,57 @@ class CategoriesTableViewController: UITableViewController {
         
         if(category.categoryTitle   != categories[indexPath.row].categoryTitle ) {
             
-            category = categories[indexPath.row]
             
             
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
-        //    let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "home") as! MainTableViewController
-            
-         //   vc.setCategory(newCategory: (categories[indexPath.row]))
-            
-          let parentView =  self.presentingViewController?.childViewControllers.first?.childViewControllers.first as! MainTableViewController
-            
-            
-            parentView.setCategory(newCategory: categories[indexPath.row])
-            
-            
-           
-          
-            
-            //currentCategory = categories[indexPath.row]
-            
-            
-         //    let tc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
-            
-            
-         //   self.navigationController?.pushViewController(tc, animated:true)
-            
-            
-            
-         //   self.navigationController?.pushViewController(vc, animated:true)
-            
-            
-            
-        //  self.navigationController?.show(vc, sender: nil)
-            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                
+                category = categories[indexPath.row]
+                
+                
+                
+                //    let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "home") as! MainTableViewController
+                
+                //   vc.setCategory(newCategory: (categories[indexPath.row]))
+                
+                let parentView =  self.presentingViewController?.childViewControllers.first?.childViewControllers.first as! MainTableViewController
+                
+                
+                parentView.setCategory(newCategory: categories[indexPath.row])
+                
+                
+                
+                
+                
+                //currentCategory = categories[indexPath.row]
+                
+                
+                //    let tc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+                
+                
+                //   self.navigationController?.pushViewController(tc, animated:true)
+                
+                
+                
+                //   self.navigationController?.pushViewController(vc, animated:true)
+                
+                
+                
+                //  self.navigationController?.show(vc, sender: nil)
+                
+                
+                
+                DispatchQueue.main.async( execute: {
+                    
+                    LoadingOverlay.shared.hideOverlayView()
+                })
+            }
             
         }
         
-          self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -154,34 +168,34 @@ class CategoriesTableViewController: UITableViewController {
         
         if(categoriesVideos.count == categories.count) {
             
-           thumbnail = self.search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
+            thumbnail = self.search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
             
             
         } else {
-        
-     
-        if (categories[indexPath.row].sections.first?.searchID != nil) {
             
             
-            
-            var vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
-            
-            
-            
-            
-            if (vid.first?.fileName != nil) {
+            if (categories[indexPath.row].sections.first?.searchID != nil) {
                 
                 
-                print("GETTTING STHUMBNAIL")
-                thumbnail = self.search.getThumbnail(id: (vid.first?.fileName)!)
-                categoriesVideos.append(vid.first!)
-
+                
+                var vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
+                
+                
+                
+                
+                if (vid.first?.fileName != nil) {
+                    
+                    
+                    print("GETTTING STHUMBNAIL")
+                    thumbnail = self.search.getThumbnail(id: (vid.first?.fileName)!)
+                    categoriesVideos.append(vid.first!)
+                    
+                    
+                }
                 
             }
             
-        }
-        
-        
+            
         }
         
         

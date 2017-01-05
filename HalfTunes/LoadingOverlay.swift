@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+
+/*  Usage
+
+LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+
+
+DispatchQueue.global(qos: .userInitiated).async {
+ 
+ 
+ 
+ //Do the main task here
+ 
+ 
+    DispatchQueue.main.async( execute: {
+        
+        LoadingOverlay.shared.hideOverlayView()
+    })
+    
+ */
+
 public class LoadingOverlay{
     
     var overlayView = UIView()

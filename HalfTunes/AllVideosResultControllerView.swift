@@ -54,11 +54,18 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
         
+        
+        DispatchQueue.global(qos: .userInitiated).async {
         
         if segue.identifier == "ShowDetails" {
             
-        
+           
+                
+                
+                
+               
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
@@ -68,7 +75,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                 
             
                 
-                let indexPath = tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
+                let indexPath = self.tableView.indexPath(for: selectedVideoCell as! UITableViewCell)!
                 
             
                 
@@ -77,15 +84,17 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                 
              
           
-                for result in searchResults {
+                for result in self.searchResults {
        
                   
-                    if (filtered[(indexPath as NSIndexPath).row] == result.title) {
+                    if (self.filtered[(indexPath as NSIndexPath).row] == result.title) {
                  
                         
+                            
+                      
                         
                    
-                        let selectedVideo = searchResults[count]
+                        let selectedVideo = self.searchResults[count]
                        
                       
                         videoDetailViewController.video = selectedVideo
@@ -161,9 +170,15 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         
                         
                         
-                
+                            
+                        //Do the main task here
                         
-                  
+                        
+               
+                    
+                            
+                        
+                        
                       
                     }
                     
@@ -172,7 +187,12 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                 }
                 
             }
+            DispatchQueue.main.async( execute: {
+                
+                LoadingOverlay.shared.hideOverlayView()
+            })
             
+            }
         }
         
     }

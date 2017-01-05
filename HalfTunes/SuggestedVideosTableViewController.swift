@@ -72,22 +72,22 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     func setVideo(video: Video) {
         
-      
-            
-  
-            
+        
+        
+        
+        
         if( currentCategory?.videoType == VideoType.youtube) {
             
             
-              if(self.section == nil) {
-               
-           recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
-            
-            
-            recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
-            
-            
-            
+            if(self.section == nil) {
+                
+                recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
+                
+                
+                recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
+                
+                
+                
             } else {
                 
                 
@@ -102,22 +102,22 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             
         } else {
-        var searchID = suggestedSearch?.searchID
-        
-        
-        if (searchID != nil && searchID != 1 && searchID != 2) {
+            var searchID = suggestedSearch?.searchID
             
-            var results = search.search(searchID!)
             
-            results = search.trimVideos(videoArray: results, numberToReturn: 10)
-            
-            recommendedVideos = results
-            
-          
-        } else {
-            
-             recommendedVideos = search.getRecentLimited()
-        }
+            if (searchID != nil && searchID != 1 && searchID != 2) {
+                
+                var results = search.search(searchID!)
+                
+                results = search.trimVideos(videoArray: results, numberToReturn: 10)
+                
+                recommendedVideos = results
+                
+                
+            } else {
+                
+                recommendedVideos = search.getRecentLimited()
+            }
         }
         
         
@@ -130,8 +130,8 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             tableView.reloadData()
         }
-       
-            
+        
+        
         
         
         
@@ -149,7 +149,7 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             if(video.title == vid.title) {
                 
-              
+                
                 
                 videoList.remove(at: count)
                 
@@ -174,17 +174,27 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             let videoDetailViewController = segue.destination as! VideoViewController
             
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
+            
+            DispatchQueue.global(qos: .userInitiated).async {
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? MainVideoCell {
                 
                 
                 
-                let indexPath = tableView.indexPath(for: selectedVideoCell)!
+                    
+                    
+                    
+                    //Do the main task here
+                    
+                    
+                  
+                let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                 
                 
-                let selectedVideo = myVideos[indexPath.row]
+                let selectedVideo = self.myVideos[indexPath.row]
                 
                 videoDetailViewController.video = selectedVideo
                 
@@ -198,7 +208,7 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 suggestedSearch = category.sections[indexPath.section]
                 
-             
+                
                 
                 
                 
@@ -206,40 +216,39 @@ class SuggestedVideosTableViewController: UITableViewController {
                 selectedSection = indexPath.section
                 
                 
-            
-                
-                
-                
                 
                 
                 if(selectedVideo.fileName == 1) {
                     
-                    
                     var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
                     
-                    
-                    
                     sections.createListing()
-                    
                     
                     videoDetailViewController.setCategory(category: sections)
                     
                     
+                }
+                
+                
+                
+                
+                
+                
+                
+                videoDetailViewController.setDefaultSession(defaultSession: &self.parentView.defaultSession!)
+                
+                videoDetailViewController.setDataTask(dataTask: &self.parentView.dataTask!)
+                
+                
+                videoDetailViewController.setDownloadsSession(downloadsSession: &self.parentView.downloadsSession!)
                     
-                } 
-                
-                
-                
-                
-                
-                
-                
-                videoDetailViewController.setDefaultSession(defaultSession: &parentView.defaultSession!)
-                
-                videoDetailViewController.setDataTask(dataTask: &parentView.dataTask!)
-                
-                
-                videoDetailViewController.setDownloadsSession(downloadsSession: &parentView.downloadsSession!)
+                    
+                    DispatchQueue.main.async( execute: {
+                        
+                        LoadingOverlay.shared.hideOverlayView()
+                    })
+                    
+                }
                 
             }
             
@@ -284,8 +293,8 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     
                     self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
-
-                   
+                    
+                    
                     
                     
                 } else {
@@ -293,13 +302,13 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     
                     
-                   self.recommendedVideos[indexPath.row].generateThumbnailUrl()
+                    self.recommendedVideos[indexPath.row].generateThumbnailUrl()
                     
-                  
+                    
                     
                     if( self.recommendedVideos[indexPath.row].thumbnailUrl != nil) {
-                    
-                    self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
+                        
+                        self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
                     }
                     
                 }

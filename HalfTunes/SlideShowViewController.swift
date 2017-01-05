@@ -13,17 +13,17 @@ import AVFoundation
 import Foundation
 
 class SlideShowViewController: UIViewController {
-
+    
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     var imageArray = [UIImage]()
     
-     var timer : Timer?
+    var timer : Timer?
     
     var timerDelay = 6.0
     
     var slides: [Slide]?
-  
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var titleTextLabel: UILabel!
@@ -31,7 +31,7 @@ class SlideShowViewController: UIViewController {
     
     
     
- 
+    
     func setSlides(slides: [Slide]) {
         
         
@@ -39,7 +39,7 @@ class SlideShowViewController: UIViewController {
         self.slides = slides
         
         
-     
+        
         
         
         
@@ -47,12 +47,12 @@ class SlideShowViewController: UIViewController {
     
     func setSlider(slider: Section) {
         
-      
+        
         var images = slider.images as! [UIImage]
         
         if(images.count > 0) {
             
-         
+            
             self.imageArray = images
         }
         
@@ -85,10 +85,10 @@ class SlideShowViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
-       // super.viewDidLoad()
+        // super.viewDidLoad()
         
         mainScrollView.frame = view.frame
-  
+        
         imageArray = [#imageLiteral(resourceName: "mobile-saints") ]
         
         for i in  0..<imageArray.count {
@@ -98,20 +98,20 @@ class SlideShowViewController: UIViewController {
             imageView.contentMode  = .scaleAspectFit
             
             let xPostion = self.view.frame.width * CGFloat(i)
-           imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height )
+            imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height )
             
             
-           // imageView.frame = CGRect(x: xPostion ,y: 0, width: self.view.frame.width,height: self.view.frame.height)
+            // imageView.frame = CGRect(x: xPostion ,y: 0, width: self.view.frame.width,height: self.view.frame.height)
             
-        //    imageView.frame = AVMakeRect(aspectRatio: (imageView.image?.size)!, insideRect: imageView.bounds)
+            //    imageView.frame = AVMakeRect(aspectRatio: (imageView.image?.size)!, insideRect: imageView.bounds)
             
             
-          
+            
             mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i + 1)
             
             mainScrollView.addSubview(imageView)
             
-          
+            
         }
         
         var parent = self.parent as! MainTableViewController
@@ -122,49 +122,49 @@ class SlideShowViewController: UIViewController {
         
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapImage(_:)))
-       mainScrollView.addGestureRecognizer(gestureRecognizer)
+        mainScrollView.addGestureRecognizer(gestureRecognizer)
         
     }
     
     
     public func didTapImage(_ sender: UITapGestureRecognizer) {
-       
         
- 
-            var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
+        
+        
+        var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
         
         
         if(slides != nil) {
-        for slide in slides! {
-            
-            
-            if (imageArray[page] == slide.image) {
+            for slide in slides! {
+                
+                
+                if (imageArray[page] == slide.image) {
+                    
+                    
+                    
+                    
+                    print("Slide \(slide.title)")
+                    
+                    
+                    self.slideAction(slide: slide)
+                }
                 
                 
                 
-                
-                print("Slide \(slide.title)")
-                
-                
-                self.slideAction(slide: slide)
             }
-            
-            
-            
-        }
             
         }
         
-       /* if (slides?[page] != nil) {
-            
-            
-            
-            print(slides?[page].title)
-            
-            
-        }
- 
- */
+        /* if (slides?[page] != nil) {
+         
+         
+         
+         print(slides?[page].title)
+         
+         
+         }
+         
+         */
         
         
         
@@ -185,13 +185,16 @@ class SlideShowViewController: UIViewController {
             
             
          
-          
+        
+            
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
             
-            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
             category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
             
-         
+            
             
             //  category = (button?.category)!
             
@@ -213,33 +216,30 @@ class SlideShowViewController: UIViewController {
             vc.setCategory(newCategory: (category))
             
             
-         //   currentCategory = category
+            //   currentCategory = category
             
             // self.navigationController?.pushViewController(vc, animated:true)
             
             
             
             self.parent?.navigationController?.show(vc, sender: self)
+                
+                
             
+                DispatchQueue.main.async( execute: {
+                    
+                    LoadingOverlay.shared.hideOverlayView()
+                })
+                
+            }
             
-            
-         
             
         }
         
         
-       
+        
         if(slide.slideType == ButtonType.page) {
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    
             var page = slide.page
             
             
@@ -256,103 +256,103 @@ class SlideShowViewController: UIViewController {
         }
         
         /*
-        
-        
-        
-        if(slide.slideType == ButtonType.page) {
-            
-            
-            
          
-            
-            
-            var search = VideoSearch()
-            
-            
-           var video = search.getYouTubePlaylists()
-            
-            
-            
-            
-            var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
-            
-            var dataTask = URLSessionDataTask()
-            
-            var downloadsSession: Foundation.URLSession = {
-                
-                let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
-                
-                let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-                
-                return session
-                
-            }()
-            
-            
-            if(slide.category != nil) {
-                category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
-            }
-            
-            
-            
-       
-            
          
-            
-            
-            
-            
-            
-            let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
-            
-        
-            
-            
-            
-            
-            
-            
-            suggestedSearch = category.sections[0]
-            
-            //let selectedVideo = videos[collectionView.tag][indexPath.row]
-            
-            
-            var thumbnail = search.getThumbnail(url: (video?.first?.thumbnailUrl)!)
-            
-            video?.first?.thumbnail = thumbnail
-            
-            destination.video = video?.first
-            
-            
-            
-            destination.setDefaultSession(defaultSession: &defaultSession)
-            
-            destination.setDataTask(dataTask: &dataTask)
-            
-            
-            destination.setDownloadsSession(downloadsSession: &downloadsSession)
-            
-            
-        
-            
-            //   self.navigationController?.pushViewController(destination, animated:true)
-            
-            
-            
-        
-            
-            self.parent?.navigationController?.pushViewController(destination, animated:true)
-          
- 
- 
- 
- 
- 
-            
-        }
-        
-        
-        */
+         
+         if(slide.slideType == ButtonType.page) {
+         
+         
+         
+         
+         
+         
+         var search = VideoSearch()
+         
+         
+         var video = search.getYouTubePlaylists()
+         
+         
+         
+         
+         var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+         
+         var dataTask = URLSessionDataTask()
+         
+         var downloadsSession: Foundation.URLSession = {
+         
+         let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+         
+         let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+         
+         return session
+         
+         }()
+         
+         
+         if(slide.category != nil) {
+         category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
+         }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+         
+         
+         
+         
+         
+         
+         
+         
+         suggestedSearch = category.sections[0]
+         
+         //let selectedVideo = videos[collectionView.tag][indexPath.row]
+         
+         
+         var thumbnail = search.getThumbnail(url: (video?.first?.thumbnailUrl)!)
+         
+         video?.first?.thumbnail = thumbnail
+         
+         destination.video = video?.first
+         
+         
+         
+         destination.setDefaultSession(defaultSession: &defaultSession)
+         
+         destination.setDataTask(dataTask: &dataTask)
+         
+         
+         destination.setDownloadsSession(downloadsSession: &downloadsSession)
+         
+         
+         
+         
+         //   self.navigationController?.pushViewController(destination, animated:true)
+         
+         
+         
+         
+         
+         self.parent?.navigationController?.pushViewController(destination, animated:true)
+         
+         
+         
+         
+         
+         
+         
+         }
+         
+         
+         */
         
         
         
@@ -426,13 +426,17 @@ class SlideShowViewController: UIViewController {
         
         
         
-    
+        
         
         if(slide.slideType == ButtonType.video) {
             
             
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
-   
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+               
             
             var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
             
@@ -450,8 +454,8 @@ class SlideShowViewController: UIViewController {
             
             
             if(slide.category != nil) {
-           category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
-            } 
+                category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
+            }
             
             
             
@@ -494,25 +498,30 @@ class SlideShowViewController: UIViewController {
             //   self.navigationController?.pushViewController(destination, animated:true)
             
             
-         self.parent?.navigationController?.pushViewController(destination, animated:true)
+            self.parent?.navigationController?.pushViewController(destination, animated:true)
             
- 
+                DispatchQueue.main.async( execute: {
+                    
+                    LoadingOverlay.shared.hideOverlayView()
+                })
+                
+            }
             
             
         }
         
-      
+        
         
         
         
         
         
     }
-
     
-
+    
+    
     func slideshowTick() {
-
+        
         var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
         
         page = page + 1
@@ -522,34 +531,34 @@ class SlideShowViewController: UIViewController {
             
             page = 0
         }
-
+        
         var nextPage = page
-
-   //print(nextPage)
+        
+        //print(nextPage)
         
         
-      //  self.mainScrollView.scrollRectToVisible(CGRect(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height ), animated:true)
+        //  self.mainScrollView.scrollRectToVisible(CGRect(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height ), animated:true)
         
         
         self.mainScrollView.setContentOffset(CGPoint(x: self.mainScrollView.frame.width * CGFloat(nextPage), y: 0), animated: true)
-
-      //  scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: 1, height: 1), animated: true)
+        
+        //  scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: 1, height: 1), animated: true)
         
         
-      //  self.setCurrentPageForScrollViewPage(nextPage);
+        //  self.setCurrentPageForScrollViewPage(nextPage);
     }
     
     
     override func viewDidDisappear(_ animated: Bool) {
-      timer?.invalidate()
+        timer?.invalidate()
         
     }
     
     func resetSlidePosition() {
         
         if(self.mainScrollView != nil) {
-        
-         self.mainScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            
+            self.mainScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
         
     }
@@ -562,7 +571,7 @@ class SlideShowViewController: UIViewController {
         
     }
     
-
+    
 }
 
 

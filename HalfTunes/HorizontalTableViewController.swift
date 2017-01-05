@@ -509,11 +509,20 @@ class HorizontalTableViewController: UITableViewController {
             
             
             
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                
             
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
+                        
+                        
+                        
+                        
                         
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
@@ -524,7 +533,7 @@ class HorizontalTableViewController: UITableViewController {
                         
                         suggestedSearch = category.sections[collectionView.tag]
                         
-                        var selectedVideo = videos[collectionView.tag][indexPath.row]
+                        let selectedVideo = self.videos[collectionView.tag][indexPath.row]
                         
                         
                         destination.video = selectedVideo
@@ -533,20 +542,27 @@ class HorizontalTableViewController: UITableViewController {
                         selectedSection = collectionView.tag
                         
                         
-                        destination.setDefaultSession(defaultSession: &defaultSession)
+                        destination.setDefaultSession(defaultSession: &self.defaultSession)
                         
-                        destination.setDataTask(dataTask: &dataTask)
-                        
-                        
-                        destination.setDownloadsSession(downloadsSession: &downloadsSession)
+                        destination.setDataTask(dataTask: &self.dataTask)
                         
                         
+                        destination.setDownloadsSession(downloadsSession: &self.downloadsSession)
                         
+                        
+                        DispatchQueue.main.async( execute: {
+                            
+                            LoadingOverlay.shared.hideOverlayView()
+                        })
                         
                         
                         
                     }
                 }
+            }
+                
+            
+                
             }
             
         }
@@ -1168,7 +1184,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     DispatchQueue.global(qos: .userInitiated).async {
 
-                    
+                     
                     
                     var button =  category.sections[collectionView.tag].buttons[indexPath.row]
                     
