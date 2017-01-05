@@ -60,7 +60,7 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         if(loadVideos() != nil) {
             
-            self.myVideos = loadVideos()!
+            myVideos = loadVideos()!
             
         }
         
@@ -254,21 +254,29 @@ class MyVideosSearchViewController: MyVideosViewController {
         
         if segue.identifier == "ShowDetail" {
             
+            
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+            
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                
+            
             let videoDetailViewController = segue.destination as! VideoViewController
             
             // Get the cell that generated this segue.
             
             if let selectedVideoCell = sender as? VideoCell {
                 
-                let indexPath = tableView.indexPath(for: selectedVideoCell)!
+                let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                 
                 var count = 0  //code to map filtered result position to searchResult position
                 
-                for result in searchResults {
+                for result in self.searchResults {
                     
-                    if (filtered[(indexPath as NSIndexPath).row].title == result.title) {
+                    if (self.filtered[(indexPath as NSIndexPath).row].title == result.title) {
                         
-                        let selectedVideo = searchResults[count]
+                        let selectedVideo = self.searchResults[count]
                         
                         videoDetailViewController.video = selectedVideo
                         
@@ -310,12 +318,12 @@ class MyVideosSearchViewController: MyVideosViewController {
                         
                         
                         
-                        videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
+                        videoDetailViewController.setDefaultSession(defaultSession: &self.defaultSession)
                         
-                        videoDetailViewController.setDataTask(dataTask: &dataTask)
+                        videoDetailViewController.setDataTask(dataTask: &self.dataTask)
                         
                         
-                        videoDetailViewController.setDownloadsSession(downloadsSession: &downloadsSession)
+                        videoDetailViewController.setDownloadsSession(downloadsSession: &self.downloadsSession)
                         
                         
                         //    videoDetailViewController.activeDownloads = activeDownloads
@@ -328,6 +336,14 @@ class MyVideosSearchViewController: MyVideosViewController {
                 }
                 
             }
+                
+                DispatchQueue.main.async( execute: {
+                    
+                    LoadingOverlay.shared.hideOverlayView()
+                })
+            }
+            
+            
             
         }
             

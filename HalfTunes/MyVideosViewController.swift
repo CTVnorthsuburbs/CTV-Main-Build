@@ -48,6 +48,12 @@ class GlobalVariables {
 
 /// The MyVideosViewController class contains the controller that handles the My Videos table view within the Search View
 
+
+
+ var myVideos = [Video]()
+
+
+
 class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
     
     var videos = [Video]()
@@ -56,7 +62,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     var searchResults = [Video]()          //this holds the list of all videos
     
-    var myVideos = [Video]()                //this holds the videos saved to myVideos
+                //this holds the videos saved to myVideos
     
     var searchActive : Bool = false
     
@@ -100,7 +106,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if(loadVideos() != nil) {
             
             
-            self.myVideos = loadVideos()!
+            myVideos = loadVideos()!
             
         }
         _ = self.downloadsSession
@@ -124,10 +130,10 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if(loadVideos() != nil) {
             
             
-            self.myVideos = loadVideos()!
+           myVideos = loadVideos()!
             
         }
-        self.filtered = self.myVideos
+        self.filtered = myVideos
         super.viewWillAppear(animated)
         tableView.reloadData()
         
@@ -441,7 +447,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                 
                 
-                let selectedVideo = self.myVideos[indexPath.row]
+                let selectedVideo = myVideos[indexPath.row]
                 
                 videoDetailViewController.video = selectedVideo
                 
@@ -493,7 +499,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
             }
                 
-                //Do the main task here
+         
                 
                 
                 DispatchQueue.main.async( execute: {
@@ -698,7 +704,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self.myVideos, toFile: Video.ArchiveURL.path)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myVideos, toFile: Video.ArchiveURL.path)
         
         
         
