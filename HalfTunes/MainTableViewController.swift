@@ -46,16 +46,24 @@ class MainTableViewController: UITableViewController {
         
         self.setSlides()
         
+       
     }
     
     
+  
     
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
+        
+        
+        
+      
+        
+        
         
         DispatchQueue.global(qos: .background).async {
             
@@ -142,6 +150,7 @@ class MainTableViewController: UITableViewController {
         
         self.setSlides()
         
+      
     }
     
     override func viewDidDisappear(_ animated: Bool) {

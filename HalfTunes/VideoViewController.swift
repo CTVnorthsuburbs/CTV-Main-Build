@@ -129,12 +129,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
   
     
+    
 
     
 
     override func viewDidLoad() {
         
-    
+   
 
         var search = VideoSearch()
 
