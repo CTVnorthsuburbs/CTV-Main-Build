@@ -25,8 +25,6 @@ import UIKit
     
     
     
-    let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
-    
 
     
     
@@ -112,7 +110,9 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         videoDetailViewController.video = selectedVideo
                         
                         
-                  
+                        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                        
+
                       
                         var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
                         
@@ -122,7 +122,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                             
                             
                             
-                          //  let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
                             
                             let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
                             

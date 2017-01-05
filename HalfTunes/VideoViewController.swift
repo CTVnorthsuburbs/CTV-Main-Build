@@ -40,7 +40,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var video: Video?
     
-    var myVideos = [Video]()
+ 
     
     var currentCategory: Category?
     var webView: UIWebView?
@@ -261,7 +261,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if(loadVideos() != nil) {
             
             
-            self.myVideos = loadVideos()!
+            myVideos = loadVideos()!
 
         }
         
@@ -356,7 +356,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         if(loadVideos() != nil) {
             
-            self.myVideos = loadVideos()!
+            myVideos = loadVideos()!
             
         }
         

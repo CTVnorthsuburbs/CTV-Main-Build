@@ -109,7 +109,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             myVideos = loadVideos()!
             
         }
-        _ = self.downloadsSession
+        // _ = self.downloadsSession
         //  self.filtered = self.myVideos
         
         
@@ -123,19 +123,19 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
         
-        self.tableView.reloadData()
+    //    self.tableView.reloadData()
         
         
         
         if(loadVideos() != nil) {
             
             
-            myVideos = loadVideos()!
+           // myVideos = loadVideos()!
             
         }
         self.filtered = myVideos
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+       // super.viewWillAppear(animated)
+       tableView.reloadData()
         
         
         
