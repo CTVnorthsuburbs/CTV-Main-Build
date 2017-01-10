@@ -15,6 +15,10 @@ var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings
 
 var suggestedSearch : Section?
 
+
+var search = VideoSearch()
+
+
 class MainTableViewController: UITableViewController {
     
     var parentCategory = featuredCategory

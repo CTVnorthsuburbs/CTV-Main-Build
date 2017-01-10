@@ -59,7 +59,11 @@ class HorizontalTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        
+        DispatchQueue.main.async(){
+            
+           //LoadingOverlay.shared.hideOverlayView()
+            
+        }
         
         
     }
@@ -509,21 +513,21 @@ class HorizontalTableViewController: UITableViewController {
             
             
             
-            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+          
             
             
-            DispatchQueue.global(qos: .userInitiated).async {
+           
                 
                 
             
             if let collectionCell: HorizontalCollectionViewCell = sender as? HorizontalCollectionViewCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? VideoViewController {
+                      DispatchQueue.main.async(){
                         
+                          LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                         
-                        
-                        
-                        
+                        }
                         let indexPath = collectionView.indexPath(for: collectionCell)!
                         
                         
@@ -550,10 +554,10 @@ class HorizontalTableViewController: UITableViewController {
                         destination.setDownloadsSession(downloadsSession: &self.downloadsSession)
                         
                         
-                        DispatchQueue.main.async( execute: {
+                       
                             
-                            LoadingOverlay.shared.hideOverlayView()
-                        })
+                     
+                        
                         
                         
                         
@@ -563,7 +567,7 @@ class HorizontalTableViewController: UITableViewController {
                 
             
                 
-            }
+            
             
         }
         
@@ -1028,9 +1032,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        
-        
-        if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
+         if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
             
             
             
@@ -1225,6 +1227,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     self.navigationController?.pushViewController(destination, animated:true)
                     
                     DispatchQueue.main.async( execute: {
+                        
+                        
                         
                         LoadingOverlay.shared.hideOverlayView()
                     })

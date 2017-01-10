@@ -109,7 +109,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             myVideos = loadVideos()!
             
         }
-        // _ = self.downloadsSession
+         _ = self.downloadsSession
         //  self.filtered = self.myVideos
         
         
@@ -153,7 +153,17 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        
+
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.shouldRotate = false // or false to disable rotation
+    }
     
     
     
@@ -193,6 +203,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 
                 print("fileurl \(fileUrl)")
+                
+                
+                
                 
                 let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
                 
@@ -242,6 +255,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if let download = GlobalVariables.sharedManager.activeDownloads[video!.sourceUrl!] {
             
             showDownloadControls = true
+            
+            
+            
             
             cell.progressView.progress = download.progress
             
@@ -346,6 +362,13 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         if let indexPath = tableView.indexPath(for: cell) {
             
             let video = filtered[(indexPath as NSIndexPath).row]
+            
+            
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.shouldRotate = true // or false to disable rotation
+            
             
             playVideo(video)
             
@@ -826,7 +849,22 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
+            
+            
             let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: url)
+            
+            
+            
+          
+                
+                
+                //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.shouldRotate = true // or false to disable rotation
+                
+     
             
             presentMoviePlayerViewControllerAnimated(moviePlayer)
         }
@@ -1136,12 +1174,16 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
             // 4
             
             
-            
-            if let videoIndex = videoIndexForDownloadTask(downloadTask), let videoCell = tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
+            DispatchQueue.global(qos: .userInitiated).async {
+                // Bounce back to the main thread to update the UI
+                DispatchQueue.main.async {
+                    
+                    
+            if let videoIndex = self.videoIndexForDownloadTask(downloadTask), let videoCell = self.tableView.cellForRow(at: IndexPath(row: videoIndex, section: 0)) as? VideoCell {
                 
-                DispatchQueue.main.async(execute: {
+               
                     
-                    
+                
                     
                     videoCell.progressView.progress = download.progress
                     
@@ -1153,9 +1195,9 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
                     
                     
                     
-                })
+                }
                 
-            }
+                }}
             
         }
         

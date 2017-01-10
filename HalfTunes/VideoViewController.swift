@@ -13,8 +13,13 @@ import UIKit
 import AVFoundation
 import AVKit
 
+//var myVideos = [Video]()
+
+
 
 class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
     
     var childView: SuggestedVideosTableViewController {
         
@@ -40,8 +45,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var video: Video?
     
- 
-    
+  
     var currentCategory: Category?
     var webView: UIWebView?
     
@@ -110,14 +114,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        
-        
-        
-        
-    
-        
-        
-        
+
         self.thumbnailButton.isHidden = false
         
         
@@ -129,45 +126,67 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
   
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        
+
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.shouldRotate = false// or false to disable rotation
+        
+    }
 
     
 
     override func viewDidLoad() {
         
    
+       
 
-        var search = VideoSearch()
-
-        childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+        self.childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
         
         _ = self.downloadsSession
         
-        if(currentCategory != nil) {
+        if(self.currentCategory != nil) {
             
             
             
-            childView.setCategory(category: currentCategory!)
+            self.childView.setCategory(category: self.currentCategory!)
             
             
             
         } else {
             
            
-            currentCategory = category
+            self.currentCategory = category
             
             
            
             
-            childView.setCategory(category: currentCategory!, section: selectedSection)
+            self.childView.setCategory(category: self.currentCategory!, section: selectedSection)
             
             
             
         }
         
-        if let video = video {
+        
+        if(self.video == nil){
+            
+            
+            print("The video did not load into Video View Controller")
+        }
+        while(self.video == nil) {
+            
+         
+            
+        }
+        
+        if let video = self.video {
             
         
           
@@ -177,18 +196,35 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         
             
-            childView.dateLabel.text = convertDateToString(date: date!)
+            self.childView.dateLabel.text = self.convertDateToString(date: date!)
                 
             
 
-            navigationItem.title = video.title
+            self.navigationItem.title = video.title
             
-            childView.titleLabel.text   = video.title
+            self.childView.titleLabel.text   = video.title
             
-            childView.descriptionLabel.text = video.comments
+            self.childView.descriptionLabel.text = video.comments
+            
+            
+            self.video = video
+            
+          
+            
+            
+            self.childView.parentView = self
+            
+            
+            
+            self.childView.setVideo(video: self.video!)
+            
+            
 
             DispatchQueue.global(qos: .background).async {
+
                 
+             
+            
                 if(video.fileName != nil  && self.currentCategory?.videoType != VideoType.youtube) {
                     
                     
@@ -207,7 +243,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     
                     
                 }
-                DispatchQueue.main.async {
+                
                     
                     
                     
@@ -236,42 +272,45 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         
                     }
                     
-                
+            
+              
+                DispatchQueue.main.async(){
                     
+                     LoadingOverlay.shared.hideOverlayView()
                     
                 }
+                
+                    
+                
             }
             
-             self.video = video
-            
-            
-            childView.parentView = self
-            
-       
-            
-            childView.setVideo(video: self.video!)
-            
-            
           
+                
             
+            
+            
+                
+            }
+        
+        
             //thumbnailView.image = video.thumbnail
             
-        }
         
-        if(loadVideos() != nil) {
+        
+        if(self.loadVideos() != nil) {
             
             
-            myVideos = loadVideos()!
+        myVideos = self.loadVideos()!
 
         }
         
-        if (hasSavedVideo()) {
+        if (self.hasSavedVideo()) {
             
             
-            toggleAddButton()
+            self.toggleAddButton()
         }
         
-        
+            //   LoadingOverlay.shared.hideOverlayView()
         // timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
         
     }
@@ -379,7 +418,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             showDownloadControls = true
             
-            childView.progressView.progress = (download?.progress)!
+                
+            
+            
+            self.childView.progressView.progress = (download?.progress)!
             
             
             
@@ -639,7 +681,58 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             print("local file exists for: \(video?.title)")
             
-            playDownload(video!)
+            
+            
+            
+            
+            
+            if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+                
+                
+                
+                
+                print("URL: \(url)")
+                
+                let moviePlayer:AVPlayer! = AVPlayer(url: url)
+                
+                
+                
+                
+                playerViewController.player = moviePlayer
+                
+                
+                self.addChildViewController(playerViewController)
+                self.thumbnailView.addSubview(playerViewController.view)
+                playerViewController.view.frame = self.thumbnailView.bounds
+                
+                playerViewController.allowsPictureInPicturePlayback = true
+                
+                playerViewController.showsPlaybackControls = true
+                
+                
+                
+                
+                
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                //  let value = UIInterfaceOrientation.portrait.rawValue
+                // UIDevice.current.setValue(value, forKey: "orientation")
+                
+                
+                
+                
+                self.thumbnailButton.isHidden = true
+                playerViewController.player!.play()
+                
+                
+                
+                
+                
+                
+            }
+            
+
             
         }
         

@@ -194,7 +194,7 @@ class SuggestedVideosTableViewController: UITableViewController {
                 let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                 
                 
-                let selectedVideo = self.myVideos[indexPath.row]
+                var selectedVideo = self.myVideos[indexPath.row]
                 
                 videoDetailViewController.video = selectedVideo
                 
@@ -203,7 +203,7 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 
                 
-                
+              
                 
                 
                 suggestedSearch = category.sections[indexPath.section]
@@ -230,7 +230,7 @@ class SuggestedVideosTableViewController: UITableViewController {
                 }
                 
                 
-                
+            
                 
                 
                 

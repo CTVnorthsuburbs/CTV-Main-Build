@@ -89,12 +89,13 @@ class CategoriesTableViewController: UITableViewController {
         if(category.categoryTitle   != categories[indexPath.row].categoryTitle ) {
             
             
-            
-            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
-            
-            DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.main.async(){
                 
+                LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                 
+            }
+           
+            
                 category = categories[indexPath.row]
                 
                 
@@ -130,11 +131,6 @@ class CategoriesTableViewController: UITableViewController {
                 
                 
                 
-                DispatchQueue.main.async( execute: {
-                    
-                    LoadingOverlay.shared.hideOverlayView()
-                })
-            }
             
         }
         
