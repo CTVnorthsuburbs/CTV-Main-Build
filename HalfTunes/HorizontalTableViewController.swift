@@ -159,7 +159,11 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     
                                     print("calling searchf from view will appear 1")
-                                    videos.append(search.search(category.sections[index].searchID!))
+                                    
+                                    var vids = search.search(category.sections[index].searchID!)
+                                    
+                                    listOfVideos[category.sections[index].searchID!] = vids
+                                    videos.append(vids)
                                     
                                 } else {
                                     
@@ -167,6 +171,15 @@ class HorizontalTableViewController: UITableViewController {
                                     print("calling search view will appear 2")
                                     
                                     var vids = search.search(category.sections[index].searchID!)
+                                    
+                                    
+                                    
+                                    listOfVideos[category.sections[index].searchID!] = vids
+                                    
+                                    
+                                    
+                                    
+                                    
                                    
                                     var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                                     
@@ -246,10 +259,21 @@ class HorizontalTableViewController: UITableViewController {
                     }
                 }
                 
+                
+                
                 self.tableView.reloadData()
                 
                 self.changeTableSize()
                 
+                
+                if(category.categoryTitle == featuredCategory.categoryTitle && currentCategory?.categoryTitle == featuredCategory.categoryTitle) {
+                    
+                    
+                    saveFeaturedVideos()
+                    
+                    
+                    
+                }
                 
                 
             }
@@ -809,7 +833,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             } else if(category.videoType == VideoType.cablecast) {
                 
                 
-                
+             
+
                 
                 
                 
@@ -826,6 +851,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     print("calling search from listof videos")
+                    
+                    
                     
                     listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
                     

@@ -1145,9 +1145,10 @@ class featuredFactorySettings: CategoryFactorySettings {
    // var slide4 = Slide(slideType: ButtonType.webPage, searchID: nil, videoList: nil, page: nil, category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: URL(string: "http://www.ctvnorthsuburbs.org/content/pdfs/job-ptr.pdf"))
         
         
-             var slide4 = Slide(slideType: ButtonType.page, searchID: nil, videoList: nil, page: "About", category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "About CTV", webURL: nil)
+            // var slide4 = Slide(slideType: ButtonType.page, searchID: nil, videoList: nil, page: "About", category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "About CTV", webURL: nil)
 
-        
+        var slide4 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: basketballFactorySettings(), image:#imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: nil)
+
         self.slides.append(slide1)
         
         self.slides.append(slide2)

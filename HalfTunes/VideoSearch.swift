@@ -23,18 +23,18 @@ import UIKit
  */
 
 
- let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+
 
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
- var dataTask: URLSessionDataTask?
+
     
     fileprivate var searchResults = [Video]()
     
     fileprivate var thumbnailResults = [Thumbnail]()
     
-    
+      let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
     
     // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
@@ -45,8 +45,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     fileprivate func getNSURLSession() -> URLSession {
         
-       // let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-        
+      //  let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -74,8 +73,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
       
         
         let session = getNSURLSession()
-        
-        
         
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
@@ -785,13 +782,13 @@ return video
         
         print("get search results called")
         
-       
+        var dataTask: URLSessionDataTask?
         
         var results : [Int]?
         
         if dataTask != nil {
             
-        dataTask?.cancel()            //Not sure about this
+            dataTask?.cancel()
             
         }
         
@@ -799,36 +796,19 @@ return video
         
         dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
-            
-            
-            
             data, response, error in
-            
-            /*
             
             DispatchQueue.main.async {
                 
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
             }
- 
- */
             
             if let error = error {
                 
                 print(error.localizedDescription)
                 
-                
-                
-               
-                
             } else if let httpResponse = response as? HTTPURLResponse {
-                
-                if httpResponse.statusCode ==  NSURLErrorTimedOut {
-                    print("Time Out")
-                    
-                }
-             
                 
                 if httpResponse.statusCode == 200 {
                     
@@ -855,7 +835,7 @@ return video
             
             //wait till results are received
         }
-      //  UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
    
         return results
