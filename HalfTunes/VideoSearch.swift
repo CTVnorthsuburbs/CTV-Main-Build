@@ -23,12 +23,12 @@ import UIKit
  */
 
 
-
+ let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
 
 
 class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
-
+ var dataTask: URLSessionDataTask?
     
     fileprivate var searchResults = [Video]()
     
@@ -45,7 +45,8 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     fileprivate func getNSURLSession() -> URLSession {
         
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+       // let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+        
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -73,6 +74,8 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
       
         
         let session = getNSURLSession()
+        
+        
         
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
@@ -111,6 +114,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 
                 for url in searchURLs {
                     
+                    
+                    print("getsearch resutls from inside search.search    1")
+                    
                     getSearchResults(session, url: url, isIDSearchURL: true)
                     
                 }
@@ -122,7 +128,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             let searchIdURL =  convertIdArrayToSearchURL(results!)
             
-          
+          print("getsearch resutls from inside search.search  2")
             getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
             
         }
@@ -166,7 +172,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         }
         
         
-        
+        print("sorted resutls returned from search.search() count: \(sortedSearchResults.count)")
         
         
         return sortedSearchResults
@@ -773,13 +779,19 @@ return video
     
     fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
         
-        var dataTask: URLSessionDataTask?
+        
+        
+        
+        
+        print("get search results called")
+        
+       
         
         var results : [Int]?
         
         if dataTask != nil {
             
-            dataTask?.cancel()
+        dataTask?.cancel()            //Not sure about this
             
         }
         
@@ -787,19 +799,36 @@ return video
         
         dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
+            
+            
+            
             data, response, error in
+            
+            /*
             
             DispatchQueue.main.async {
                 
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
             }
+ 
+ */
             
             if let error = error {
                 
                 print(error.localizedDescription)
                 
+                
+                
+               
+                
             } else if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode ==  NSURLErrorTimedOut {
+                    print("Time Out")
+                    
+                }
+             
                 
                 if httpResponse.statusCode == 200 {
                     
@@ -826,7 +855,7 @@ return video
             
             //wait till results are received
         }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+      //  UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
    
         return results

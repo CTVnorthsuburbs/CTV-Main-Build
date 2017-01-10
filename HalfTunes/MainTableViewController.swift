@@ -73,7 +73,7 @@ class MainTableViewController: UITableViewController {
             
             
             if(categoriesVideos.count == 0) {
-                
+          
                 self.generateCategories()
                 
                 

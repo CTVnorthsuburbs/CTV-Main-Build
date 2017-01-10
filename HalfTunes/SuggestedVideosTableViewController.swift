@@ -107,6 +107,9 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             if (searchID != nil && searchID != 1 && searchID != 2) {
                 
+                
+                print("calling search from set video in suggested table view")
+                
                 var results = search.search(searchID!)
                 
                 results = search.trimVideos(videoArray: results, numberToReturn: 10)

@@ -129,7 +129,7 @@ class CategoryTableViewController: UITableViewController {
                 
                 
             } else {
-            
+             print("calling serach from categorytable view will appear")
             
       recommendedVideos = search.search((categorySection?.searchID!)! )
             }

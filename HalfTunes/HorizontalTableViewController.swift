@@ -158,16 +158,16 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     
                                     
-                                    
+                                    print("calling searchf from view will appear 1")
                                     videos.append(search.search(category.sections[index].searchID!))
                                     
                                 } else {
                                     
                                     
+                                    print("calling search view will appear 2")
                                     
                                     var vids = search.search(category.sections[index].searchID!)
-                                    
-                                    
+                                   
                                     var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                                     
                                     videos.append(trimmedVids)
@@ -816,10 +816,16 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
                     
                     
+                    print("saved listofvideos retreived")
+                    
+                    
                     videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
                     
                     
                 } else {
+                    
+                    
+                    print("calling search from listof videos")
                     
                     listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
                     
@@ -971,7 +977,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 if(category.sections[index].getDisplayCount() == nil) {
                     
                     
-                    
+                    print("calling serach from set category")
                     
                     videos.append(search.search(category.sections[index].searchID!))
                     
@@ -980,7 +986,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     var vids = search.search(category.sections[index].searchID!)
-                    
+                     print("calling serach from set category 2")
                     
                     var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                     

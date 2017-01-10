@@ -164,6 +164,8 @@ class CategoriesTableViewController: UITableViewController {
         
         if(categoriesVideos.count == categories.count) {
             
+            
+            
             thumbnail = self.search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
             
             
@@ -173,7 +175,7 @@ class CategoriesTableViewController: UITableViewController {
             if (categories[indexPath.row].sections.first?.searchID != nil) {
                 
                 
-                
+                print("search for single called from cagtegoriestableview")
                 var vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
                 
                 
