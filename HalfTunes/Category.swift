@@ -12,7 +12,7 @@ import UIKit
 
 
 
-var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())) ]
+var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())) ]
 
 enum CategorySearches: Int {
     
@@ -220,7 +220,7 @@ class teenFactorySettings: CategoryFactorySettings {
         
         
         
-        self.sliderImages = [#imageLiteral(resourceName: "categories")]
+        self.sliderImages = [#imageLiteral(resourceName: "teens-header")]
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent]
         
@@ -266,7 +266,7 @@ class baseballFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 65797
         
-        self.sliderImages = [#imageLiteral(resourceName: "softball_slider")]
+        self.sliderImages = [#imageLiteral(resourceName: "baseball")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.girls]
         
@@ -437,7 +437,7 @@ class basketballFactorySettings: CategoryFactorySettings {
         
         self.recentSectionSearchID = 69113
         
-        self.sliderImages = [#imageLiteral(resourceName: "slide-basketball-header")]
+        self.sliderImages = [#imageLiteral(resourceName: "basketball-header")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
         
@@ -1103,7 +1103,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         self.buttons.append(Button(factory:hockeyButtonFactory()))
         
         self.buttons.append(Button(factory:baseballButtonFactory()))
-        
+        self.buttons.append(Button(factory:basketballButtonFactory()))
         
           self.buttons.append(Button(factory:footballButtonFactory()))
         
@@ -1176,7 +1176,7 @@ class baseballButtonFactory: ButtonFactory {
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "softball_slider")
+        self.image = #imageLiteral(resourceName: "baseball")
         
         self.title = "Baseball"
         
@@ -1189,6 +1189,29 @@ class baseballButtonFactory: ButtonFactory {
     }
     
 }
+
+class basketballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "basketball-header")
+        
+        self.title = "Basketball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings()))
+        
+    }
+    
+}
+
 
 class featuredButtonFactory: ButtonFactory {
     
@@ -1271,7 +1294,7 @@ class teenButtonFactory: ButtonFactory {
         
         self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "categories")
+        self.image = #imageLiteral(resourceName: "teens-header")
         
         self.title = "CTV Teens"
         

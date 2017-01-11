@@ -36,7 +36,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
       let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
-    
+ 
     // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
     let arrayLength = 55

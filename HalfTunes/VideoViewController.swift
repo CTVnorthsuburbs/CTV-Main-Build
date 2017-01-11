@@ -120,6 +120,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         playerViewController.player?.pause()
         
+        
+        
+        webView? = UIWebView()
  
         
         

@@ -92,20 +92,74 @@ class MainTableViewController: UITableViewController {
             
             video.createListing()
             
-            
-            
-            var vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
-            
+            var vid = [Video]()
             
             
             
-            if (vid.first?.fileName != nil) {
+            if(video.sections.first!.searchID == 1) {
                 
-                search.getThumbnail(id: (vid.first?.fileName)!)
-                categoriesVideos.append(vid.first!)
+                vid = search.getYouTubeVideos(playlist: video.sections.first!.sectionPlaylist!)!
                 
                 
+                
+                if (vid.first?.fileName != nil) {
+                    
+                    
+                    
+                    
+                    if( vid.first?.hasThumbnailUrl())! {
+                        
+                        
+                        print("has thumbnail \(vid.first?.thumbnailUrl) and \(vid.first?.fileName)")
+                        
+                        
+                       
+                        
+                       search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
+                        
+                        
+                        
+                        
+                    } else {
+                        
+                        
+                        
+                        
+                        vid.first?.generateThumbnailUrl()
+                        
+                        
+                        
+                       search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
+                        
+                          print("gebnerated \(vid.first?.thumbnailUrl)")
+                        
+                    }
+                    
+                    
+                  //  search.getThumbnail(id: (vid.first?.fileName)!)
+                    categoriesVideos.append(vid.first!)
+                    
+                    
+                }
+                
+                
+                
+            } else {
+             vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
+                
+                
+                
+                if (vid.first?.fileName != nil) {
+                    
+                    search.getThumbnail(id: (vid.first?.fileName)!)
+                    categoriesVideos.append(vid.first!)
+                    
+                    
+                }
+            
             }
+            
+           
         }
         
         
