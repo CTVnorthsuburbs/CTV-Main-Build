@@ -10,6 +10,38 @@ import Foundation
 
 import UIKit
 
+
+
+
+
+class live1ButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.video
+        
+        self.image = #imageLiteral(resourceName: "live-event-header")
+        
+        self.title = "Live Event 1"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.videoID = 10021
+        
+        self.category = nil
+        
+        self.webURL = URL(string: "http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
+        
+    }
+    
+}
+
+
+
 class programsButtonFactory: ButtonFactory {
     
     override init() {

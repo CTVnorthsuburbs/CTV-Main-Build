@@ -697,7 +697,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         self.buttonsSecondSectionType = SectionType.buttonNoTitle
         
-        
+        self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
         self.buttonsSecond.append(Button(factory:teenButtonFactory()))
         self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
         
