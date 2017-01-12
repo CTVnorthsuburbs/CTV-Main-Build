@@ -318,7 +318,7 @@ class HorizontalTableViewController: UITableViewController {
                 
             case .videoList:
                 
-                tableSize = tableSize + CGFloat(165)
+                tableSize = tableSize + CGFloat(190)
                 
             case .buttonNoTitle:
                 
@@ -330,7 +330,7 @@ class HorizontalTableViewController: UITableViewController {
                 
             default:
                 
-                tableSize = tableSize + CGFloat(165)
+                tableSize = tableSize + CGFloat(190)
                 
             }
             
