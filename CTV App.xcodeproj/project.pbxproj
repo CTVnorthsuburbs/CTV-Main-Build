@@ -31,8 +31,8 @@
 		8D128C331E27D74F00491916 /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D128C1C1E27D71200491916 /* SF-UI-Text-SemiboldItalic.otf */; };
 		8D128C341E27D74F00491916 /* SF-UI-Text-Ultrathin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D128C1D1E27D71200491916 /* SF-UI-Text-Ultrathin.otf */; };
 		8D128C351E27D74F00491916 /* SF-UI-Text-UltrathinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D128C1E1E27D71200491916 /* SF-UI-Text-UltrathinItalic.otf */; };
+		8D128C391E27F4A600491916 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D128C381E27F4A600491916 /* Main.storyboard */; };
 		8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */; };
-		8D2431CE1D391FC10024F1D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CD1D391FC10024F1D6 /* Main.storyboard */; };
 		8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CF1D391FF30024F1D6 /* Assets.xcassets */; };
 		8D399C2A1DBFA2F2006C536E /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */; };
 		8D401F2B1DD3883000AB1C5F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */; };
@@ -97,8 +97,8 @@
 		8D128C1C1E27D71200491916 /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		8D128C1D1E27D71200491916 /* SF-UI-Text-Ultrathin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Ultrathin.otf"; sourceTree = "<group>"; };
 		8D128C1E1E27D71200491916 /* SF-UI-Text-UltrathinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-UltrathinItalic.otf"; sourceTree = "<group>"; };
+		8D128C381E27F4A600491916 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8D2431CD1D391FC10024F1D6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D2431CF1D391FF30024F1D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
 		8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 				8D66CF171D8C29A000C600F4 /* DataSource */,
 				8D2431C01D391E970024F1D6 /* Gloss */,
 				D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */,
-				8D2431CD1D391FC10024F1D6 /* Main.storyboard */,
+				8D128C381E27F4A600491916 /* Main.storyboard */,
 				8D2431CF1D391FF30024F1D6 /* Assets.xcassets */,
 				8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */,
 				D9EF8FC41B53FD2100EFC4B6 /* Supporting Files */,
@@ -435,6 +435,7 @@
 				8D128C221E27D74F00491916 /* SF-UI-Display-Light.otf in Resources */,
 				8D128C231E27D74F00491916 /* SF-UI-Display-Medium.otf in Resources */,
 				8D128C241E27D74F00491916 /* SF-UI-Display-Regular.otf in Resources */,
+				8D128C391E27F4A600491916 /* Main.storyboard in Resources */,
 				8D128C251E27D74F00491916 /* SF-UI-Display-Semibold.otf in Resources */,
 				8D128C261E27D74F00491916 /* SF-UI-Display-Thin.otf in Resources */,
 				8D128C271E27D74F00491916 /* SF-UI-Display-Ultralight.otf in Resources */,
@@ -452,7 +453,6 @@
 				8D128C331E27D74F00491916 /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				8D128C341E27D74F00491916 /* SF-UI-Text-Ultrathin.otf in Resources */,
 				8D128C351E27D74F00491916 /* SF-UI-Text-UltrathinItalic.otf in Resources */,
-				8D2431CE1D391FC10024F1D6 /* Main.storyboard in Resources */,
 				8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */,
 				8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */,
 			);

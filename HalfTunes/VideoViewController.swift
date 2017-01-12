@@ -118,7 +118,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewWillDisappear(_ animated: Bool) {
         
 
-        self.thumbnailButton.isHidden = false
+        self.thumbnailButton.isHidden = true
         
         
         playerViewController.player?.pause()
@@ -333,7 +333,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
             //   LoadingOverlay.shared.hideOverlayView()
         // timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
-        
+        self.thumbnailButton.isHidden = false
     }
     
     func setProgressBar() {
@@ -593,7 +593,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     @IBAction func playVideo(_ sender: AnyObject) {
-        
+        self.thumbnailButton.isHidden = true
         
         if(currentCategory?.videoType == VideoType.youtube) {
             
