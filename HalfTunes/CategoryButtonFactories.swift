@@ -30,9 +30,10 @@ class live1ButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.videoID = 10021
+        self.videoID = 1
         
         self.category = nil
+    
         
         self.webURL = URL(string: "http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
         

@@ -45,6 +45,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     var video: Video?
     
+   
+    
+    
   
     var currentCategory: Category?
     var webView: UIWebView?
@@ -120,10 +123,12 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         playerViewController.player?.pause()
         
-        
+        print("VIEW disappers")
         
         webView? = UIWebView()
- 
+        
+        
+      
         
         
     }
@@ -131,14 +136,17 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewDidAppear(_ animated: Bool) {
         
-        
+        print("VIEW APPEKS")
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         
+        //self.thumbnailButton.isHidden = true     //Chnage this maybe
 
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.shouldRotate = false// or false to disable rotation
+        
+        
         
     }
 
@@ -176,8 +184,10 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
         }
-        
-        
+    
+     
+            
+     
         if(self.video == nil){
             
             
@@ -185,7 +195,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         while(self.video == nil) {
             
-         
+           
             
         }
         
@@ -230,7 +240,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
                 if(video.fileName != nil  && self.currentCategory?.videoType != VideoType.youtube) {
                     
-                    
+                    if(video.fileName != 1) {
+                        
+                        
+                        
+                        
+                        
+                        
                     
                     
                     video.thumbnail = search.getThumbnail(id: video.fileName!)
@@ -241,6 +257,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         
                         video.generateThumbnail()
                         
+                        
+                    }
                         
                     }
                     
@@ -622,7 +640,67 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         } else {
         
         
+          if(video?.fileName == 1 && currentCategory?.videoType != VideoType.youtube) {
+           
+            
+            if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+                
+                
+                
+                
+                
+                
+                
+                let fileUrl = URL(string: urlString)
+                
+                let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
+                
+                
+                
+                
+                playerViewController.player = moviePlayer
+                
+                
+                self.addChildViewController(playerViewController)
+                self.thumbnailView.addSubview(playerViewController.view)
+                playerViewController.view.frame = self.thumbnailView.bounds
+                
+                playerViewController.allowsPictureInPicturePlayback = true
+                
+                playerViewController.showsPlaybackControls = true
+                
+                
+                
+                
+                
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                //  let value = UIInterfaceOrientation.portrait.rawValue
+                // UIDevice.current.setValue(value, forKey: "orientation")
+                
+                
+                
+                
+                self.thumbnailButton.isHidden = true
+                playerViewController.player!.play()
+                
+                //  appDelegate.shouldRotate = true // or false to disable rotation
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+       
         
+        
+          } else {
         
         let videoPath = Bundle.main.path(forResource: video?.sourceUrl, ofType:"mp4")
         
@@ -742,7 +820,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
  
         
-        
+        }
         
       /*
         

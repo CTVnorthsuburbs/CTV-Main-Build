@@ -45,7 +45,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     fileprivate func getNSURLSession() -> URLSession {
         
-      //  let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+     //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -71,10 +71,13 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
       
-        
+        print("SEACH CALLED FOR \(savedSearchID)")
         let session = getNSURLSession()
         
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
+        
+        
+        
         
         let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
         
@@ -112,7 +115,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 for url in searchURLs {
                     
                     
-                    print("getsearch resutls from inside search.search    1")
+                  
                     
                     getSearchResults(session, url: url, isIDSearchURL: true)
                     
@@ -125,7 +128,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             let searchIdURL =  convertIdArrayToSearchURL(results!)
             
-          print("getsearch resutls from inside search.search  2")
+        
             getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
             
         }
@@ -823,6 +826,17 @@ return video
                         
                     }
                     
+                } else {
+                    
+                    
+                    
+                  //  self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
+                    
+                    
+                    print("!!!!!!!!!!!!!!!!!!!")
+                    
+                    
+                     self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
                 }
                 
             }

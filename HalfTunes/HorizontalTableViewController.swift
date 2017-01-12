@@ -727,21 +727,36 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-                var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+           
+                var thumbnail: UIImage?
                 
+                if((category.sections[collectionView.tag].buttons[indexPath.row]?.videoID) == 1) {
+                    
+                    thumbnail = category.sections[collectionView.tag].buttons[indexPath.row]?.image
+                    
+                    cells.thumbnail.image = thumbnail
+                    
+                    
+                } else {
+                    
+                    
+                    
+                        var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                    
+                    thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
+                    
+                    
+                    
+                    
+                    cells.thumbnail.image = thumbnail
+                    
+                    cells.thumbnail.alpha = 0.5
+                    
+                    
+                    
+                }
                 
-                
-                
-                var thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
-                
-                
-                
-                
-                cells.thumbnail.image = thumbnail
-                
-                cells.thumbnail.alpha = 0.5
-                
-                
+             
                 
             } else {
                 
@@ -841,7 +856,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
                     
                     
-                    print("saved listofvideos retreived")
+                  //  print("saved listofvideos retreived")
                     
                     
                     videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
@@ -850,7 +865,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 } else {
                     
                     
-                    print("calling search from listof videos")
+                 //   print("calling search from listof videos")
                     
                     
                     
@@ -1214,6 +1229,72 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 if(button?.type == ButtonType.video) {
                     
+                    
+                    if( category.sections[collectionView.tag].buttons[indexPath.row]?.videoID == 1 &&  category.videoType != VideoType.youtube) {
+                        
+                        LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+                        
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            
+                            
+                            
+                         
+                            
+                            
+                            
+                            var button =  category.sections[collectionView.tag].buttons[indexPath.row]
+                            
+                            
+                            
+                            
+                            let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
+                            
+                            var video  = Video(title: button!.title!, thumbnail: button?.image, fileName: 1, sourceUrl:  button?.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: button?.videoID)
+                            
+
+                            
+                            
+                            
+                            
+                            suggestedSearch = category.sections[0]
+                            
+                         //    var video  = self.search.searchForSingle((button?.videoID)!)
+                            
+                            //let selectedVideo = videos[collectionView.tag][indexPath.row]
+                            
+                         //   destination.video = video.first
+                            
+                            
+                            
+                              destination.video = video
+                            
+                            destination.setDefaultSession(defaultSession: &self.defaultSession)
+                            
+                            destination.setDataTask(dataTask: &self.dataTask)
+                            
+                            
+                            destination.setDownloadsSession(downloadsSession: &self.downloadsSession)
+                            
+                            
+                            
+                            
+                            self.navigationController?.pushViewController(destination, animated:true)
+                            
+                            DispatchQueue.main.async( execute: {
+                                
+                                
+                                
+                                LoadingOverlay.shared.hideOverlayView()
+                            })
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                    } else {
+                    
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                     
                     
@@ -1223,10 +1304,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     var button =  category.sections[collectionView.tag].buttons[indexPath.row]
                     
-                    var video  = self.search.searchForSingle((button?.videoID)!)
+                        var video  = self.search.searchForSingle((button?.videoID)!)
                     
                     
-                    
+                
                     
                     
                     let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
@@ -1234,7 +1315,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     
-                    
+                               destination.video = video.first
                     
                     
                     suggestedSearch = category.sections[1]
@@ -1243,8 +1324,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     //let selectedVideo = videos[collectionView.tag][indexPath.row]
                     
-                    destination.video = video.first
-                    
+                  
                     
                     
                     destination.setDefaultSession(defaultSession: &self.defaultSession)
@@ -1267,7 +1347,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     })
                     //  self.navigationController?.present(destination, animated:true)
                     
-                    
+                        }
                     
                 }
                 
