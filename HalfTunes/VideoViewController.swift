@@ -46,7 +46,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     var video: Video?
     
    
-    
+    var videoLoaded: Bool = false
     
   
     var currentCategory: Category?
@@ -146,7 +146,14 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         appDelegate.shouldRotate = false// or false to disable rotation
         
-        
+        if(videoLoaded == false) {
+            
+            
+            
+            thumbnailButton.isHidden = false
+            
+            
+        }
         
     }
 
@@ -594,6 +601,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBAction func playVideo(_ sender: AnyObject) {
         self.thumbnailButton.isHidden = true
+        
+        self.videoLoaded = true
+        
         
         if(currentCategory?.videoType == VideoType.youtube) {
             

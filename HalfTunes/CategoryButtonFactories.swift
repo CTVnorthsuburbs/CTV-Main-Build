@@ -24,7 +24,7 @@ class live1ButtonFactory: ButtonFactory {
         
         self.image = #imageLiteral(resourceName: "live-event-header")
         
-        self.title = "Live Event 1"
+        self.title = "Live Event"
         
         self.imageOverlay = nil
         
