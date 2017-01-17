@@ -405,6 +405,8 @@ class hockeyFactorySettings: CategoryFactorySettings {
         
         self.popularSectionSearchID = 68483
         
+        self.popularSectionDisplayCount = 15
+        
         self.recentGirlsSectionTitle = "Girls Games"
         
         self.recentGirlsSectionSearchID = 68489
@@ -417,6 +419,8 @@ class hockeyFactorySettings: CategoryFactorySettings {
         self.recentSectionTitle = "Recent Games"
         
         self.recentSectionSearchID = 68492
+        
+        self.recentSectionDisplayCount = 15
         
         self.buttonsSectionTitle = "Our Favorite Games of the Year"
         

@@ -28,6 +28,7 @@ class HorizontalTableViewController: UITableViewController {
     
     var videos : [[Video?]]  = [[Video?]]()
     
+    var defaultDisplayCount = 15
     
     
     //   var thumbnailButtons : [[ThumbnailButton]] = [[],[]]
@@ -358,6 +359,9 @@ class HorizontalTableViewController: UITableViewController {
                                     print("calling searchf from view will appear 1")
                                     
                                     var vids = self.search.search(category.sections[index].searchID!)
+                                    
+                                    
+                                       vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
                                     
                                     self.listOfVideos[category.sections[index].searchID!] = vids
                                     self.videos.append(vids)
