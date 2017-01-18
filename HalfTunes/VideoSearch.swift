@@ -79,7 +79,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         
         
-        let results = getSearchResults(session, url: searchUrl!, isIDSearchURL: false)
+        let results = getSearchResults(defaultSession: session, url: searchUrl!, isIDSearchURL: false)
         
         
         var originalResults = results
@@ -117,7 +117,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     
                   
                     
-                    getSearchResults(session, url: url, isIDSearchURL: true)
+                    getSearchResults(defaultSession: session, url: url, isIDSearchURL: true)
                     
                 }
                 
@@ -129,7 +129,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             let searchIdURL =  convertIdArrayToSearchURL(results!)
             
         
-            getSearchResults(session, url: searchIdURL!, isIDSearchURL: true)
+            getSearchResults(defaultSession: session, url: searchIdURL!, isIDSearchURL: true)
             
         }
         
@@ -236,11 +236,18 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
 return video
    
     }
+    /*
+    let semaphore = DispatchSemaphore(value: 0)
+    semaphore.signal()
+    semaphore.wait(timeout: .distantFuture)
+ 
+ 
+ */
     
-        
+    
         fileprivate func getYoutubePlaylists(_ defaultSession: URLSession, url: URL) -> [Video]? {
             
-            
+            let semaphore = DispatchSemaphore(value: 0)
             var video: Video?
             
             
@@ -395,30 +402,18 @@ return video
                     }
                     
                 }
-                
+                  semaphore.signal()
             })
             
             dataTask?.resume()
-            
+            semaphore.wait(timeout: .distantFuture)
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             
          
             
-            while (count == nil ) {
-                
-                
-                
-                
-            }
-            while(videoResults.count < count!) {
-                
-                
-                
-                
-            }
-            
+          
           
             return videoResults
             
@@ -469,7 +464,7 @@ return video
         
         let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?ids=\(savedSearchID)&include=vod,thumbnail")
         
-        getSearchResults(session, url: searchURL!, isIDSearchURL: true)
+        getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
         
         
         return searchResults
@@ -505,7 +500,7 @@ return video
         print(url)
         let searchURL = URL(fileURLWithPath: url)
         
-        getSearchResults(session, url: searchURL, isIDSearchURL: true)
+        getSearchResults(defaultSession: session, url: searchURL, isIDSearchURL: true)
         
         
         return searchResults
@@ -568,7 +563,7 @@ return video
         
         let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
         
-        getSearchResults(session, url: searchURL!, isIDSearchURL: true)
+        getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
         
         return searchResults
     }
@@ -777,23 +772,20 @@ return video
     }
     
     
-    fileprivate func getSearchResults(_ defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
+    
+    fileprivate func getSearchResults( defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
         
         
         
-        
+        let semaphore = DispatchSemaphore(value: 0)
         
         print("get search results called")
         
-        var dataTask: URLSessionDataTask?
+        var dataTask: URLSessionDataTask
         
         var results : [Int]?
         
-        if dataTask != nil {
-            
-            dataTask?.cancel()
-            
-        }
+       
         
         var complete = false
         
@@ -836,26 +828,33 @@ return video
                     print("!!!!!!!!!!!!!!!!!!!")
                     
                     
-                     self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
+                    self.getSearchResults(defaultSession: defaultSession, url: url, isIDSearchURL: isIDSearchURL)
                 }
                 
             }
-            
+            semaphore.signal()
         })
         
-        dataTask?.resume()
+        dataTask.resume()
+        semaphore.wait(timeout: .distantFuture)
         
+        
+       /*
         while (results == nil && complete == false) {
             
             //wait till results are received
         }
+ 
+ */
+
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
-   
-        return results
+       return results
         
-    }
     
+    }
+
+
     
     public func searchThumbnail(_ savedSearchID: Int)-> String?{
         
@@ -875,10 +874,14 @@ return video
     }
     
     
-    
+   
     
     
     fileprivate func getThumbnailResults(_ defaultSession: URLSession, url: URL) -> String? {
+        
+        
+        let semaphore = DispatchSemaphore(value: 0)
+      
         
         var dataTask: URLSessionDataTask?
         
@@ -948,7 +951,8 @@ return video
                 }
                 
             }
-            
+            semaphore.signal()
+           
         })
         
         
@@ -956,11 +960,9 @@ return video
         
         dataTask?.resume()
         
+         semaphore.wait(timeout: .distantFuture)
         
-        while (thumbnail == nil ) {
-            
-            //wait till results are received
-        }
+   
         
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false

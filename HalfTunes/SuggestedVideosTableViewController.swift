@@ -279,12 +279,18 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
         
+        
+        if(recommendedVideos[indexPath.row].thumbnail != nil) {
         cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
+        }
         
         cell?.thumbnailView.setRadius(radius: imageRadius)
         
-        
+        if(self.recommendedVideos[indexPath.row].thumbnail == nil) {
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
+            
+            
+            
             
             do {
                 
@@ -293,9 +299,10 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 if( self.recommendedVideos[indexPath.row].hasThumbnailUrl()) {
                     
+                   
+                        
+                        self.recommendedVideos[indexPath.row].thumbnail =  returnImageUsingCacheWithURLString(url: self.recommendedVideos[indexPath.row].thumbnailUrl!)
                     
-                    
-                    self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
                     
                     
                     
@@ -311,7 +318,11 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     if( self.recommendedVideos[indexPath.row].thumbnailUrl != nil) {
                         
-                        self.recommendedVideos[indexPath.row].thumbnail =  self.search.getThumbnail(url: self.recommendedVideos[indexPath.row].thumbnailUrl! )
+                        
+                        
+                        self.recommendedVideos[indexPath.row].thumbnail =  returnImageUsingCacheWithURLString(url: self.recommendedVideos[indexPath.row].thumbnailUrl!)
+                        
+                        
                     }
                     
                 }
@@ -334,8 +345,16 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 
-                cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
+                var thumbnail = self.recommendedVideos[indexPath.row].thumbnail
                 
+                if(thumbnail != nil) {
+                    
+                    cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
+
+                }
+
+                
+                }
                 
             }
             
