@@ -1028,24 +1028,16 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
+               
+                    
+                //    listOfVideos[category.sections[collectionView.tag].searchID!] = search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)
+                    
+                    
+                    videos =  search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)!
+                    
+                    
+                    
                 
-                
-                if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
-                    
-                    
-                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
-                    
-                    
-                } else {
-                    
-                    listOfVideos[category.sections[collectionView.tag].searchID!] = search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)
-                    
-                    
-                    videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
-                    
-                    
-                    
-                }
                 
                 
                 
