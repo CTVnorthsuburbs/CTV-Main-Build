@@ -67,8 +67,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
     }
+ 
     
-    
+ 
     
     @IBAction func buttonPressed(_ sender: AnyObject) {
         
@@ -93,6 +94,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+
+
     
     override func viewDidLoad() {
         
@@ -111,7 +114,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         var savedResults = [Video]()
         
-        let retrievedData = UserDefaults.standard.object(forKey: "SavedVideoSearchList") as? Data           //move all the search stuff out of the controller and into the search class
+        let retrievedData = UserDefaults.standard.object(forKey: "searchResults") as? Data           //move all the search stuff out of the controller and into the search class
         
         if( retrievedData != nil) {
             
@@ -159,13 +162,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     
             
                 
-            print("number of search results retrieved: \(searchResults.count)")
+            print("number of search results retrieved from saved data: \(searchResults.count)")
             
 
             
         } else {
             
-            print("video search called")
+            print("video search called!!")
             
             let videoSearch = VideoSearch()
             
@@ -190,7 +193,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     self.childView!.searchResults = self.searchResults
                     
                     self.myVideosChildView!.searchResults = self.searchResults
-                    print("number of search results retrieved: \(self.searchResults.count)")
+                    print("number of search results retrieved from url: \(self.searchResults.count)")
                     
 
                     

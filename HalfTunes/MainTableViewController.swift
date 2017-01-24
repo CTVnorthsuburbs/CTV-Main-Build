@@ -61,15 +61,36 @@ class MainTableViewController: UITableViewController {
     }
     
     
+    func loadSearch() {
+        
+print("load Search Called")
+     DispatchQueue.global(qos: .background).async {               //perform search list update in background
+    
 
+        
+  var searchResults = search.getRecent()
+    
+
+    let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
+    
+    let defaults = UserDefaults.standard
+    
+    defaults.set(myData, forKey: "SavedVideoSearchList")
+        
+        
+        
+
+        }
+        
+    }
     
     
     func refresh(sender:AnyObject) {
-        
-        
-        
+    
+    
+    
         DispatchQueue.global(qos: .background).async {
-            
+    
            
             
             
@@ -145,6 +166,9 @@ class MainTableViewController: UITableViewController {
                 
             }
         }
+        
+        
+        loadSearch()
         
     }
     

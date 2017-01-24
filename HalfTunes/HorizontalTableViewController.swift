@@ -374,9 +374,11 @@ class HorizontalTableViewController: UITableViewController {
                                     var vids = self.search.search(category.sections[index].searchID!)
                                     
                                     
-                                       vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
                                     
                                     self.listOfVideos[category.sections[index].searchID!] = vids
+                                    
+                                    vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+
                                     self.videos.append(vids)
                                     
                                 } else {
@@ -385,6 +387,8 @@ class HorizontalTableViewController: UITableViewController {
                                     print("calling search view will appear 2")
                                     
                                     var vids = self.search.search(category.sections[index].searchID!)
+                                    
+                                    
 
                                     self.listOfVideos[category.sections[index].searchID!] = vids
                                     
