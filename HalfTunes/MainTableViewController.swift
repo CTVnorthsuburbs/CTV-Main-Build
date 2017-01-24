@@ -19,7 +19,12 @@ var suggestedSearch : Section?
 var search = VideoSearch()
 
 
+
+
 class MainTableViewController: UITableViewController {
+    
+    
+    
     
     var parentCategory = featuredCategory
     
@@ -30,6 +35,8 @@ class MainTableViewController: UITableViewController {
     @IBOutlet var tableView1: UITableView!
     
     var vc: SlideShowViewController?
+    
+ 
     
     convenience init() {
         
@@ -54,18 +61,75 @@ class MainTableViewController: UITableViewController {
     }
     
     
-  
+
     
+    
+    func refresh(sender:AnyObject) {
+        
+        
+        
+        DispatchQueue.global(qos: .background).async {
+            
+           
+            
+            
+            DispatchQueue.main.async( execute: {
+                
+                
+                
+                self.embeddedViewController?.refreshTable()
+                
+
+             
+                
+                
+                self.setSliderImages()
+                
+                self.setSlides()
+                
+                
+          
+                
+                //self.generateCategories()
+                
+               // self.tableView.reloadData()
+                
+          
+                
+                
+                
+            })
+            
+            
+           self.refreshControl?.endRefreshing()
+            
+            
+                
+        
+        }
+        
+
+    
+        
+    }
+ 
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+    
         
         
+   
+            // Do any additional setup after loading the view, typically from a nib.
+            
         
-      
+       
         
         
         
@@ -77,10 +141,17 @@ class MainTableViewController: UITableViewController {
                 self.generateCategories()
                 
                 
+                
+                
             }
         }
         
     }
+    
+    
+ 
+    
+    
     
     
     func generateCategories() {
@@ -162,7 +233,7 @@ class MainTableViewController: UITableViewController {
            
         }
         
-        
+        refreshControl?.endRefreshing()
     }
     
     
@@ -275,7 +346,7 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    
+       var embeddedViewController: HorizontalTableViewController?
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -283,6 +354,13 @@ class MainTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         
+
+        
+   
+            if (segue.identifier == "embedSegue") {
+                
+                self.embeddedViewController = segue.destination as! HorizontalTableViewController
+            }
         
         
         

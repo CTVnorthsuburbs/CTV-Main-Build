@@ -47,11 +47,18 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
      //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
+      //  session.configuration.urlCache?.removeAllCachedResponses()
+    
+   
+        
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         return defaultSession
         
     }
+    
+    
     
     
     func getCategories() -> [Category] {
@@ -68,20 +75,22 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
      */
     
     func search(_ savedSearchID: Int)-> [Video] {
-        
+        //defaultSession.configuration.urlCache?.removeAllCachedResponses()
+
         searchResults.removeAll()
       
-        print("SEACH CALLED FOR \(savedSearchID)")
+      
         let session = getNSURLSession()
+     
+       
         
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
         
-        
-        
+ 
+
         
         let results = getSearchResults(defaultSession: session, url: searchUrl!, isIDSearchURL: false)
-        
-        
+     
         var originalResults = results
         
         if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
@@ -115,8 +124,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 for url in searchURLs {
                     
                     
-                  
-                    
                     getSearchResults(defaultSession: session, url: url, isIDSearchURL: true)
                     
                 }
@@ -127,7 +134,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         else {        //if array is smaller than maximum, just process it
             
             let searchIdURL =  convertIdArrayToSearchURL(results!)
-            
+          
         
             getSearchResults(defaultSession: session, url: searchIdURL!, isIDSearchURL: true)
             
@@ -139,8 +146,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         
      
-            
-            
+     
             
             //FIX TO maintain the result order by comparing to original id order. !!!!Very inefficient FIX!!
             
@@ -172,7 +178,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         }
         
         
-        print("sorted resutls returned from search.search() count: \(sortedSearchResults.count)")
+ 
         
         
         return sortedSearchResults
@@ -778,18 +784,20 @@ return video
         
         
         let semaphore = DispatchSemaphore(value: 0)
-        
-        print("get search results called")
-        
+   
         var dataTask: URLSessionDataTask
         
-        var results : [Int]?
+       
         
+        
+        var results : [Int]?
+       
        
         
         var complete = false
         
-        dataTask = defaultSession.dataTask(with: url, completionHandler: {
+    
+        dataTask = defaultSession.dataTask(with: url,  completionHandler: {
             
             data, response, error in
             
@@ -798,6 +806,8 @@ return video
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
             }
+            
+            
             
             if let error = error {
                 
@@ -836,16 +846,10 @@ return video
         })
         
         dataTask.resume()
+        
         semaphore.wait(timeout: .distantFuture)
         
-        
-       /*
-        while (results == nil && complete == false) {
-            
-            //wait till results are received
-        }
- 
- */
+
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -861,6 +865,7 @@ return video
         thumbnailResults.removeAll()
         
         let session = getNSURLSession()
+
         
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/thumbnails/\(savedSearchID)")
         
@@ -895,7 +900,7 @@ return video
         
         
         
-        dataTask = defaultSession.dataTask(with: url, completionHandler: {
+        dataTask = URLSession.shared.dataTask(with: url, completionHandler: {
             
             data, response, error in
             
@@ -1153,8 +1158,7 @@ return video
     
     
     fileprivate func updateSearchResults(_ data: Data?)-> Bool {
-        
-        //searchResults.removeAll()
+
         
         var json: [String: AnyObject]!
         
@@ -1209,8 +1213,7 @@ return video
                 
                 
             }
-            
-            
+           
             var date = convertStringToDate(dateString: show.date)
             
             if(VideosResult.show?.count != VideosResult.vod?.count) {
@@ -1224,7 +1227,8 @@ return video
                 
           
                 
-               
+         
+            
                     
                     
                     
