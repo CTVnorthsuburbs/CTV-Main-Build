@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 7/20/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+
 //
 
 import Foundation
@@ -28,6 +28,62 @@ public struct Videos: Decodable {
     }
     
 }
+
+
+
+
+public struct SlideShow: Decodable {
+    
+    public let slides: [Slides]?
+    
+  
+    
+    
+    public init?(json: JSON) {
+        
+       
+        var slides: [Slides]? = "slides" <~~ json
+        
+        self.slides = slides
+        
+        
+        
+    }
+    
+}
+
+
+
+public struct Slides: Decodable {
+    
+    public let title: String?
+    
+    public let category: String?
+    
+    public let searchID: String?
+    
+    public let imageURL: String?
+    
+    
+    public init?(json: JSON) {
+        
+        title = "title" <~~ json
+        
+         category = "category" <~~ json
+         searchID = "searchID" <~~ json
+         imageURL = "image" <~~ json
+        
+        
+        
+        
+        
+    }
+    
+}
+
+
+
+
 
 public struct VideosResult: Decodable {
     

@@ -21,7 +21,7 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 
 var returnImage:UIImage = UIImage()
 
-func returnImageUsingCacheWithURLString(url: NSURL) -> (UIImage) {
+func returnImageUsingCacheWithURLString(url: NSURL) -> UIImage? {
    
     // First check if there is an image in the cache
     if let cachedImage = imageCache.object(forKey: url) as? UIImage {
@@ -36,6 +36,16 @@ func returnImageUsingCacheWithURLString(url: NSURL) -> (UIImage) {
         
         
         let data = NSData(contentsOf: url as URL )
+        
+        if (data == nil) {
+            
+            print("image not found")
+            
+            
+            return nil
+            
+            
+        } else {
        
         if let downloadedImage = UIImage(data: data as! Data ){
             
@@ -47,10 +57,18 @@ func returnImageUsingCacheWithURLString(url: NSURL) -> (UIImage) {
                         
               
                         
-                    }
+        } else {
+            
+            
+            print("image not found")
+            
+            
+            return nil
+        }
         
             }
-            
+    }
+    
             
     
         

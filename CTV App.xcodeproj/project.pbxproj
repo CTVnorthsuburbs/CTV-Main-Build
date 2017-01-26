@@ -35,6 +35,7 @@
 		8D2431CC1D391F000024F1D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */; };
 		8D2431D01D391FF30024F1D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2431CF1D391FF30024F1D6 /* Assets.xcassets */; };
 		8D399C2A1DBFA2F2006C536E /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */; };
+		8D3F98D21E38FB4300CE9F7C /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F98D11E38FB4300CE9F7C /* Updater.swift */; };
 		8D401F2B1DD3883000AB1C5F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */; };
 		8D4085081DC8D02800B1ADB3 /* ThumbnailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4085071DC8D02800B1ADB3 /* ThumbnailButton.swift */; };
 		8D40850A1DC8F8B100B1ADB3 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */; };
@@ -101,6 +102,7 @@
 		8D2431CB1D391F000024F1D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D2431CF1D391FF30024F1D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
+		8D3F98D11E38FB4300CE9F7C /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		8D4085071DC8D02800B1ADB3 /* ThumbnailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailButton.swift; sourceTree = "<group>"; };
 		8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				8D63F2991D64B22900689693 /* VideoSearch.swift */,
+				8D3F98D11E38FB4300CE9F7C /* Updater.swift */,
 				D92117491B596E03008DAD44 /* Data Objects */,
 			);
 			name = DataSource;
@@ -477,6 +480,7 @@
 				8D6101561DDDF8C9007A3FC6 /* Category.swift in Sources */,
 				8DB4DA321DC2751900AD980B /* ThumbnailButtonCell.swift in Sources */,
 				8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */,
+				8D3F98D21E38FB4300CE9F7C /* Updater.swift in Sources */,
 				8D4C5EB81E268E01007246C1 /* CategoryButtonFactories.swift in Sources */,
 				8D5109B11D3931DD00CFFDAC /* MyVideosSearchViewController.swift in Sources */,
 				8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */,

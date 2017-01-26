@@ -3,7 +3,7 @@
 //  CTV App
 //
 //  Created by William Ogura on 1/11/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
+
 //
 
 import Foundation
@@ -715,7 +715,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         
         
-        
+        /*
         
         self.sliderImages = [#imageLiteral(resourceName: "santa-header"), #imageLiteral(resourceName: "slide-basketball-header"), #imageLiteral(resourceName: "slide-baskketball1-header"), #imageLiteral(resourceName: "slide-meeting-header")]
         
@@ -743,6 +743,8 @@ class featuredFactorySettings: CategoryFactorySettings {
         self.slides.append(slide3)
         
         self.slides.append(slide4)
+ 
+ */
         
         //   self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
