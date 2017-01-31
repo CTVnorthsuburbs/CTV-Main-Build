@@ -28,24 +28,13 @@ class SlideShowViewController: UIViewController {
     
     @IBOutlet weak var titleTextLabel: UILabel!
     
-    
-    
-    
-    
-    func setSlides(slides: [Slide]) {
-        
-        
-        
-        self.slides = slides
-        
-        
-        
-        
-        
-        
-    }
+
     
     func setSlider(slider: Section) {
+        
+        
+        
+        self.slides = slider.slides
         
         
         var images = slider.images as! [UIImage]
@@ -80,6 +69,7 @@ class SlideShowViewController: UIViewController {
             
         }
         
+      
         
     }
     
@@ -178,14 +168,14 @@ class SlideShowViewController: UIViewController {
         
         var slide = slide
         
-        
+    
         
         
         if(slide.slideType == ButtonType.category) {
             
             
          
-        
+        print("category slide selected \(slide.category?.categoryTitle)")
             
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
@@ -239,6 +229,8 @@ class SlideShowViewController: UIViewController {
         
         
         if(slide.slideType == ButtonType.page) {
+            
+            print("page slide seleted")
     
             var page = slide.page
             
@@ -358,7 +350,7 @@ class SlideShowViewController: UIViewController {
         
         if(slide.slideType == ButtonType.webPage) {
             
-            
+            print("webpage slide selected")
             
             /*
              
@@ -429,6 +421,8 @@ class SlideShowViewController: UIViewController {
         
         
         if(slide.slideType == ButtonType.video) {
+            
+            print("video slide selected")
             
             
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)

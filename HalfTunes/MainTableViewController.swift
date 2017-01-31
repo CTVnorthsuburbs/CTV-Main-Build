@@ -56,7 +56,7 @@ class MainTableViewController: UITableViewController {
         
         self.setSliderImages()
         
-        self.setSlides()
+       // self.setSlides()
         
        
     }
@@ -293,9 +293,11 @@ print("load Search Called")
 
         if(parentCategory.slider?.slides != nil) {
             
-            vc?.setSlides(slides: (self.parentCategory.slider?.slides)!)
+           // vc?.setSlides(slides: (self.parentCategory.slider?.slides)!)
             
         }
+        
+      
         
         
     }
@@ -303,11 +305,14 @@ print("load Search Called")
     
     func setSlider() {
         
-        
+        print("Set slide called")
         
         setSliderImages()
         
-        setSlides()
+      //  setSlides()
+        
+        
+        
         
     }
     
@@ -326,7 +331,7 @@ print("load Search Called")
             
         }
         
-        
+    
         
     }
     
@@ -335,6 +340,7 @@ print("load Search Called")
         category = self.parentCategory
         
         self.title = self.parentCategory.categoryTitle
+   
         
     }
     

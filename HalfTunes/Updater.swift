@@ -153,7 +153,7 @@ fileprivate func getNSURLSession() -> URLSession {
             
         }
         
-    return swimmingFactorySettings()
+    return soccerFactorySettings()
         
         
         
