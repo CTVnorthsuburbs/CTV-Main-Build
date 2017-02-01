@@ -189,6 +189,30 @@ class baseball: CategoryFactorySettings {
 }
 
 
+@objc(graduations)
+class graduations: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Graduations"
+        
+     
+        
+        self.recentSectionTitle = "Recent Graduations"
+        
+        self.recentSectionSearchID = 76916
+        
+        self.sliderImages = [#imageLiteral(resourceName: "mobile-grad-slide")]
+        
+        self.categoryOrder = [CategoryOrder.recent]
+        
+    }
+    
+}
+
 @objc(community)
 class community: CategoryFactorySettings {
     
@@ -661,7 +685,7 @@ class home: CategoryFactorySettings {
         
         super.init()
         
-        self.categoryTitle = "Featured Videos"
+        self.categoryTitle = "Home"
         
         self.popularSectionTitle = "New & Noteworthy"
         

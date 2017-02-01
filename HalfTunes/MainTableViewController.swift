@@ -50,23 +50,57 @@ class MainTableViewController: UITableViewController {
     
     func setCategory(newCategory: Category) {
         
+        
+        if(newCategory.categoryTitle == featuredCategory.categoryTitle) {
+            
+            
+          self.parentCategory = featuredCategory
+            
+            category = self.parentCategory
+            
+            
+        } else {
         self.parentCategory = newCategory
         
         category = self.parentCategory
         
+        }
         
-        print("category before setting is \(category.categoryTitle)")
+        
+    
+        
+        
+   
+        
+        
         self.setSlider()
         
-       // self.setSlides()
+    
         
        
     }
     
     
+    
+    func setSlider() {
+        
+        
+        var slider = parentCategory.getSlider()
+        
+        
+        
+        
+        
+        
+        
+        vc?.setSlider(slider: slider!)
+        
+    }
+    
+    
     func loadSearch() {
         
-print("load Search Called")
+
      DispatchQueue.global(qos: .background).async {               //perform search list update in background
     
 
@@ -107,17 +141,7 @@ print("load Search Called")
              self.update()
                 
                 
-         
-           
-                
-          
-                
-                //self.generateCategories()
-                
-               // self.tableView.reloadData()
-                
-          
-                
+       
                 
                 
             })
@@ -137,34 +161,49 @@ print("load Search Called")
     
     func update() {
         
+        
+     
+        
         print("UPDATE CALLED!!")
           var updatedSlider: Section?
        
+        
+       
+        
          DispatchQueue.global(qos: .background).async {
+            
+            
+            
+            
         updatedSlider = updater.getSlideShowUpdate()!
         
         if(updatedSlider != nil) {
             
-            for slide in (updatedSlider?.slides)! {
-                
-                
-                
-               // print("updataed slides \(slide.image)")
-            }
+              DispatchQueue.main.async {
             if(self.parentCategory.categoryTitle == featuredCategory.categoryTitle) {
                 
-                 DispatchQueue.main.async {
+               
+                    
+                    
+                    
                 self.parentCategory.slider = updatedSlider
                 
+                featuredCategory.slider = updatedSlider
                 
+                }
                 self.setSlider()
                 
+            
+                
+             
+        
+
                     
                 }
+         
             }
         }
-        
-        }
+       
         
         
     }
@@ -184,8 +223,7 @@ print("load Search Called")
    
             // Do any additional setup after loading the view, typically from a nib.
             
-       
-      
+ 
         
         DispatchQueue.global(qos: .background).async {
             
@@ -214,10 +252,7 @@ print("load Search Called")
         
 
     }
-    
-    
  
-    
     
     
     
@@ -303,23 +338,7 @@ print("load Search Called")
         
         
     
-    
-    func setSlider() {
-        
-     
-        var slider = category.getSlider()
-        
-        
-        
-        print("WHEN setslider is called from main table: \(slider?.images)")
-        
-        
-        
-        
-        
-                vc?.setSlider(slider: slider)
-        
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -387,10 +406,7 @@ print("load Search Called")
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        
 
-        
    
             if (segue.identifier == "embedSegue") {
                 

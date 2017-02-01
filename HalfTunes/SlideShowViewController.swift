@@ -12,7 +12,7 @@ import AVFoundation
 
 import Foundation
 
-class SlideShowViewController: UIViewController {
+class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     
@@ -27,43 +27,18 @@ class SlideShowViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var titleTextLabel: UILabel!
-    
 
-    
-    func setSlider(slider: Section?) {
+    func setSlider(slider: Section) {
         
-        var slider = slider
+       
         
+       self.slides = slider.slides
         
-        var images = [UIImage]()
+        var images = slider.images as! [UIImage]
         
-        print("set slider called!!!!")
-        
-        if(slider != nil) {
-            
-        
-        self.slides = slider?.slides
-        
-        print("NUmber \(self.slides?.count)")
-            
-        images = slider?.images as! [UIImage]
-            
-        } else if(slider == nil) {
-            
-            
-            print("SLIder is correctly received as nil")
-            
-            images.append( category.slider!.images.first!!)
-            
-            
-            
-            
-        }
-        
-        
-        
+   
         if(images.count > 0) {
-            
+          
             
             self.imageArray = images
         }
@@ -97,7 +72,59 @@ class SlideShowViewController: UIViewController {
         
     }
     
+    //used to reset slideshow movement timer when slideshow is manually scrolled
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        
+        
+       timer?.invalidate()
+        
+          timer = Timer.scheduledTimer(timeInterval: timerDelay, target: self, selector: "slideshowTick", userInfo: nil, repeats: true)
+        
+        
+    }
+        
+        
+        
+ 
+    
+    
+    func showLoadingOverlay() {
+        
+        
+        DispatchQueue.main.async( execute: {
+            
+            
+            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+        })
+        
+        
+    }
+    
+    
+    func dismissLoadingOverlay() {
+        
+        
+        
+        DispatchQueue.main.async( execute: {
+            
+            LoadingOverlay.shared.hideOverlayView()
+        })
+        
+        
+        
+        
+    }
+    
+    
+
+    
+    
+    
     override func viewDidLayoutSubviews() {
+        
+       
         
         // super.viewDidLoad()
         
@@ -114,13 +141,7 @@ class SlideShowViewController: UIViewController {
             let xPostion = self.view.frame.width * CGFloat(i)
             imageView.frame = CGRect(x: xPostion, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height )
             
-            
-            // imageView.frame = CGRect(x: xPostion ,y: 0, width: self.view.frame.width,height: self.view.frame.height)
-            
-            //    imageView.frame = AVMakeRect(aspectRatio: (imageView.image?.size)!, insideRect: imageView.bounds)
-            
-            
-            
+
             mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i + 1)
             
             mainScrollView.addSubview(imageView)
@@ -138,29 +159,36 @@ class SlideShowViewController: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapImage(_:)))
         mainScrollView.addGestureRecognizer(gestureRecognizer)
         
+ mainScrollView.delegate = self
+        
+        
     }
     
+    
+    
 
+    
+    
     
     public func didTapImage(_ sender: UITapGestureRecognizer) {
         
         
+  
+        
         
         var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
-        
-        
+     
         if(slides != nil) {
             
             
             for slide in slides! {
                 
-                
+              
                 if (imageArray[page] == slide.image) {
                     
                     
                     
-                    
-                    print("Slide \(slide.title)")
+                   
                     
                     
                     self.slideAction(slide: slide)
@@ -172,18 +200,7 @@ class SlideShowViewController: UIViewController {
             
         }
         
-        /* if (slides?[page] != nil) {
-         
-         
-         
-         print(slides?[page].title)
-         
-         
-         }
-         
-         */
-        
-        
+
         
         
     }
@@ -191,10 +208,11 @@ class SlideShowViewController: UIViewController {
     
     func slideAction(slide: Slide) {
         
+       
         
         
         
-    print("Slide action called")
+   
         
         
         if(slide.slideType == ButtonType.category) {
@@ -204,31 +222,13 @@ class SlideShowViewController: UIViewController {
                 
             category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
             
-            
-            
-            //  category = (button?.category)!
-            
-            
-            
-            
-            //  previousCategory = category
-            
-            // featured = false
-            
-            
-            
-            
-            //  let viewController = MainTableViewController(category: (button?.category)!)
-            
-            
+ 
             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
             
             vc.setCategory(newCategory: (category))
             
             vc.setSlider()
-            //   currentCategory = category
-            
-            // self.navigationController?.pushViewController(vc, animated:true)
+      
             
             
             
@@ -258,6 +258,8 @@ class SlideShowViewController: UIViewController {
             
             
             vc.title = slide.title
+            
+    
             
             
             self.parent?.navigationController?.pushViewController(vc, animated:true)
@@ -632,4 +634,8 @@ func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, did
     }
     
 }
+
+
+
+
 

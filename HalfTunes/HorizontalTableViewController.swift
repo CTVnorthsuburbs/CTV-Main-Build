@@ -369,7 +369,7 @@ class HorizontalTableViewController: UITableViewController {
                                 if(category.sections[index].getDisplayCount() == nil) {
 
                                     
-                                    print("calling searchf from view will appear 1")
+                                  //  print("calling search from view will appear 1")
                                     
                                     var vids = self.search.search(category.sections[index].searchID!)
                                     
@@ -384,7 +384,7 @@ class HorizontalTableViewController: UITableViewController {
                                 } else {
                                     
                                     
-                                    print("calling search view will appear 2")
+                                //    print("calling search view will appear 2")
                                     
                                     var vids = self.search.search(category.sections[index].searchID!)
                                     

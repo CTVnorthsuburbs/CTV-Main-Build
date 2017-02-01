@@ -694,7 +694,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7f-6h-jH6">
-                                            <rect key="frame" x="8" y="8" width="258" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="258" height="20"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1062,7 +1062,7 @@
                             <outlet property="delegate" destination="mBe-2v-0ic" id="ohU-g6-Xo5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="AVP-Sh-0yg" userLabel="Featured Videos">
+                    <navigationItem key="navigationItem" title="Home" id="AVP-Sh-0yg" userLabel="Home">
                         <barButtonItem key="leftBarButtonItem" title="Categories" id="sCL-5L-xew">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -1509,7 +1509,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="73C-lE-TT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-MW-DGo">
@@ -1673,7 +1673,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Home" id="vJp-dt-RHG" userLabel="Featured Videos">
+                    <navigationItem key="navigationItem" title="Home" id="vJp-dt-RHG" userLabel="Home">
                         <barButtonItem key="backBarButtonItem" title="Back" style="plain" id="mjg-eC-WIu">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -1709,9 +1709,9 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yMg-rn-3an"/>
+        <segue reference="Hpx-XP-cwh"/>
+        <segue reference="rnq-VC-yil"/>
         <segue reference="uHP-YP-F5R"/>
         <segue reference="2XC-rQ-lli"/>
-        <segue reference="rnq-VC-yil"/>
     </inferredMetricsTieBreakers>
 </document>
