@@ -133,11 +133,44 @@ class Updater {
         
         slideShow = [Slide]()
         
+
+        for slide in updateResults.slides! {
+            
+            
+            
+            if(slide.webURL != nil) {
+            print(slide.webURL!)
+                
+            }
+        }
+        
         for slide in updateResults.slides! {
             
             let thumbnailURL = NSURL(string: "\(slideShowImageURL)\(slide.imageURL!)")
             
+            
+            var webURL: URL?
+            
+            
+            
+            var categoryType = getSlideType(slide: slide)
+            
+            var videoID = getVideoID(slide: slide)
+            
+            
+            if(slide.webURL != nil) {
+                
+                webURL = URL(string: (slide.webURL)!)
+                
+            }
+       
             let image = search.getThumbnail(url: thumbnailURL!)
+            
+            
+             let slideCategory  = checkCategory(string: slide.category!)
+            
+            
+            
             
             if(image == nil) {
                 
@@ -146,20 +179,17 @@ class Updater {
             } else {
                 
                 
-                
-                let slideCategory  = checkCategory(string: slide.category!)
-                
-                if(slideCategory != nil) {
+     
                     
                     images.append(image!)
           
-                    let slide = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: slideCategory, image:image, title: slide.title, webURL: nil)
+                    let slide = Slide(slideType: categoryType, searchID: nil, videoList: videoID, page: nil, category: slideCategory, image:image, title: slide.title, webURL: webURL)
                 
                     slideShow.append(slide)
                 
                 }
                 
-            }
+            
             
         }
         
@@ -170,6 +200,40 @@ class Updater {
             self.slideSection?.addSlide(slide: slide)
             
         }
+        
+    }
+    
+    fileprivate func getVideoID(slide: Slides?) -> Int? {
+        
+        return slide?.videoID
+        
+        
+        
+    }
+    
+    fileprivate func getSlideType(slide: Slides?) -> ButtonType {
+        
+        if(slide?.slideType == "webPage") {
+            
+            
+        
+            return ButtonType.webPage
+            
+            
+            
+        } else {
+            
+            
+            if(slide?.slideType == "video") {
+                
+                
+                
+                return ButtonType.video
+            }
+            
+            return ButtonType.category
+        }
+        
         
     }
     

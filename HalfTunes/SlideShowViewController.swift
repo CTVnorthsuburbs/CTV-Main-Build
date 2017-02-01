@@ -30,7 +30,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
 
     func setSlider(slider: Section) {
         
-       
+       imageArray = [UIImage]()
         
        self.slides = slider.slides
         
@@ -118,19 +118,24 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-
+    override func viewDidLoad() {
+        
+        
+        imageArray = [#imageLiteral(resourceName: "placeholder-header")]
+       
+    }
     
     
     
     override func viewDidLayoutSubviews() {
         
-       
+      //
         
         // super.viewDidLoad()
         
         mainScrollView.frame = view.frame
         
-        imageArray = [#imageLiteral(resourceName: "placeholder-header")]
+      // imageArray = [#imageLiteral(resourceName: "placeholder-header")]
         
         for i in  0..<imageArray.count {
             
@@ -189,9 +194,9 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
                     
                     
                    
-                    
-                    
                     self.slideAction(slide: slide)
+                    
+                    
                 }
                 
                 
@@ -211,7 +216,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
        
         
         
-        
+
    
         
         
@@ -407,7 +412,6 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             
             
-            
             self.navigationController?.pushViewController(vc, animated:true)
             
             
@@ -475,7 +479,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             var search = VideoSearch()
             
-            var video  = search.searchForSingle((slide.videoList?.first)!)
+            var video  = search.searchForSingle((slide.videoList)!)
             
             
             

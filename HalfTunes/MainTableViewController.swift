@@ -163,8 +163,7 @@ class MainTableViewController: UITableViewController {
         
         
      
-        
-        print("UPDATE CALLED!!")
+    
           var updatedSlider: Section?
        
         

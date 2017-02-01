@@ -654,7 +654,7 @@ class Slide {
     
     var searchID: Int?
     
-    var videoList: [Int]?
+    var videoList: Int?
     
     var page: String?
     
@@ -666,7 +666,7 @@ class Slide {
     
     var webURL: URL?
     
-    init(slideType: ButtonType?, searchID: Int?, videoList: [Int]?, page: String?, category: CategoryFactorySettings?, image: UIImage?, title: String?, webURL: URL?) {
+    init(slideType: ButtonType?, searchID: Int?, videoList: Int?, page: String?, category: CategoryFactorySettings?, image: UIImage?, title: String?, webURL: URL?) {
         
         self.slideType = slideType
         

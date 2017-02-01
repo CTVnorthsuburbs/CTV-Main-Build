@@ -213,6 +213,31 @@ class graduations: CategoryFactorySettings {
     
 }
 
+
+@objc(parades)
+class parades: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Parades"
+        
+        
+        
+        self.recentSectionTitle = "Recent Parades"
+        
+        self.recentSectionSearchID = 76916
+        
+        self.sliderImages = [#imageLiteral(resourceName: "mobile-roseparade")]
+        
+        self.categoryOrder = [CategoryOrder.recent]
+        
+    }
+    
+}
+
 @objc(community)
 class community: CategoryFactorySettings {
     
