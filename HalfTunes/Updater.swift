@@ -16,311 +16,190 @@ class Updater {
     
     var slideShow = [Slide]()
     
+    let slideShowImageURL = "http://www.ctv15.org/mobile_app/"
     
     var slideSection: Section?
     
     var search = VideoSearch()
-    
-    
 
-
-let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-
-
-// This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
-
-
-
-/// Creates the NSURL session necessary to download content from remote URL.
-
-fileprivate func getNSURLSession() -> URLSession {
-    
-    //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-    
-    //  session.configuration.urlCache?.removeAllCachedResponses()
-    
-    
-    
-    
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    
-    return defaultSession
-    
-}
-
-
-
-
- func getSlideShowUpdate() -> Section? {
-    
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-    
-    let semaphore = DispatchSemaphore(value: 0)
-    
-    var dataTask: URLSessionDataTask
-    
-    
-    
-      var url = URL(string: "http://www.ctv15.org/mobile_app/slider.json")
-  
 
+    // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
+
+    /// Creates the NSURL session necessary to download content from remote URL.
     
-    
-    dataTask = defaultSession.dataTask(with: url!,  completionHandler: {
+    fileprivate func getNSURLSession() -> URLSession {
         
-        data, response, error in
+        //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
-        DispatchQueue.main.async {
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            
-        }
+        //  session.configuration.urlCache?.removeAllCachedResponses()
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
+        return defaultSession
         
+    }
+
+    func getSlideShowUpdate() -> Section? {
         
-        if let error = error {
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        var dataTask: URLSessionDataTask
+
+        let url = URL(string: "http://www.ctv15.org/mobile_app/slider.json")
+
+        dataTask = defaultSession.dataTask(with: url!,  completionHandler: {
             
-            print(error.localizedDescription)
+            data, response, error in
             
-        } else if let httpResponse = response as? HTTPURLResponse {
-            
-            if httpResponse.statusCode == 200 {
+            DispatchQueue.main.async {
                 
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
-                    
-                   self.updateSearchResults(data)
-                    
-                    
-                
-            } else {
-                
-                
-                
-                //  self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
-                
-                
-                print("!!!!!!!!!!!!!!!!!!!")
-                
-             
             }
             
-        }
-        semaphore.signal()
-    })
-    
-    dataTask.resume()
-    
-    semaphore.wait(timeout: .distantFuture)
-    
-    
-    
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    
-   return slideSection
-    
-}
-
-    
-    func checkCategory(string: String) -> CategoryFactorySettings {
+            if let error = error {
+                
+                print(error.localizedDescription)
+                
+            } else if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode == 200 {
+                    
+                    self.updateSearchResults(data)
+                    
+                } else {
+                    
+                    print("!!!!!!!!!!!!!!!!!!!")
+                    
+                }
+                
+            }
+            
+            semaphore.signal()
+            
+        })
         
+        dataTask.resume()
         
-        if(string == "volleyball") {
-            
-            return volleyballFactorySettings()
-            
-            
-            
-            
-        }
+        semaphore.wait(timeout: .distantFuture)
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
-        if(string == "basketball") {
-            
-            return basketballFactorySettings()
-            
-            
-            
-            
-        }
-        
-        
-        if(string == "swimming") {
-            
-            return swimmingFactorySettings()
-            
-            
-            
-            
-        }
-        
-    return soccerFactorySettings()
-        
-        
+        return slideSection
         
     }
     
+    /*
+     
+     var slideType: ButtonType?
+     
+     var searchID: Int?
+     
+     var videoList: [Int]?
+     
+     var page: String?
+     
+     var category: CategoryFactorySettings?
+     
+     var image: UIImage?
+     
+     var title: String?
+     
+     var webURL: URL?
+     
+     */
     
-    
+    func checkCategory(string: String) -> CategoryFactorySettings? {
+  
+        let factory = NSClassFromString(string) as? CategoryFactorySettings.Type
+
+        let factory1 = factory?.init()
+        
+        if(factory1 != nil) {
+            
+            return factory1
+        }
+
+        return nil
+        
+    }
     
     func updateSlideShow(updateResults: SlideShow) {
         
-        
         var images = [UIImage]()
         
+        slideShow = [Slide]()
         
         for slide in updateResults.slides! {
             
+            let thumbnailURL = NSURL(string: "\(slideShowImageURL)\(slide.imageURL!)")
             
-            
-            
-            var thumbnailURL = NSURL(string: "http://www.ctv15.org/mobile_app/\(slide.imageURL!)")
-            
-            
-            var image = search.getThumbnail(url: thumbnailURL!)
+            let image = search.getThumbnail(url: thumbnailURL!)
             
             if(image == nil) {
-                
-                
                 
                 print("Image for slide unavailable")
                 
             } else {
                 
-                images.append(image!)
                 
                 
+                let slideCategory  = checkCategory(string: slide.category!)
                 
-                var slideCategory  = checkCategory(string: slide.category!)
+                if(slideCategory != nil) {
+                    
+                    images.append(image!)
+          
+                    let slide = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: slideCategory, image:image, title: slide.title, webURL: nil)
                 
-                var slide = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: slideCategory, image:image, title: slide.title, webURL: nil)
+                    slideShow.append(slide)
                 
-                
-                slideShow.append(slide)
-                
+                }
                 
             }
             
-            
         }
-        
-        
         
         self.slideSection = Section(sectionType: SectionType.slider, sectionTitle: "SlideShow", searchID: 000, videoList: nil, buttons: nil, displayCount: nil, images: images, sectionPlaylist: nil)
         
-        
         for slide in slideShow {
-            
-            
-            
             
             self.slideSection?.addSlide(slide: slide)
             
+        }
+        
+    }
+    
+    fileprivate func updateSearchResults(_ data: Data?)-> Bool {
+        
+        var json: [String: AnyObject]!
+        
+        
+        do {
             
+            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+            
+        } catch {
+            
+            print(error)
             
         }
         
-        
-        
-        
-    }
-
-fileprivate func updateSearchResults(_ data: Data?)-> Bool {
-    
-    
-    var json: [String: AnyObject]!
-    
-    
-    do {
-        
-        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
-        
-    } catch {
-        
-        print(error)
-        
-    }
-    
-    guard let updateResults = SlideShow(json: json) else {
-        
-        return false
-        
-    }
-    
-    
-    updateSlideShow(updateResults: updateResults)
-    
-    
-    
-
-
-    /*
-    for result in updateResults.slideShow {
-        
-        
-        
-        
-        
-        guard let slide = Slides(json: result as! JSON) else {
-            
-            
-            print("no itmes")
-            
+        guard let updateResults = SlideShow(json: json) else {
             
             return false
+            
         }
         
+        updateSlideShow(updateResults: updateResults)
         
         
-    }
-*/
-    
-    
-    /*
-    
-    guard let results = YoutubeVideo(json: json) else {
-        
-        return false
-    }
-    
-    
-    //  print(results)
-    //  var thumbnail = result
-    
-    
-    
-    for result in results.items! {
-        
-        
-        
-        
-        
-        guard let snippet = YoutubeItems(json: result as! JSON) else {
-            
-            
-            print("no itmes")
-            
-            
-            return false
-        }
-        
-        
+        return true
         
     }
-    
-   
-    */
-    
- 
-    
-    
-
-    
-    
-    
-    
-    
-    return true
     
 }
 
-}

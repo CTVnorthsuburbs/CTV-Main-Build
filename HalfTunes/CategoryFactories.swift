@@ -11,11 +11,11 @@ import Foundation
 import UIKit
 
 
-
-class teenFactorySettings: CategoryFactorySettings {
+@objc(teens)
+class teens: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -79,11 +79,11 @@ class teenFactorySettings: CategoryFactorySettings {
     
 }
 
-
-class ctvYouTubeFactorySettings: CategoryFactorySettings {
+@objc(ctvYoutube)
+class ctvYoutube: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -149,12 +149,12 @@ class ctvYouTubeFactorySettings: CategoryFactorySettings {
 
 
 
+@objc(baseball)
 
-
-class baseballFactorySettings: CategoryFactorySettings {
+class baseball: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -189,11 +189,11 @@ class baseballFactorySettings: CategoryFactorySettings {
 }
 
 
-
-class communityFactorySettings: CategoryFactorySettings {
+@objc(community)
+class community: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -218,11 +218,11 @@ class communityFactorySettings: CategoryFactorySettings {
 }
 
 
-
-class programsFactorySettings: CategoryFactorySettings {
+@objc(programs)
+class programs: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -261,11 +261,11 @@ class programsFactorySettings: CategoryFactorySettings {
 
 
 
-
-class footballFactorySettings: CategoryFactorySettings {
+@objc(football)
+class football: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -292,11 +292,12 @@ class footballFactorySettings: CategoryFactorySettings {
     
 }
 
+@objc(volleyball)
 
-class volleyballFactorySettings: CategoryFactorySettings {
+class volleyball: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -323,10 +324,12 @@ class volleyballFactorySettings: CategoryFactorySettings {
     
 }
 
-class basketballFactorySettings: CategoryFactorySettings {
+@objc(basketball)
+
+class basketball: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -353,6 +356,8 @@ class basketballFactorySettings: CategoryFactorySettings {
         
         self.sliderImages = [#imageLiteral(resourceName: "basketball-header")]
         
+        
+     
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
         
         
@@ -361,10 +366,12 @@ class basketballFactorySettings: CategoryFactorySettings {
     
 }
 
-class soccerFactorySettings: CategoryFactorySettings {
+@objc(soccer)
+
+class soccer: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -391,11 +398,12 @@ class soccerFactorySettings: CategoryFactorySettings {
     
 }
 
+@objc(hockey)
 
-class hockeyFactorySettings: CategoryFactorySettings {
+class hockey: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -443,10 +451,12 @@ class hockeyFactorySettings: CategoryFactorySettings {
     
 }
 
-class swimmingFactorySettings: CategoryFactorySettings {
+@objc(swimming)
+
+class swimming: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -473,10 +483,12 @@ class swimmingFactorySettings: CategoryFactorySettings {
     
 }
 
-class softballFactorySettings: CategoryFactorySettings {
+@objc(softball)
+
+class softball: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -503,10 +515,12 @@ class softballFactorySettings: CategoryFactorySettings {
     
 }
 
-class lacrosseFactorySettings: CategoryFactorySettings {
+@objc(lacrosse)
+
+class lacrosse: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -529,11 +543,12 @@ class lacrosseFactorySettings: CategoryFactorySettings {
     
 }
 
+@objc(gymnastics)
 
-class gymnasticsFactorySettings: CategoryFactorySettings {
+class gymnastics: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -558,10 +573,12 @@ class gymnasticsFactorySettings: CategoryFactorySettings {
     
 }
 
-class meetingsFactorySettings: CategoryFactorySettings {
+@objc(meetings)
+
+class meetings: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -635,11 +652,12 @@ class meetingsFactorySettings: CategoryFactorySettings {
     
 }
 
+@objc(home)
 
-class featuredFactorySettings: CategoryFactorySettings {
+class home: CategoryFactorySettings {
     
     
-    override init() {
+    required init() {
         
         super.init()
         
@@ -699,18 +717,24 @@ class featuredFactorySettings: CategoryFactorySettings {
         self.buttons.append(Button(factory:swimmingButtonFactory()))
         
         
-        self.buttonsSecondSectionType = SectionType.buttonNoTitle
+        self.buttonsSecondSectionType = SectionType.buttonWithTitle
+        
+        self.buttonsSecondTitle = "Browse By"
+        
+        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
+        
         self.buttonsSecond.append(Button(factory:teenButtonFactory()))
+        
         self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:ctvYouTubeButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:programsButtonFactory()))
-        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
+      
         self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
         
         
@@ -748,7 +772,7 @@ class featuredFactorySettings: CategoryFactorySettings {
         
         //   self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.buttonSecond, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
         
     }
     

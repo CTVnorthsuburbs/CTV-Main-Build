@@ -287,7 +287,7 @@ class MyVideosSearchViewController: MyVideosViewController {
                         if(selectedVideo.fileName == 1) {
                             
                             
-                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                             
                             
                             
@@ -301,7 +301,7 @@ class MyVideosSearchViewController: MyVideosViewController {
                         } else {
                             
                             
-                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+                            var sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
                             
                             
                             sections.createListing()

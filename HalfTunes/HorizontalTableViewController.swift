@@ -1462,9 +1462,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 DispatchQueue.global(qos: .userInitiated).async {
                     
                     
-                    
-                    // Do heavy work here
-                    
+                 
                     
                     
                     

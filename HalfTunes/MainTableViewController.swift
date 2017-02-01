@@ -9,9 +9,9 @@
 import UIKit
 
 
-var category = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+var category = Category(categoryFactory: CategoryFactory(factorySettings: home()))
 
-var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings: home()))
 
 var suggestedSearch : Section?
 
@@ -20,12 +20,12 @@ var search = VideoSearch()
 
 
 
-
+  var updater = Updater()
 class MainTableViewController: UITableViewController {
     
   
     
-      var updater = Updater()
+    
     
     var parentCategory = featuredCategory
     
@@ -54,7 +54,9 @@ class MainTableViewController: UITableViewController {
         
         category = self.parentCategory
         
-        self.setSliderImages()
+        
+        print("category before setting is \(category.categoryTitle)")
+        self.setSlider()
         
        // self.setSlides()
         
@@ -106,7 +108,7 @@ print("load Search Called")
                 
                 
          
-                
+           
                 
           
                 
@@ -135,15 +137,20 @@ print("load Search Called")
     
     func update() {
         
-        
+        print("UPDATE CALLED!!")
           var updatedSlider: Section?
        
          DispatchQueue.global(qos: .background).async {
-        updatedSlider = self.updater.getSlideShowUpdate()!
+        updatedSlider = updater.getSlideShowUpdate()!
         
         if(updatedSlider != nil) {
             
-            
+            for slide in (updatedSlider?.slides)! {
+                
+                
+                
+               // print("updataed slides \(slide.image)")
+            }
             if(self.parentCategory.categoryTitle == featuredCategory.categoryTitle) {
                 
                  DispatchQueue.main.async {
@@ -259,7 +266,7 @@ print("load Search Called")
                         
                     }
                     
-                  //  search.getThumbnail(id: (vid.first?.fileName)!)
+                 
                     categoriesVideos.append(vid.first!)
                     
                 }
@@ -288,50 +295,29 @@ print("load Search Called")
     }
     
     
-    func setSlides() {
-        
 
-        if(parentCategory.slider?.slides != nil) {
-            
-           // vc?.setSlides(slides: (self.parentCategory.slider?.slides)!)
-            
-        }
-        
-      
+    
+    
+  
+
         
         
-    }
     
     
     func setSlider() {
         
-        print("Set slide called")
-        
-        setSliderImages()
-        
-      //  setSlides()
-        
-        
-        
-        
-    }
-    
-    func setSliderImages() {
-        
      
-        var slider = self.parentCategory.getSlider()
+        var slider = category.getSlider()
         
-        if(slider != nil) {
-            
-            if((slider!.images.count) > 0) {
-                
-                vc?.setSlider(slider: slider!)
-                
-            }
-            
-        }
         
-    
+        
+        print("WHEN setslider is called from main table: \(slider?.images)")
+        
+        
+        
+        
+        
+                vc?.setSlider(slider: slider)
         
     }
     
@@ -346,7 +332,7 @@ print("load Search Called")
     
     override func viewDidLayoutSubviews() {
 
-   self.setSlider()
+  // self.setSlider()
         
     }
     

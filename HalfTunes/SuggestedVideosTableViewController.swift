@@ -223,7 +223,7 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 if(selectedVideo.fileName == 1) {
                     
-                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                     
                     sections.createListing()
                     

@@ -484,7 +484,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     if(selectedVideo.fileName == 1) {
                         
                         
-                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                         
                         
                         
@@ -498,7 +498,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     } else {
                         
                         
-                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings()))
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
                         
                         
                         sections.createListing()

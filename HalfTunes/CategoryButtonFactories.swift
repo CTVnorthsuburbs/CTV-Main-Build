@@ -59,7 +59,7 @@ class programsButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: programs()))
         
     }
     
@@ -85,7 +85,7 @@ class communityButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: community()))
         
     }
     
@@ -107,7 +107,7 @@ class meetingsButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: meetingsFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: meetings()))
         
     }
     
@@ -400,7 +400,7 @@ class baseballButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: baseball()))
         
     }
     
@@ -422,7 +422,7 @@ class basketballButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketball()))
         
     }
     
@@ -518,7 +518,7 @@ class teenButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
         
         
         
@@ -542,7 +542,7 @@ class ctvYouTubeButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: ctvYouTubeFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: ctvYoutube()))
         
         
         
@@ -569,7 +569,7 @@ class footballButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: football()))
         
         
         
@@ -595,7 +595,7 @@ class hockeyButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: hockey()))
         
         
         
@@ -645,7 +645,7 @@ class volleyballButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: volleyball()))
         
     }
     
@@ -689,7 +689,7 @@ class soccerButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: soccer()))
         
     }
     
@@ -711,7 +711,7 @@ class swimmingButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: swimming()))
         
     }
     

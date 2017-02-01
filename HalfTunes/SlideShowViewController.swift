@@ -30,20 +30,44 @@ class SlideShowViewController: UIViewController {
     
 
     
-    func setSlider(slider: Section) {
+    func setSlider(slider: Section?) {
+        
+        var slider = slider
         
         
+        var images = [UIImage]()
         
-        self.slides = slider.slides
+        print("set slider called!!!!")
+        
+        if(slider != nil) {
+            
+        
+        self.slides = slider?.slides
+        
+        print("NUmber \(self.slides?.count)")
+            
+        images = slider?.images as! [UIImage]
+            
+        } else if(slider == nil) {
+            
+            
+            print("SLIder is correctly received as nil")
+            
+            images.append( category.slider!.images.first!!)
+            
+            
+            
+            
+        }
         
         
-        var images = slider.images as! [UIImage]
         
         if(images.count > 0) {
             
             
             self.imageArray = images
         }
+        
         
         
         for i in  0..<imageArray.count {
@@ -116,6 +140,7 @@ class SlideShowViewController: UIViewController {
         
     }
     
+
     
     public func didTapImage(_ sender: UITapGestureRecognizer) {
         
@@ -125,6 +150,8 @@ class SlideShowViewController: UIViewController {
         
         
         if(slides != nil) {
+            
+            
             for slide in slides! {
                 
                 
@@ -166,21 +193,14 @@ class SlideShowViewController: UIViewController {
         
         
         
-        var slide = slide
         
-    
+    print("Slide action called")
         
         
         if(slide.slideType == ButtonType.category) {
             
             
-         
-        print("category slide selected \(slide.category?.categoryTitle)")
-            
-            LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
-            
-            
-            DispatchQueue.global(qos: .userInitiated).async {
+   
                 
             category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
             
@@ -205,7 +225,7 @@ class SlideShowViewController: UIViewController {
             
             vc.setCategory(newCategory: (category))
             
-            
+            vc.setSlider()
             //   currentCategory = category
             
             // self.navigationController?.pushViewController(vc, animated:true)
@@ -216,12 +236,9 @@ class SlideShowViewController: UIViewController {
                 
                 
             
-                DispatchQueue.main.async( execute: {
-                    
-                    LoadingOverlay.shared.hideOverlayView()
-                })
+            
                 
-            }
+            
             
             
         }

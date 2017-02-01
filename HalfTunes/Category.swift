@@ -12,7 +12,7 @@ import UIKit
 
 
 
-var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: featuredFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: baseballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: basketballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: communityFactorySettings())),  Category(categoryFactory: CategoryFactory(factorySettings: footballFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: gymnasticsFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: hockeyFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosseFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: programsFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: soccerFactorySettings())),Category(categoryFactory: CategoryFactory(factorySettings: softballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: swimmingFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: teenFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: volleyballFactorySettings())), Category(categoryFactory: CategoryFactory(factorySettings: ctvYouTubeFactorySettings())) ]
+var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: home())), Category(categoryFactory: CategoryFactory(factorySettings: baseball())), Category(categoryFactory: CategoryFactory(factorySettings: basketball())),Category(categoryFactory: CategoryFactory(factorySettings: community())),  Category(categoryFactory: CategoryFactory(factorySettings: football())),Category(categoryFactory: CategoryFactory(factorySettings: gymnastics())), Category(categoryFactory: CategoryFactory(factorySettings: hockey())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosse())),Category(categoryFactory: CategoryFactory(factorySettings: programs())),Category(categoryFactory: CategoryFactory(factorySettings: soccer())),Category(categoryFactory: CategoryFactory(factorySettings: softball())), Category(categoryFactory: CategoryFactory(factorySettings: swimming())), Category(categoryFactory: CategoryFactory(factorySettings: teens())), Category(categoryFactory: CategoryFactory(factorySettings: volleyball())), Category(categoryFactory: CategoryFactory(factorySettings: ctvYoutube())) ]
 
 enum CategorySearches: Int {
     
@@ -78,7 +78,11 @@ enum VideoType {
 }
 
 
-class CategoryFactorySettings {
+class CategoryFactorySettings: NSObject {
+    
+    required override init() {
+        
+    }
     
     var categoryTitle: String?
     
@@ -757,6 +761,12 @@ class Section {
         }
         
         return nil
+        
+    }
+    
+    func getCategoryImage() -> UIImage {
+        
+        return images.first!!
         
     }
     
