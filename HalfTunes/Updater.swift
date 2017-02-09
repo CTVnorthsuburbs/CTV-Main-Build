@@ -48,7 +48,7 @@ class Updater {
         
         var dataTask: URLSessionDataTask
 
-        let url = URL(string: "http://www.ctv15.org/mobile_app/slider.json")
+        let url = URL(string: "http://www.ctv15.org/mobile_app/textForm/formdata.txt")
 
         dataTask = defaultSession.dataTask(with: url!,  completionHandler: {
             
@@ -127,24 +127,17 @@ class Updater {
         
     }
     
-    func updateSlideShow(updateResults: SlideShow) {
+    func updateSlideShow(updateResults: [Slides]) {
+        
+        
         
         var images = [UIImage]()
         
         slideShow = [Slide]()
         
 
-        for slide in updateResults.slides! {
-            
-            
-            
-            if(slide.webURL != nil) {
-            print(slide.webURL!)
-                
-            }
-        }
-        
-        for slide in updateResults.slides! {
+ 
+        for slide in updateResults {
             
             let thumbnailURL = NSURL(string: "\(slideShowImageURL)\(slide.imageURL!)")
             
@@ -239,12 +232,14 @@ class Updater {
     
     fileprivate func updateSearchResults(_ data: Data?)-> Bool {
         
-        var json: [String: AnyObject]!
+        
+        
+        var json: [[String: AnyObject]]!
         
         
         do {
             
-            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [[String: AnyObject]]
             
         } catch {
             
@@ -252,13 +247,34 @@ class Updater {
             
         }
         
-        guard let updateResults = SlideShow(json: json) else {
+        print(json)
+        
+        var updateResults = [Slides]()
+        
+        for result in json {
+           
             
-            return false
+            updateResults.append(Slides(json: result)!)
+            
+          
             
         }
         
+        
+        
+        /*
+        guard let updateResults = SlideShow(json: json) else {
+         
+            return false
+         
+        }
+ 
+ */
+        
         updateSlideShow(updateResults: updateResults)
+ 
+       
+        
         
         
         return true

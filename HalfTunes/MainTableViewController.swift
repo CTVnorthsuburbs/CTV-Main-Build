@@ -174,7 +174,16 @@ class MainTableViewController: UITableViewController {
             
             
             
-        updatedSlider = updater.getSlideShowUpdate()!
+            do { updatedSlider = try updater.getSlideShowUpdate()
+                
+                
+            }
+            
+            catch {
+                print(error.localizedDescription)
+            }
+                
+            
         
         if(updatedSlider != nil) {
             

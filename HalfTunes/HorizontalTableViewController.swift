@@ -544,7 +544,7 @@ class HorizontalTableViewController: UITableViewController {
                 section.displayCount = 15
                 
             }
-            if(section.displayCount != nil) {
+            if(section.displayCount != nil && videos[indexPath.section] != nil) {
                 
                 if(section.displayCount! >  videos[indexPath.section].count) {
                     
