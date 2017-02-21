@@ -60,7 +60,7 @@ public struct Slides: Decodable {
     
     public let category: String?
     
-    public let searchID: String?
+
     
     public let imageURL: String?
     
@@ -70,6 +70,8 @@ public struct Slides: Decodable {
     
     public let videoID: Int?
     
+    public let page: String?
+    
     
     public init?(json: JSON) {
         
@@ -77,7 +79,7 @@ public struct Slides: Decodable {
         
         category = "category" <~~ json
         
-        searchID = "searchID" <~~ json
+      page = "page" <~~ json
         
         imageURL = "image" <~~ json
         

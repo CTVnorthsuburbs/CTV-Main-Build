@@ -159,36 +159,48 @@ class HorizontalTableViewController: UITableViewController {
                                 if(category.videoType == VideoType.cablecast) {
                                     
                                     
-                                    if(category.sections[index].getDisplayCount() == nil) {
+                                
+                                        
+                                  
                                         
                                         
-                                        //  print("calling search from view will appear 1")
+                                        //vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
                                         
-                                        var vids = self.search.search(category.sections[index].searchID!)
-                                        
-                                        
-                                        
-                                        self.listOfVideos[category.sections[index].searchID!] = vids
-                                        
-                                        vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
-                                        
-                                        self.videos.append(vids)
-                                        
-                                    } else {
-                                        
-                                        
-                                        //    print("calling search view will appear 2")
+                                     
                                         
                                         var vids = self.search.search(category.sections[index].searchID!)
                                         
-                                        
+                                    if(  vids != nil) {
                                         
                                         self.listOfVideos[category.sections[index].searchID!] = vids
                                         
                                         
-                                        let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                                         
-                                        self.videos.append(trimmedVids)
+                                        
+                                        
+                                        if(category.sections[index].getDisplayCount() != nil) {
+                                            
+                                            
+                                            let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                                            
+                                            self.videos.append(trimmedVids)
+                                            
+                                        } else {
+                                            
+                                            
+                                            let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                                            
+                                            self.videos.append(trimmedVids)
+                                            
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                    
+                                
+                                
                                         
                                         
                                         
@@ -544,16 +556,16 @@ class HorizontalTableViewController: UITableViewController {
                 section.displayCount = 15
                 
             }
-            if(section.displayCount != nil && videos[indexPath.section] != nil) {
-                
+          
+               /*
                 if(section.displayCount! >  videos[indexPath.section].count) {
                     
                     cell!.disableSeeAllButton()
                     //THIS IS WHERE SEE ALL CAN BE REMOVED
                     
                 }
-            }
             
+            */
             
             
             return cell!
@@ -740,9 +752,17 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList) {
             
+            let count =  videos[collectionView.tag].count
             
-            return videos[collectionView.tag].count
             
+                
+
+                
+                
+                
+                        return count
+                
+  
             
             
             

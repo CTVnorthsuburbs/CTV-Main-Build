@@ -223,7 +223,12 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
         if(slide.slideType == ButtonType.category) {
             
             
-   
+            if(slide.category?.categoryTitle != category.categoryTitle) {
+                
+                
+                
+                
+            
                 
             category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
             
@@ -241,7 +246,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
                 
                 
             
-            
+            }
                 
             
             
@@ -252,7 +257,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
         
         if(slide.slideType == ButtonType.page) {
             
-            print("page slide seleted")
+            print("page slide seleted: \(slide.title)")
     
             var page = slide.page
             
@@ -469,9 +474,14 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
                 
             }()
             
-            
+                var slideCategory : Category?
             if(slide.category != nil) {
-                category = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
+                slideCategory = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
+                
+                
+                print("category selected!!!!\(slideCategory?.categoryTitle)")
+                
+                
             }
             
             
@@ -490,11 +500,23 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             
             
+                if(slideCategory != nil) {
+                    
+                  slideCategory?.createListing()
+                    
+                    suggestedSearch = slideCategory?.sections.first
+                    
+                    
+                    print("suggestSearch = \(slideCategory?.sections.first?.sectionTitle)")
+                   
+                    
+                } else {
             
             
             
-            
-            suggestedSearch = category.sections[0]
+            suggestedSearch = category.sections.first
+                    
+                }
             
             //let selectedVideo = videos[collectionView.tag][indexPath.row]
             

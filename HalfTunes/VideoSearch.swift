@@ -1231,12 +1231,15 @@ return video
             
                     
                     
-                    
+            if(VideosResult.vod?.count != 0 && (VideosResult.vod!.count) >= count ) {
             
             
             searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id)!)
             
-       
+            }
+            
+            
+            
             
             
             count += 1

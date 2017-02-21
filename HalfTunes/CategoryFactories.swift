@@ -79,8 +79,8 @@ class teens: CategoryFactorySettings {
     
 }
 
-@objc(ctvYoutube)
-class ctvYoutube: CategoryFactorySettings {
+@objc(ctvyoutube)
+class ctvyoutube: CategoryFactorySettings {
     
     
     required init() {

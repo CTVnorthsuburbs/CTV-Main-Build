@@ -542,7 +542,7 @@ class ctvYouTubeButtonFactory: ButtonFactory {
         
         self.page = nil
         
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: ctvYoutube()))
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: ctvyoutube()))
         
         
         

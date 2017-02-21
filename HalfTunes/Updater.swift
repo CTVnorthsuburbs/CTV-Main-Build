@@ -16,7 +16,7 @@ class Updater {
     
     var slideShow = [Slide]()
     
-    let slideShowImageURL = "http://www.ctv15.org/mobile_app/"
+    let slideShowImageURL = "http://www.ctv15.org/mobile_app/examples/uploads/"
     
     var slideSection: Section?
     
@@ -122,8 +122,10 @@ class Updater {
             
             return factory1
         }
+        
+        
 
-        return nil
+        return home()
         
     }
     
@@ -144,7 +146,7 @@ class Updater {
             
             var webURL: URL?
             
-            
+            var page = getPage(slide: slide)
             
             var categoryType = getSlideType(slide: slide)
             
@@ -156,11 +158,20 @@ class Updater {
                 webURL = URL(string: (slide.webURL)!)
                 
             }
+            var image: UIImage?
+            if(thumbnailURL != nil) {
        
-            let image = search.getThumbnail(url: thumbnailURL!)
+             image = search.getThumbnail(url: thumbnailURL!)
+            }
             
-            
-             let slideCategory  = checkCategory(string: slide.category!)
+            var slideCategory: CategoryFactorySettings?
+          
+            if(slide.category != nil) {
+              slideCategory  = checkCategory(string: slide.category!)
+                
+              
+                
+            } 
             
             
             
@@ -176,7 +187,7 @@ class Updater {
                     
                     images.append(image!)
           
-                    let slide = Slide(slideType: categoryType, searchID: nil, videoList: videoID, page: nil, category: slideCategory, image:image, title: slide.title, webURL: webURL)
+                    let slide = Slide(slideType: categoryType, searchID: videoID, videoList: videoID, page: page, category: slideCategory, image:image, title: slide.title, webURL: webURL)
                 
                     slideShow.append(slide)
                 
@@ -204,6 +215,13 @@ class Updater {
         
     }
     
+    fileprivate func getPage(slide: Slides?) -> String? {
+        
+        
+        return slide?.page
+        
+    }
+    
     fileprivate func getSlideType(slide: Slides?) -> ButtonType {
         
         if(slide?.slideType == "webPage") {
@@ -223,6 +241,20 @@ class Updater {
                 
                 return ButtonType.video
             }
+            
+            if(slide?.slideType == "page") {
+                
+              
+                
+                return ButtonType.page
+            }
+            
+            if(slide?.slideType == "web") {
+                
+                
+                return ButtonType.webPage
+            }
+            
             
             return ButtonType.category
         }
@@ -247,7 +279,7 @@ class Updater {
             
         }
         
-        print(json)
+        print("HERE IS THE DOWNLOAD \(json)")
         
         var updateResults = [Slides]()
         
