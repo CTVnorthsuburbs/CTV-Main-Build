@@ -255,6 +255,12 @@ class Updater {
                 return ButtonType.webPage
             }
             
+            if(slide?.slideType == "liveEvent") {
+                
+                
+                return ButtonType.liveEvent
+            }
+            
             
             return ButtonType.category
         }

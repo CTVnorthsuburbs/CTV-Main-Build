@@ -821,7 +821,7 @@ class home: CategoryFactorySettings {
         
         //   self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.buttonSecond, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
+        self.categoryOrder = [CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
         
     }
     

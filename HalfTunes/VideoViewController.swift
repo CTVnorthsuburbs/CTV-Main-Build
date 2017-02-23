@@ -202,7 +202,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         while(self.video == nil) {
             
-           
+           var i = 0
+            
+            i = i + i
             
         }
         
@@ -656,7 +658,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
                 
                 
-                
+              
                 
                 
                 

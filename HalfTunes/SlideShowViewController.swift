@@ -414,6 +414,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             vc.setTitle(title: (slide.title)!)
             
             vc.setPage(url: (slide.webURL)!)
+            print(slide.webURL!)
             
             
             
@@ -448,7 +449,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
         
         
         
-        if(slide.slideType == ButtonType.video) {
+        if(slide.slideType == ButtonType.video || slide.slideType == ButtonType.liveEvent ) {
             
             print("video slide selected")
             
@@ -474,6 +475,11 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
                 
             }()
             
+                
+                
+                
+                
+                
                 var slideCategory : Category?
             if(slide.category != nil) {
                 slideCategory = Category(categoryFactory: CategoryFactory(factorySettings: slide.category!))
@@ -489,10 +495,25 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             var search = VideoSearch()
             
-            var video  = search.searchForSingle((slide.videoList)!)
-            
-            
-            
+                var video = [Video]()
+                
+                var liveVideo: Video?
+                
+                if(slide.slideType == ButtonType.liveEvent) {
+                    
+                    
+                                  liveVideo  = Video(title: slide.title!, thumbnail: slide.image, fileName: 1, sourceUrl:  slide.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: slide.videoList)
+                    
+                    
+                } else {
+                    
+             video  = search.searchForSingle((slide.videoList)!)
+                    
+                }
+                
+                
+                
+         
             
             
             let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
@@ -520,9 +541,22 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             //let selectedVideo = videos[collectionView.tag][indexPath.row]
             
-            destination.video = video.first
+                 if(slide.slideType == ButtonType.liveEvent) {
+                    
+                   // slide.slideType = ButtonType.video
+                
+            destination.video = liveVideo
+                    
+                    
             
-            
+                 } else {
+                    
+                    destination.video = video.first
+                    
+                    
+                }
+                
+                
             
             destination.setDefaultSession(defaultSession: &defaultSession)
             

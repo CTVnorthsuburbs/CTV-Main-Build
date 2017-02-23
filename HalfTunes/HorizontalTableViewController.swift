@@ -1248,7 +1248,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 vc.setPage(url: (button?.webURL)!)
        
-                
+            
                 
                 
                 self.navigationController?.pushViewController(vc, animated:true)
@@ -1270,6 +1270,11 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 if( category.sections[collectionView.tag].buttons[indexPath.row]?.videoID == 1 &&  category.videoType != VideoType.youtube) {
+                    
+                    
+                    
+                    print("RUNS HERE !!!")
+                    
                     
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                     
@@ -1330,6 +1335,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                 } else {
+                    
+                    
+               
                     
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                     

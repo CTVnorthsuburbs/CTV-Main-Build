@@ -790,7 +790,7 @@ enum SectionType {
     case slider
     
     case specificVideoList
-    
+  
 }
 
 
@@ -900,6 +900,8 @@ enum ButtonType {
     case page
     
     case webPage
+    
+    case liveEvent
     
 }
 
