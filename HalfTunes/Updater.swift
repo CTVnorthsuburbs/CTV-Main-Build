@@ -285,7 +285,7 @@ class Updater {
             
         }
         
-        print("HERE IS THE DOWNLOAD \(json)")
+       // print("HERE IS THE DOWNLOAD \(json)")
         
         var updateResults = [Slides]()
         

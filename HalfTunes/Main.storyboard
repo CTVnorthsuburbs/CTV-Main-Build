@@ -1705,13 +1705,13 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="1242" height="698"/>
-        <image name="placeholder-header" width="1200" height="506"/>
+        <image name="placeholder-header" width="1242" height="524"/>
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Hpx-XP-cwh"/>
         <segue reference="rnq-VC-yil"/>
-        <segue reference="uHP-YP-F5R"/>
+        <segue reference="V9M-Yj-v2K"/>
         <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>
