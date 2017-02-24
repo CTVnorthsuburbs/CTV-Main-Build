@@ -790,6 +790,8 @@ enum SectionType {
     case slider
     
     case specificVideoList
+    
+    case upcomingEventList
   
 }
 

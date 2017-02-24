@@ -121,8 +121,8 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         
         
-        imageArray = [#imageLiteral(resourceName: "placeholder-header")]
-       
+      //  imageArray = [#imageLiteral(resourceName: "placeholder-header")]
+       imageArray = [#imageLiteral(resourceName: "slide-placeholder")]
     }
     
     
