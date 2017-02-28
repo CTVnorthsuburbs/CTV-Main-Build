@@ -697,7 +697,7 @@ class Section {
     
     var sectionType: SectionType
     
-    var listing = CategorySearches.hockey
+  //  var listing = CategorySearches.hockey
     
     var displayCount:  Int?
     

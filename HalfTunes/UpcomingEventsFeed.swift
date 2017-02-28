@@ -165,7 +165,7 @@ events = self.updateSearchResults(data)!
         for result in results {
             
             
-           var eventResult =   parseResults(event: result)
+           let eventResult =   parseResults(event: result)
             
             if(eventResult != nil) {
                 
@@ -233,13 +233,13 @@ let filtered = filterString(string: description)
     
     let endDate = formatDate(string: endDateString)
     
-    var location = getLocation(stringArray: separatedDescription)
+    let location = getLocation(stringArray: separatedDescription)
     
    
     
     
     
-    var liveStream = getLiveStreamAddress(stringArray: separatedDescription)
+    let liveStream = getLiveStreamAddress(stringArray: separatedDescription)
     
     
     
@@ -247,11 +247,9 @@ let filtered = filterString(string: description)
         
         
         
-        eventResult = Event(title: event.title!, startDate: startDate!, endDate: endDate!,  liveStream: liveStream!)
+        eventResult = Event(title: event.title!, startDate: startDate!, endDate: endDate!,  liveStream: liveStream!, image: event.image!)
         
-        
-        
-        
+  
     }
     
     
@@ -261,7 +259,7 @@ let filtered = filterString(string: description)
     
     func getLiveStreamAddress(stringArray: [String]) -> String? {
         
-        var stringArray = stringArray
+        let stringArray = stringArray
         
         
         
@@ -313,19 +311,14 @@ let filtered = filterString(string: description)
         
         var location = ""
         
-        var separatedString = stringArray
+        let separatedString = stringArray
         
         
         
         
-     var subString =   separatedString.dropFirst(5)
+     let subString =   separatedString.dropFirst(5)
         
-   
-        
-       
-        
-    
-        
+
         for element in subString {
             
             
@@ -382,13 +375,6 @@ func formatDate(string: String) -> Date? {
     
 }
 
-
-
-
-
-
-
-
 func filterString(string: String) -> String{
     
    var filteredString = string.replacingOccurrences(of: "<b>", with: "", options: NSString.CompareOptions.literal, range:nil)
@@ -400,18 +386,11 @@ func filterString(string: String) -> String{
     
      filteredString = filteredString.replacingOccurrences(of: "<br|/>|<div>|<img|</div>|src=", with: "", options: .regularExpression, range:nil)
     
-   
-    
-
     return filteredString
 }
     
-    
-    
-    
-    
-    
-    
+
+
 }
 
 
@@ -420,37 +399,24 @@ public struct EventFeed: Decodable {
     
     public let events: NSDictionary?
     
-    
-    
     public init?(json: JSON) {
         
-        
-        var events: NSDictionary? = "value" <~~ json
+        let events: NSDictionary? = "value" <~~ json
         
         self.events = events
-        
-//  print(events)
-        
-        
         
     }
     
 }
 
 
-
 public struct EventResults: Decodable {
     
     public let items: [Events]?
-    
 
-    
-    
     public init?(json: JSON) {
         
         items = "items" <~~ json
-        
-//print(items)
         
     }
     
@@ -468,7 +434,6 @@ public struct Events: Decodable {
     
     public let image: String?
     
-    
     public init?(json: JSON) {
         
         title = "title" <~~ json
@@ -478,10 +443,7 @@ public struct Events: Decodable {
         description = "description" <~~ json
         
         image = "Event_Photo" <~~ json
-        
-        
-        //print(items)
-        
+
     }
     
 }
@@ -495,12 +457,12 @@ class Event {
     
     var title: String
     
-
+    var image: String
     
     var liveStream: String
     
     
-    init(title: String, startDate: Date, endDate: Date,  liveStream: String) {
+    init(title: String, startDate: Date, endDate: Date,  liveStream: String, image: String) {
         
         self.title = title
         
@@ -508,14 +470,11 @@ class Event {
         
         self.endDate = endDate
         
-      
-        
         self.liveStream = liveStream
         
+        self.image = image
         
     }
-    
-    
     
 }
 
