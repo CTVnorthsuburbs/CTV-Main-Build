@@ -128,7 +128,51 @@ class CategoryTableViewController: UITableViewController {
             recommendedVideos = search.getYouTubeVideos(playlist: (categorySection?.sectionPlaylist!)!)!
                 
                 
+            } else if(categorySection?.sectionType == SectionType.upcomingEventList){
+                
+                
+                var upcomingEventsFeed = UpcomingEventsFeed()
+                
+                upcomingEvents = upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
+                
+                
+                
+                
+                
+                
+                
+                var vids = [Video]()
+                
+                
+                
+                for event in upcomingEvents {
+                    
+                    
+                    
+                    
+                    
+                    var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
+                    
+                    
+                    vids.append(video!)
+                    
+                    
+                }
+                
+                
+                
+                
+                
+               
+                
+                recommendedVideos = vids
+                
+                
             } else {
+            
+                
+                
+            
              print("calling serach from categorytable view will appear")
             
       recommendedVideos = search.search((categorySection?.searchID!)! )
@@ -414,7 +458,21 @@ class CategoryTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 
+              
+                
+                
+                
                 cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
+                
+                
+                if(self.categorySection?.sectionType == SectionType.upcomingEventList) {
+                    
+                    
+                    cell?.thumbnailView.image = cell?.thumbnailView.image?.cropBottomImage(image: (cell?.thumbnailView.image!)!)
+                    
+                    
+                }
+                
                 
                 
             }

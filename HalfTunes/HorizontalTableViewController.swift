@@ -52,30 +52,13 @@ class HorizontalTableViewController: UITableViewController {
         
     }()
     
-    
-    
-    
-    
+
     
     @IBOutlet weak var tableCollection: UICollectionView!
     
     
     
-    override func viewDidLoad() {
-        
-        
-        /*
-         DispatchQueue.main.async(){
-         
-         //LoadingOverlay.shared.hideOverlayView()
-         
-         }
-         */
-        
-    }
-    
-    
-    
+ 
     
     
     
@@ -103,7 +86,7 @@ class HorizontalTableViewController: UITableViewController {
     
     public func updateTable() {
         
-       
+        
         
         
         if(self.currentCategory?.categoryTitle != category.categoryTitle ) {
@@ -165,16 +148,16 @@ class HorizontalTableViewController: UITableViewController {
                                 if(category.sections[index].sectionType == SectionType.upcomingEventList) {
                                     
                                     
-                                   
                                     
-                                   
+                                    
+                                    
                                     
                                     upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                                     
                                     
                                     
                                     
-                             
+                                    
                                     
                                     
                                     var vids = [Video]()
@@ -183,20 +166,20 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     for event in upcomingEvents {
                                         
-                                      
                                         
-                                    
+                                        
+                                        
                                         
                                         var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
                                         
                                         
                                         vids.append(video!)
-                                       
+                                        
                                         
                                     }
                                     
-                                  
-                              
+                                    
+                                    
                                     
                                     
                                     self.videos.append(vids)
@@ -206,38 +189,78 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     
                                     
-                                
-                                if(category.videoType == VideoType.cablecast) {
                                     
-                                    
-                                
-                                        
-                                  
-                                        
-                        
-                                     
-                                        
-                                        var vids = self.search.search(category.sections[index].searchID!)
-                                        
-                                    if(  vids != nil) {
-                                        
-                                        self.listOfVideos[category.sections[index].searchID!] = vids
+                                    if(category.videoType == VideoType.cablecast) {
                                         
                                         
                                         
                                         
                                         
-                                        if(category.sections[index].getDisplayCount() != nil) {
+                                        
+                                        
+                                        
+                                        
+                                        let vids = self.search.search(category.sections[index].searchID!)
+                                        
+                                        
+                                        //Was != nil which was always true
+                                        
+                                        if(  vids.count > 0) {
+                                            
+                                            self.listOfVideos[category.sections[index].searchID!] = vids
                                             
                                             
-                                            let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                                             
-                                            self.videos.append(trimmedVids)
+                                            
+                                            
+                                            if(category.sections[index].getDisplayCount() != nil) {
+                                                
+                                                
+                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                                                
+                                                self.videos.append(trimmedVids)
+                                                
+                                            } else {
+                                                
+                                                
+                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                                                
+                                                self.videos.append(trimmedVids)
+                                                
+                                                
+                                                
+                                            }
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    } else if(category.videoType == VideoType.youtube) {
+                                        
+                                        
+                                        
+                                        if(category.sections[index].getDisplayCount() == nil) {
+                                            
+                                            
+                                            
+                                            self.videos.append(self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
+                                            
                                             
                                         } else {
                                             
+                                            print("display count = \(category.sections[index].getDisplayCount())")
                                             
-                                            let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                                            let vids = self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
+                                            print("playlist \(category.sections[index].sectionPlaylist!) ")
+                                            
+                                            let trimmedVids = self.search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
                                             
                                             self.videos.append(trimmedVids)
                                             
@@ -247,45 +270,8 @@ class HorizontalTableViewController: UITableViewController {
                                         
                                         
                                         
-                                    
-                                
-                                
-                                        
-                                        
-                                        
                                     }
                                     
-                                    
-                                } else if(category.videoType == VideoType.youtube) {
-                                    
-                                    
-                                    
-                                    if(category.sections[index].getDisplayCount() == nil) {
-                                        
-                                        
-                                        
-                                        self.videos.append(self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
-                                        
-                                        
-                                    } else {
-                                        
-                                        print("display count = \(category.sections[index].getDisplayCount())")
-                                        
-                                        let vids = self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
-                                        print("playlist \(category.sections[index].sectionPlaylist!) ")
-                                        
-                                        let trimmedVids = self.search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
-                                        
-                                        self.videos.append(trimmedVids)
-                                        
-                                        
-                                        
-                                    }
-                                    
-                                    
-                                    
-                                }
-                                
                                 }
                                 
                             } else {
@@ -293,7 +279,7 @@ class HorizontalTableViewController: UITableViewController {
                                 self.videos.append([nil])
                                 
                             }
-                                
+                            
                             
                             
                             index = index + 1
@@ -372,20 +358,20 @@ class HorizontalTableViewController: UITableViewController {
                 
                 if(category.sections[index].searchID != nil) {
                     
-                 
+                    
                     if(category.videoType == VideoType.cablecast) {
                         if(category.sections[index].sectionType == SectionType.upcomingEventList) {
                             
                             
                             
-                           
-                            
-                         upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                             
                             
+                            upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                             
                             
-                          
+                            
+                            
+                            
                             
                             
                             var vids = [Video]()
@@ -402,12 +388,12 @@ class HorizontalTableViewController: UITableViewController {
                                 
                                 
                                 vids.append(video!)
-                              
+                                
                                 
                             }
                             
                             
-                     
+                            
                             
                             self.videos.append(vids)
                             
@@ -417,20 +403,20 @@ class HorizontalTableViewController: UITableViewController {
                             
                             
                         } else {
-                        
-                       
-                        
-                        
-                        
-                        var vids = self.search.search(category.sections[index].searchID!)
-                        
-                        
-                        vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
-                        
-                        self.listOfVideos[category.sections[index].searchID!] = vids
-                        self.videos.append(vids)
-                        
-                        
+                            
+                            
+                            
+                            
+                            
+                            var vids = self.search.search(category.sections[index].searchID!)
+                            
+                            
+                            vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                            
+                            self.listOfVideos[category.sections[index].searchID!] = vids
+                            self.videos.append(vids)
+                            
+                            
                         }
                         
                     } else if(category.videoType == VideoType.youtube) {
@@ -468,7 +454,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     
                 } else {
-                 
+                    
                     self.videos.append([nil])
                     
                 }
@@ -486,7 +472,7 @@ class HorizontalTableViewController: UITableViewController {
             
             LoadingOverlay.shared.hideOverlayView()
             
-      
+            
             
             
             
@@ -521,14 +507,14 @@ class HorizontalTableViewController: UITableViewController {
         
         featuredVideos = videos
         
-       
+        
     }
     
     func loadFeaturedVideos() {
         
         videos = featuredVideos
         
-     
+        
         
     }
     
@@ -543,6 +529,10 @@ class HorizontalTableViewController: UITableViewController {
             switch section.sectionType {
                 
             case .videoList:
+                
+                tableSize = tableSize + CGFloat(165)
+                
+            case .upcomingEventList:
                 
                 tableSize = tableSize + CGFloat(165)
                 
@@ -639,6 +629,37 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
+        if (section.sectionType == SectionType.upcomingEventList) {
+            
+            
+            self.tableView.rowHeight = 165.0
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingCell", for: indexPath) as? HorizontalTableViewCell
+            cell!.sectionLabel.text = section.sectionTitle
+            
+            if(section.displayCount == nil){
+                
+                section.displayCount = 15
+                
+            }
+           
+            
+            /*
+             if(section.displayCount! >  videos[indexPath.section].count) {
+             
+             cell!.disableSeeAllButton()
+             //THIS IS WHERE SEE ALL CAN BE REMOVED
+             
+             }
+             
+      */
+            
+            
+            return cell!
+            
+            
+        }
+        
         
         if (section.sectionType == SectionType.videoList) {
             
@@ -653,16 +674,16 @@ class HorizontalTableViewController: UITableViewController {
                 section.displayCount = 15
                 
             }
-          
-               /*
-                if(section.displayCount! >  videos[indexPath.section].count) {
-                    
-                    cell!.disableSeeAllButton()
-                    //THIS IS WHERE SEE ALL CAN BE REMOVED
-                    
-                }
             
-            */
+            /*
+             if(section.displayCount! >  videos[indexPath.section].count) {
+             
+             cell!.disableSeeAllButton()
+             //THIS IS WHERE SEE ALL CAN BE REMOVED
+             
+             }
+             
+             */
             
             
             return cell!
@@ -816,12 +837,19 @@ class HorizontalTableViewController: UITableViewController {
                     
                     //destination.title = sectionTitles[indexPath.section]
                     
+                    
+                    
+                    print("title \(category.sections[indexPath.section].sectionTitle) ")
+                    
                     selectedSection = indexPath.section
                     
                     
                     destination.title = category.sections[indexPath.section].sectionTitle
                     
                     destination.categorySection = category.sections[indexPath.section]
+                    
+                    
+                    print("category \(destination.categorySection?.sectionTitle)" )
                     
                     
                     
@@ -849,22 +877,22 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList || category.sections[collectionView.tag].sectionType == SectionType.upcomingEventList) {
             
-        
-            
-           
-                
-                
-            
-       
-             var  count = videos[collectionView.tag].count
-                
- 
             
             
-                
-                        return count
-                
-  
+            
+            
+            
+            
+            
+            var  count = videos[collectionView.tag].count
+            
+            
+            
+            
+            
+            return count
+            
+            
             
             
             
@@ -1012,14 +1040,14 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             var videos = [Video]()
             
-  
+            
             
             for event in upcomingEvents {
                 
                 
                 
                 
-           
+                
                 
                 var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
                 
@@ -1031,55 +1059,58 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             
-        
-     
+            
+            
             
             
             self.videos[collectionView.tag] = videos
- 
+            
+            
+            
+            
+            
+            
+            
+            if( videos[indexPath.item].hasThumbnailUrl()) {
+                
+                
+                
+                
+                
+                cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                
+                cells.thumbnail.image = cells.thumbnail.image?.cropBottomImage(image: cells.thumbnail.image!)
+            
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            cells.thumbnail.setRadius(radius: imageRadius)
+            
+            
+            cells.titleLabel.text = videos[indexPath.item].title
+            
+            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
+            
+            
+            
+            
+            
+            
+            
+        }
         
- 
-            
-       
-       
-            
-                if( videos[indexPath.item].hasThumbnailUrl()) {
-                    
-                    
-                    
-                    
-                    
-                    cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
-                    
-                    
-                }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                cells.thumbnail.setRadius(radius: imageRadius)
-            
-            
-                cells.titleLabel.text = videos[indexPath.item].title
-            
-                cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
-                
-                
-                
-                
-                
-           
         
-    }
-
-
-    
+        
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList   ) {
             
@@ -1106,7 +1137,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-    
+                
                 
                 
                 videos =  search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)!
@@ -1430,8 +1461,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 vc.setTitle(title: (button?.title)!)
                 
                 vc.setPage(url: (button?.webURL)!)
-       
-            
+                
+                
                 
                 
                 self.navigationController?.pushViewController(vc, animated:true)
@@ -1456,7 +1487,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     
-                   
+                    
                     
                     
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
@@ -1520,7 +1551,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 } else {
                     
                     
-               
+                    
                     
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
                     
