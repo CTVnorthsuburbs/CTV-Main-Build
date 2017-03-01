@@ -384,6 +384,18 @@ class basketball: CategoryFactorySettings {
         
         self.categoryTitle = "Basketball"
         
+        
+        
+        self.upcomingSectionTitle = "Upcoming Events"
+        
+        self.upcomingSectionSearchID = 69103
+        
+        self.upcomingSectionDisplayCount = 20
+        
+        
+        
+        
+        
         self.popularSectionTitle = "Popular Basketball Videos"
         
         self.popularSectionSearchID = 69103
@@ -407,7 +419,7 @@ class basketball: CategoryFactorySettings {
         
         
      
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
+        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
         
         
         

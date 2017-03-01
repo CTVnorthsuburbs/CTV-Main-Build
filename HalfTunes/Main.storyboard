@@ -1663,7 +1663,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="TQk-aS-t1S">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="TQk-aS-t1S">
                                             <rect key="frame" x="13" y="13" width="112" height="63"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" image="YES" allowsDirectInteraction="YES"/>
@@ -1833,7 +1833,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="G77-yg-iiy"/>
         <segue reference="yQr-UQ-GkP"/>
-        <segue reference="V9M-Yj-v2K"/>
+        <segue reference="l6J-Ru-YsW"/>
         <segue reference="TiQ-iG-Egd"/>
         <segue reference="Hpx-XP-cwh"/>
     </inferredMetricsTieBreakers>
