@@ -47,7 +47,42 @@ class UpcomingEventsFeed {
         
     }
     
-    func getUpcomingEventUpdate() -> [Event]? {
+    
+    func checkForUpcomingSection(category: Category) -> Section? {
+        
+        
+        
+        
+        for section in category.sections {
+            
+            
+            if(section.sectionType == SectionType.upcomingEventList) {
+             
+                return section
+                
+                
+            }
+            
+            
+            
+            
+        }
+        
+        
+        
+        return nil
+        
+        
+    }
+    
+    func getUpcomingEventUpdate(category: Category) -> [Event]? {
+        
+        
+        
+        let section = checkForUpcomingSection(category: category)
+        
+        
+        if(section != nil) {
         
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
@@ -56,6 +91,8 @@ class UpcomingEventsFeed {
         var dataTask: URLSessionDataTask
         
         var events = [Event]()
+        
+       var category = category
 
         dataTask = defaultSession.dataTask(with: upcomingEventFeedURL!,  completionHandler: {
             
@@ -94,12 +131,25 @@ events = self.updateSearchResults(data)!
         semaphore.wait(timeout: .distantFuture)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+      
+            
+            return events
+            
+        } else {
+            
+            
+             return [Event]()
+        }
         
-        return events
+        
+        
+        
+        
         
     }
     
- 
+
 
     
     fileprivate func updateSearchResults(_ data: Data?)-> [Event]? {
@@ -123,7 +173,6 @@ events = self.updateSearchResults(data)!
             
         }
         
-      //  print("HERE IS THE UPCOMING EVENTS DOWNLOAD \(json)")
       
         
         guard let result = EventFeed(json: json) else {
@@ -178,12 +227,7 @@ events = self.updateSearchResults(data)!
         }
         
        
-        for event in eventResults {
-            
-            
-            
-            print(event.title)
-        }
+     
         
         
         
@@ -243,11 +287,17 @@ let filtered = filterString(string: description)
     
     
     
+    let escapedString = event.image?.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+    
+    let url = NSURL(string: escapedString! )
+    
+
+    
     if((event.title != nil) && event.image != nil && event.link != nil && location != nil && liveStream != nil && startDate != nil && endDate != nil) {
         
         
         
-        eventResult = Event(title: event.title!, startDate: startDate!, endDate: endDate!,  liveStream: liveStream!, image: event.image!)
+        eventResult = Event(title: event.title!, startDate: startDate!, endDate: endDate!,  liveStream: liveStream!, image: url!)
         
   
     }
@@ -457,12 +507,12 @@ class Event {
     
     var title: String
     
-    var image: String
+    var image: NSURL
     
     var liveStream: String
     
     
-    init(title: String, startDate: Date, endDate: Date,  liveStream: String, image: String) {
+    init(title: String, startDate: Date, endDate: Date,  liveStream: String, image: NSURL) {
         
         self.title = title
         

@@ -712,15 +712,20 @@ class home: CategoryFactorySettings {
         
         self.categoryTitle = "Home"
         
-        self.popularSectionTitle = "New & Noteworthy"
         
-       // self.popularSectionSearchID = 52966
+        self.upcomingSectionTitle = "Upcoming Events"
+        
+        self.upcomingSectionSearchID = 52966
+        
+        self.upcomingSectionDisplayCount = 20
+        
+        
+        self.popularSectionTitle = "New & Noteworthy"
         
         self.popularSectionSearchID = 76921
         
-        
-        
         self.popularSectionDisplayCount = 15
+        
         
         self.recentGirlsSectionTitle = "Concerts"
         
@@ -821,7 +826,7 @@ class home: CategoryFactorySettings {
         
         //   self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
         
-        self.categoryOrder = [CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
+        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
         
     }
     

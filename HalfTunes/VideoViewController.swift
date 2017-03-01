@@ -123,7 +123,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         playerViewController.player?.pause()
         
-        print("VIEW disappers")
+    
         
         webView? = UIWebView()
         
@@ -135,8 +135,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
   
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        print("VIEW APPEKS")
+      
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         
         //self.thumbnailButton.isHidden = true     //Chnage this maybe

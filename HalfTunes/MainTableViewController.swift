@@ -16,7 +16,8 @@ var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings
 var suggestedSearch : Section?
 
 
-var upcomingEvents = UpcomingEventsFeed()
+var upcomingEventsFeed = UpcomingEventsFeed()
+var upcomingEvents = [Event]()
 
 
 var search = VideoSearch()
@@ -138,7 +139,9 @@ class MainTableViewController: UITableViewController {
             
             DispatchQueue.main.async( execute: {
                 
-                 upcomingEvents.getUpcomingEventUpdate()
+                
+                
+     
                 
                 self.embeddedViewController?.refreshTable()
                 
@@ -261,8 +264,7 @@ class MainTableViewController: UITableViewController {
         
         
         
-        
-        upcomingEvents.getUpcomingEventUpdate()
+      
         
         
         

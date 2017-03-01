@@ -74,7 +74,9 @@ enum VideoType {
     
     case youtube
     
+  
     
+  
 }
 
 
@@ -87,6 +89,16 @@ class CategoryFactorySettings: NSObject {
     var categoryTitle: String?
     
     var videoType = VideoType.cablecast
+    
+    
+    
+    var upcomingSectionTitle: String?
+    
+    var upcomingSectionSearchID: Int?
+    
+    var upcomingSectionDisplayCount: Int?
+    
+    var upcomingSectionPlaylist: String?
     
     
     var popularSectionTitle: String?
@@ -172,6 +184,8 @@ class CategoryFactorySettings: NSObject {
 
 enum CategoryOrder {
     
+    case upcoming
+    
     case recent
     
     case featured
@@ -211,6 +225,30 @@ class CategoryFactory {
         
     }
     
+    
+    internal func addUpcomingSection() -> Section {
+        
+        let sectionType = SectionType.upcomingEventList
+        
+        let sectionTitle = settings.upcomingSectionTitle
+        
+        let searchID = settings.upcomingSectionSearchID
+        
+        let displayCount = settings.upcomingSectionDisplayCount
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [Button]? = nil
+        
+        let sectionPlaylist = settings.upcomingSectionPlaylist
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        
+        return section
+    }
+    
     internal func addPopularSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -219,7 +257,7 @@ class CategoryFactory {
         
         let searchID = settings.popularSectionSearchID
         
-        var displayCount = settings.popularSectionDisplayCount
+        let displayCount = settings.popularSectionDisplayCount
         
         let videoList: [Int]? = nil
         
@@ -242,7 +280,7 @@ class CategoryFactory {
         
         let searchID = settings.recentGirlsSectionSearchID
         
-        var displayCount = settings.recentGirlsSectionDisplayCount
+        let displayCount = settings.recentGirlsSectionDisplayCount
         
         let videoList: [Int]? = nil
         
@@ -267,7 +305,7 @@ class CategoryFactory {
         
         let searchID = settings.recentBoysSectionSearchID
         
-        var displayCount = settings.recentBoysSectionDisplayCount
+        let displayCount = settings.recentBoysSectionDisplayCount
         
         let videoList: [Int]? = nil
         
@@ -291,7 +329,7 @@ class CategoryFactory {
         
         let searchID = settings.featuredSectionSearchID
         
-        var displayCount = settings.featuredSectionDisplayCount
+        let displayCount = settings.featuredSectionDisplayCount
         
         let videoList: [Int]? = nil
         
@@ -315,7 +353,7 @@ class CategoryFactory {
         
         let searchID = settings.recentSectionSearchID
         
-        var displayCount = settings.recentSectionDisplayCount
+        let displayCount = settings.recentSectionDisplayCount
         
          let sectionPlaylist = settings.recentSectionPlaylist
         
@@ -345,7 +383,7 @@ class CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        var buttons = settings.buttons
+        let buttons = settings.buttons
         
       
      
@@ -371,7 +409,7 @@ class CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        var buttons = settings.buttonsSecond
+        let buttons = settings.buttonsSecond
         
 
         
@@ -396,7 +434,7 @@ class CategoryFactory {
         
         let videoList: [Int]? = nil
         
-        var buttons = settings.buttonsThird
+        let buttons = settings.buttonsThird
         
         
         
@@ -522,13 +560,17 @@ class Category {
         
         createSlider()
         
-        var order = categoryFactory.getOrder()
+        let order = categoryFactory.getOrder()
         
         
         
         for section in order {
             
             switch section {
+                
+            case CategoryOrder.upcoming:
+                
+                createUpcomingSection()
                 
             case CategoryOrder.recent:
                 
@@ -562,7 +604,7 @@ class Category {
                 
                 createRecentGirlsSection()
                 
-            default: break
+            
                 
                 
             }
@@ -570,6 +612,14 @@ class Category {
             
             
         }
+        
+        
+    }
+    
+    func createUpcomingSection() {
+        
+        sections.append(categoryFactory.addUpcomingSection())
+        
         
         
     }
@@ -697,7 +747,7 @@ class Section {
     
     var sectionType: SectionType
     
-  //  var listing = CategorySearches.hockey
+   // var listing = CategorySearches.hockey
     
     var displayCount:  Int?
     
