@@ -158,31 +158,22 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     
                                     
-                                    
-                                    
-                                    var vids = [Video]()
-                                    
-                                    
-                                    
-                                    for event in upcomingEvents {
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
-                                        
-                                        
-                                        vids.append(video!)
-                                        
-                                        
-                                    }
+                                    var videos = [Video]()
                                     
                                     
                                     
                                     
                                     
-                                    self.videos.append(vids)
+                                    videos =  self.upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    self.videos.append(videos)
                                     
                                     
                                 } else {
@@ -374,28 +365,22 @@ class HorizontalTableViewController: UITableViewController {
                             
                             
                             
-                            var vids = [Video]()
-                            
-                            
-                            
-                            for event in upcomingEvents {
-                                
-                                
-                                
-                                
-                                
-                                var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
-                                
-                                
-                                vids.append(video!)
-                                
-                                
-                            }
+                            var videos = [Video]()
                             
                             
                             
                             
-                            self.videos.append(vids)
+                            
+                            videos =  self.upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            self.videos.append(videos)
                             
                             
                             
@@ -555,7 +540,7 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
-        var parentVC = self.parent as! MainTableViewController
+        let parentVC = self.parent as! MainTableViewController
         
         
         parentVC.changeSize(height: Int(tableSize))
@@ -604,7 +589,7 @@ class HorizontalTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HorizontalTableViewCell {
         
-        var section = category.getSection(row: indexPath.section)
+        let section = category.getSection(row: indexPath.section)
         
         
         
@@ -836,11 +821,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     
                     //destination.title = sectionTitles[indexPath.section]
-                    
-                    
-                    
-                    print("title \(category.sections[indexPath.section].sectionTitle) ")
-                    
+       
                     selectedSection = indexPath.section
                     
                     
@@ -848,8 +829,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     destination.categorySection = category.sections[indexPath.section]
                     
-                    
-                    print("category \(destination.categorySection?.sectionTitle)" )
+                
                     
                     
                     
@@ -884,7 +864,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             
-            var  count = videos[collectionView.tag].count
+            let  count = videos[collectionView.tag].count
             
             
             
@@ -972,7 +952,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     
-                    var videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                    let videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
                     
                     thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
                     
@@ -1042,20 +1022,15 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             
-            for event in upcomingEvents {
-                
-                
-                
-                
-                
-                
-                var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
-                
-                
-                videos.append(video!)
-                
-                
-            }
+            
+            
+            videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+            
+            
+            
+            
+            
+            
             
             
             
@@ -1102,6 +1077,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
             
             
+           // cells.dateLabel.text = videos[indexPath.item].eventDate?.convertDateToTimeString(date: videos[indexPath.item].eventDate! )
             
             
             
@@ -1298,7 +1274,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         category = newCategory
         
-        var parentVC = self.parent as! MainTableViewController
+    
         
         
         
@@ -1329,10 +1305,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                     
                     
-                    var vids = search.search(category.sections[index].searchID!)
+                    let vids = search.search(category.sections[index].searchID!)
                     
                     
-                    var trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                    let trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                     
                     videos.append(trimmedVids)
                     

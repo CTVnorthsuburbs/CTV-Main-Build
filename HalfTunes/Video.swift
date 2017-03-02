@@ -94,6 +94,9 @@ open class Video: NSObject, NSCoding {
     
     var eventDate: Date?
     
+    
+    var endDate: Date?
+    
     var thumbnailUrl: NSURL?
     
     var id: Int?
@@ -217,6 +220,26 @@ open class Video: NSObject, NSCoding {
         
     }
     
+    
+    func setEndDate(date: Date) {
+        
+        self.endDate = date
+        
+        
+    }
+    
+    func getStartDate() -> Date? {
+        
+        return self.eventDate
+        
+    }
+    
+    func getEndDate() -> Date? {
+        
+        
+        return self.endDate
+        
+    }
     
     func hasThumbnailUrl() -> Bool {
         

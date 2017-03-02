@@ -48,3 +48,72 @@ extension UIImage {
     
     
 }
+
+extension Date {
+    
+    func convertStringToDate(dateString: String) -> Date {
+        
+        let strTime = dateString
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        let string = strTime
+        
+        let date = dateFormatter.date(from: string)
+        
+        return date!
+        
+    }
+    
+    
+    func convertDateToString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        var timeString = dateFormatter.string(from: date)
+        
+        return timeString
+        
+    }
+    
+    
+    func convertDateToTimeString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 3600)
+        
+       // dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "h:mm a"
+      
+        
+      
+        
+        
+        var timeString = dateFormatter.string(from: date)
+        
+        
+        return timeString
+        
+    }
+    
+    
+    
+    
+    
+    
+}

@@ -141,23 +141,16 @@ class CategoryTableViewController: UITableViewController {
                 
                 
                 
-                var vids = [Video]()
                 
                 
                 
-                for event in upcomingEvents {
-                    
-                    
-                    
-                    
-                    
-                    var video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
-                    
-                    
-                    vids.append(video!)
-                    
-                    
-                }
+                var videos = [Video]()
+                
+                
+                
+                
+                
+                videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
                 
                 
                 
@@ -165,15 +158,13 @@ class CategoryTableViewController: UITableViewController {
                 
                
                 
-                recommendedVideos = vids
+                recommendedVideos = videos
                 
                 
             } else {
             
                 
-                
-            
-             print("calling serach from categorytable view will appear")
+          
             
       recommendedVideos = search.search((categorySection?.searchID!)! )
             }

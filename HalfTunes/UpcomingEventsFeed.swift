@@ -75,6 +75,55 @@ class UpcomingEventsFeed {
         
     }
     
+    
+    
+    func getUpcomingEventVideos(events: [Event]) -> [Video] {
+        
+        
+        var videos = [Video]()
+        
+        
+        
+        for event in events {
+            
+            
+            
+            
+            
+            
+            let video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
+            
+            
+            
+            
+            video?.setEndDate(date: event.endDate)
+            
+            
+            videos.append(video!)
+            
+            
+        }
+        
+        
+        
+        
+       return videos
+        
+        
+    }
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
     func getUpcomingEventUpdate(category: Category) -> [Event]? {
         
         

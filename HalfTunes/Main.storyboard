@@ -872,6 +872,7 @@
                                                         <outlet property="dateLabel" destination="aBk-CC-ldu" id="dTa-GB-y26"/>
                                                         <outlet property="thumbnail" destination="8Ec-NO-TKU" id="9Ew-Tf-lNz"/>
                                                         <outlet property="titleLabel" destination="eCn-R1-GgE" id="2hz-6u-H1P"/>
+                                                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="4ZM-ZY-CSe"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -1831,9 +1832,9 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G77-yg-iiy"/>
+        <segue reference="YYH-WW-hEt"/>
         <segue reference="yQr-UQ-GkP"/>
-        <segue reference="l6J-Ru-YsW"/>
+        <segue reference="4ZM-ZY-CSe"/>
         <segue reference="TiQ-iG-Egd"/>
         <segue reference="Hpx-XP-cwh"/>
     </inferredMetricsTieBreakers>
