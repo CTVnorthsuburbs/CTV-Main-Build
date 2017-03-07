@@ -1486,7 +1486,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         destination.video = video.first
                         
                         
-                        suggestedSearch = category.sections[1]
+                        suggestedSearch = category.sections[0]
                         
                         
                         

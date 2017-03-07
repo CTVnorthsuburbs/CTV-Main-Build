@@ -727,7 +727,7 @@ class home: CategoryFactorySettings {
         
         self.upcomingSectionTitle = "Upcoming Events"
         
-        self.upcomingSectionSearchID = 52966
+        self.upcomingSectionSearchID = 85123
         
         self.upcomingSectionDisplayCount = 20
         
