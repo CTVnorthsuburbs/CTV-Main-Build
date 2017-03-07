@@ -285,11 +285,18 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         cell.cancelButton.isHidden = !showDownloadControls
         
-        if(video?.fileName == 1) {
+        if(video?.fileName == 1 || video?.getIsEvent() == true) {
             
             
             
             cell.downloadButton.isHidden = true
+        }
+        
+        if(video?.getIsEvent() == true) {
+            
+            
+            cell.thumbnailButton.isHidden = true
+            
         }
         
         return cell

@@ -52,13 +52,13 @@ class HorizontalTableViewController: UITableViewController {
         
     }()
     
-
+    
     
     @IBOutlet weak var tableCollection: UICollectionView!
     
     
     
- 
+    
     
     
     
@@ -198,7 +198,20 @@ class HorizontalTableViewController: UITableViewController {
                                         
                                         if(  vids.count > 0) {
                                             
+                                           
+                                                
+                                                
+                                            if(self.listOfVideos.count >= category.sections[index].searchID! ) {
+                                                
+                                                
                                             self.listOfVideos[category.sections[index].searchID!] = vids
+                                                
+                                                
+                                                
+                                                
+                                                }
+                                            
+                                            
                                             
                                             
                                             
@@ -488,7 +501,7 @@ class HorizontalTableViewController: UITableViewController {
     
     
     func saveFeaturedVideos() {
-        
+      
         
         featuredVideos = videos
         
@@ -627,7 +640,7 @@ class HorizontalTableViewController: UITableViewController {
                 section.displayCount = 15
                 
             }
-           
+            
             
             /*
              if(section.displayCount! >  videos[indexPath.section].count) {
@@ -637,7 +650,7 @@ class HorizontalTableViewController: UITableViewController {
              
              }
              
-      */
+             */
             
             
             return cell!
@@ -821,7 +834,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     
                     //destination.title = sectionTitles[indexPath.section]
-       
+                    
                     selectedSection = indexPath.section
                     
                     
@@ -829,7 +842,7 @@ class HorizontalTableViewController: UITableViewController {
                     
                     destination.categorySection = category.sections[indexPath.section]
                     
-                
+                    
                     
                     
                     
@@ -1014,141 +1027,65 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         if(category.sections[collectionView.tag].sectionType == SectionType.upcomingEventList ) {
             
-            
-            
-            
-            
             var videos = [Video]()
-            
-            
-            
-            
             
             videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             self.videos[collectionView.tag] = videos
             
-            
-            
-            
-            
-            
-            
-            if( videos[indexPath.item].hasThumbnailUrl()) {
-                
-                
-                
-                
+            if ( videos[indexPath.item].hasThumbnailUrl()) {
                 
                 cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                 
                 cells.thumbnail.image = cells.thumbnail.image?.cropBottomImage(image: cells.thumbnail.image!)
-            
-                
                 
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
             cells.thumbnail.setRadius(radius: imageRadius)
-            
             
             cells.titleLabel.text = videos[indexPath.item].title
             
-            cells.dateLabel.text = convertDateToString(date: videos[indexPath.item].eventDate!)
-            
-            
-           // cells.dateLabel.text = videos[indexPath.item].eventDate?.convertDateToTimeString(date: videos[indexPath.item].eventDate! )
-            
-            
-            
-            
+            if (videos[indexPath.item].eventDate?.checkIfDateTimeIsToday())! {
+                
+               let time =  videos[indexPath.item].eventDate!.convertDateToTimeString()
+                
+                cells.dateLabel.text = "Today at \(time)"
+                
+            } else  if (videos[indexPath.item].eventDate?.checkIfDateTimeIsTomorrow())! {
+                cells.dateLabel.text = "Tomorrow"
+                
+            } else {
+                
+                cells.dateLabel.text = videos[indexPath.item].eventDate?.convertEventDateToString()
+                
+            }
             
         }
         
         
-        
-        
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList   ) {
             
-            
-            
-            
+  
             
             var videos = [Video]()
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             if(category.videoType == VideoType.youtube) {
-                
-                
-                
-                
-                
-                
-                
+
                 videos =  search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)!
                 
-                
-                
-                
-                
-                
-                
-                
+
             } else if(category.videoType == VideoType.cablecast) {
                 
-                
-                
-                
-                
-                
-                
+
                 if (listOfVideos.keys.contains(category.sections[collectionView.tag].searchID!)) {
                     
-                    
-                    
-                    
-                    
+
                     videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
                     
                     
                 } else {
                     
-                    
-                    
-                    
-                    
-                    
+
                     listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
                     
                     
@@ -1159,18 +1096,8 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 }
                 
                 
-                
-                
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    
             //  var videos = search.search(category.sections[collectionView.tag].searchID!)
             
             
@@ -1274,7 +1201,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         category = newCategory
         
-    
+        
         
         
         
@@ -1429,7 +1356,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             if(button?.type == ButtonType.webPage) {
                 
                 
-                
+                /*
                 
                 let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "webView") as! WebViewController
                 
@@ -1443,6 +1370,13 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 self.navigationController?.pushViewController(vc, animated:true)
                 
+                
+                */
+                
+                
+                if let url =  button?.webURL {
+                    UIApplication.shared.openURL(url)
+                }
                 
                 
                 
@@ -1480,7 +1414,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                         let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
                         
-                        var video  = Video(title: button!.title!, thumbnail: button?.image, fileName: 1, sourceUrl:  button?.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: button?.videoID)
+                        var video  = Video(title: button!.title!, thumbnail: button?.image, fileName: 1, sourceUrl:  button?.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: button?.videoID, isEvent: false, endDate: nil)
                         
                         
                         

@@ -32,23 +32,23 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     @IBOutlet weak var child: UIView!
-   
+    
     // MARK: Properties
     
     @IBOutlet weak var thumbnailView: UIImageView!
-
+    
     @IBOutlet weak var thumbnailButton: UIButton!
-
+    
     let playerViewController = YourVideoPlayer()
     
     var moviePlayer : AVPlayer?
     
     var video: Video?
     
-   
+    
     var videoLoaded: Bool = false
     
-  
+    
     var currentCategory: Category?
     var webView: UIWebView?
     
@@ -68,43 +68,21 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var dateLabel: UILabel!
     
     
-    func convertStringToDate(dateString: String) -> Date {
+    
+    func hidePlayer() {
+  
         
-        let strTime = dateString
+
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        let string = strTime
-        
-        let date = dateFormatter.date(from: string)
-        
-        return date!
-        
+        self.thumbnailButton.isHidden = true
+
     }
     
-    
-    func convertDateToString(date: Date) -> String {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        var timeString = dateFormatter.string(from: date)
-        
-        return timeString
-        
+    func showPlayer() {
+
+        self.thumbnailButton.isHidden = false
+
     }
-    
     
     
     func setCategory(category: Category) {
@@ -117,29 +95,32 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewWillDisappear(_ animated: Bool) {
         
-
+        
         self.thumbnailButton.isHidden = true
         
         
         playerViewController.player?.pause()
         
-    
+        
         
         webView? = UIWebView()
         
         
-      
+        
         
         
     }
-  
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
-      
+        
+       
+    
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         
         //self.thumbnailButton.isHidden = true     //Chnage this maybe
-
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -149,20 +130,210 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
             
-            thumbnailButton.isHidden = false
+        showPlayer()
+            
+            
+        }
+        if(video?.getIsEvent() == true) {
+            
+            
+            
+            if (video?.eventDate?.checkIfDateTimeIsNow())! {
+                
+                
+                showPlayer()
+                
+            } else {
+           hidePlayer()
+            }
+            
+        }
+        
+    }
+    
+    func loadVideoThumbnail(video: Video) {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            
+            
+            
+            if(video.fileName != nil  && self.currentCategory?.videoType != VideoType.youtube) {
+                
+                if(video.fileName != 1) {
+                    
+                    
+                    video.thumbnail = search.getThumbnail(id: video.fileName!)
+                    
+                    
+                    if(video.thumbnail == nil) {
+                        
+                        
+                        video.generateThumbnail()
+                        
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+            
+            self.thumbnailView.image = video.thumbnail
+            
+            
+            if(   self.thumbnailView.image == nil &&  video.fileName != 1) {
+                
+                
+                
+                video.generateThumbnail()
+                self.thumbnailView.image = video.thumbnail
+                
+            } else if (self.thumbnailView.image == nil  && video.fileName == 1) {
+                
+                
+                if(video.hasThumbnailUrl()) {
+                    
+                    
+                    
+                    video.thumbnail = search.getThumbnail(url: video.thumbnailUrl!)
+                    
+                    self.thumbnailView.image = video.thumbnail
+                    
+                }
+                
+            }
+            
+            
+            
+            DispatchQueue.main.async(){
+                
+                LoadingOverlay.shared.hideOverlayView()
+                
+            }
+            
             
             
         }
         
     }
-
     
-
+    
+    
+    func loadEventThumbnail(video: Video) {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            
+            
+            
+            //   cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+            
+            //   cells.thumbnail.image = cells.thumbnail.image?.cropBottomImage(image: cells.thumbnail.image!)
+            
+            
+            
+            video.thumbnail =  search.getThumbnail(url: (video.thumbnailUrl)!)
+            
+            video.thumbnail =  video.thumbnail?.cropEventImage()
+            
+            
+            
+            
+            self.thumbnailView.image = video.thumbnail
+            
+            
+            
+            DispatchQueue.main.async(){
+                
+                LoadingOverlay.shared.hideOverlayView()
+                
+            }
+            
+            
+            
+        }
+        
+    }
+    
+    
+    func loadVideoDescription(video: Video) {
+        
+        let date =  video.eventDate
+        
+        self.childView.dateLabel.text = date?.convertDateToString()
+        
+        
+        self.navigationItem.title = video.title
+        
+        self.childView.titleLabel.text   = video.title
+        
+        self.childView.descriptionLabel.text = video.comments
+        
+        self.video = video
+        
+        self.childView.parentView = self
+        
+        self.childView.setVideo(video: video)
+        
+        
+        
+        
+    }
+    
+    
+    
+    func loadEventDescription(video: Video) {
+        
+        let date =  video.getStartDate()
+        
+        let endDate = video.getEndDate()
+        
+        if (date?.checkIfDateTimeIsTomorrow())!  {
+            
+            self.childView.dateLabel.text = "Tomorrow"
+            
+        } else if (date?.checkIfDateTimeIsToday())! {
+            
+            
+            
+            self.childView.dateLabel.text = "Today"
+            
+            
+        } else {
+      
+        self.childView.dateLabel.text = date?.convertDateToString()
+        
+        }
+        
+        self.navigationItem.title = video.title
+        
+        self.childView.titleLabel.text   = video.title
+        
+        self.childView.descriptionLabel.font = self.childView.descriptionLabel.font.withSize(12)
+        
+        self.childView.descriptionLabel.text = String("Start Time: \(date!.convertDateToTimeString())\nEnd Time: \(endDate!.convertDateToTimeString())")
+        
+        self.video = video
+        
+        self.childView.parentView = self
+        
+        self.childView.setVideo(video: video)
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         
-   
-       
-
+        showPlayer()
+     
+        
         self.childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
         
         super.viewDidLoad()
@@ -179,21 +350,21 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         } else {
             
-           
+            
             self.currentCategory = category
             
             
-           
+            
             
             self.childView.setCategory(category: self.currentCategory!, section: selectedSection)
             
             
             
         }
-    
-     
-            
-     
+        
+        
+        
+        
         if(self.video == nil){
             
             
@@ -201,7 +372,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         while(self.video == nil) {
             
-           var i = 0
+            var i = 0
             
             i = i + i
             
@@ -209,128 +380,41 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         if let video = self.video {
             
-        
-          
-
-            var date =  video.eventDate
-            
-            
-        
-            
-            self.childView.dateLabel.text = self.convertDateToString(date: date!)
+            if(video.getIsEvent() == true) {
                 
-            
-
-            self.navigationItem.title = video.title
-            
-            self.childView.titleLabel.text   = video.title
-            
-            self.childView.descriptionLabel.text = video.comments
-            
-            
-            self.video = video
-            
-          
-            
-            
-            self.childView.parentView = self
-            
-            
-            
-            self.childView.setVideo(video: self.video!)
-            
-            
-
-            DispatchQueue.global(qos: .background).async {
-
                 
-             
-            
-                if(video.fileName != nil  && self.currentCategory?.videoType != VideoType.youtube) {
-                    
-                    if(video.fileName != 1) {
-                        
-                        
-                        
-                        
-                        
-                        
-                    
-                    
-                    video.thumbnail = search.getThumbnail(id: video.fileName!)
-                    
-                    
-                    if(video.thumbnail == nil) {
-                        
-                        
-                        video.generateThumbnail()
-                        
-                        
-                    }
-                        
-                    }
-                    
-                    
-                }
+
+               
                 
-                    
-                    
-                    
-                    self.thumbnailView.image = video.thumbnail
-                  
-                    
-                    if(   self.thumbnailView.image == nil &&  video.fileName != 1) {
-                        
-                        
-                        
-                        video.generateThumbnail()
-                        self.thumbnailView.image = video.thumbnail
-                        
-                    } else if (self.thumbnailView.image == nil  && video.fileName == 1) {
-                        
-                       
-                        if(video.hasThumbnailUrl()) {
-                            
-                            
-                       
-                       video.thumbnail = search.getThumbnail(url: video.thumbnailUrl!)
-                        
-                        self.thumbnailView.image = video.thumbnail
-                        
-                        }
-                        
-                    }
-                    
-            
-              
-                DispatchQueue.main.async(){
-                    
-                     LoadingOverlay.shared.hideOverlayView()
-                    
-                }
+                loadEventDescription(video: video)
                 
-                    
+                loadEventThumbnail(video: video)
+                
+   
+                videoLoaded = false
+                
+            } else {
+                
+                loadVideoDescription(video: video)
+                
+                loadVideoThumbnail(video: video)
+                
+                 showPlayer()
                 
             }
             
-          
-                
-            
-            
-            
-                
-            }
+        }
         
         
-            //thumbnailView.image = video.thumbnail
-            
+        //thumbnailView.image = video.thumbnail
+        
         
         
         if(self.loadVideos() != nil) {
             
             
-        myVideos = self.loadVideos()!
-
+            myVideos = self.loadVideos()!
+            
         }
         
         if (self.hasSavedVideo()) {
@@ -339,14 +423,19 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.toggleAddButton()
         }
         
-            //   LoadingOverlay.shared.hideOverlayView()
+        //   LoadingOverlay.shared.hideOverlayView()
         // timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "setProgressBar", userInfo: nil, repeats: true)
         self.thumbnailButton.isHidden = false
     }
     
+    
+    
+    
+    
+    
     func setProgressBar() {
         
-        var tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
+        let tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
         
         
         if( tempDownload?.progress !=  nil ) {
@@ -356,7 +445,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             print(tempDownload!.progress)
             
-           childView.progressView.setProgress(tempDownload!.progress, animated: true)
+            childView.progressView.setProgress(tempDownload!.progress, animated: true)
             
             
             
@@ -380,7 +469,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func hideDownloadControls() {
         
-        var showDownloadControls = false
+        let showDownloadControls = false
         
         
         
@@ -421,6 +510,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewWillAppear(_ animated: Bool) {
         
+        // hidePlayer()
+        
         
         if(loadVideos() != nil) {
             
@@ -434,6 +525,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         toggleAddButton()
+        
+        
         var showDownloadControls = false
         
         
@@ -447,7 +540,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             showDownloadControls = true
             
-                
+            
             
             
             self.childView.progressView.progress = (download?.progress)!
@@ -490,25 +583,27 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         childView.progressView.isHidden = !showDownloadControls
         
-       childView.cancelButton.isHidden = !showDownloadControls
+        childView.cancelButton.isHidden = !showDownloadControls
         
         
         
         
-
+        
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
         timer?.invalidate()
+        
     }
     
-
+    
     
     func loadVideos() -> [Video]? {
         
         
-        var video = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+     //   var video = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
         
         
         return NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
@@ -534,7 +629,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     
-     func addVideo(_ sender: AnyObject) {
+    func addVideo(_ sender: AnyObject) {
         
         if(childView.addVideoButton.titleLabel?.text == "+ Add"){
             if(!childView.addVideoButton.isSelected) {
@@ -601,6 +696,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     @IBAction func playVideo(_ sender: AnyObject) {
+        
+        
         self.thumbnailButton.isHidden = true
         
         self.videoLoaded = true
@@ -611,13 +708,13 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
             
-  webView = UIWebView(frame: self.thumbnailView.frame)
-          
-        
+            webView = UIWebView(frame: self.thumbnailView.frame)
+            
+            
             self.view.addSubview(webView!)
-           self.view.bringSubview(toFront: webView!)
-        
-   
+            self.view.bringSubview(toFront: webView!)
+            
+            
             
             //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             
@@ -627,7 +724,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
             
-           webView?.allowsInlineMediaPlayback = true
+            webView?.allowsInlineMediaPlayback = true
             webView?.mediaPlaybackRequiresUserAction = false
             
             var videoID = ""
@@ -637,7 +734,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
             
-    
+            
             
             
             
@@ -649,235 +746,219 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             
         } else {
-        
-        
-          if(video?.fileName == 1 && currentCategory?.videoType != VideoType.youtube) {
-           
-            
-            if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
-                
-                
-              
-                
-                
-                
-                
-                let fileUrl = URL(string: urlString)
-                
-                let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
-                
-                
-                
-                
-                playerViewController.player = moviePlayer
-                
-                
-                self.addChildViewController(playerViewController)
-                self.thumbnailView.addSubview(playerViewController.view)
-                playerViewController.view.frame = self.thumbnailView.bounds
-                
-                playerViewController.allowsPictureInPicturePlayback = true
-                
-                playerViewController.showsPlaybackControls = true
-                
-                
-                
-                
-                
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                //  let value = UIInterfaceOrientation.portrait.rawValue
-                // UIDevice.current.setValue(value, forKey: "orientation")
-                
-                
-                
-                
-                self.thumbnailButton.isHidden = true
-                playerViewController.player!.play()
-                
-                //  appDelegate.shouldRotate = true // or false to disable rotation
-                
-                
-                
-            }
             
             
-            
-            
-            
-            
-            
-       
-        
-        
-          } else {
-        
-        let videoPath = Bundle.main.path(forResource: video?.sourceUrl, ofType:"mp4")
-        
-        //Make a URL from your path
-        
-        //Initalize the movie player
-        
-        if (!localFileExistsForVideo(video!)) {
-            
-            if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+            if(video?.fileName == 1 && currentCategory?.videoType != VideoType.youtube) {
                 
                 
-                
-           
-                
-                
-                
-                let fileUrl = URL(string: urlString)
-                
-                let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
-                
-                
-          
-                
-                playerViewController.player = moviePlayer
-                 
-                 
-                 self.addChildViewController(playerViewController)
-                 self.thumbnailView.addSubview(playerViewController.view)
-                 playerViewController.view.frame = self.thumbnailView.bounds
-                 
-                playerViewController.allowsPictureInPicturePlayback = true
-                
-                playerViewController.showsPlaybackControls = true
-                
-                
-             
-                
-                
-             
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-             //  let value = UIInterfaceOrientation.portrait.rawValue
-             // UIDevice.current.setValue(value, forKey: "orientation")
-              
-                
-             
-         
-                   self.thumbnailButton.isHidden = true
+                if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    let fileUrl = URL(string: urlString)
+                    
+                    let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
+                    
+                    
+                    
+                    
+                    playerViewController.player = moviePlayer
+                    
+                    
+                    self.addChildViewController(playerViewController)
+                    self.thumbnailView.addSubview(playerViewController.view)
+                    playerViewController.view.frame = self.thumbnailView.bounds
+                    
+                    playerViewController.allowsPictureInPicturePlayback = true
+                    
+                    playerViewController.showsPlaybackControls = true
+                    
+                    
+                    
+                    
+                    
+                    
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    
+                    //  let value = UIInterfaceOrientation.portrait.rawValue
+                    // UIDevice.current.setValue(value, forKey: "orientation")
+                    
+                    
+                    
+                    
+                    self.thumbnailButton.isHidden = true
                     playerViewController.player!.play()
+                    
+                    //  appDelegate.shouldRotate = true // or false to disable rotation
+                    
+                    
+                    
+                }
                 
-             //  appDelegate.shouldRotate = true // or false to disable rotation
                 
+                
+                
+                
+                
+                
+                
+                
+                
+            } else {
+                
+                let videoPath = Bundle.main.path(forResource: video?.sourceUrl, ofType:"mp4")
+                
+                //Make a URL from your path
+                
+                //Initalize the movie player
+                
+                if (!localFileExistsForVideo(video!)) {
+                    
+                    if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        let fileUrl = URL(string: urlString)
+                        
+                        let moviePlayer:AVPlayer! = AVPlayer(url: fileUrl!)
+                        
+                        
+                        
+                        
+                        playerViewController.player = moviePlayer
+                        
+                        
+                        self.addChildViewController(playerViewController)
+                        self.thumbnailView.addSubview(playerViewController.view)
+                        playerViewController.view.frame = self.thumbnailView.bounds
+                        
+                        playerViewController.allowsPictureInPicturePlayback = true
+                        
+                        playerViewController.showsPlaybackControls = true
+                        
+                        
+                        
+                        
+                        
+                        
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        
+                        //  let value = UIInterfaceOrientation.portrait.rawValue
+                        // UIDevice.current.setValue(value, forKey: "orientation")
+                        
+                        
+                        
+                        
+                        self.thumbnailButton.isHidden = true
+                        playerViewController.player!.play()
+                        
+                        //  appDelegate.shouldRotate = true // or false to disable rotation
+                        
+                        
+                        
+                    }
+                    
+                } else {
+                    
+                    print("local file exists for: \(video?.title)")
+                    
+                    
+                    
+                    
+                    
+                    
+                    if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
+                        
+                        
+                        
+                        
+                        print("URL: \(url)")
+                        
+                        let moviePlayer:AVPlayer! = AVPlayer(url: url)
+                        
+                        
+                        
+                        
+                        playerViewController.player = moviePlayer
+                        
+                        self.addChildViewController(playerViewController)
+                        
+                        self.thumbnailView.addSubview(playerViewController.view)
+                        
+                        playerViewController.view.frame = self.thumbnailView.bounds
+                        
+                        playerViewController.allowsPictureInPicturePlayback = true
+                        
+                        playerViewController.showsPlaybackControls = true
 
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        
+                        //  let value = UIInterfaceOrientation.portrait.rawValue
+                        // UIDevice.current.setValue(value, forKey: "orientation")
+                        
+                        self.thumbnailButton.isHidden = true
+                        
+                        playerViewController.player!.play()
+
+                    }
+                    
+                    
+                    
+                }
                 
             }
             
-        } else {
-            
-            print("local file exists for: \(video?.title)")
-            
-            
-            
-            
-            
-            
-            if let urlString = video?.sourceUrl, let url = localFilePathForUrl(urlString) {
-                
-                
-                
-                
-                print("URL: \(url)")
-                
-                let moviePlayer:AVPlayer! = AVPlayer(url: url)
-                
-                
-                
-                
-                playerViewController.player = moviePlayer
-                
-                
-                self.addChildViewController(playerViewController)
-                self.thumbnailView.addSubview(playerViewController.view)
-                playerViewController.view.frame = self.thumbnailView.bounds
-                
-                playerViewController.allowsPictureInPicturePlayback = true
-                
-                playerViewController.showsPlaybackControls = true
-                
-                
-                
-                
-                
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                //  let value = UIInterfaceOrientation.portrait.rawValue
-                // UIDevice.current.setValue(value, forKey: "orientation")
-                
-                
-                
-                
-                self.thumbnailButton.isHidden = true
-                playerViewController.player!.play()
-                
-                
-                
-                
-                
-                
-            }
-            
-
             
         }
         
-        }
- 
+        /*
+         
+         let webView = UIWebView(frame: self.thumbnailView.frame)
+         
+         self.view.addSubview(webView)
+         self.view.bringSubview(toFront: webView)
+         
+         webView.allowsInlineMediaPlayback = true
+         webView.mediaPlaybackRequiresUserAction = false
+         
+         var videoID = ""
+         
+         
+         videoID = (video?.sourceUrl)!     // https://www.youtube.com/watch?v=28myxjncnDM     http://www.youtube.com/embed/28myxjncnDM
+         
+         let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
+         
+         
+         
+         
+         
+         
+         webView.loadHTMLString(embededHTML, baseURL: Bundle.main.resourceURL)
+         
+         
+         */
         
-        }
-        
-      /*
-        
-        let webView = UIWebView(frame: self.thumbnailView.frame)
-        
-        self.view.addSubview(webView)
-        self.view.bringSubview(toFront: webView)
-        
-        webView.allowsInlineMediaPlayback = true
-        webView.mediaPlaybackRequiresUserAction = false
-        
-        var videoID = ""
-        
-        
-        videoID = (video?.sourceUrl)!     // https://www.youtube.com/watch?v=28myxjncnDM     http://www.youtube.com/embed/28myxjncnDM
-        
-        let embededHTML = "<html><body style='margin:0px;padding:0px;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(self.thumbnailView.frame.size.width)' height='\(self.thumbnailView.frame.size.height)' src='http://www.youtube.com/embed/\(videoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=1' frameborder='0'></body></html>"
-        
-        
-        
-        
-        
-        
-        webView.loadHTMLString(embededHTML, baseURL: Bundle.main.resourceURL)
-        
-        
-        */
- 
         
         
         
     }
     
-
+    
     
     
     func playDownload(_ video: Video) {
         
         if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
             
-        
-            
-            
-        
-            
-            
+
             let moviePlayer:AVPlayer! = AVPlayer(url: url)
             
             let playerViewController = AVPlayerViewController()
@@ -889,9 +970,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.present(playerViewController, animated: true) {
                 playerViewController.player!.play()
             }
- 
- 
- 
+            
+            
+            
             
         }
         
@@ -909,12 +990,12 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         let url = URL(string: previewUrl)
         if(url != nil ) {       //added this to fix error
-        
-        let lastPathComponent = url?.lastPathComponent
-        
-        let fullPath = documentsPath.appendingPathComponent(lastPathComponent!)
-        
-        return URL(fileURLWithPath:fullPath)
+            
+            let lastPathComponent = url?.lastPathComponent
+            
+            let fullPath = documentsPath.appendingPathComponent(lastPathComponent!)
+            
+            return URL(fileURLWithPath:fullPath)
         }
         return nil
         
@@ -948,7 +1029,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 childView.addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
                 
                 
-               childView.addVideoButton.isSelected = true
+                childView.addVideoButton.isSelected = true
                 
             } else {
                 
@@ -956,9 +1037,9 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 if(hasSavedVideo()) {
                     
                     
-                    if(currentCategory?.videoType != VideoType.youtube) {
+                    if(currentCategory?.videoType != VideoType.youtube &&  video?.getIsEvent() == false ) {
                         
-                    childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+                        childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
                         
                     } else {
                         
@@ -1023,7 +1104,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         childView.cancelButton.isHidden = !showDownloadControls
         
     }
- func cancelTapped(_ sender: AnyObject) {
+    func cancelTapped(_ sender: AnyObject) {
         
         cancelDownload(video!)
         
@@ -1179,18 +1260,18 @@ class YourVideoPlayer: AVPlayerViewController {
         } else {
             
             
-          //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+            //  UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             
             appDelegate.shouldRotate = true // or false to disable rotation
-      
-
+            
+            
         }
-}
-
-
-
+    }
+    
+    
+    
 }
 
 

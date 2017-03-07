@@ -23,6 +23,16 @@ extension UIImage {
     
     
     
+    func cropEventImage() -> UIImage {
+        let height = CGFloat(self.size.height / 2)
+        
+        let heightFromBottom = CGFloat(self.size.height / 3.07)
+        let rect = CGRect(x: 0, y: self.size.height - height - heightFromBottom , width: self.size.width, height: height)
+        return cropImage(image: self, toRect: rect)
+    }
+    
+    
+    
     
     /*
      func cropBottomImage(image: UIImage) -> UIImage {
@@ -61,7 +71,13 @@ extension Date {
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        
+        
+   
+     
+       
+        
         
         let string = strTime
         
@@ -72,31 +88,36 @@ extension Date {
     }
     
     
-    func convertDateToString(date: Date) -> String {
+    func convertDateToString() -> String {
         
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+         dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
         
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
-        var timeString = dateFormatter.string(from: date)
+        var timeString = dateFormatter.string(from: self)
         
         return timeString
         
     }
     
     
-    func convertDateToTimeString(date: Date) -> String {
+    func convertDateToTimeString() -> String {
         
+        
+        
+        
+        
+       
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 3600)
-        
+      //  dateFormatter.timeZone = TimeZone(secondsFromGMT: -21600)
+    //    dateFormatter.timeZone = TimeZone(abbreviation: "CST")
        // dateFormatter.timeStyle = .short
         dateFormatter.dateFormat = "h:mm a"
       
@@ -104,12 +125,102 @@ extension Date {
       
         
         
-        var timeString = dateFormatter.string(from: date)
+        var timeString = dateFormatter.string(from: self)
         
         
         return timeString
         
     }
+    
+    
+    func convertEventDateToString() -> String {
+        
+        
+        
+        
+        
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        //  dateFormatter.timeZone = TimeZone(secondsFromGMT: -21600)
+        //    dateFormatter.timeZone = TimeZone(abbreviation: "CST")
+        // dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        
+        
+        
+        
+        var timeString = dateFormatter.string(from: self)
+        
+        
+        return timeString
+        
+    }
+    
+    
+    func checkIfDateTimeIsTomorrow() -> Bool {
+        
+        let calendar = NSCalendar.autoupdatingCurrent
+        
+        if (calendar.isDateInTomorrow(self)) {
+            
+            return true
+            
+        }
+        
+        return false
+        
+    }
+    
+    
+    func checkIfDateTimeIsToday() -> Bool {
+        
+        let calendar = NSCalendar.autoupdatingCurrent
+        
+        if (calendar.isDateInToday(self)) {
+            
+            
+            
+            return true
+            
+        }
+        
+        return false
+        
+    }
+    
+    
+    func checkIfDateTimeIsNow() -> Bool {
+        
+        let calendar = NSCalendar.autoupdatingCurrent
+        
+        if (calendar.isDateInToday(self)) {
+            
+            
+            
+            if(self.timeIntervalSinceNow < 1800) {
+                
+                
+                
+                return true
+                
+                
+            }
+          
+            
+            
+            
+            
+            
+        }
+        
+        return false
+        
+    }
+    
     
     
     

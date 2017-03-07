@@ -102,6 +102,10 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             
         } else {
+            
+            
+            
+            /*
             var searchID = suggestedSearch?.searchID
             
             
@@ -121,6 +125,12 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 recommendedVideos = search.getRecentLimited()
             }
+ 
+ 
+ */
+            
+            
+            recommendedVideos = search.getRecentLimited()
         }
         
         

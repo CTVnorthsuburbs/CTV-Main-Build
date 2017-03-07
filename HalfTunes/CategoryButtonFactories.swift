@@ -131,7 +131,11 @@ class nsccMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+      //  self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        
+       self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86") 
+        
+        
         
     }
     
@@ -155,7 +159,7 @@ class moundsMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/typeview.php?regionid=85&amp;typeid=41")
         
     }
     
@@ -179,7 +183,7 @@ class saintMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/typeview.php?regionid=80&amp;typeid=41")
         
     }
     
@@ -204,7 +208,7 @@ class ardenMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=57")
         
     }
     
@@ -228,7 +232,7 @@ class falconMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=97")
         
     }
     
@@ -252,7 +256,7 @@ class lauderdaleMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=58")
         
     }
     
@@ -276,7 +280,7 @@ class canadaMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=59")
         
     }
     
@@ -301,7 +305,7 @@ class moundsViewMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=60")
         
     }
     
@@ -325,7 +329,7 @@ class northMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=62")
         
     }
     
@@ -349,7 +353,7 @@ class rosevilleMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=78")
         
     }
     
@@ -374,7 +378,7 @@ class saintAnthonyMeetingsButtonFactory: ButtonFactory {
         
         self.category = nil
         
-        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=86")
+        self.webURL = URL(string: "http://webstreaming.ctv15.org/regionview.php?regionid=64")
         
     }
     
@@ -384,49 +388,7 @@ class saintAnthonyMeetingsButtonFactory: ButtonFactory {
 
 
 
-class baseballButtonFactory: ButtonFactory {
-    
-    override init() {
-        
-        super.init()
-        
-        self.type = ButtonType.category
-        
-        self.image = #imageLiteral(resourceName: "baseball")
-        
-        self.title = "Baseball"
-        
-        self.imageOverlay = nil
-        
-        self.page = nil
-        
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: baseball()))
-        
-    }
-    
-}
 
-class basketballButtonFactory: ButtonFactory {
-    
-    override init() {
-        
-        super.init()
-        
-        self.type = ButtonType.category
-        
-        self.image = #imageLiteral(resourceName: "basketball-header")
-        
-        self.title = "Basketball"
-        
-        self.imageOverlay = nil
-        
-        self.page = nil
-        
-        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketball()))
-        
-    }
-    
-}
 
 
 class featuredButtonFactory: ButtonFactory {
@@ -477,6 +439,31 @@ class featured2ButtonFactory: ButtonFactory {
     
 }
 
+
+
+class aboutButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.page
+        
+        self.image = #imageLiteral(resourceName: "about-header")
+        
+        self.title = "About CTV"
+        
+        self.imageOverlay = nil
+        
+        self.page = "About"
+        
+        
+        
+    }
+    
+}
+
+
 class featured3ButtonFactory: ButtonFactory {
     
     override init() {
@@ -526,6 +513,29 @@ class teenButtonFactory: ButtonFactory {
     
 }
 
+
+class scheduleButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.webPage
+        
+        self.image = #imageLiteral(resourceName: "schedule-header")
+        
+        self.title = "Schedule"
+        
+        self.imageOverlay = nil
+        
+        self.webURL = URL(string: "http://www.ctv15.org/schedules/class-schedule#year=2016&month=12&day=13&view=month")
+        
+        
+        
+    }
+    
+}
+
 class ctvYouTubeButtonFactory: ButtonFactory {
     
     override init() {
@@ -553,6 +563,54 @@ class ctvYouTubeButtonFactory: ButtonFactory {
 
 
 
+class baseballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "baseball")
+        
+        self.title = "Baseball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: baseball()))
+        
+    }
+    
+}
+
+class basketballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "basketball-header")
+        
+        self.title = "Basketball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: basketball()))
+        
+    }
+    
+}
+
+
+
+
+
 class footballButtonFactory: ButtonFactory {
     
     override init() {
@@ -570,6 +628,31 @@ class footballButtonFactory: ButtonFactory {
         self.page = nil
         
         self.category = Category(categoryFactory: CategoryFactory(factorySettings: football()))
+        
+        
+        
+    }
+    
+}
+
+
+class gymnasticsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "gymnastics-header")
+        
+        self.title = "Gymnastics"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: gymnastics()))
         
         
         
@@ -605,28 +688,60 @@ class hockeyButtonFactory: ButtonFactory {
 
 
 
-
-class aboutButtonFactory: ButtonFactory {
+class lacrosseButtonFactory: ButtonFactory {
     
     override init() {
         
         super.init()
         
-        self.type = ButtonType.page
+        self.type = ButtonType.category
         
-        self.image = #imageLiteral(resourceName: "about-header")
+        self.image = #imageLiteral(resourceName: "lacrosse-header")
         
-        self.title = "About CTV"
+        self.title = "Lacrosse"
         
         self.imageOverlay = nil
         
-        self.page = "About"
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: lacrosse()))
         
         
         
     }
     
 }
+
+
+class softballButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "softball")
+        
+        self.title = "Softball"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: softball()))
+        
+        
+        
+    }
+    
+}
+
+
+
+
+
+
 
 
 class volleyballButtonFactory: ButtonFactory {
@@ -650,27 +765,7 @@ class volleyballButtonFactory: ButtonFactory {
     }
     
 }
-class scheduleButtonFactory: ButtonFactory {
-    
-    override init() {
-        
-        super.init()
-        
-        self.type = ButtonType.webPage
-        
-        self.image = #imageLiteral(resourceName: "schedule-header")
-        
-        self.title = "Schedule"
-        
-        self.imageOverlay = nil
-        
-        self.webURL = URL(string: "http://www.ctv15.org/schedules/class-schedule#year=2016&month=12&day=13&view=month")
-        
-        
-        
-    }
-    
-}
+
 
 
 class soccerButtonFactory: ButtonFactory {

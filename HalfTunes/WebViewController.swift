@@ -41,9 +41,7 @@ class WebViewController: UIViewController {
         webView.reload()
     }
     
-    @IBAction func stopAction(sender: AnyObject) {
-        webView.stopLoading()
-    }
+  
     
     func setTitle(title: String) {
         

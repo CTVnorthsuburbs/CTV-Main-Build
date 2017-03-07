@@ -94,6 +94,8 @@ open class Video: NSObject, NSCoding {
     
     var eventDate: Date?
     
+    var isEvent: Bool?
+    
     
     var endDate: Date?
     
@@ -125,6 +127,10 @@ open class Video: NSObject, NSCoding {
         
         static let thumbnailUrlKey = "thumbnailUrl"
         
+        static let isEventKey = "isEvent"
+        
+        static let endDateKey = "endDate"
+        
         static let idKey = "id"
         
         
@@ -138,7 +144,7 @@ open class Video: NSObject, NSCoding {
   
     
     
-    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?, id: Int?) {
+    init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?, id: Int?, isEvent: Bool?, endDate: Date?) {
         
         // Initialize stored properties.
         
@@ -159,6 +165,10 @@ open class Video: NSObject, NSCoding {
         self.thumbnailUrl = thumbnailUrl
         
         self.id = id
+        
+        self.isEvent = isEvent
+        
+        self.endDate = endDate
         
         
 
@@ -238,6 +248,13 @@ open class Video: NSObject, NSCoding {
         
         
         return self.endDate
+        
+    }
+    
+    func getIsEvent() -> Bool {
+        
+        
+        return self.isEvent!
         
     }
     
@@ -354,10 +371,15 @@ open class Video: NSObject, NSCoding {
         
         aCoder.encode(eventDate, forKey: PropertyKey.eventDateKey)
         
+        aCoder.encode(isEvent, forKey: PropertyKey.isEventKey)
+        
+        
         
            aCoder.encode(thumbnailUrl, forKey: PropertyKey.thumbnailUrlKey)
         
         aCoder.encode(id, forKey: PropertyKey.idKey)
+        
+        aCoder.encode(endDate, forKey: PropertyKey.endDateKey)
         
         
     }
@@ -374,7 +396,12 @@ open class Video: NSObject, NSCoding {
         
         let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! Date
         
+        let endDate = aDecoder.decodeObject(forKey: PropertyKey.endDateKey) as? Date
+
+        
         let thumbnailUrl =  aDecoder.decodeObject(forKey: PropertyKey.thumbnailUrlKey) as? NSURL
+        
+        let isEvent =  aDecoder.decodeObject(forKey: PropertyKey.isEventKey) as? Bool
         
         let id =  aDecoder.decodeObject(forKey: PropertyKey.idKey) as? Int
         // Because photo is an optional property of Video, use conditional cast.
@@ -383,7 +410,7 @@ open class Video: NSObject, NSCoding {
         
         // Must call designated initializer.
         
-        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl, id: id )
+        self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl, id: id, isEvent: isEvent, endDate: endDate)
         
     }
 

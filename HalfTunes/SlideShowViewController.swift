@@ -381,31 +381,12 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             print("webpage slide selected")
             
-            /*
-             
-             var webview = UIWebView();
-             
-             
-             
-             webview.frame = CGRect(x: 0,y: 0, width: (self.parent?.view.frame.size.width)!, height: (self.parent?.view.frame.size.height)!);
-             
-             var url = button?.webURL
-             
-             var request = NSURLRequest(url: url! )
-             
-             webview.scalesPageToFit=true
-             
-             webview.loadRequest(request as URLRequest)
-             
-             self.parent?.view.addSubview(webview)
-             
-             */
+        
             
             
             
             
-            
-            
+           /*
             
             
             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "webView") as! WebViewController
@@ -420,24 +401,17 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
             
             self.navigationController?.pushViewController(vc, animated:true)
             
+            */
+            
+            
+            if let url =  slide.webURL {
+                UIApplication.shared.openURL(url)
+            }
             
             
             
-            /*
-             
-             category = (button?.category)!
-             
-             previousCategory = category
-             
-             featured = false
-             
-             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "mainTable2") as! MainTableViewController
-             
-             
-             self.navigationController?.pushViewController(vc, animated:true)
-             
-             
-             */
+            
+          
             
         }
         
@@ -502,7 +476,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
                 if(slide.slideType == ButtonType.liveEvent) {
                     
                     
-                                  liveVideo  = Video(title: slide.title!, thumbnail: slide.image, fileName: 1, sourceUrl:  slide.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: slide.videoList)
+                    liveVideo  = Video(title: slide.title!, thumbnail: slide.image, fileName: 1, sourceUrl:  slide.webURL?.absoluteString, comments: "", eventDate: Date(), thumbnailUrl: nil, id: slide.videoList, isEvent: false, endDate: nil)
                     
                     
                 } else {

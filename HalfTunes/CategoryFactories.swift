@@ -769,18 +769,34 @@ class home: CategoryFactorySettings {
         
         self.buttonsSectionType = SectionType.buttonWithTitle
         
-        self.buttons.append(Button(factory:hockeyButtonFactory()))
-        
         self.buttons.append(Button(factory:baseballButtonFactory()))
+        
         self.buttons.append(Button(factory:basketballButtonFactory()))
         
-        self.buttons.append(Button(factory:footballButtonFactory()))
+          self.buttons.append(Button(factory:footballButtonFactory()))
+        
+        self.buttons.append(Button(factory:gymnasticsButtonFactory()))
+        
+        
+       
+        
+        self.buttons.append(Button(factory:hockeyButtonFactory()))
+        
+         self.buttons.append(Button(factory:lacrosseButtonFactory()))
+        
+       self.buttons.append(Button(factory:soccerButtonFactory()))
+        
+        
+        self.buttons.append(Button(factory:softballButtonFactory()))
+        
+        
+        
+        self.buttons.append(Button(factory:swimmingButtonFactory()))
         
         self.buttons.append(Button(factory:volleyballButtonFactory()))
         
-        self.buttons.append(Button(factory:soccerButtonFactory()))
         
-        self.buttons.append(Button(factory:swimmingButtonFactory()))
+   
         
         
         self.buttonsSecondSectionType = SectionType.buttonWithTitle
@@ -791,7 +807,7 @@ class home: CategoryFactorySettings {
         
         self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
         
-        self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
+       // self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:teenButtonFactory()))
         

@@ -91,7 +91,7 @@ class UpcomingEventsFeed {
             
             
             
-            let video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1)
+            let video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1, isEvent: true, endDate: event.endDate)
             
             
             
@@ -315,7 +315,7 @@ class UpcomingEventsFeed {
         let startDateString = separatedDescription[1]
         
         
-        let startDate = formatDate(string: startDateString)
+        let startDate = formatDate(date: startDateString)
         
         
         
@@ -324,7 +324,7 @@ class UpcomingEventsFeed {
         let endDateString = separatedDescription[3]
         
         
-        let endDate = formatDate(string: endDateString)
+        let endDate = formatDate(date: endDateString)
         
         let location = getLocation(stringArray: separatedDescription)
         
@@ -346,7 +346,7 @@ class UpcomingEventsFeed {
             
             
             
-            eventResult = Event(title: event.title!, startDate: startDate!, endDate: endDate!,  liveStream: liveStream!, image: url!)
+            eventResult = Event(title: event.title!, startDate: startDate, endDate: endDate,  liveStream: liveStream!, image: url!)
             
             
         }
@@ -390,12 +390,21 @@ class UpcomingEventsFeed {
             
         }
         
-        liveStreamAddress = liveStreamAddress.substring(from: liveStreamAddress.characters.index(liveStreamAddress.startIndex, offsetBy: 1))
+        if(liveStreamAddress != "") {
+        
+        liveStreamAddress =  liveStreamAddress.substring(from: liveStreamAddress.characters.index(liveStreamAddress.startIndex, offsetBy: 1))
         
         
-        liveStreamAddress = liveStreamAddress.substring(to: liveStreamAddress.index(before: liveStreamAddress.endIndex))
         
         
+        
+        liveStreamAddress =   liveStreamAddress.substring(to: liveStreamAddress.index(before: liveStreamAddress.endIndex))
+        
+        } else {
+            
+            
+            liveStreamAddress = String("http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
+        }
         
         
         
@@ -447,30 +456,42 @@ class UpcomingEventsFeed {
         return location
     }
     
-    func formatDate(string: String) -> Date? {
-        
+    
+    func convertDateFormatter(date: String) -> String
+    {
         
         let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        
-        dateFormatter.timeZone =  NSTimeZone(name: "CST") as TimeZone!
-        
-        guard let date = dateFormatter.date(from: string) else {
-            print("can't convert time string")
-            return nil
-        }
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"//this your string date format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        let date = dateFormatter.date(from: date)
         
         
+        dateFormatter.dateFormat = "yyyy MMM-dd EEEE HH:mm"///this is you want to convert format
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        let timeStamp = dateFormatter.string(from: date!)
         
         
+        return timeStamp
+    }
+    
+    
+    
+    
+    
+    func formatDate(date: String) -> Date {
         
-        let formattedDate = date.addingTimeInterval(64800)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"//this your string date format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        let date = dateFormatter.date(from: date)
         
         
+        dateFormatter.dateFormat = "yyyy MMM-dd EEEE HH:mm"///this is you want to convert format
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+      //  let timeStamp = dateFormatter.date(from: date)
         
-        return formattedDate
+        
+        return date!
         
     }
     

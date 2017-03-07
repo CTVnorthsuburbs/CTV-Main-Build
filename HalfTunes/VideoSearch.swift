@@ -370,12 +370,12 @@ return video
                                 
                                 
                                 if(thumbnail != nil) {
-                                    video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: NSURL(string: thumbnail!), id: 1)
+                                    video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: NSURL(string: thumbnail!), id: 1, isEvent: false, endDate: nil)
 
                                 } else {
                                     
                                     
-                                      video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: nil, id: 1)
+                                    video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: nil, id: 1, isEvent: false, endDate: nil)
                                     
                                 }
                                 
@@ -699,7 +699,7 @@ return video
     
     func getRecentLimited() -> [Video] {
         
-        search(52966)
+        search(85123)
         
         
         var count = 10
@@ -1234,7 +1234,7 @@ return video
             if(VideosResult.vod?.count != 0 && (VideosResult.vod!.count) >= count ) {
             
             
-            searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id)!)
+                searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id, isEvent: false, endDate: nil)!)
             
             }
             

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vlo-aP-QO0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vlo-aP-QO0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1348,18 +1347,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="IkT-4u-a20">
                         <barButtonItem key="leftBarButtonItem" id="HpR-XK-OLn"/>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="B1w-ms-Z2P">
-                                <connections>
-                                    <action selector="refreshActionWithSender:" destination="tLK-Dt-VJA" id="d6D-X1-v5d"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="stop" id="rwJ-NU-EvK">
-                                <connections>
-                                    <action selector="stopActionWithSender:" destination="tLK-Dt-VJA" id="6dU-id-QvW"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="B1w-ms-Z2P">
+                            <connections>
+                                <action selector="refreshActionWithSender:" destination="tLK-Dt-VJA" id="d6D-X1-v5d"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="navigationTitle" destination="IkT-4u-a20" id="Urb-Hu-W9g"/>
@@ -1421,7 +1413,7 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1436,11 +1428,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-Dp-JWl">
-                                    <rect key="frame" x="8" y="37" width="121" height="12"/>
+                                    <rect key="frame" x="8" y="37" width="121" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="121" id="Uf9-MY-M2T"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -1465,7 +1457,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-Zv-VlL">
-                                    <rect key="frame" x="8" y="57" width="258" height="14"/>
+                                    <rect key="frame" x="8" y="62" width="258" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1832,10 +1824,10 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YYH-WW-hEt"/>
-        <segue reference="yQr-UQ-GkP"/>
-        <segue reference="4ZM-ZY-CSe"/>
-        <segue reference="TiQ-iG-Egd"/>
         <segue reference="Hpx-XP-cwh"/>
+        <segue reference="yQr-UQ-GkP"/>
+        <segue reference="YYH-WW-hEt"/>
+        <segue reference="2XC-rQ-lli"/>
+        <segue reference="fNp-cp-4gu"/>
     </inferredMetricsTieBreakers>
 </document>
