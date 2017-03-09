@@ -15,15 +15,9 @@ import MediaPlayer
 
 class CategoryTableViewController: UITableViewController {
     
-    
-    
-    
     var categorySection: Section?
     
-    
 
-    
-   
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if tableView.isEditing {
             return .delete
@@ -33,8 +27,6 @@ class CategoryTableViewController: UITableViewController {
     }
     
 
-
-    
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -49,13 +41,7 @@ class CategoryTableViewController: UITableViewController {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    
-    
-    
-    
-    
-    
-    
+
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
     var dataTask = URLSessionDataTask()
@@ -70,10 +56,7 @@ class CategoryTableViewController: UITableViewController {
         
     }()
     
-    
-    
-    
-    
+
     
     var myVideos = [Video]()
     
@@ -88,32 +71,11 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-       
-        
-        
-  
+
         
         super.viewDidLoad()
         
-        
-  
-        
-  
-        
-    //    recommendedVideos = search.search(category.rawValue )
-        
-        
-        
-     //   myVideos = recommendedVideos
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        
-        
-        
+
         
     }
     
@@ -131,33 +93,16 @@ class CategoryTableViewController: UITableViewController {
             } else if(categorySection?.sectionType == SectionType.upcomingEventList){
                 
                 
-                var upcomingEventsFeed = UpcomingEventsFeed()
+                let upcomingEventsFeed = UpcomingEventsFeed()
                 
                 upcomingEvents = upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
+         
                 var videos = [Video]()
-                
-                
-                
-                
-                
+
                 videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
                 
-                
-                
-                
-                
-               
-                
+
                 recommendedVideos = videos
                 
                 
@@ -174,7 +119,9 @@ class CategoryTableViewController: UITableViewController {
     }
     
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
@@ -182,11 +129,7 @@ class CategoryTableViewController: UITableViewController {
     
     func releaseDateOrder() {
         
-  //  let sortedMovies = myVideos.sort { $0.title < $1.title }
-        
-        
-        
-        
+
         let sortedVideos: [Video] = myVideos.sorted { $0.eventDate! > $1.eventDate! }
         
         
@@ -202,12 +145,11 @@ class CategoryTableViewController: UITableViewController {
     
     
     func nameOrder() {
-        
-        
-        
+
         let sortedVideos: [Video] = myVideos.sorted { $0.title! < $1.title! }
         
         recommendedVideos = sortedVideos
+        
           myVideos = sortedVideos
 
         self.tableView.reloadData()
@@ -215,64 +157,7 @@ class CategoryTableViewController: UITableViewController {
         
     }
     
-    // MARK: - Table view data source
-    
-    
-    
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
     func removeDuplicateVideo() {
         
@@ -324,33 +209,23 @@ class CategoryTableViewController: UITableViewController {
                 
                 videoDetailViewController.video = selectedVideo
                 
-                
-                
-                
-                
-                
+
                 
                 if(selectedVideo.fileName == 1) {
                     
                     
-                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
+                    let sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                     
                     
                     
                     sections.createListing()
                   
-                    
-                   // videoDetailViewController.setCategory(category: sections)
-                    
-                    
+  
                     
                 } else {
                     
                     
-                 
-                    
-
-                    
+ 
                       suggestedSearch = category.sections[selectedSection]
                     
                     
@@ -361,10 +236,8 @@ class CategoryTableViewController: UITableViewController {
                     
                 }
                 
-                
-                //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
-                
-                
+
+  
                 videoDetailViewController.setDefaultSession(defaultSession: &defaultSession)
                 
                 videoDetailViewController.setDataTask(dataTask: &dataTask)
@@ -376,11 +249,7 @@ class CategoryTableViewController: UITableViewController {
             
         }
             
-        else if segue.identifier == "AddItem" {
-            
-            print("Adding new video.")
-            
-        }
+    
         
     }
     
@@ -401,7 +270,7 @@ class CategoryTableViewController: UITableViewController {
         cell?.thumbnailView.setRadius(radius: imageRadius)
         
         
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
+        DispatchQueue.global(qos: .userInitiated).async  {  //generate thumbnail in background
             
          
                 
@@ -411,13 +280,10 @@ class CategoryTableViewController: UITableViewController {
                     
                   self.recommendedVideos[indexPath.row].thumbnail = self.search.getThumbnail(url:  self.recommendedVideos[indexPath.row].thumbnailUrl!)
                     
-                   // self.thumbnailView.image = video.thumbnail
-                    
-                    
-                    
+       
                 } else {
              
-            var thumbnail: UIImage? = self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
+            let thumbnail: UIImage? = self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
                 
                 
                 
@@ -428,7 +294,9 @@ class CategoryTableViewController: UITableViewController {
                     
                     
                 } else {
+                    
                 self.recommendedVideos[indexPath.row].thumbnail = #imageLiteral(resourceName: "defaultPhoto")
+                    
             }
             
             
@@ -439,9 +307,7 @@ class CategoryTableViewController: UITableViewController {
                 
                  self.recommendedVideos[indexPath.row].thumbnail = #imageLiteral(resourceName: "defaultPhoto")
                 
-                
-                
-                
+
             }
             
             
@@ -449,10 +315,7 @@ class CategoryTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 
-              
-                
-                
-                
+
                 cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
                 
                 
@@ -474,13 +337,7 @@ class CategoryTableViewController: UITableViewController {
         
     }
     
-    
-    /*
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-     return "Section \(section)"
-     }
-     */
-    
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -493,19 +350,7 @@ class CategoryTableViewController: UITableViewController {
     }
     
     
-    @IBAction func addVideoPressed(_ sender: AnyObject) {
-        
-        
-        parentView.addVideo(self.addVideoButton)
-        
-    }
-    
-    @IBAction func cancelPressed(_ sender: AnyObject) {
-        
-        
-        parentView.cancelTapped(self.cancelButton)
-        
-    }
+
     
     
     
@@ -524,12 +369,12 @@ extension CategoryTableViewController: URLSessionDownloadDelegate {
         if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString,
             
             let download = GlobalVariables.sharedManager.activeDownloads[downloadUrl] {
-            // 2
+          
             
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-            // 3
-            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
-            // 4
+        
+          //  let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
+            
             
             
            
@@ -542,7 +387,9 @@ extension CategoryTableViewController: URLSessionDownloadDelegate {
 extension CategoryTableViewController: UIToolbarDelegate {
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        
         return .topAttached
+        
     }
     
 }

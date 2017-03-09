@@ -3,7 +3,7 @@
 //  CTV App
 //
 //  Created by William Ogura on 3/1/17.
-//  
+//
 //
 
 import Foundation
@@ -14,20 +14,26 @@ extension UIImage {
     
     
     func cropBottomImage(image: UIImage) -> UIImage {
+        
         let height = CGFloat(image.size.height / 2)
         
         let heightFromBottom = CGFloat(image.size.height / 3.07)
+        
         let rect = CGRect(x: 0, y: image.size.height - height - heightFromBottom , width: image.size.width, height: height)
+        
         return cropImage(image: image, toRect: rect)
     }
     
     
     
     func cropEventImage() -> UIImage {
+        
         let height = CGFloat(self.size.height / 2)
         
         let heightFromBottom = CGFloat(self.size.height / 3.07)
+        
         let rect = CGRect(x: 0, y: self.size.height - height - heightFromBottom , width: self.size.width, height: height)
+        
         return cropImage(image: self, toRect: rect)
     }
     
@@ -36,8 +42,11 @@ extension UIImage {
     
     
     func cropImage(image:UIImage, toRect rect:CGRect) -> UIImage{
+        
         let imageRef:CGImage = image.cgImage!.cropping(to: rect)!
+        
         let croppedImage:UIImage = UIImage(cgImage:imageRef)
+        
         return croppedImage
     }
     
@@ -105,9 +114,9 @@ extension Date {
         dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
         
         
-   
-     
-       
+        
+        
+        
         
         
         let string = strTime
@@ -125,7 +134,7 @@ extension Date {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-         dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
         
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
@@ -142,15 +151,15 @@ extension Date {
         
         
         
-       
+        
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
- 
+        
         dateFormatter.dateFormat = "h:mm a"
-      
-
+        
+        
         let timeString = dateFormatter.string(from: self)
         
         
@@ -170,9 +179,9 @@ extension Date {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-      
+        
         dateFormatter.dateFormat = "MM-dd-yyyy"
-
+        
         let timeString = dateFormatter.string(from: self)
         
         
@@ -219,14 +228,14 @@ extension Date {
         
         if (calendar.isDateInToday(self)) {
             
-
+            
             if(self.timeIntervalSinceNow < 1800) {
                 
                 return true
-
+                
                 
             }
-
+            
             
         }
         

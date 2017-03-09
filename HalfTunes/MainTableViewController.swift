@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 10/25/16.
-//  
+//
 //
 
 import UIKit
@@ -15,20 +15,17 @@ var featuredCategory = Category(categoryFactory: CategoryFactory(factorySettings
 
 var suggestedSearch : Section?
 
-
 var upcomingEventsFeed = UpcomingEventsFeed()
-var upcomingEvents = [Event]()
 
+var upcomingEvents = [Event]()
 
 var search = VideoSearch()
 
-
-
-  var updater = Updater()
+var updater = Updater()
 
 
 class MainTableViewController: UITableViewController {
-
+    
     var parentCategory = featuredCategory
     
     @IBOutlet weak var slideShowView: UIView!
@@ -39,7 +36,6 @@ class MainTableViewController: UITableViewController {
     
     var vc: SlideShowViewController?
     
- 
     
     convenience init() {
         
@@ -56,44 +52,28 @@ class MainTableViewController: UITableViewController {
         if(newCategory.categoryTitle == featuredCategory.categoryTitle) {
             
             
-          self.parentCategory = featuredCategory
+            self.parentCategory = featuredCategory
             
             category = self.parentCategory
             
             
         } else {
-        self.parentCategory = newCategory
-        
-        category = self.parentCategory
-        
+            
+            self.parentCategory = newCategory
+            
+            category = self.parentCategory
+            
         }
-        
-        
-    
-        
-        
-   
-        
         
         self.setSlider()
         
-    
-        
-       
     }
     
     
     
     func setSlider() {
         
-        
-        var slider = parentCategory.getSlider()
-        
-        
-        
-        
-        
-        
+        let slider = parentCategory.getSlider()
         
         vc?.setSlider(slider: slider!)
         
@@ -102,182 +82,106 @@ class MainTableViewController: UITableViewController {
     
     func loadSearch() {
         
-
-     DispatchQueue.global(qos: .background).async {               //perform search list update in background
-    
-
-        
-  var searchResults = search.getRecent()
-    
-
-    let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
-    
-    let defaults = UserDefaults.standard
-    
-    defaults.set(myData, forKey: "SavedVideoSearchList")
-        
-        
-        
-
+        DispatchQueue.global(qos: .background).async {               //perform search list update in background
+            
+            let searchResults = search.getRecent()
+            
+            
+            let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
+            
+            let defaults = UserDefaults.standard
+            
+            defaults.set(myData, forKey: "SavedVideoSearchList")
+            
         }
         
     }
     
     
     func refresh(sender:AnyObject) {
-    
-    
-    
+        
+        
         DispatchQueue.global(qos: .background).async {
-    
-           
-            
             
             DispatchQueue.main.async( execute: {
                 
-                
-                
-     
-                
                 self.embeddedViewController?.refreshTable()
                 
-
-             self.update()
-                
-                
-       
-                
+                self.update()
                 
             })
             
+            self.refreshControl?.endRefreshing()
             
-           self.refreshControl?.endRefreshing()
-            
-            
-                
-        
         }
-        
-
-    
         
     }
     
     func update() {
         
+        var updatedSlider: Section?
         
-     
-    
-          var updatedSlider: Section?
-       
-        
-       
-        
-         DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async {
             
+            updatedSlider = updater.getSlideShowUpdate()
             
-            
-            
-            do { updatedSlider = try updater.getSlideShowUpdate()
+            if(updatedSlider != nil) {
                 
-                
-            }
-            
-            catch {
-                print(error.localizedDescription)
-            }
-                
-            
-        
-        if(updatedSlider != nil) {
-            
-              DispatchQueue.main.async {
-            if(self.parentCategory.categoryTitle == featuredCategory.categoryTitle) {
-                
-               
+                DispatchQueue.main.async {
                     
+                    if(self.parentCategory.categoryTitle == featuredCategory.categoryTitle) {
+                        
+                        self.parentCategory.slider = updatedSlider
+                        
+                        featuredCategory.slider = updatedSlider
+                        
+                    }
                     
-                    
-                self.parentCategory.slider = updatedSlider
-                
-                featuredCategory.slider = updatedSlider
-                
-                }
-                self.setSlider()
-                
-            
-                
-             
-        
-
+                    self.setSlider()
                     
                 }
-         
+                
             }
+            
         }
-       
-        
         
     }
- 
-
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         slideShowView.frame.size.height = slideShowView.frame.width / 2.36
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-    
-      
         
-   
-            // Do any additional setup after loading the view, typically from a nib.
-            
- 
+        self.refreshControl = UIRefreshControl()
+        
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         DispatchQueue.global(qos: .background).async {
             
-          
-            
-            
-            
             if(categoriesVideos.count == 0) {
-          
+                
                 self.generateCategories()
-                
-                
-                
                 
             }
             
             
             self.update()
+            
         }
-        
-        
-        
-        
-        
-      
-        
-        
-        
-    
         
         loadSearch()
         
-        
-
     }
- 
     
     
     
     func generateCategories() {
         
-
+        
         for video in categories {
             
             video.createListing()
@@ -285,42 +189,25 @@ class MainTableViewController: UITableViewController {
             var vid = [Video]()
             
             
-            
             if(video.sections.first!.searchID == 1) {
                 
                 vid = search.getYouTubeVideos(playlist: video.sections.first!.sectionPlaylist!)!
                 
-                
-                
                 if (vid.first?.fileName != nil) {
-                    
-                    
                     
                     if( vid.first?.hasThumbnailUrl())! {
                         
-       
-                        
-                       search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
-                        
-                        
-                        
+                        search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
                         
                     } else {
                         
-                        
-                        
-                        
                         vid.first?.generateThumbnailUrl()
                         
-                        
-                        
-                       search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
-                        
-                        
+                        search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
                         
                     }
                     
-                 
+                    
                     categoriesVideos.append(vid.first!)
                     
                 }
@@ -328,53 +215,38 @@ class MainTableViewController: UITableViewController {
                 
                 
             } else {
-             vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
+                
+                vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
                 
                 
                 
                 if (vid.first?.fileName != nil) {
                     
                     search.getThumbnail(id: (vid.first?.fileName)!)
+                    
                     categoriesVideos.append(vid.first!)
                     
-                    
                 }
-            
+                
             }
             
-           
+            
         }
         
         refreshControl?.endRefreshing()
+        
     }
     
-    
-
-    
-    
-  
-
-        
-        
-    
-
     
     override func viewWillAppear(_ animated: Bool) {
         
         category = self.parentCategory
         
         self.title = self.parentCategory.categoryTitle
-   
+        
         
     }
     
-    override func viewDidLayoutSubviews() {
-
-  // self.setSlider()
-        
-    }
-    
-
     
     func categoryPressed() {
         
@@ -399,45 +271,42 @@ class MainTableViewController: UITableViewController {
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return 0
     }
     
     
-       var embeddedViewController: HorizontalTableViewController?
+    var embeddedViewController: HorizontalTableViewController?
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-
-   
-            if (segue.identifier == "embedSegue") {
-                
-                self.embeddedViewController = segue.destination as! HorizontalTableViewController
-            }
+        
+        
+        if (segue.identifier == "embedSegue") {
+            
+            self.embeddedViewController = segue.destination as? HorizontalTableViewController
+            
+        }
         
         
         
         if (segue.identifier == "slideShow") {
-            vc = segue.destination as! SlideShowViewController
             
-            
+            vc = segue.destination as? SlideShowViewController
             
         }
         

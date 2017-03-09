@@ -13,29 +13,23 @@ class HorizontalTableViewCell: UITableViewCell {
     
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
-    
     @IBOutlet weak var seeAllButton: UIButton!
       
     @IBOutlet weak var sectionLabel: UILabel!
     
     func disableSeeAllButton() {
-        
-        
-        
+
         seeAllButton.isHidden = true
-        
-        
+
     }
 }
 
 extension HorizontalTableViewCell {
     
-    func setCollectionViewDataSourceDelegate
-        <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>>
-        (dataSourceDelegate: D, forRow row: Int) {
+    func setCollectionViewDataSourceDelegate(_ delegate: UICollectionViewDelegate, _ dataSource: UICollectionViewDataSource, forRow row: Int)  {
         
-        collectionView.delegate = dataSourceDelegate
-        collectionView.dataSource = dataSourceDelegate
+        collectionView.delegate = delegate
+        collectionView.dataSource = dataSource
     
         
         /*

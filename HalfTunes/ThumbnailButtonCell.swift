@@ -10,24 +10,11 @@ import Foundation
 
 import UIKit
 
-
-
 class ThumbnailButtonCell: UICollectionViewCell {
-    
-    
-    
-    @IBOutlet weak var thumbnail: UIImageView!
-    
-  
-    
 
-    
+    @IBOutlet weak var thumbnail: UIImageView!
+
     @IBOutlet weak var textOverlay: UILabel!
-    
-   
- 
-    
-   
 
 }
     
