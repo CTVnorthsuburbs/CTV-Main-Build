@@ -3,19 +3,9 @@
 //  CTV App
 //
 //  Created by William Ogura on 2/23/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
+//  
 //
 
-import Foundation
-
-
-//
-//  Updater.swift
-//  CTV App
-//
-//  Created by William Ogura on 1/25/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
-//
 
 import Foundation
 
@@ -342,7 +332,7 @@ class UpcomingEventsFeed {
         
         
         
-        if((event.title != nil) && event.image != nil && event.link != nil && location != nil && liveStream != nil && startDate != nil && endDate != nil) {
+        if((event.title != nil) && event.image != nil && event.link != nil && location != nil && liveStream != nil ) {
             
             
             
@@ -488,7 +478,7 @@ class UpcomingEventsFeed {
         
         dateFormatter.dateFormat = "yyyy MMM-dd EEEE HH:mm"///this is you want to convert format
         dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
-      //  let timeStamp = dateFormatter.date(from: date)
+     
         
         
         return date!

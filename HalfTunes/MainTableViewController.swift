@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 10/25/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//  
 //
 
 import UIKit
@@ -28,11 +28,7 @@ var search = VideoSearch()
 
 
 class MainTableViewController: UITableViewController {
-    
-  
-    
-    
-    
+
     var parentCategory = featuredCategory
     
     @IBOutlet weak var slideShowView: UIView!

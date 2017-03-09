@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 7/15/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+// 
 //
 
 import Foundation
@@ -243,7 +243,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         cell.titleLabel.text = video!.title
         
-        cell.dateLabel.text = convertDateToString(date: video!.eventDate!)
+        cell.dateLabel.text = video!.eventDate!.convertDateToString()
         
         cell.thumbnailView.image = video!.thumbnail
         

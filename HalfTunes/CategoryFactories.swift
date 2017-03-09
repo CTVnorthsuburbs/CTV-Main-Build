@@ -228,7 +228,7 @@ class parades: CategoryFactorySettings {
         
         self.recentSectionTitle = "Recent Parades"
         
-        self.recentSectionSearchID = 76916
+        self.recentSectionSearchID = 85461
         
         self.sliderImages = [#imageLiteral(resourceName: "mobile-roseparade")]
         
@@ -713,6 +713,12 @@ class meetings: CategoryFactorySettings {
     
 }
 
+
+
+
+
+
+
 @objc(home)
 
 class home: CategoryFactorySettings {
@@ -761,9 +767,9 @@ class home: CategoryFactorySettings {
         
         self.featuredSectionDisplayCount = 20
         
-        self.recentSectionTitle = "Basketball Season"
+        self.recentSectionTitle = "Featured Events"
         
-        self.recentSectionSearchID = 69113
+        self.recentSectionSearchID = 85458
         
         self.recentSectionDisplayCount = 15
         
@@ -808,6 +814,10 @@ class home: CategoryFactorySettings {
         self.buttonsSecond.append(Button(factory:communityButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
+        
+        
+        self.buttonsSecond.append(Button(factory:paradesButtonFactory()))
+        
         
        // self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
         

@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 7/15/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//  
 //
 
 import Foundation
@@ -12,73 +12,6 @@ import UIKit
 
 import MediaPlayer
 
-func convertStringToDate(dateString: String) -> Date {
-    
-  
-    
-    let dateFormatter = DateFormatter()
-    
-  //  dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    
- //  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
-    
-    
-    var date = dateFormatter.date( from: dateString)
-  
-        
-    if (date == nil) {
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        //  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        
-        
-        date = dateFormatter.date( from: dateString)
-        
-        
-    }
-       return date!
-        
-  
-    
-}
-
-func convertDateTimeToString(date: Date) -> String {
-    
-    let dateFormatter = DateFormatter()
-    
-    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    
-    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-    
-    let timeString = dateFormatter.string(from: date)
-    
-    return timeString
-    
-}
-
-
-func convertDateToString(date: Date) -> String {
-    
-    let dateFormatter = DateFormatter()
-    
-    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    
-    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
-    dateFormatter.dateFormat = "MM-dd-yyyy"
-    
-    var timeString = dateFormatter.string(from: date)
-    
-    return timeString
-    
-}
 
 open class Video: NSObject, NSCoding {
     
@@ -404,7 +337,7 @@ open class Video: NSObject, NSCoding {
         let isEvent =  aDecoder.decodeObject(forKey: PropertyKey.isEventKey) as? Bool
         
         let id =  aDecoder.decodeObject(forKey: PropertyKey.idKey) as? Int
-        // Because photo is an optional property of Video, use conditional cast.
+     
         
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         

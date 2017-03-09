@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 11/1/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//
 //
 
 import Foundation
@@ -394,7 +394,7 @@ class CategoryTableViewController: UITableViewController {
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
         
         
-        cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
+        cell?.dateLabel?.text = recommendedVideos[indexPath.row].eventDate!.convertDateToString()
         
         cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
         

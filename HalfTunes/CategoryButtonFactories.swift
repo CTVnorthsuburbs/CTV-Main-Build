@@ -3,7 +3,7 @@
 //  CTV App
 //
 //  Created by William Ogura on 1/11/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
+// 
 //
 
 import Foundation
@@ -14,32 +14,7 @@ import UIKit
 
 
 
-class live1ButtonFactory: ButtonFactory {
-    
-    override init() {
-        
-        super.init()
-        
-        self.type = ButtonType.video
-        
-        self.image = #imageLiteral(resourceName: "live-event-header")
-        
-        self.title = "Live Event"
-        
-        self.imageOverlay = nil
-        
-        self.page = nil
-        
-        self.videoID = 1
-        
-        self.category = nil
-    
-        
-        self.webURL = URL(string: "http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
-        
-    }
-    
-}
+
 
 
 
@@ -64,6 +39,32 @@ class programsButtonFactory: ButtonFactory {
     }
     
 }
+
+
+
+
+class paradesButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "parades-header")
+        
+        self.title = "Parades"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: parades()))
+        
+    }
+    
+}
+
 
 
 

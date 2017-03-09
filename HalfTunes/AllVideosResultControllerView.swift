@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 8/19/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 //  HalfTunes
 //
 //  Created by William Ogura on 8/5/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//  
 //
 
 import UIKit

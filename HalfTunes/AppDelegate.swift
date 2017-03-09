@@ -2,8 +2,8 @@
  //  AppDelegate.swift
  //  HalfTunes
  //
- //  Created by Ken Toh on 13/7/15.
- //  Copyright (c) 2015 Ken Toh. All rights reserved.
+ //
+ // 
  //
  
  import UIKit

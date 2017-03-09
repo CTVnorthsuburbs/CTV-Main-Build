@@ -3,7 +3,7 @@
 //  CTV App
 //
 //  Created by William Ogura on 1/25/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
+//  
 //
 
 import Foundation
@@ -21,11 +21,11 @@ class Updater {
     var slideSection: Section?
     
     var search = VideoSearch()
-
+    
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-
+    
     // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
-
+    
     /// Creates the NSURL session necessary to download content from remote URL.
     
     fileprivate func getNSURLSession() -> URLSession {
@@ -33,13 +33,13 @@ class Updater {
         //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
         //  session.configuration.urlCache?.removeAllCachedResponses()
-
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         return defaultSession
         
     }
-
+    
     func getSlideShowUpdate() -> Section? {
         
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -47,9 +47,9 @@ class Updater {
         let semaphore = DispatchSemaphore(value: 0)
         
         var dataTask: URLSessionDataTask
-
+        
         let url = URL(string: "http://www.ctv15.org/mobile_app/textForm/formdata.txt")
-
+        
         dataTask = defaultSession.dataTask(with: url!,  completionHandler: {
             
             data, response, error in
@@ -92,30 +92,12 @@ class Updater {
         
     }
     
-    /*
-     
-     var slideType: ButtonType?
-     
-     var searchID: Int?
-     
-     var videoList: [Int]?
-     
-     var page: String?
-     
-     var category: CategoryFactorySettings?
-     
-     var image: UIImage?
-     
-     var title: String?
-     
-     var webURL: URL?
-     
-     */
+
     
     func checkCategory(string: String) -> CategoryFactorySettings? {
-  
+        
         let factory = NSClassFromString(string) as? CategoryFactorySettings.Type
-
+        
         let factory1 = factory?.init()
         
         if(factory1 != nil) {
@@ -124,7 +106,7 @@ class Updater {
         }
         
         
-
+        
         return home()
         
     }
@@ -137,8 +119,8 @@ class Updater {
         
         slideShow = [Slide]()
         
-
- 
+        
+        
         for slide in updateResults {
             
             let thumbnailURL = NSURL(string: "\(slideShowImageURL)\(slide.imageURL!)")
@@ -146,11 +128,11 @@ class Updater {
             
             var webURL: URL?
             
-            var page = getPage(slide: slide)
+            let page = getPage(slide: slide)
             
-            var categoryType = getSlideType(slide: slide)
+            let categoryType = getSlideType(slide: slide)
             
-            var videoID = getVideoID(slide: slide)
+            let videoID = getVideoID(slide: slide)
             
             
             if(slide.webURL != nil) {
@@ -160,18 +142,18 @@ class Updater {
             }
             var image: UIImage?
             if(thumbnailURL != nil) {
-       
-             image = search.getThumbnail(url: thumbnailURL!)
+                
+                image = search.getThumbnail(url: thumbnailURL!)
             }
             
             var slideCategory: CategoryFactorySettings?
-          
+            
             if(slide.category != nil) {
-              slideCategory  = checkCategory(string: slide.category!)
+                slideCategory  = checkCategory(string: slide.category!)
                 
-              
                 
-            } 
+                
+            }
             
             
             
@@ -183,16 +165,16 @@ class Updater {
             } else {
                 
                 
-     
-                    
-                    images.append(image!)
-          
-                    let slide = Slide(slideType: categoryType, searchID: videoID, videoList: videoID, page: page, category: slideCategory, image:image, title: slide.title, webURL: webURL)
                 
-                    slideShow.append(slide)
                 
-                }
+                images.append(image!)
                 
+                let slide = Slide(slideType: categoryType, searchID: videoID, videoList: videoID, page: page, category: slideCategory, image:image, title: slide.title, webURL: webURL)
+                
+                slideShow.append(slide)
+                
+            }
+            
             
             
         }
@@ -227,7 +209,7 @@ class Updater {
         if(slide?.slideType == "webPage") {
             
             
-        
+            
             return ButtonType.webPage
             
             
@@ -244,7 +226,7 @@ class Updater {
             
             if(slide?.slideType == "page") {
                 
-              
+                
                 
                 return ButtonType.page
             }
@@ -285,33 +267,22 @@ class Updater {
             
         }
         
-       // print("HERE IS THE DOWNLOAD \(json)")
+        // print("HERE IS THE DOWNLOAD \(json)")
         
         var updateResults = [Slides]()
         
         for result in json {
-           
+            
             
             updateResults.append(Slides(json: result)!)
             
-          
+            
             
         }
         
-        
-        
-        /*
-        guard let updateResults = SlideShow(json: json) else {
-         
-            return false
-         
-        }
- 
- */
+    
         
         updateSlideShow(updateResults: updateResults)
- 
-       
         
         
         

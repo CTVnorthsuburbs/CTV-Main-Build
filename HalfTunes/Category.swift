@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 11/17/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//  
 //
 
 import Foundation
@@ -12,25 +12,9 @@ import UIKit
 
 
 
-var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: home())), Category(categoryFactory: CategoryFactory(factorySettings: baseball())), Category(categoryFactory: CategoryFactory(factorySettings: basketball())),Category(categoryFactory: CategoryFactory(factorySettings: community())),  Category(categoryFactory: CategoryFactory(factorySettings: football())),Category(categoryFactory: CategoryFactory(factorySettings: gymnastics())), Category(categoryFactory: CategoryFactory(factorySettings: hockey())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosse())),Category(categoryFactory: CategoryFactory(factorySettings: programs())),Category(categoryFactory: CategoryFactory(factorySettings: soccer())),Category(categoryFactory: CategoryFactory(factorySettings: softball())), Category(categoryFactory: CategoryFactory(factorySettings: swimming())), Category(categoryFactory: CategoryFactory(factorySettings: teens())), Category(categoryFactory: CategoryFactory(factorySettings: volleyball())), Category(categoryFactory: CategoryFactory(factorySettings: ctvyoutube())) ]
+var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: home())), Category(categoryFactory: CategoryFactory(factorySettings: baseball())), Category(categoryFactory: CategoryFactory(factorySettings: basketball())),Category(categoryFactory: CategoryFactory(factorySettings: community())),  Category(categoryFactory: CategoryFactory(factorySettings: football())),Category(categoryFactory: CategoryFactory(factorySettings: gymnastics())), Category(categoryFactory: CategoryFactory(factorySettings: hockey())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosse())), Category(categoryFactory: CategoryFactory(factorySettings: parades())), Category(categoryFactory: CategoryFactory(factorySettings: programs())),Category(categoryFactory: CategoryFactory(factorySettings: soccer())),Category(categoryFactory: CategoryFactory(factorySettings: softball())), Category(categoryFactory: CategoryFactory(factorySettings: swimming())), Category(categoryFactory: CategoryFactory(factorySettings: teens())), Category(categoryFactory: CategoryFactory(factorySettings: volleyball())), Category(categoryFactory: CategoryFactory(factorySettings: ctvyoutube())) ]
 
-enum CategorySearches: Int {
-    
-    case recent = 52966
-    
-    case baseball = 67200
-    // case baseball = 65794
-    case hockey = 65794
-    
-    case basketball = 67204
-    
-    case nsb = 66603
-    
-    case concerts = 67318
-    
-    
-    
-}
+
 
 
 

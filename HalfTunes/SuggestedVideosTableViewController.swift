@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 10/20/16.
-//  Copyright © 2016 Ken Toh. All rights reserved.
+//  
 //
 
 import UIKit
@@ -285,7 +285,7 @@ class SuggestedVideosTableViewController: UITableViewController {
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
         
         
-        cell?.dateLabel?.text = convertDateToString(date: recommendedVideos[indexPath.row].eventDate!)
+        cell?.dateLabel?.text = recommendedVideos[indexPath.row].eventDate!.convertDateToString()
         
         
         if(recommendedVideos[indexPath.row].thumbnail != nil) {

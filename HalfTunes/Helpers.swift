@@ -3,7 +3,7 @@
 //  CTV App
 //
 //  Created by William Ogura on 3/1/17.
-//  Copyright © 2017 Ken Toh. All rights reserved.
+//  
 //
 
 import Foundation
@@ -34,17 +34,6 @@ extension UIImage {
     
     
     
-    /*
-     func cropBottomImage(image: UIImage) -> UIImage {
-     let height = CGFloat(image.size.height / 1.3)
-     let rect = CGRect(x: 0, y: image.size.height - height - 150, width: image.size.width, height: height)
-     return cropImage(image: image, toRect: rect)
-     }
-     */
-    
-    
-    
-    
     
     func cropImage(image:UIImage, toRect rect:CGRect) -> UIImage{
         let imageRef:CGImage = image.cgImage!.cropping(to: rect)!
@@ -58,6 +47,48 @@ extension UIImage {
     
     
 }
+
+
+
+func convertStringToDate(dateString: String) -> Date {
+    
+    
+    
+    let dateFormatter = DateFormatter()
+    
+    
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    
+    
+    
+    
+    
+    var date = dateFormatter.date( from: dateString)
+    
+    
+    if (date == nil) {
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        
+        
+        
+        
+        date = dateFormatter.date( from: dateString)
+        
+        
+    }
+    return date!
+    
+    
+    
+}
+
+
+
+
+
 
 extension Date {
     
@@ -98,7 +129,7 @@ extension Date {
         
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
-        var timeString = dateFormatter.string(from: self)
+        let timeString = dateFormatter.string(from: self)
         
         return timeString
         
@@ -116,16 +147,11 @@ extension Date {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-      //  dateFormatter.timeZone = TimeZone(secondsFromGMT: -21600)
-    //    dateFormatter.timeZone = TimeZone(abbreviation: "CST")
-       // dateFormatter.timeStyle = .short
+ 
         dateFormatter.dateFormat = "h:mm a"
       
-        
-      
-        
-        
-        var timeString = dateFormatter.string(from: self)
+
+        let timeString = dateFormatter.string(from: self)
         
         
         return timeString
@@ -144,16 +170,10 @@ extension Date {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        //  dateFormatter.timeZone = TimeZone(secondsFromGMT: -21600)
-        //    dateFormatter.timeZone = TimeZone(abbreviation: "CST")
-        // dateFormatter.timeStyle = .short
+      
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        
-        
-        
-        
-        var timeString = dateFormatter.string(from: self)
+
+        let timeString = dateFormatter.string(from: self)
         
         
         return timeString
@@ -199,21 +219,14 @@ extension Date {
         
         if (calendar.isDateInToday(self)) {
             
-            
-            
+
             if(self.timeIntervalSinceNow < 1800) {
                 
-                
-                
                 return true
-                
+
                 
             }
-          
-            
-            
-            
-            
+
             
         }
         

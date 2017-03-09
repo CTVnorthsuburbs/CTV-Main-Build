@@ -38,7 +38,6 @@
 		8D399C2A1DBFA2F2006C536E /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */; };
 		8D3F98D21E38FB4300CE9F7C /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F98D11E38FB4300CE9F7C /* Updater.swift */; };
 		8D401F2B1DD3883000AB1C5F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */; };
-		8D4085081DC8D02800B1ADB3 /* ThumbnailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4085071DC8D02800B1ADB3 /* ThumbnailButton.swift */; };
 		8D40850A1DC8F8B100B1ADB3 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */; };
 		8D4C5EB61E268B03007246C1 /* CategoryFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C5EB51E268B03007246C1 /* CategoryFactories.swift */; };
 		8D4C5EB81E268E01007246C1 /* CategoryButtonFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C5EB71E268E01007246C1 /* CategoryButtonFactories.swift */; };
@@ -107,7 +106,6 @@
 		8D399C291DBFA2F2006C536E /* SlideShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
 		8D3F98D11E38FB4300CE9F7C /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		8D401F2A1DD3883000AB1C5F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		8D4085071DC8D02800B1ADB3 /* ThumbnailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailButton.swift; sourceTree = "<group>"; };
 		8D4085091DC8F8B100B1ADB3 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		8D4C5EB51E268B03007246C1 /* CategoryFactories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryFactories.swift; sourceTree = "<group>"; };
 		8D4C5EB71E268E01007246C1 /* CategoryButtonFactories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryButtonFactories.swift; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 				8D69EFDB1DBFC42100E33439 /* MainTableViewController.swift */,
 				8D9CE63E1DBA4D31008F9EA0 /* HorizontalTableViewController.swift */,
 				8DB4DA311DC2751900AD980B /* ThumbnailButtonCell.swift */,
-				8D4085071DC8D02800B1ADB3 /* ThumbnailButton.swift */,
 				8D9CE6401DBA4FD2008F9EA0 /* HorizontalTableViewCell.swift */,
 				8D9CE6461DBA5A02008F9EA0 /* HorizontalCollectionViewCell.swift */,
 			);
@@ -492,7 +489,6 @@
 				8D5109B11D3931DD00CFFDAC /* MyVideosSearchViewController.swift in Sources */,
 				8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */,
 				8D65C39E1D3FAD630078B86B /* JSON.swift in Sources */,
-				8D4085081DC8D02800B1ADB3 /* ThumbnailButton.swift in Sources */,
 				8D6B2D091DB8F9D800F5E139 /* SuggestedVideosTableViewController.swift in Sources */,
 				8D35F5EF1E5F39D00007F198 /* UpcomingEventsFeed.swift in Sources */,
 				8DB606961D303934005029DB /* Decoder.swift in Sources */,
