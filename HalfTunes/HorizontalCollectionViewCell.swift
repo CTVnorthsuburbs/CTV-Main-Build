@@ -10,25 +10,11 @@ import UIKit
 
 class HorizontalCollectionViewCell: UICollectionViewCell {
     
-   
-    
     @IBOutlet weak var thumbnail: UIImageView!
 
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
-    
-    
-   
-    
-    
+
 }
 
-extension UIView {
-    func setRadius(radius: CGFloat? = nil) {
-        self.layer.cornerRadius = radius ?? self.frame.width / 2;
-        self.layer.masksToBounds = true;
-    }
-}

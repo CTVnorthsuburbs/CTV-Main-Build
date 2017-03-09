@@ -467,7 +467,6 @@ class HorizontalTableViewController: UITableViewController {
     }
     
     
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? HorizontalTableViewCell else { return }
@@ -480,11 +479,13 @@ class HorizontalTableViewController: UITableViewController {
     
     
     
+    
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        guard cell is HorizontalTableViewCell else { return }
+        guard var cell = cell as? HorizontalTableViewCell else { return }
         
     }
+    
     
     
     
@@ -674,7 +675,6 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 cells.dateLabel.text = "Today at \(time)"
                 
             } else  if (videos[indexPath.item].eventDate?.checkIfDateTimeIsTomorrow())! {
-                
                 cells.dateLabel.text = "Tomorrow"
                 
             } else {
@@ -687,6 +687,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList   ) {
+            
             
             
             var videos = [Video]()
@@ -707,17 +708,20 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                 } else {
                     
+                    
                     listOfVideos[category.sections[collectionView.tag].searchID!] = search.search(category.sections[collectionView.tag].searchID!)
+                    
                     
                     videos = listOfVideos[category.sections[collectionView.tag].searchID!]!
                     
+                    
+                    
                 }
+                
                 
             }
             
-            
             if (videos[indexPath.item].fileName != nil) {
-                
                 
                 if( videos[indexPath.item].hasThumbnailUrl()) {
                     
@@ -732,13 +736,16 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                 }
                 
+                
                 cells.thumbnail.setRadius(radius: imageRadius)
+                
                 
                 cells.titleLabel.text = videos[indexPath.item].title
                 
                 cells.dateLabel.text =  videos[indexPath.item].eventDate!.convertDateToString()
                 
             } else {
+                
                 
                 cells.thumbnail.image = #imageLiteral(resourceName: "placeholder-header")
                 
@@ -780,6 +787,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                 } else {
                     
+                    
                     let vids = search.search(category.sections[index].searchID!)
                     
                     let trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
@@ -787,6 +795,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     videos.append(trimmedVids)
                     
                 }
+                
                 
             } else {
                 
@@ -802,12 +811,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         self.changeTableSize()
         
-        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         
         if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
             
@@ -832,12 +839,13 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     DispatchQueue.main.async( execute: {
                         
                         LoadingOverlay.shared.hideOverlayView()
+                        
                     })
-                    
                     
                 }
                 
             }
+            
             
             if(button?.type == ButtonType.page) {
                 
@@ -853,21 +861,26 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(button?.type == ButtonType.webPage) {
                 
-                /*
-                 
-                 //This code is used to open a external webpage inside a webview within the app  it was disabled because jwplayer 6 videos will not play in webview
+                
+                /*  //this opens the external web page from a button in a web view within the app  it was disabled because the web view does not support JWPlayer 6 which many videos are
                  
                  let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "webView") as! WebViewController
+                 
                  
                  vc.setTitle(title: (button?.title)!)
                  
                  vc.setPage(url: (button?.webURL)!)
                  
+                 
+                 
+                 
                  self.navigationController?.pushViewController(vc, animated:true)
+                 
                  
                  */
                 
-                //This code opens an external web view in safari
+                
+                //This opens the webpage in safari
                 
                 if let url =  button?.webURL {
                     
@@ -875,9 +888,12 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                     
                 }
                 
+                
             }
             
+            
             if(button?.type == ButtonType.video) {
+                
                 
                 if( category.sections[collectionView.tag].buttons[indexPath.row]?.videoID == 1 &&  category.videoType != VideoType.youtube) {
                     
@@ -911,9 +927,11 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                     }
                     
+                    
                 } else {
                     
                     LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
+                    
                     
                     DispatchQueue.global(qos: .userInitiated).async {
                         
@@ -937,9 +955,10 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                         DispatchQueue.main.async( execute: {
                             
-                            LoadingOverlay.shared.hideOverlayView()
                             
+                            LoadingOverlay.shared.hideOverlayView()
                         })
+                        
                         
                     }
                     
@@ -953,6 +972,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     }
     
 }
+
 
 
 extension HorizontalTableViewController: URLSessionDownloadDelegate {

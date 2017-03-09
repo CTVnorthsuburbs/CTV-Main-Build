@@ -1158,7 +1158,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
                 
                 DispatchQueue.main.async(execute: {
                     
-                    self.tableView.reloadRows(at: [IndexPath(row: videoIndex, section: 0)], with: .none)
+                    self.tableView.reloadData()
                     
                 })
                 
