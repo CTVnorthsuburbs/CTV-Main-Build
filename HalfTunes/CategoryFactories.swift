@@ -44,7 +44,6 @@ class teens: CategoryFactorySettings {
         
         
         
-        
         self.featuredSectionTitle = "Teens Interns"
         
         self.featuredSectionSearchID = 3
@@ -52,10 +51,7 @@ class teens: CategoryFactorySettings {
         self.featuredSectionDisplayCount = 15
         
         self.featuredSectionPlaylist = "PLc4OSwdRXG_LFv2E0tko6PzweN-GQ1KB1"
-        
-        
-        
-        
+ 
         self.recentBoysSectionTitle = "Young Lenses"
         
         self.recentBoysSectionSearchID = 4
@@ -65,12 +61,7 @@ class teens: CategoryFactorySettings {
         self.recentBoysSectionPlaylist = "PLc4OSwdRXG_J0LTEtHVsx-zBH6sF39Nvs"
         
         
-        
-        
-        
-        
-        
-        
+
         self.sliderImages = [#imageLiteral(resourceName: "teens-header")]
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
@@ -117,11 +108,7 @@ class ctvyoutube: CategoryFactorySettings {
         self.featuredSectionDisplayCount = 15
         
         self.featuredSectionPlaylist = "PL95MWKnFfyTJxw0riNq0HEw4YPbEJf7-D"
-        
-     
-        
-        
-        
+ 
         self.recentBoysSectionTitle = "Favorite Videos"
         
         self.recentBoysSectionSearchID = 4
@@ -129,9 +116,7 @@ class ctvyoutube: CategoryFactorySettings {
         self.recentBoysSectionDisplayCount = 15
         
         self.recentBoysSectionPlaylist = "PL34AE5B5661B3B17A"
-        
-        
-        
+ 
         self.sliderImages = [#imageLiteral(resourceName: "youtube-header")]
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
@@ -139,14 +124,6 @@ class ctvyoutube: CategoryFactorySettings {
     }
     
 }
-
-
-
-
-
-
-
-
 
 
 @objc(baseball)
@@ -198,9 +175,7 @@ class graduations: CategoryFactorySettings {
         super.init()
         
         self.categoryTitle = "Graduations"
-        
-     
-        
+
         self.recentSectionTitle = "Recent Graduations"
         
         self.recentSectionSearchID = 76916
@@ -223,9 +198,7 @@ class parades: CategoryFactorySettings {
         super.init()
         
         self.categoryTitle = "Parades"
-        
-        
-        
+
         self.recentSectionTitle = "Recent Parades"
         
         self.recentSectionSearchID = 85461
@@ -251,9 +224,7 @@ class community: CategoryFactorySettings {
         self.popularSectionTitle = "Popular Community Videos"
         
         self.popularSectionSearchID = 71301
-        
-        
-        
+
         self.recentSectionTitle = "Recent Community Videos"
         
         self.recentSectionSearchID = 71296
@@ -323,14 +294,9 @@ class football: CategoryFactorySettings {
         self.popularSectionTitle = "Most Viewed Football Videos"
         
         self.popularSectionSearchID = 69223
-        
-        
-        
+   
         self.recentSectionTitle = "Recent Games"
-        
-        
-        
-        
+    
         self.recentSectionSearchID = 69238
         
         self.sliderImages = [#imageLiteral(resourceName: "football-header")]
@@ -355,14 +321,10 @@ class volleyball: CategoryFactorySettings {
         self.popularSectionTitle = "Most Viewed Volleyball Videos"
         
         self.popularSectionSearchID = 69299
-        
-        
+  
         
         self.recentSectionTitle = "Recent Volleyball Games"
-        
-        
-        
-        
+
         self.recentSectionSearchID = 69308
         
         self.sliderImages = [#imageLiteral(resourceName: "volleyball-header")]
@@ -384,18 +346,13 @@ class basketball: CategoryFactorySettings {
         
         self.categoryTitle = "Basketball"
         
-        
-        
         self.upcomingSectionTitle = "Upcoming Events"
         
         self.upcomingSectionSearchID = 69103
         
         self.upcomingSectionDisplayCount = 20
         
-        
-        
-        
-        
+  
         self.popularSectionTitle = "Popular Basketball Videos"
         
         self.popularSectionSearchID = 69103
@@ -417,12 +374,8 @@ class basketball: CategoryFactorySettings {
         
         self.sliderImages = [#imageLiteral(resourceName: "basketball-header")]
         
-        
-     
         self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
-        
-        
-        
+    
     }
     
 }
@@ -716,9 +669,6 @@ class meetings: CategoryFactorySettings {
 
 
 
-
-
-
 @objc(home)
 
 class home: CategoryFactorySettings {
@@ -740,7 +690,7 @@ class home: CategoryFactorySettings {
         
         self.popularSectionTitle = "New & Noteworthy"
         
-       // self.popularSectionSearchID = 76921
+
         
         self.popularSectionSearchID = 85123
         
@@ -757,7 +707,7 @@ class home: CategoryFactorySettings {
         
         self.recentBoysSectionSearchID = 71296
         
-        // self.recentBoysSectionSearchID = 66603
+   
         
         self.recentBoysSectionDisplayCount = 15
         
@@ -817,10 +767,7 @@ class home: CategoryFactorySettings {
         
         
         self.buttonsSecond.append(Button(factory:paradesButtonFactory()))
-        
-        
-       // self.buttonsSecond.append(Button(factory:live1ButtonFactory()))
-        
+    
         self.buttonsSecond.append(Button(factory:teenButtonFactory()))
         
         self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
@@ -833,7 +780,7 @@ class home: CategoryFactorySettings {
         
         
         
-        /*
+        /*    //programmatic slide show  can be used to add default slides in case slide show updater is too slow
         
         self.sliderImages = [#imageLiteral(resourceName: "santa-header"), #imageLiteral(resourceName: "slide-basketball-header"), #imageLiteral(resourceName: "slide-baskketball1-header"), #imageLiteral(resourceName: "slide-meeting-header")]
         

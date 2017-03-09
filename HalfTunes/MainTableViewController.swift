@@ -82,24 +82,31 @@ class MainTableViewController: UITableViewController {
     
     func loadSearch() {
         
-        DispatchQueue.global(qos: .background).async {               //perform search list update in background
+        
+        DispatchQueue.global(qos: .background).async {               //perform search list update in background in order to have instant access to search results, it has been pulled to decrease initial load activity and it did not seem to work correctly
             
-            let searchResults = search.getRecent()
+           searchResults = search.getRecent()
             
-            
+          /*
             let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
             
             let defaults = UserDefaults.standard
             
             defaults.set(myData, forKey: "SavedVideoSearchList")
+ 
+ */
+            
+
             
         }
+ 
+    
+        
         
     }
     
     
     func refresh(sender:AnyObject) {
-        
         
         DispatchQueue.global(qos: .background).async {
             
@@ -206,19 +213,14 @@ class MainTableViewController: UITableViewController {
                         search.getThumbnail(url: (vid.first?.thumbnailUrl)!)
                         
                     }
-                    
-                    
+
                     categoriesVideos.append(vid.first!)
                     
                 }
                 
-                
-                
             } else {
                 
                 vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
-                
-                
                 
                 if (vid.first?.fileName != nil) {
                     
@@ -295,24 +297,18 @@ class MainTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
         if (segue.identifier == "embedSegue") {
             
             self.embeddedViewController = segue.destination as? HorizontalTableViewController
             
         }
         
-        
-        
         if (segue.identifier == "slideShow") {
             
             vc = segue.destination as? SlideShowViewController
             
         }
-        
-        
-        
+
     }
-    
-    
+
 }

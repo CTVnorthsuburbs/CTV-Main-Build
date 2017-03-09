@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 7/15/16.
-//  
+//
 //
 
 import Foundation
@@ -35,7 +35,7 @@ open class Video: NSObject, NSCoding {
     var thumbnailUrl: NSURL?
     
     var id: Int?
-
+    
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -73,20 +73,16 @@ open class Video: NSObject, NSCoding {
     // MARK: Initialization
     
     
-    
-  
-    
-    
     init?(title: String, thumbnail: UIImage?,fileName: Int?, sourceUrl: String?, comments: String, eventDate: Date, thumbnailUrl: NSURL?, id: Int?, isEvent: Bool?, endDate: Date?) {
         
         // Initialize stored properties.
         
-           super.init()
+        super.init()
         
         self.title = title
         
         self.thumbnail = thumbnail
-      
+        
         self.fileName = fileName
         
         self.sourceUrl = sourceUrl
@@ -103,26 +99,21 @@ open class Video: NSObject, NSCoding {
         
         self.endDate = endDate
         
-        
-
         var str = title
+        
         var newString = ""
+        
         let suffix = String(describing: str.characters.suffix(6))
         
-        
         if suffix.contains("-") {
-         
             
             var splitArray = str.components(separatedBy: " ")
             
-            
-            
             if(splitArray.last?.contains("-"))! {
                 
-                var count = splitArray.count
+                let count = splitArray.count
+                
                 splitArray[count - 1].removeAll()
-                
-                
                 
                 for elements in splitArray {
                     
@@ -131,7 +122,7 @@ open class Video: NSObject, NSCoding {
                 }
                 
                 newString = newString.trimmingCharacters(in: .whitespacesAndNewlines)
-
+                
             }
             
         }
@@ -140,18 +131,6 @@ open class Video: NSObject, NSCoding {
             
             self.title = (newString)
         }
-        
-        
-        
-        
-        
-       /* Possible Image setter
-        let url = NSURL(string: image.url)
-        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-        imageView.image = UIImage(data: data!)
-       */
-        
-     
         
         // Initialization should fail if there is no title.
         
@@ -179,13 +158,11 @@ open class Video: NSObject, NSCoding {
     
     func getEndDate() -> Date? {
         
-        
         return self.endDate
         
     }
     
     func getIsEvent() -> Bool {
-        
         
         return self.isEvent!
         
@@ -193,17 +170,10 @@ open class Video: NSObject, NSCoding {
     
     func hasThumbnailUrl() -> Bool {
         
-        
-     
-        
-        
         if(self.thumbnailUrl != nil) {
-            
-            
             
             return true
         } else {
-            
             
             return false
         }
@@ -213,50 +183,32 @@ open class Video: NSObject, NSCoding {
     
     func generateThumbnailUrl() {
         
-        
-      var search = VideoSearch()
-        
         var thumbnail : String?
         
         var url : NSURL?
         
         if(self.fileName != nil ) {
             
+            thumbnail = search.searchThumbnail(self.fileName!)
             
-     
-        
-        thumbnail = search.searchThumbnail(self.fileName!)
-        
-        
-        let escapedString = thumbnail!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
-        
-        
-        
-        url = NSURL(string: escapedString! )
+            let escapedString = thumbnail!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
             
             
-         
-          self.thumbnailUrl = url
-        
-        
-        
+            url = NSURL(string: escapedString! )
+            
+            self.thumbnailUrl = url
+            
+            
         }
         
-          }
-    
-    
-    
+    }
     
     
     open func generateThumbnail()  {
         
-        
-        
-      
-        
         var tempThumb: UIImage
         
-
+        
         
         do {
             
@@ -267,7 +219,7 @@ open class Video: NSObject, NSCoding {
             imgGenerator.appliesPreferredTrackTransform = true
             
             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(5, 1), actualTime: nil)
-    
+            
             tempThumb = UIImage(cgImage: cgImage)
             
             self.thumbnail = tempThumb
@@ -283,7 +235,7 @@ open class Video: NSObject, NSCoding {
             
         }
         
-       
+        
         
         
     }
@@ -308,7 +260,7 @@ open class Video: NSObject, NSCoding {
         
         
         
-           aCoder.encode(thumbnailUrl, forKey: PropertyKey.thumbnailUrlKey)
+        aCoder.encode(thumbnailUrl, forKey: PropertyKey.thumbnailUrlKey)
         
         aCoder.encode(id, forKey: PropertyKey.idKey)
         
@@ -330,14 +282,14 @@ open class Video: NSObject, NSCoding {
         let eventDate = aDecoder.decodeObject(forKey: PropertyKey.eventDateKey) as! Date
         
         let endDate = aDecoder.decodeObject(forKey: PropertyKey.endDateKey) as? Date
-
+        
         
         let thumbnailUrl =  aDecoder.decodeObject(forKey: PropertyKey.thumbnailUrlKey) as? NSURL
         
         let isEvent =  aDecoder.decodeObject(forKey: PropertyKey.isEventKey) as? Bool
         
         let id =  aDecoder.decodeObject(forKey: PropertyKey.idKey) as? Int
-     
+        
         
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnailKey) as? UIImage
         
@@ -346,5 +298,5 @@ open class Video: NSObject, NSCoding {
         self.init(title: title, thumbnail: thumbnail, fileName: fileName, sourceUrl: sourceUrl, comments: comments, eventDate: eventDate, thumbnailUrl: thumbnailUrl, id: id, isEvent: isEvent, endDate: endDate)
         
     }
-
+    
 }

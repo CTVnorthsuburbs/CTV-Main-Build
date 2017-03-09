@@ -251,7 +251,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
-                                <rect key="frame" x="0.0" y="278" width="375" height="389"/>
+                                <rect key="frame" x="0.0" y="278" width="375" height="340"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
                                 </connections>
@@ -1380,8 +1380,8 @@
                                     <constraint firstAttribute="width" secondItem="kXv-wi-Lqr" secondAttribute="height" multiplier="16:9" id="pS4-i2-x0L"/>
                                 </constraints>
                             </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-OP-xys">
-                                <rect key="frame" x="9" y="283" width="358" height="332"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-OP-xys">
+                                <rect key="frame" x="8" y="283" width="358" height="332"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.26266473531723022" green="0.27037334442138672" blue="0.27867752313613892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1413,7 +1413,7 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1755,7 +1755,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vu-dZ-AjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3220" y="-449"/>
+            <point key="canvasLocation" x="-3590" y="-687"/>
         </scene>
         <!--Home-->
         <scene sceneID="c4C-3b-qoK">
@@ -1824,10 +1824,10 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hpx-XP-cwh"/>
+        <segue reference="mDZ-RG-fvs"/>
         <segue reference="yQr-UQ-GkP"/>
         <segue reference="YYH-WW-hEt"/>
-        <segue reference="2XC-rQ-lli"/>
-        <segue reference="fNp-cp-4gu"/>
+        <segue reference="TiQ-iG-Egd"/>
+        <segue reference="Hpx-XP-cwh"/>
     </inferredMetricsTieBreakers>
 </document>

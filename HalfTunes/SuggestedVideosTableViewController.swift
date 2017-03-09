@@ -3,18 +3,17 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 10/20/16.
-//  
+//
 //
 
 import UIKit
 
 class SuggestedVideosTableViewController: UITableViewController {
     
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var addVideoButton: UIButton!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -25,7 +24,6 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    
     var defaultSession : Foundation.URLSession? = nil
     
     var dataTask: URLSessionDataTask?
@@ -35,9 +33,6 @@ class SuggestedVideosTableViewController: UITableViewController {
     var myVideos = [Video]()
     
     var section: Int?
-    
-    
-    var search = VideoSearch()
     
     var recommendedVideos = [Video]()
     
@@ -51,18 +46,15 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        
-        
     }
+    
     func setCategory(category: Category) {
-        
         
         currentCategory = category
         
     }
     
     func setCategory(category: Category, section: Int) {
-        
         
         currentCategory = category
         
@@ -72,46 +64,27 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     func setVideo(video: Video) {
         
-        
-        
-        
-        
         if( currentCategory?.videoType == VideoType.youtube) {
-            
             
             if(self.section == nil) {
                 
                 recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
                 
-                
                 recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
-                
-                
                 
             } else {
                 
-                
-                
                 recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[self.section!].sectionPlaylist!)!
-                
                 
                 recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
                 
-                
             }
-            
             
         } else {
             
-            
-            
-            
-            var searchID = suggestedSearch?.searchID
-            
+            let searchID = suggestedSearch?.searchID
             
             if (searchID != nil && searchID != 1 && searchID != 2) {
-                
-               
                 
                 var results = search.search(searchID!)
                 
@@ -119,19 +92,12 @@ class SuggestedVideosTableViewController: UITableViewController {
                 
                 recommendedVideos = results
                 
-                
             } else {
                 
                 recommendedVideos = search.getRecentLimited()
             }
- 
-
-        
             
-           // recommendedVideos = search.getRecentLimited()
         }
-        
-        
         
         myVideos = recommendedVideos
         
@@ -141,11 +107,6 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             tableView.reloadData()
         }
-        
-        
-        
-        
-        
         
     }
     
@@ -159,8 +120,6 @@ class SuggestedVideosTableViewController: UITableViewController {
         for vid in videoList {
             
             if(video.title == vid.title) {
-                
-                
                 
                 videoList.remove(at: count)
                 
@@ -189,70 +148,35 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             
             DispatchQueue.global(qos: .userInitiated).async {
-            // Get the cell that generated this segue.
-            
-            if let selectedVideoCell = sender as? MainVideoCell {
                 
-                
-                
+                if let selectedVideoCell = sender as? MainVideoCell {
+                    
+                    let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
                     
                     
+                    let selectedVideo = self.myVideos[indexPath.row]
                     
-                    //Do the main task here
+                    videoDetailViewController.video = selectedVideo
                     
+                    suggestedSearch = category.sections[indexPath.section]
                     
-                  
-                let indexPath = self.tableView.indexPath(for: selectedVideoCell)!
-                
-                
-                var selectedVideo = self.myVideos[indexPath.row]
-                
-                videoDetailViewController.video = selectedVideo
-                
-                //    videoDetailViewController.setActiveDownloads(downloads: &parentView.downloads)
-                
-                
-                
-                
-              
-                
-                
-                suggestedSearch = category.sections[indexPath.section]
-                
-                
-                
-                
-                
-                
-                selectedSection = indexPath.section
-                
-                
-                
-                
-                if(selectedVideo.fileName == 1) {
+                    selectedSection = indexPath.section
                     
-                    var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
+                    if(selectedVideo.fileName == 1) {
+                        
+                        let sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
+                        
+                        sections.createListing()
+                        
+                        videoDetailViewController.setCategory(category: sections)
+                        
+                    }
                     
-                    sections.createListing()
+                    videoDetailViewController.setDefaultSession(defaultSession: &self.parentView.defaultSession!)
                     
-                    videoDetailViewController.setCategory(category: sections)
+                    videoDetailViewController.setDataTask(dataTask: &self.parentView.dataTask!)
                     
-                    
-                }
-                
-                
-            
-                
-                
-                
-                
-                videoDetailViewController.setDefaultSession(defaultSession: &self.parentView.defaultSession!)
-                
-                videoDetailViewController.setDataTask(dataTask: &self.parentView.dataTask!)
-                
-                
-                videoDetailViewController.setDownloadsSession(downloadsSession: &self.parentView.downloadsSession!)
-                    
+                    videoDetailViewController.setDownloadsSession(downloadsSession: &self.parentView.downloadsSession!)
                     
                     DispatchQueue.main.async( execute: {
                         
@@ -264,104 +188,59 @@ class SuggestedVideosTableViewController: UITableViewController {
             }
             
         }
-            
-        else if segue.identifier == "AddItem" {
-            
-            print("Adding new video.")
-            
-        }
         
     }
     
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as? MainVideoCell
         
         video = recommendedVideos[indexPath.row]
         
-        
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
-        
         
         cell?.dateLabel?.text = recommendedVideos[indexPath.row].eventDate!.convertDateToString()
         
-        
         if(recommendedVideos[indexPath.row].thumbnail != nil) {
-        cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
+            
+            cell?.thumbnailView.image = recommendedVideos[indexPath.row].thumbnail
+            
         }
         
         cell?.thumbnailView.setRadius(radius: imageRadius)
         
         if(self.recommendedVideos[indexPath.row].thumbnail == nil) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {  //generate thumbnail in bacground
             
-            
-            
-            
-            do {
-                
-                
+            DispatchQueue.global(qos: .background).async { //generate thumbnail in bacground
                 
                 
                 if( self.recommendedVideos[indexPath.row].hasThumbnailUrl()) {
                     
-                   
-                        
-                        self.recommendedVideos[indexPath.row].thumbnail =  returnImageUsingCacheWithURLString(url: self.recommendedVideos[indexPath.row].thumbnailUrl!)
-                    
-                    
-                    
-                    
+                    self.recommendedVideos[indexPath.row].thumbnail =  returnImageUsingCacheWithURLString(url: self.recommendedVideos[indexPath.row].thumbnailUrl!)
                     
                 } else {
                     
-                    
-                    
-                    
                     self.recommendedVideos[indexPath.row].generateThumbnailUrl()
-                    
-                    
                     
                     if( self.recommendedVideos[indexPath.row].thumbnailUrl != nil) {
                         
-                        
-                        
                         self.recommendedVideos[indexPath.row].thumbnail =  returnImageUsingCacheWithURLString(url: self.recommendedVideos[indexPath.row].thumbnailUrl!)
-                        
                         
                     }
                     
                 }
                 
-                
-                //  self.recommendedVideos[indexPath.row].generateThumbnail()
-                
-                
-                
-                
-                
-            } catch {
-                self.recommendedVideos[indexPath.row].thumbnail = nil
-            }
-            
-            
-            
-            
-            
-            
-            DispatchQueue.main.async {
-                
-                var thumbnail = self.recommendedVideos[indexPath.row].thumbnail
-                
-                if(thumbnail != nil) {
+                DispatchQueue.main.async {
                     
-                    cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
-
-                }
-
-                
+                    let thumbnail = self.recommendedVideos[indexPath.row].thumbnail
+                    
+                    if(thumbnail != nil) {
+                        
+                        cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
+                        
+                    }
+                    
                 }
                 
             }
@@ -371,27 +250,18 @@ class SuggestedVideosTableViewController: UITableViewController {
         
     }
     
-    
-    /*
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-     return "Section \(section)"
-     }
-     */
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return recommendedVideos.count
     }
     
     
     @IBAction func addVideoPressed(_ sender: AnyObject) {
-        
         
         parentView.addVideo(self.addVideoButton)
         
@@ -399,11 +269,8 @@ class SuggestedVideosTableViewController: UITableViewController {
     
     @IBAction func cancelPressed(_ sender: AnyObject) {
         
-        
         parentView.cancelTapped(self.cancelButton)
         
     }
-    
-    
     
 }

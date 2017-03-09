@@ -14,22 +14,17 @@ import UIKit
 
 class UpcomingEventsFeed {
     
-    
-    
+
     let upcomingEventFeedURL = URL(string: "http://www.ctv15.org/index.php?option=com_obrss&task=feed&id=2:app-json-feed&format=json")
     
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
     
-    
     /// Creates the NSURL session necessary to download content from remote URL.
     
     fileprivate func getNSURLSession() -> URLSession {
-        
-        //   let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-        
-        //  session.configuration.urlCache?.removeAllCachedResponses()
+
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -40,63 +35,38 @@ class UpcomingEventsFeed {
     
     func checkForUpcomingSection(category: Category) -> Section? {
         
-        
-        
-        
         for section in category.sections {
-            
             
             if(section.sectionType == SectionType.upcomingEventList) {
                 
                 return section
                 
-                
+
             }
-            
-            
-            
+
             
         }
-        
-        
-        
+
         return nil
-        
+
         
     }
-    
-    
+
     
     func getUpcomingEventVideos(events: [Event]) -> [Video] {
-        
-        
+
         var videos = [Video]()
-        
-        
-        
+
         for event in events {
-            
-            
-            
-            
-            
-            
+
             let video = Video(title: event.title, thumbnail: nil, fileName: 0, sourceUrl: event.liveStream, comments: "", eventDate: event.startDate, thumbnailUrl: event.image, id: 1, isEvent: true, endDate: event.endDate)
-            
-            
-            
-            
+
             video?.setEndDate(date: event.endDate)
-            
-            
+
             videos.append(video!)
-            
-            
+    
         }
-        
-        
-        
-        
+ 
        return videos
         
         
@@ -104,20 +74,8 @@ class UpcomingEventsFeed {
 
     
     
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
     func getUpcomingEventUpdate(category: Category) -> [Event]? {
-        
-        
-        
+
         let section = checkForUpcomingSection(category: category)
         
         
@@ -130,9 +88,7 @@ class UpcomingEventsFeed {
             var dataTask: URLSessionDataTask
             
             var events = [Event]()
-            
-            
-            
+      
             dataTask = defaultSession.dataTask(with: upcomingEventFeedURL!,  completionHandler: {
                 
                 data, response, error in
@@ -170,9 +126,7 @@ class UpcomingEventsFeed {
             semaphore.wait(timeout: .distantFuture)
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            
-            
-            
+
             return events
             
         } else {
@@ -180,21 +134,14 @@ class UpcomingEventsFeed {
             
             return [Event]()
         }
-        
-        
-        
-        
+
         
         
     }
     
     
-    
-    
     fileprivate func updateSearchResults(_ data: Data?)-> [Event]? {
-        
-        
-        
+
         var eventResults = [Event]()
         
         var results = [Events]()
@@ -213,13 +160,11 @@ class UpcomingEventsFeed {
         }
         
         
-        
         guard let result = EventFeed(json: json) else {
             
             
             return nil
         }
-        
         
         
         guard let events = EventResults(json: result.events as! JSON) else {
@@ -232,21 +177,10 @@ class UpcomingEventsFeed {
         if(events.items != nil) {
             
             for item in events.items! {
-                
-                
-                
-                
-                
-                
-                
+
                 results.append(item)
-                
-                
-                
-                
-                
+
             }
-            
             
         }
         
@@ -256,27 +190,16 @@ class UpcomingEventsFeed {
             let eventResult =   parseResults(event: result)
             
             if(eventResult != nil) {
-                
-                
-                
+
                 eventResults.append(eventResult!)
                 
             }
             
         }
         
-        
-        
-        
-        
-        
-        
         return eventResults
         
     }
-    
-    
-    
     
     
     func parseResults(event: Events) -> Event? {
@@ -284,64 +207,36 @@ class UpcomingEventsFeed {
         var eventResult: Event?
         
         let description: String = event.description!
-        
-        
-        
+ 
         let filtered = filterString(string: description)
-        
-        
-        
-        
-        
-        
+
         let separatedDescription = filtered.components(separatedBy: [" "])
-        
-        
-        
-        
-        
-        
-        
+
         let startDateString = separatedDescription[1]
-        
         
         let startDate = formatDate(date: startDateString)
         
-        
-        
-        
-        
         let endDateString = separatedDescription[3]
-        
         
         let endDate = formatDate(date: endDateString)
         
         let location = getLocation(stringArray: separatedDescription)
         
-        
-        
-        
-        
         let liveStream = getLiveStreamAddress(stringArray: separatedDescription)
-        
-        
         
         let escapedString = event.image?.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
         
         let url = NSURL(string: escapedString! )
-        
-        
-        
+
         if((event.title != nil) && event.image != nil && event.link != nil && location != nil && liveStream != nil ) {
             
             
             
             eventResult = Event(title: event.title!, startDate: startDate, endDate: endDate,  liveStream: liveStream!, image: url!)
             
-            
         }
         
-        
+
         return eventResult
         
     }
@@ -350,20 +245,13 @@ class UpcomingEventsFeed {
         
         let stringArray = stringArray
         
-        
-        
         var liveStreamAddress = ""
-        
-        
-        
+
         for element in stringArray {
             
-            
-            
+
             if element.range(of:"http://wowza1") != nil {
-                
-                
-                
+
                 liveStreamAddress = element
                 
                 
@@ -372,22 +260,14 @@ class UpcomingEventsFeed {
                 
             }
             
-            
-            
-            
-            
-            
+  
             
         }
         
         if(liveStreamAddress != "") {
         
         liveStreamAddress =  liveStreamAddress.substring(from: liveStreamAddress.characters.index(liveStreamAddress.startIndex, offsetBy: 1))
-        
-        
-        
-        
-        
+
         liveStreamAddress =   liveStreamAddress.substring(to: liveStreamAddress.index(before: liveStreamAddress.endIndex))
         
         } else {
@@ -395,9 +275,7 @@ class UpcomingEventsFeed {
             
             liveStreamAddress = String("http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
         }
-        
-        
-        
+ 
         return liveStreamAddress
         
         
@@ -410,10 +288,7 @@ class UpcomingEventsFeed {
         var location = ""
         
         let separatedString = stringArray
-        
-        
-        
-        
+
         let subString =   separatedString.dropFirst(5)
         
         
@@ -435,9 +310,6 @@ class UpcomingEventsFeed {
             }
             
             
-            
-            
-            
         }
         
         location = location.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -451,16 +323,19 @@ class UpcomingEventsFeed {
     {
         
         let dateFormatter = DateFormatter()
+        
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"//this your string date format
+        
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        
         let date = dateFormatter.date(from: date)
-        
-        
+
         dateFormatter.dateFormat = "yyyy MMM-dd EEEE HH:mm"///this is you want to convert format
+        
         dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        
         let timeStamp = dateFormatter.string(from: date!)
-        
-        
+
         return timeStamp
     }
     
@@ -471,16 +346,15 @@ class UpcomingEventsFeed {
     func formatDate(date: String) -> Date {
         
         let dateFormatter = DateFormatter()
+        
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"//this your string date format
+        
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        
         let date = dateFormatter.date(from: date)
-        
-        
-        dateFormatter.dateFormat = "yyyy MMM-dd EEEE HH:mm"///this is you want to convert format
-        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
-     
-        
-        
+
+      
+
         return date!
         
     }

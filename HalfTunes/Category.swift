@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 11/17/16.
-//  
+//
 //
 
 import Foundation
@@ -58,9 +58,9 @@ enum VideoType {
     
     case youtube
     
-  
     
-  
+    
+    
 }
 
 
@@ -100,7 +100,7 @@ class CategoryFactorySettings: NSObject {
     
     var recentGirlsSectionDisplayCount: Int?
     
-     var recentGirlsSectionPlaylist: String?
+    var recentGirlsSectionPlaylist: String?
     
     
     var recentBoysSectionTitle: String?
@@ -139,7 +139,7 @@ class CategoryFactorySettings: NSObject {
     
     var slides = [Slide]()
     
-
+    
     
     var buttonsSectionTitle: String?
     
@@ -270,11 +270,11 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-       let sectionPlaylist = settings.recentGirlsSectionPlaylist
+        let sectionPlaylist = settings.recentGirlsSectionPlaylist
         
         let images: [UIImage]? = nil
         
-         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
         
         return section
         
@@ -295,11 +295,11 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-       let sectionPlaylist = settings.recentBoysSectionPlaylist
+        let sectionPlaylist = settings.recentBoysSectionPlaylist
         
         let images: [UIImage]? = nil
         
-           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
         
         return section
         
@@ -319,11 +319,11 @@ class CategoryFactory {
         
         let buttons: [Button]? = nil
         
-         let sectionPlaylist = settings.featuredSectionPlaylist
+        let sectionPlaylist = settings.featuredSectionPlaylist
         
         let images: [UIImage]? = nil
         
-           let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
         
         return section
         
@@ -339,7 +339,7 @@ class CategoryFactory {
         
         let displayCount = settings.recentSectionDisplayCount
         
-         let sectionPlaylist = settings.recentSectionPlaylist
+        let sectionPlaylist = settings.recentSectionPlaylist
         
         let videoList: [Int]? = nil
         
@@ -349,7 +349,7 @@ class CategoryFactory {
         
         let images: [UIImage]? = nil
         
-         let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
         
         return section
         
@@ -360,24 +360,16 @@ class CategoryFactory {
         let sectionType = settings.buttonsSectionType
         
         let sectionTitle = settings.buttonsSectionTitle
-        
-        
-        
+
         let searchID: Int?  = nil
         
         let videoList: [Int]? = nil
         
         let buttons = settings.buttons
-        
-      
-     
-        
-   
-        
-        
+
         let images: [UIImage]? = nil
         
-          let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
         
         return section
         
@@ -394,15 +386,10 @@ class CategoryFactory {
         let videoList: [Int]? = nil
         
         let buttons = settings.buttonsSecond
-        
 
-        
-     
-        
-        
         let images: [UIImage]? = nil
         
-           let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
         
         return section
         
@@ -419,12 +406,7 @@ class CategoryFactory {
         let videoList: [Int]? = nil
         
         let buttons = settings.buttonsThird
-        
-        
-        
-        
-        
-        
+
         let images: [UIImage]? = nil
         
         let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
@@ -438,21 +420,7 @@ class CategoryFactory {
     
     internal func addSlide() -> Section {
         
-        /*
-        var sliderImages: [UIImage]?
-        
-        var sliderType: Category.Type?
-        
-        var sliderURL: URL?
-        
-        var sliderPage: String?
-        
-        var sliderSearchID: Int?
-        
-        var sliderCategory: Category?
-        */
-        
-        
+
         let slides = settings.slides
         
         
@@ -462,25 +430,18 @@ class CategoryFactory {
         let sectionTitle = "Slider listing"
         
         let searchID = 000
-        
     
-
-        
         let videoList: [Int]? = nil
         
         let buttons: [Button]? = nil
-        
-      
-        
+
         let images: [UIImage]? = settings.sliderImages
         
-          let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
         
         
         for slide in slides {
-            
-            
-            
+
             section.addSlide(slide: slide)
             
             
@@ -519,11 +480,11 @@ class Category {
         
         
         if(slider != nil) {
-           
-          return slider!
+            
+            return slider!
         }
-      
-      return nil
+        
+        return nil
         
     }
     
@@ -587,14 +548,9 @@ class Category {
             case CategoryOrder.girls:
                 
                 createRecentGirlsSection()
-                
-            
-                
-                
+
             }
-            
-            
-            
+
         }
         
         
@@ -731,8 +687,6 @@ class Section {
     
     var sectionType: SectionType
     
-   // var listing = CategorySearches.hockey
-    
     var displayCount:  Int?
     
     var sectionTitle: String?
@@ -763,14 +717,14 @@ class Section {
         
         if(buttons != nil) {
             
-          self.buttons = buttons!
+            self.buttons = buttons!
             
         }
         
         if(images != nil) {
             
-              self.images = images!
-        
+            self.images = images!
+            
         }
         
         self.displayCount = displayCount
@@ -826,7 +780,7 @@ enum SectionType {
     case specificVideoList
     
     case upcomingEventList
-  
+    
 }
 
 

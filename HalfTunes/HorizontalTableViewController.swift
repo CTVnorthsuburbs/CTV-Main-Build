@@ -105,6 +105,7 @@ class HorizontalTableViewController: UITableViewController {
                         LoadingOverlay.shared.showOverlay(view: self.parent?.view)
                         
                     }
+                    
                     DispatchQueue.global(qos: .background).async {
                         
                         var index = 0
@@ -482,7 +483,11 @@ class HorizontalTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        /* //old version
         guard var cell = cell as? HorizontalTableViewCell else { return }
+        */
+        
+        guard cell is HorizontalTableViewCell else { return }
         
     }
     

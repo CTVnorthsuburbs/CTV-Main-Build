@@ -12,8 +12,6 @@ import UIKit
 
 protocol MainVideoCellDelegate {
     
-
-    
     func thumbnailTapped(_ cell: MainVideoCell)
     
 }
@@ -52,18 +50,10 @@ class MainVideoCell: UITableViewCell {
     
     var delegate:MainVideoCellDelegate! = nil
     
- 
-    
-    
     @IBAction func thumbnailTapped(_ sender: AnyObject) {
         
         delegate?.thumbnailTapped(self)
         
     }
-    
-    
-   
-    
 
-    
 }

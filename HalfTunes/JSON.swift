@@ -15,8 +15,6 @@ public struct Videos: Decodable {
     
     public let vod: [Vods]?
     
-    
-    
     public init?(json: JSON) {
         
         show = "show" <~~ json
@@ -24,28 +22,21 @@ public struct Videos: Decodable {
         vod = "vods" <~~ json
         
         
-        
     }
     
 }
-
-
 
 
 public struct SlideShow: Decodable {
     
     public let slides: [Slides]?
     
-    
-    
-    
     public init?(json: JSON) {
         
         
-        var slides: [Slides]? = "slides" <~~ json
+        let slides: [Slides]? = "slides" <~~ json
         
         self.slides = slides
-        
         
         
     }
@@ -60,7 +51,7 @@ public struct Slides: Decodable {
     
     public let category: String?
     
-
+    
     
     public let imageURL: String?
     
@@ -79,7 +70,7 @@ public struct Slides: Decodable {
         
         category = "category" <~~ json
         
-      page = "page" <~~ json
+        page = "page" <~~ json
         
         imageURL = "image" <~~ json
         
@@ -282,14 +273,9 @@ public struct Shows: Decodable {
 
 public struct Thumbnail: Decodable {
     
-    
     public let thumbnail: Thumbnails?
     
-    
-    
     public init?(json: JSON) {
-        
-        
         
         guard let thumbnail: Thumbnails = "thumbnail" <~~ json
             
@@ -298,8 +284,6 @@ public struct Thumbnail: Decodable {
                 print("JSON Thumbnail doesnt execute")
                 
                 return nil }
-        
-        
         
         self.thumbnail = thumbnail
         
@@ -313,14 +297,9 @@ public struct Thumbnail: Decodable {
 
 public struct YoutubeVideo: Decodable {
     
-    
     public let items: [NSDictionary]?
     
-    
-    
     public init?(json: JSON) {
-        
-        
         
         guard let items:  [NSDictionary]? = "items" <~~ json
             
@@ -330,14 +309,7 @@ public struct YoutubeVideo: Decodable {
                 
                 return nil }
         
-        
-        
         self.items = items
-        
-        
-        
-        
-        
         
     }
     
@@ -349,9 +321,6 @@ public struct YoutubeItems: Decodable {
     let id: String?
     
     let snippet: YoutubeSnippet?
-    
-    
-    // MARK: - Deserialization
     
     public init?(json: JSON) {
         self.id = "id" <~~ json
@@ -367,11 +336,6 @@ public struct YoutubeThumbnail: Decodable {
     
     let defaultThumbnail: YoutubeDefaultThumbnail?
     
-    
-    
-    
-    // MARK: - Deserialization
-    
     public init?(json: JSON) {
         self.defaultThumbnail = "standard" <~~ json
         
@@ -385,11 +349,6 @@ public struct YoutubeDefaultThumbnail: Decodable {
     
     let url: String?
     
-    
-    
-    
-    // MARK: - Deserialization
-    
     public init?(json: JSON) {
         self.url = "url" <~~ json
         
@@ -402,11 +361,6 @@ public struct YoutubeResource: Decodable {
     
     let videoId: String?
     
-    
-    
-    
-    // MARK: - Deserialization
-    
     public init?(json: JSON) {
         self.videoId = "videoId" <~~ json
         
@@ -414,8 +368,6 @@ public struct YoutubeResource: Decodable {
     }
     
 }
-
-
 
 
 
@@ -505,19 +457,7 @@ public struct YoutubeSnippet: Decodable {
         
     }
     
-    
-    
-    
-    
-    
 }
-
-
-
-
-
-
-
 
 
 public struct Thumbnails: Decodable {

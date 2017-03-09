@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 8/17/16.
-//  
+//
 //
 
 import Foundation
@@ -154,33 +154,20 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             
             for result in searchResults {
-                
-                
+   
                 
                 if(result.id == id) {
-                    
-                    
-                    
+
                     sortedSearchResults.append(result)
                     
                 }
-                
-                
-                
+
             }
             
-            
-            
-            
-            
-            
+
             
         }
-        
-        
-        
-        
-        
+
         return sortedSearchResults
     }
     
@@ -188,15 +175,11 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     func getYouTubeVideos(playlist: String) -> [Video]? {
-        
-        //  var playlistID = "PLc4OSwdRXG_KJwyC0WFroPmqwA67PAhZI"
-        
+
         
         let playlistID = playlist
         
-        
-        
-        
+
         let apiKey = "AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU"
         
         
@@ -206,26 +189,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         //this gives all videos within a specifed playlist
         
         let urlString = URL( string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(playlistID)&key=\(apiKey)&maxResults=\(maxResults)")
-        
-        
-        
-        
-        
-        //    let urlString = URL( string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(playlistID)&key=\(apiKey)&maxResults=\(maxResults)")
-        
-        
-        
-        //this gives all playlists with id for given channel
-        
-        //   let urlString = URL( string: "https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UCItaxOh-FCAiD2Hjqt1KlEw&key=AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU&maxResults=\(maxResults)")
-        
-        
-        
-        
-        //   let urlString = URL( string: "https://www.googleapis.com/youtube/v3/channels?part=contentDetails,snippet&forUsername=ctvteens&key=AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU" )
-        
-        // Create a NSURL object based on the above string.
-        //   let searchURL = NSURL(string: urlString)
+
         
         // Fetch the playlist from Google.
         
@@ -242,37 +206,24 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return video
         
     }
-    /*
-     let semaphore = DispatchSemaphore(value: 0)
-     semaphore.signal()
-     semaphore.wait(timeout: .distantFuture)
-     
-     
-     */
-    
-    
+
     fileprivate func getYoutubePlaylists(_ defaultSession: URLSession, url: URL) -> [Video]? {
         
         let semaphore = DispatchSemaphore(value: 0)
-        var video: Video?
         
+        var video: Video?
         
         var videoResults = [Video]()
         
         var dataTask: URLSessionDataTask?
-        
-        
-        
-        
-        
+
         if dataTask != nil {
             
             dataTask?.cancel()
             
         }
         
-        
-        
+ 
         dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
             data, response, error in
@@ -298,31 +249,19 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                         
                         json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
                         
-                        //  print(json)
-                        
-                        
-                        
+    
                         guard let results = YoutubeVideo(json: json) else {
                             
                             return
                         }
-                        
-                        
-                        //  print(results)
-                        //  var thumbnail = result
-                        
-                        
-                        
+        
                         for result in results.items! {
                             
-                            
-                            
-                            
-                            
+
                             guard let snippet = YoutubeItems(json: result as! JSON) else {
                                 
                                 
-                                print("no itmes")
+                                print("no youtube items retreived from video search")
                                 
                                 
                                 return
@@ -358,18 +297,14 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                             
                             
                             videoId  = (videoSnippet?.resourceId?.videoId)!
-                            
-                            //   var id = "https://www.youtube.com/watch?v=\(videoId)"
-                            
-                            
+
                             var id = "0"
                             
                             
                             id =   videoId
                             
-                            
-                            
                             if(thumbnail != nil) {
+                                
                                 video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: NSURL(string: thumbnail!), id: 1, isEvent: false, endDate: nil)
                                 
                             } else {
@@ -378,25 +313,12 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                                 video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: nil, id: 1, isEvent: false, endDate: nil)
                                 
                             }
-                            
-                            
-                            
-                            
-                            
+
                             videoResults.append(video!)
-                            
-                            
-                            
-                            
+
                         }
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        //  print(thumbnail)
+
                         
                     } catch {
                         
@@ -409,18 +331,15 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 
             }
             semaphore.signal()
+            
         })
         
         dataTask?.resume()
+        
         semaphore.wait(timeout: .distantFuture)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-        
-        
-        
-        
-        
+
         return videoResults
         
         
@@ -667,7 +586,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         search(85123)
         
-        
         var count = 10
         
         var reducedResults = [Video]()
@@ -686,9 +604,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
         }
         
-        
-        
-        
+
         return reducedResults
         
     }
@@ -697,23 +613,13 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     fileprivate func getSearchResults( defaultSession: URLSession, url: URL, isIDSearchURL: Bool) -> [Int]? {
-        
-        
-        
+
         let semaphore = DispatchSemaphore(value: 0)
         
         var dataTask: URLSessionDataTask
-        
-        
-        
-        
+
         var results : [Int]?
-        
-        
-        
-        
-        
-        
+
         dataTask = defaultSession.dataTask(with: url,  completionHandler: {
             
             data, response, error in
@@ -747,12 +653,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     
                 } else {
                     
-                    
-                    
-                    //  self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
-                    
-                    
-                    
+
                     
                     self.getSearchResults(defaultSession: defaultSession, url: url, isIDSearchURL: isIDSearchURL)
                 }
@@ -876,17 +777,14 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
         })
         
-        
-        
+  
         
         dataTask?.resume()
         
         semaphore.wait(timeout: .distantFuture)
-        
-        
-        
-        
+
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
         return thumbnail
         
     }
@@ -958,9 +856,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let finalResult = result as! [Int]
         
         
-        
-        
-        
         return finalResult
         
     }
@@ -969,41 +864,20 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     public  func getThumbnail(id: Int)-> UIImage? {
         
-        
         var image : UIImage?
-        
         
         let thumbnailURL = searchThumbnail(id)
         
-        
         if(thumbnailURL != nil ) {
             
-            
             let escapedString = thumbnailURL!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
-            
-            
-            
+      
             let url = NSURL(string: escapedString! )
             
             if(url != nil) {
-                
-                
-                
-                
-                
+        
                 image = returnImageUsingCacheWithURLString(url: url!)
-                
-                /*
-                 
-                 let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                 image = UIImage(data: data! as Data)
-                 
-                 
-                 var imageView = UIImageView()
-                 imageView.image = image
-                 
-                 */
-                
+     
                 return(image)
             }
             
@@ -1015,32 +889,12 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     
     public  func getThumbnail(url: NSURL)-> UIImage? {
-        
-        
-        
-        
+  
         var image : UIImage?
-        
-        
-        
-        
-        
+  
         image = returnImageUsingCacheWithURLString(url: url)
         
-        
-        
-        
-        /*
-         
-         let data = NSData(contentsOf: url! as URL) //make sure your image in this url does exist, otherwise unwrap in a if let check
-         image = UIImage(data: data! as Data)
-         
-         
-         var imageView = UIImageView()
-         imageView.image = image
-         
-         */
-        
+
         return(image)
         
         
@@ -1055,8 +909,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         var url : NSURL?
         
-        
-        
+   
         thumbnailUrl = searchThumbnail(id)
         
         
@@ -1102,13 +955,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
         }
         
-        
-        
-        
-        
-        
-        
-        
+
         var count = 0
         
         
@@ -1131,39 +978,19 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             }
             
             let date = convertStringToDate(dateString: show.date)
-            
-            if(VideosResult.show?.count != VideosResult.vod?.count) {
-                
-                //   print("video results do not match!!")
-                
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    
+
             if(VideosResult.vod?.count != 0 && (VideosResult.vod!.count) >= count ) {
                 
                 
                 searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id, isEvent: false, endDate: nil)!)
                 
             }
-            
-            
-            
-            
-            
+
             count += 1
             
         }
-        
-        
-        
+
         return true
         
     }
