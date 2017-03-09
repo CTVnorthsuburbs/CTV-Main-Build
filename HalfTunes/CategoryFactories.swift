@@ -734,7 +734,9 @@ class home: CategoryFactorySettings {
         
         self.popularSectionTitle = "New & Noteworthy"
         
-        self.popularSectionSearchID = 76921
+       // self.popularSectionSearchID = 76921
+        
+        self.popularSectionSearchID = 85123
         
         self.popularSectionDisplayCount = 15
         
