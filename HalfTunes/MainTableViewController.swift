@@ -36,6 +36,7 @@ class MainTableViewController: UITableViewController {
     
     var vc: SlideShowViewController?
     
+    
     convenience init() {
         
         self.init()
@@ -82,9 +83,9 @@ class MainTableViewController: UITableViewController {
     func loadSearch() {
         
         
-                //perform search list update in background in order to have instant access to search results, it has been pulled to decrease initial load activity and it did not seem to work correctly
+               //perform search list update in background in order to have instant access to search results, it has been pulled to decrease initial load activity and it did not seem to work correctly
             
-                       searchResults = search.getRecent()
+           searchResults = search.getRecent()
             
           /*
             let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
@@ -94,16 +95,7 @@ class MainTableViewController: UITableViewController {
             defaults.set(myData, forKey: "SavedVideoSearchList")
  
  */
-            
-                print("seartch results from maintable \(searchResults.count)")
-            
-            
-            
-        
- 
-    
-        
-        
+
     }
     
     
@@ -175,14 +167,16 @@ class MainTableViewController: UITableViewController {
                 self.generateCategories()
                 
             }
-
+            
+            
             self.update()
             
              self.loadSearch()
             
         }
-
-
+        
+       
+        
     }
     
     
@@ -276,8 +270,6 @@ class MainTableViewController: UITableViewController {
     }
     
     override func didReceiveMemoryWarning() {
-        
-        searchResults.removeAll()
         
         super.didReceiveMemoryWarning()
         

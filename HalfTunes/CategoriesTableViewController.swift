@@ -129,7 +129,7 @@ class CategoriesTableViewController: UITableViewController {
                 
                 print("search for single called from cagtegoriestableview")
                 
-                var vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
+                let vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
                 
                 if (vid.first?.fileName != nil) {
                     

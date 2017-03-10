@@ -3,16 +3,16 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 8/5/16.
-//  
+//
 //
 
 import UIKit
 
- var searchResults = [Video]()
+var searchResults = [Video]()
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
-   
+    
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -57,7 +57,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var myVideosChildView : MyVideosSearchViewController?
     
     var childView : AllVideosResultsViewController?
- 
+    
     func updateSearchResults(_ searchResults: [Video]) {
         
         for item in searchResults {
@@ -66,9 +66,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
     }
- 
+    
     @IBAction func buttonPressed(_ sender: AnyObject) {
-
+        
         let searchText = sender.titleLabel??.text
         
         searchBar.delegate = self
@@ -76,7 +76,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.searchBar.text = searchText
         
         self.searchBar(searchBar, textDidChange:searchText!)
-
+        
     }
     
     
@@ -88,15 +88,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-
+    
     override func viewDidLoad() {
         
         childView = self.childViewControllers.first as? AllVideosResultsViewController
         
         myVideosChildView = self.childViewControllers.last as? MyVideosSearchViewController
-
+        
         allVideosResults.isHidden = false
-
+        
         myVideosResults.isHidden = true
         
         let defaults = UserDefaults.standard
@@ -115,9 +115,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             print("saved search results retrieved")
             
-                        //perform search list update in background
-                
-                searchResults = savedResults
+            //perform search list update in background
+            
+            searchResults = savedResults
             
             var otherVideos = [Video]()
             
@@ -127,67 +127,61 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 otherVideos = loadVideos()!
                 
             }
-
+            
             for vid in otherVideos {
                 
-              searchResults.append(vid)
+                searchResults.append(vid)
             }
-
-                    self.updateSearchResults(searchResults)
+            
+            self.updateSearchResults(searchResults)
             
             
-                    
-              //      self.myVideosChildView!.searchResults = searchResults
-
+            
+            //      self.myVideosChildView!.searchResults = searchResults
+            
             print("number of search results retrieved from saved data: \(searchResults.count)")
             
-
+            
             
         } else {
             
-         
-
-                    DispatchQueue.global(qos: .userInitiated).async   {
-                        
-                        
-                        //perform search list update in background
-                        if(searchResults.count == 0 ) {
-                            
-                            
-              
-                            searchResults = search.getRecent()
-                        }
-                        
+            DispatchQueue.global(qos: .userInitiated).async   {
+                
+                //perform search list update in background
+                if(searchResults.count == 0 ) {
+                    
+                    print("getting new results")
+                    
+                    searchResults = search.getRecent()
+                    
+                }
+                
                 DispatchQueue.main.async {
-
+                    
                     let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
                     
                     defaults.set(myData, forKey: "SavedVideoSearchList")
                     
                     self.updateSearchResults(searchResults)
-
-                 //   self.childView!.searchResults = searchResults
-                    
-               //     self.myVideosChildView!.searchResults = searchResults
                     
                     print("number of search results retrieved from url: \(searchResults.count)")
-
+                    
                 }
                 
             }
-
+            
         }
-
+        
         self.myVideosTableView = myVideosChildView!.tableView
         
         self.tableView = childView!.tableView
         
         childView!.searchBar = self.searchBar
-
+        
         childView!.filtered = self.filtered
-
+        
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         
         tableView.dataSource = self
@@ -211,7 +205,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         tapRecognizer?.addTarget(self, action: #selector(SearchViewController.didTapView))
         
         searchBar.placeholder = "All Videos"
-
+        
     }
     
     func didTapView(){
@@ -288,7 +282,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             self.view.removeGestureRecognizer(tapRecognizer!)
             
             if(searchText!.isEmpty == false) {
-   
+                
                 myVideosChildView?.searchBar(searchBar, textDidChange:searchText!)
                 
                 searchExamplesView.isHidden = true
@@ -313,7 +307,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             allVideosResults.isHidden = true
-
+            
         default:
             
             break;
@@ -325,7 +319,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchActive = true
-
+        
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -346,7 +340,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchActive = false
         
         self.childView?.searchBar.endEditing(true)
-
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -358,7 +352,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             myVideoEmptyLabel.isHidden = true
             
             self.tableView.isHidden = true
-
+            
             self.view.addGestureRecognizer(tapRecognizer!)
             
         } else {

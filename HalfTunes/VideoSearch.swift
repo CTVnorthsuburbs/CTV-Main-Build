@@ -411,7 +411,10 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     
-
+    
+    
+    
+    
     
     func trimVideos(videoArray: [Video], numberToReturn: Int) -> [Video] {
         
@@ -574,10 +577,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         search(52966)
         
-        
-        print("get recent called")
-        
-        
+        print("getRecentCalled \(searchResults.count)")
         
         return searchResults
         
@@ -587,8 +587,6 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func getRecentLimited() -> [Video] {
         
         search(85123)
-        
-        
         
         var count = 10
         

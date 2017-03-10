@@ -57,7 +57,6 @@ class CategoryTableViewController: UITableViewController {
     }()
     
 
-    
     var myVideos = [Video]()
     
     var recommendedVideos = [Video]()
@@ -67,13 +66,9 @@ class CategoryTableViewController: UITableViewController {
     var parentView : VideoViewController!
     
     override func viewDidLoad() {
-        
 
-        
         super.viewDidLoad()
-        
 
-        
     }
     
     
@@ -253,12 +248,9 @@ class CategoryTableViewController: UITableViewController {
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainVideoCell", for: indexPath) as? MainVideoCell
         
-        
         cell?.titleLabel?.text = recommendedVideos[indexPath.row].title
-        
         
         cell?.dateLabel?.text = recommendedVideos[indexPath.row].eventDate!.convertDateToString()
         
@@ -266,53 +258,38 @@ class CategoryTableViewController: UITableViewController {
         
         cell?.thumbnailView.setRadius(radius: imageRadius)
         
-        
         DispatchQueue.global(qos: .userInitiated).async  {  //generate thumbnail in background
             
-         
-                
             if(self.recommendedVideos[indexPath.row].fileName != nil ) {
                 
                 if(self.recommendedVideos[indexPath.row].hasThumbnailUrl() == true) {
                     
                   self.recommendedVideos[indexPath.row].thumbnail = search.getThumbnail(url:  self.recommendedVideos[indexPath.row].thumbnailUrl!)
-                    
        
                 } else {
              
             let thumbnail: UIImage? = search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
                 
-                
-                
                 if(thumbnail != nil ) {
                     
                      self.recommendedVideos[indexPath.row].thumbnail = thumbnail
-                    
-                    
                     
                 } else {
                     
                 self.recommendedVideos[indexPath.row].thumbnail = #imageLiteral(resourceName: "defaultPhoto")
                     
             }
-            
-            
+        
                 }
+                
             } else {
-                
-                
                 
                  self.recommendedVideos[indexPath.row].thumbnail = #imageLiteral(resourceName: "defaultPhoto")
                 
-
             }
-            
-            
-            
             
             DispatchQueue.main.async {
                 
-
                 cell?.thumbnailView.image =  self.recommendedVideos[indexPath.row].thumbnail
                 
                 
@@ -321,11 +298,8 @@ class CategoryTableViewController: UITableViewController {
                     
                     cell?.thumbnailView.image = cell?.thumbnailView.image?.cropBottomImage(image: (cell?.thumbnailView.image!)!)
                     
-                    
                 }
-                
-                
-                
+
             }
             
         }
