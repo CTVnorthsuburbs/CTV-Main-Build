@@ -139,11 +139,11 @@ class baseball: CategoryFactorySettings {
         
         self.popularSectionTitle = "Popular Baseball Videos"
         
-        self.popularSectionSearchID = 68755
+        self.popularSectionSearchID = 69173
         
         self.recentGirlsSectionTitle = "Softball Games"
         
-        self.recentGirlsSectionSearchID = 68774
+        self.recentGirlsSectionSearchID = 69205
         
         self.recentBoysSectionTitle = "Boys Baseball Games"
         
@@ -155,7 +155,7 @@ class baseball: CategoryFactorySettings {
         
         self.recentSectionTitle = "Recent Baseball Games"
         
-        self.recentSectionSearchID = 65797
+        self.recentSectionSearchID = 69188
         
         self.sliderImages = [#imageLiteral(resourceName: "baseball")]
         
@@ -361,11 +361,11 @@ class basketball: CategoryFactorySettings {
         
         self.recentGirlsSectionTitle = "Girls Games"
         
-        self.recentGirlsSectionSearchID = 69126
+        self.recentGirlsSectionSearchID = 69419
         
         self.recentBoysSectionTitle = "Boys Basketball Games"
         
-        self.recentBoysSectionSearchID = 69146
+        self.recentBoysSectionSearchID = 69415
         
         
         self.recentSectionTitle = "Recent Basketball Games"
@@ -400,7 +400,7 @@ class soccer: CategoryFactorySettings {
         
         self.recentSectionTitle = "Recent Games"
         
-        self.recentSectionSearchID = 69275
+        self.recentSectionSearchID = 69285
         
         
         
@@ -431,16 +431,16 @@ class hockey: CategoryFactorySettings {
         
         self.recentGirlsSectionTitle = "Girls Games"
         
-        self.recentGirlsSectionSearchID = 68489
+        self.recentGirlsSectionSearchID = 69400
         
         self.recentBoysSectionTitle = "Boys Hockey Games"
         
-        self.recentBoysSectionSearchID = 69388
+        self.recentBoysSectionSearchID = 69383
         
         
         self.recentSectionTitle = "Recent Games"
         
-        self.recentSectionSearchID = 68492
+        self.recentSectionSearchID = 85876
         
         self.recentSectionDisplayCount = 15
         
@@ -491,7 +491,7 @@ class swimming: CategoryFactorySettings {
         
         self.sliderImages = [#imageLiteral(resourceName: "swimming-header")]
         
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        self.categoryOrder = [CategoryOrder.recent]
         
     }
     
@@ -510,14 +510,14 @@ class softball: CategoryFactorySettings {
         
         self.popularSectionTitle = "Most Viewed Softball Videos"
         
-        self.popularSectionSearchID = 69203
+        self.popularSectionSearchID = 69278
         
         
         
         
         self.recentSectionTitle = "Recent Softball Games"
         
-        self.recentSectionSearchID = 68774
+        self.recentSectionSearchID = 69205
         
         
         
@@ -575,7 +575,7 @@ class gymnastics: CategoryFactorySettings {
         
         self.recentSectionTitle = "Recent Gymnastics Videos"
         
-        self.recentSectionSearchID = 69325
+        self.recentSectionSearchID = 69344
         
         
           self.sliderImages = [#imageLiteral(resourceName: "gymnastics-header")]

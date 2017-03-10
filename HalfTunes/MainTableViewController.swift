@@ -84,9 +84,12 @@ class MainTableViewController: UITableViewController {
         
         
                //perform search list update in background in order to have instant access to search results, it has been pulled to decrease initial load activity and it did not seem to work correctly
-            
+        
+        if(searchResults.count == 0) {
            searchResults = search.getRecent()
             
+        }
+        
           /*
             let myData = NSKeyedArchiver.archivedData(withRootObject: searchResults)
             
@@ -162,6 +165,8 @@ class MainTableViewController: UITableViewController {
         
         DispatchQueue.global(qos: .background).async {
             
+              self.update()
+            
             if(categoriesVideos.count == 0) {
                 
                 self.generateCategories()
@@ -169,7 +174,7 @@ class MainTableViewController: UITableViewController {
             }
             
             
-            self.update()
+          
             
              self.loadSearch()
             
@@ -192,7 +197,7 @@ class MainTableViewController: UITableViewController {
             
             
             if(video.sections.first!.searchID == 1) {
-                
+               
                 vid = search.getYouTubeVideos(playlist: video.sections.first!.sectionPlaylist!)!
                 
                 if (vid.first?.fileName != nil) {
@@ -215,9 +220,13 @@ class MainTableViewController: UITableViewController {
                 
             } else {
                 
+            
+                
                 vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
                 
                 if (vid.first?.fileName != nil) {
+                    
+                   
                     
                     search.getThumbnail(id: (vid.first?.fileName)!)
                     
@@ -231,7 +240,7 @@ class MainTableViewController: UITableViewController {
         }
         
         refreshControl?.endRefreshing()
-        
+ 
     }
     
     
