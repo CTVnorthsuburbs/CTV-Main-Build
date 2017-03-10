@@ -60,9 +60,6 @@ class CategoryTableViewController: UITableViewController {
     
     var myVideos = [Video]()
     
-    
-    var search = VideoSearch()
-    
     var recommendedVideos = [Video]()
     
     var video: Video?
@@ -278,12 +275,12 @@ class CategoryTableViewController: UITableViewController {
                 
                 if(self.recommendedVideos[indexPath.row].hasThumbnailUrl() == true) {
                     
-                  self.recommendedVideos[indexPath.row].thumbnail = self.search.getThumbnail(url:  self.recommendedVideos[indexPath.row].thumbnailUrl!)
+                  self.recommendedVideos[indexPath.row].thumbnail = search.getThumbnail(url:  self.recommendedVideos[indexPath.row].thumbnailUrl!)
                     
        
                 } else {
              
-            let thumbnail: UIImage? = self.search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
+            let thumbnail: UIImage? = search.getThumbnail(id: self.recommendedVideos[indexPath.row].fileName!)
                 
                 
                 

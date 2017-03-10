@@ -16,8 +16,6 @@ class CategoriesTableViewController: UITableViewController {
     
     var parentView: MainTableViewController?
     
-    var search = VideoSearch()
-    
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -115,11 +113,11 @@ class CategoriesTableViewController: UITableViewController {
             
             if( categoriesVideos[indexPath.row].fileName == 1) {
                 
-                thumbnail = self.search.getThumbnail(url: (categoriesVideos[indexPath.row].thumbnailUrl)!)
+                thumbnail = search.getThumbnail(url: (categoriesVideos[indexPath.row].thumbnailUrl)!)
                 
             } else {
                 
-                thumbnail = self.search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
+                thumbnail = search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
                 
             }
             
@@ -135,7 +133,7 @@ class CategoriesTableViewController: UITableViewController {
                 
                 if (vid.first?.fileName != nil) {
                     
-                    thumbnail = self.search.getThumbnail(id: (vid.first?.fileName)!)
+                    thumbnail = search.getThumbnail(id: (vid.first?.fileName)!)
                     
                     categoriesVideos.append(vid.first!)
                     

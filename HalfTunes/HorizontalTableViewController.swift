@@ -20,8 +20,6 @@ class HorizontalTableViewController: UITableViewController {
     
     var listOfVideos = [Int: [Video]]()
     
-    var search = VideoSearch()
-    
     var currentCategory: Category?
     
     var featuredVideos: [[Video?]]  = [[Video?]]()
@@ -31,8 +29,6 @@ class HorizontalTableViewController: UITableViewController {
     var defaultDisplayCount = 15
     
     var sectionTitles = [String]()
-    
-    var upcomingEventsFeed = UpcomingEventsFeed()
     
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
@@ -57,15 +53,11 @@ class HorizontalTableViewController: UITableViewController {
         
         if(category.categoryTitle == featuredCategory.categoryTitle && currentCategory?.categoryTitle == featuredCategory.categoryTitle) {
             
-            
             saveFeaturedVideos()
-            
-            
             
         }
         
         self.updateTable()
-        
         
     }
     
@@ -116,11 +108,11 @@ class HorizontalTableViewController: UITableViewController {
                                 
                                 if(category.sections[index].sectionType == SectionType.upcomingEventList) {
                                     
-                                    upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
+                                    upcomingEvents = upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                                     
                                     var videos = [Video]()
                                     
-                                    videos =  self.upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+                                    videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
                                     
                                     self.videos.append(videos)
                                     
@@ -128,7 +120,7 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     if(category.videoType == VideoType.cablecast) {
                                         
-                                        let vids = self.search.search(category.sections[index].searchID!)
+                                        let vids = search.search(category.sections[index].searchID!)
                                         
                                         //Was != nil which was always true
                                         
@@ -142,13 +134,13 @@ class HorizontalTableViewController: UITableViewController {
                                             
                                             if(category.sections[index].getDisplayCount() != nil) {
                                                 
-                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                                                let trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
                                                 
                                                 self.videos.append(trimmedVids)
                                                 
                                             } else {
                                                 
-                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                                                let trimmedVids = search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
                                                 
                                                 self.videos.append(trimmedVids)
                                                 
@@ -161,17 +153,17 @@ class HorizontalTableViewController: UITableViewController {
                                         if(category.sections[index].getDisplayCount() == nil) {
                                             
                                             
-                                            self.videos.append(self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
+                                            self.videos.append(search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
                                             
                                             
                                         } else {
                                             
                                             
-                                            let vids = self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
+                                            let vids = search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
                                             
                                             print("playlist \(category.sections[index].sectionPlaylist!) ")
                                             
-                                            let trimmedVids = self.search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
+                                            let trimmedVids = search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
                                             
                                             self.videos.append(trimmedVids)
                                             
@@ -237,19 +229,19 @@ class HorizontalTableViewController: UITableViewController {
                         
                         if(category.sections[index].sectionType == SectionType.upcomingEventList) {
                             
-                            upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
+                            upcomingEvents = upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
                             
                             var videos = [Video]()
                             
-                            videos =  self.upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+                            videos =  upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
                             
                             self.videos.append(videos)
                             
                         } else {
                             
-                            var vids = self.search.search(category.sections[index].searchID!)
+                            var vids = search.search(category.sections[index].searchID!)
                             
-                            vids = self.search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
+                            vids = search.trimVideos(videoArray: vids, numberToReturn: self.defaultDisplayCount)
                             
                             self.listOfVideos[category.sections[index].searchID!] = vids
                             
@@ -261,13 +253,13 @@ class HorizontalTableViewController: UITableViewController {
                         
                         if(category.sections[index].getDisplayCount() == nil) {
                             
-                            self.videos.append(self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
+                            self.videos.append(search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)!)
                             
                         } else {
                             
-                            let vids = self.search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
+                            let vids = search.getYouTubeVideos(playlist: category.sections[index].sectionPlaylist!)
                             
-                            let trimmedVids = self.search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
+                            let trimmedVids = search.trimVideos(videoArray: vids!, numberToReturn: category.sections[index].getDisplayCount()!)
                             
                             self.videos.append(trimmedVids)
                             
@@ -621,9 +613,9 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 } else {
                     
                     
-                    let videoID = self.search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
+                    let videoID = search.searchForSingle( (category.sections[collectionView.tag].buttons[indexPath.row]?.videoID)!)
                     
-                    thumbnail =  self.search.getThumbnail(id: (videoID.first?.fileName)!)
+                    thumbnail =  search.getThumbnail(id: (videoID.first?.fileName)!)
                     
                     cells.thumbnail.image = thumbnail
                     
@@ -663,7 +655,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if ( videos[indexPath.item].hasThumbnailUrl()) {
                 
-                cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                cells.thumbnail.image = search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                 
                 cells.thumbnail.image = cells.thumbnail.image?.cropBottomImage(image: cells.thumbnail.image!)
                 
@@ -730,14 +722,14 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 if( videos[indexPath.item].hasThumbnailUrl()) {
                     
-                    cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                    cells.thumbnail.image = search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                     
                     
                 } else {
                     
                     videos[indexPath.item].generateThumbnailUrl()
                     
-                    cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
+                    cells.thumbnail.image = search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                     
                 }
                 
@@ -942,7 +934,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                         
                         let button =  category.sections[collectionView.tag].buttons[indexPath.row]
                         
-                        let video  = self.search.searchForSingle((button?.videoID)!)
+                        let video  = search.searchForSingle((button?.videoID)!)
                         
                         let destination = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "detailView") as! VideoViewController
                         

@@ -145,7 +145,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         } else {
             
-            print("video search called!!")
+         
 
                     DispatchQueue.global(qos: .userInitiated).async   {
                         
@@ -154,7 +154,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                         if(searchResults.count == 0 ) {
                             
                             
-                print("getting new results")
+              
                             searchResults = search.getRecent()
                         }
                         

@@ -1286,8 +1286,8 @@
         <!--About CTV-->
         <scene sceneID="Hjf-Hj-biZ">
             <objects>
-                <navigationController title="About CTV" toolbarHidden="NO" id="wfB-vb-eeN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bTq-OM-L9F">
+                <navigationController storyboardIdentifier="aboutView" title="About CTV" toolbarHidden="NO" id="wfB-vb-eeN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTq-OM-L9F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1608,7 +1608,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0Je-JL-GaA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="73C-lE-TT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-MW-DGo">
@@ -1825,9 +1825,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mDZ-RG-fvs"/>
+        <segue reference="yMg-rn-3an"/>
         <segue reference="yQr-UQ-GkP"/>
         <segue reference="YYH-WW-hEt"/>
         <segue reference="TiQ-iG-Egd"/>
-        <segue reference="Hpx-XP-cwh"/>
     </inferredMetricsTieBreakers>
 </document>
