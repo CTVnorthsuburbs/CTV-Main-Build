@@ -77,7 +77,16 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
-			<key>youtube.com</key>
+			<key>www.googleapis.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+	<key>www.youtube.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

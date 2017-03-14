@@ -24,7 +24,7 @@ class Download: NSObject {
         
         self.url = url
         
-        print("download \(self.url)")
+  
     }
     
 }

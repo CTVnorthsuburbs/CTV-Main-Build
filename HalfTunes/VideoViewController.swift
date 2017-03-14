@@ -88,6 +88,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+
   
     
     
@@ -251,6 +252,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewDidLoad() {
         
+     
         showPlayer()
         
         self.childView.addVideoButton.setTitle("Save in Library", for: UIControlState.selected)
@@ -274,7 +276,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if(self.video == nil){
             
             print("The video did not load into Video View Controller")
+            
+            self.navigationController?.popViewController(animated: true)
         }
+        
+        /*
         while(self.video == nil) {   //probably should not use an infinite loop. If the video detail view stalls this is likely why
             
             var i = 0
@@ -282,6 +288,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             i = i + i
             
         }
+ 
+ */
         
         if let video = self.video {
             
@@ -385,6 +393,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+     
         
         if(loadVideos() != nil) {
             

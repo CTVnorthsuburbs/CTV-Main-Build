@@ -61,14 +61,10 @@ class HorizontalTableViewController: UITableViewController {
             
             
             saveFeaturedVideos()
-            
-            
-            
+
         }
         
         self.updateTable()
-        
-        
         
  
         

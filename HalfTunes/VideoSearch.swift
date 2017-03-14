@@ -93,6 +93,12 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         var originalResults = results
         
+        if(results != nil) {
+            
+            
+            
+        
+        
         if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
             
             let splitResults = splitIdArray(results!)
@@ -139,6 +145,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             getSearchResults(defaultSession: session, url: searchIdURL!, isIDSearchURL: true)
             
         }
+        
+        }
+        
         
         
         

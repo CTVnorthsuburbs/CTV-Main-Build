@@ -97,11 +97,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     var progressView : UIProgressView? = nil
     
     // var moviePlayer : MPMoviePlayerController?
-    
-    
-    
-    
-    
+
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
     var dataTask = URLSessionDataTask()

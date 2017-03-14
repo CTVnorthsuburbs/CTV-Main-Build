@@ -147,7 +147,10 @@ class SuggestedVideosTableViewController: UITableViewController {
         
         if segue.identifier == "ShowDetail" {
             
-            let videoDetailViewController = segue.destination as! VideoViewController
+            
+       
+            
+       //     let videoDetailViewController = segue.destination as! VideoViewController
             
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             
@@ -160,6 +163,9 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     
                     let selectedVideo = self.myVideos[indexPath.row]
+                    
+              
+                       let videoDetailViewController = segue.destination as! VideoViewController
                     
                     videoDetailViewController.video = selectedVideo
                     
@@ -188,14 +194,18 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     videoDetailViewController.setDownloadsSession(downloadsSession: &self.parentView.downloadsSession!)
                     
+                
                     DispatchQueue.main.async( execute: {
                         
                         LoadingOverlay.shared.hideOverlayView()
                     })
-                    
-                }
+                 
+                    }
+                
                 
             }
+            
+        
             
         }
         

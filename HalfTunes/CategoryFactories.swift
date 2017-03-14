@@ -250,7 +250,7 @@ class programs: CategoryFactorySettings {
         
         self.popularSectionTitle = "Parades"
         
-        self.popularSectionSearchID = 71341
+        self.popularSectionSearchID = 85461
         
         self.recentGirlsSectionTitle = "What's Brewin'"
         
@@ -596,7 +596,7 @@ class meetings: CategoryFactorySettings {
         
         super.init()
         
-        self.categoryTitle = "City Meetings"
+        self.categoryTitle = "Meetings"
         
         self.popularSectionTitle = "City Government"
         
@@ -614,7 +614,7 @@ class meetings: CategoryFactorySettings {
         
         
         
-        self.buttonsSectionTitle = "City Government"
+        self.buttonsSectionTitle = "School Districts"
         self.buttonsSectionType = SectionType.buttonWithTitle
         
         
@@ -628,7 +628,7 @@ class meetings: CategoryFactorySettings {
         self.buttonsSecondSectionType = SectionType.buttonWithTitle
         
         
-        self.buttonsSecondTitle = "School Districts"
+        self.buttonsSecondTitle = "City Government"
         
         
         self.buttonsSecond.append(Button(factory:ardenMeetingsButtonFactory()))
@@ -645,22 +645,22 @@ class meetings: CategoryFactorySettings {
         
         
         
-        self.buttonsThirdSectionType = SectionType.buttonNoTitle
+       // self.buttonsThirdSectionType = SectionType.buttonNoTitle
         
-        self.buttonsThird.append(Button(factory:moundsViewMeetingsButtonFactory()))
+        self.buttonsSecond.append(Button(factory:moundsViewMeetingsButtonFactory()))
         
-        self.buttonsThird.append(Button(factory:northMeetingsButtonFactory()))
-        
-        
-        self.buttonsThird.append(Button(factory:rosevilleMeetingsButtonFactory()))
+        self.buttonsSecond.append(Button(factory:northMeetingsButtonFactory()))
         
         
-        self.buttonsThird.append(Button(factory:saintAnthonyMeetingsButtonFactory()))
+        self.buttonsSecond.append(Button(factory:rosevilleMeetingsButtonFactory()))
+        
+        
+        self.buttonsSecond.append(Button(factory:saintAnthonyMeetingsButtonFactory()))
         
         
         self.sliderImages = [#imageLiteral(resourceName: "meetings-header")]
         
-        self.categoryOrder = [CategoryOrder.button, CategoryOrder.buttonSecond, CategoryOrder.buttonThird]
+        self.categoryOrder = [CategoryOrder.button, CategoryOrder.buttonSecond]
         
     }
     
