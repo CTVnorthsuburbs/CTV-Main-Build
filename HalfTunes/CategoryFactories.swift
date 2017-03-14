@@ -374,7 +374,7 @@ class basketball: CategoryFactorySettings {
         
         self.sliderImages = [#imageLiteral(resourceName: "basketball-header")]
         
-        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
+        self.categoryOrder = [ CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
     
     }
     

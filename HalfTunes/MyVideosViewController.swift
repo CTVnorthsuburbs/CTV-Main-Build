@@ -24,7 +24,7 @@ func convertDateToString(date: Date) -> String {
     
     dateFormatter.dateFormat = "MM-dd-yyyy"
     
-    var timeString = dateFormatter.string(from: date)
+    let timeString = dateFormatter.string(from: date)
     
     return timeString
     
@@ -54,7 +54,7 @@ class GlobalVariables {
     func getDownload(downloadUrl: String)-> Download? {
         
         if((activeDownloads[downloadUrl]) != nil) {
-            var download = activeDownloads[downloadUrl]
+            let download = activeDownloads[downloadUrl]
             
             return download
         }
@@ -153,7 +153,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         
         
-        for vid in GlobalVariables.sharedManager.activeDownloads {
+        for _ in GlobalVariables.sharedManager.activeDownloads {
             
             
             print("active downloads : ")
@@ -211,7 +211,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if (!localFileExistsForVideo(video)) {
             
-            if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
+            if let urlString = video.sourceUrl, let _ = localFilePathForUrl(urlString) {
                 print("url string \(urlString)")
                 let fileUrl = URL(string: urlString)
                 
@@ -519,7 +519,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     } else {
                         
                         
-                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
+                        let sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
                         
                         
                         sections.createListing()
@@ -728,7 +728,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 }
             }
             // Save the videos.
-            var parentVC = parent as? SearchViewController
+            let parentVC = parent as? SearchViewController
             
             parentVC?.setMyVideoView()
             
@@ -763,7 +763,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func loadVideos() -> [Video]? {
         
-        var loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+        let loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
         
         return  loaded
         
@@ -1190,7 +1190,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
             
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             // 3
-            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
+            _ = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             // 4
             
             
@@ -1207,7 +1207,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
                         
                         videoCell.progressView.progress = download.progress
                         
-                        var temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
+                        let temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
                         
                         temp?.progress = download.progress
                         

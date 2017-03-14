@@ -91,7 +91,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         let results = getSearchResults(defaultSession: session, url: searchUrl!, isIDSearchURL: false)
         
-        var originalResults = results
+        let originalResults = results
         
         if(results != nil) {
             
@@ -201,15 +201,15 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         //  var playlistID = "PLc4OSwdRXG_KJwyC0WFroPmqwA67PAhZI"
         
         
-        var playlistID = playlist
+        let playlistID = playlist
         
         
         
         
-        var apiKey = "AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU"
+        let apiKey = "AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU"
         
         
-        var maxResults = 50
+        let maxResults = 50
         
         
         //this gives all videos within a specifed playlist
@@ -244,7 +244,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         // let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?idinclude=vod,thumbnail")
         
         
-        var video =   self.getYoutubePlaylists(session, url: urlString! as URL)
+        let video =   self.getYoutubePlaylists(session, url: urlString! as URL)
         
         
         
@@ -270,7 +270,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         var dataTask: URLSessionDataTask?
         
-        var results : [Int]?
+       
         
         var count: Int?
         
@@ -489,7 +489,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
         
-        var searches = savedSearchID
+        let searches = savedSearchID
         
         
         var url =   "http://trms.ctv15.org/Cablecastapi/v1/shows/?ids="
@@ -803,7 +803,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         
         
-        var complete = false
+       
         
         
         dataTask = defaultSession.dataTask(with: url,  completionHandler: {
@@ -828,7 +828,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     
                     if (isIDSearchURL == true) {
                         
-                        complete = self.updateSearchResults(data)
+                         self.updateSearchResults(data)
                         
                         
                     } else {
@@ -844,7 +844,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     //  self.getSearchResults(defaultSession, url: url, isIDSearchURL: isIDSearchURL)
                     
                     
-                    print("!!!!!!!!!!!!!!!!!!! From video search")
+                    print("!!!Results from video search not found")
                     
                     
                     self.getSearchResults(defaultSession: defaultSession, url: url, isIDSearchURL: isIDSearchURL)
@@ -1223,7 +1223,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 
             }
             
-            var date = convertStringToDate(dateString: show.date)
+            let date = convertStringToDate(dateString: show.date)
             
             if(VideosResult.show?.count != VideosResult.vod?.count) {
                 
