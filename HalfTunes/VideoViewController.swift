@@ -253,7 +253,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         showPlayer()
         
-        self.childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+        self.childView.addVideoButton.setTitle("Save in Library", for: UIControlState.selected)
         
         super.viewDidLoad()
         
@@ -469,14 +469,14 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func addVideo(_ sender: AnyObject) {
         
-        if(childView.addVideoButton.titleLabel?.text == "+ Add"){
+        if(childView.addVideoButton.titleLabel?.text == "+ Bookmark"){
             if(!childView.addVideoButton.isSelected) {
                 saveVideos()
             }
         }
         
         
-        if(childView.addVideoButton.titleLabel?.text == "Download"){
+        if(childView.addVideoButton.titleLabel?.text == "Save in Library"){
             
             downloadTapped()
             
@@ -751,7 +751,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
             if(localFileExistsForVideo(video!)) {
                 
-                childView.addVideoButton.setTitle("Downloaded", for: UIControlState.selected)
+                childView.addVideoButton.setTitle("Saved in Library", for: UIControlState.selected)
                 
                 childView.addVideoButton.isSelected = true
                 
@@ -761,11 +761,11 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     
                     if(currentCategory?.videoType != VideoType.youtube &&  video?.getIsEvent() == false ) {
                         
-                        childView.addVideoButton.setTitle("Download", for: UIControlState.selected)
+                        childView.addVideoButton.setTitle("Save in Library", for: UIControlState.selected)
                         
                     } else {
                         
-                        childView.addVideoButton.setTitle("Added", for: UIControlState.selected)
+                        childView.addVideoButton.setTitle("Bookmarked", for: UIControlState.selected)
                         
                     }
                     
@@ -773,7 +773,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     
                 } else {
                     
-                    childView.addVideoButton.setTitle("+ Add", for: UIControlState.normal)
+                    childView.addVideoButton.setTitle("+ Bookmark", for: UIControlState.normal)
                     
                     childView.addVideoButton.isSelected = false
                 }

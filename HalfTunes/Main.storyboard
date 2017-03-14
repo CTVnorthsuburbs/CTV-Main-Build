@@ -39,9 +39,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-39-9Wc" userLabel="Download Button">
-                                            <rect key="frame" x="317" y="43" width="48" height="24"/>
+                                            <rect key="frame" x="293" y="43" width="72" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <state key="normal" title="Download">
+                                            <state key="normal" title="Save in Library">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
@@ -558,9 +558,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwn-hf-z4V" userLabel="Download Button">
-                                            <rect key="frame" x="309" y="43" width="48" height="24"/>
+                                            <rect key="frame" x="285" y="43" width="72" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <state key="normal" title="Download">
+                                            <state key="normal" title="Save in Library">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
@@ -1462,10 +1462,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIR-Vs-heM">
-                                    <rect key="frame" x="264" y="37" width="98" height="32"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <rect key="frame" x="264" y="37" width="98" height="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="+ Add">
+                                    <state key="normal" title="+ Bookmark">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <state key="selected">
@@ -1826,10 +1826,10 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l6J-Ru-YsW"/>
-        <segue reference="YYH-WW-hEt"/>
+        <segue reference="Ibr-0P-ouT"/>
+        <segue reference="2XC-rQ-lli"/>
         <segue reference="rnq-VC-yil"/>
         <segue reference="Hpx-XP-cwh"/>
-        <segue reference="2XC-rQ-lli"/>
+        <segue reference="YYH-WW-hEt"/>
     </inferredMetricsTieBreakers>
 </document>
