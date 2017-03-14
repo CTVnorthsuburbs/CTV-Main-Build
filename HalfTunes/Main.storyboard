@@ -101,8 +101,8 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxU-Ao-heX">
-                                            <rect key="frame" x="133" y="62" width="65" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <rect key="frame" x="133" y="59.5" width="65" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -290,11 +290,11 @@
             </objects>
             <point key="canvasLocation" x="-466.39999999999998" y="131.78410794602701"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="gwO-WK-hl6">
             <objects>
                 <navigationController id="2b5-yv-vK7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="DH8-cD-YPT"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home-tab-icon" id="DH8-cD-YPT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="vUW-7Z-693">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -512,7 +512,7 @@
                             <constraint firstItem="Lgd-Yr-WmL" firstAttribute="top" secondItem="Vog-Pl-pmw" secondAttribute="bottom" id="v4z-qt-Zi7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4YW-3e-yce"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="4YW-3e-yce"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Search" id="HVz-4Z-UbB"/>
                     <connections>
@@ -610,8 +610,8 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-2W-ZQY">
-                                            <rect key="frame" x="133" y="62" width="23" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <rect key="frame" x="133" y="59.5" width="26.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -668,7 +668,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="My Videos" id="QzR-cS-Imr" userLabel="My Videos"/>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="QzR-cS-Imr" userLabel="My Videos"/>
                     <navigationItem key="navigationItem" title="My Videos" id="BdK-OW-7eb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s1-BW-xEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -737,14 +737,14 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyX-Ai-Oyq">
-                                                                <rect key="frame" x="0.0" y="69" width="112" height="13"/>
-                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                                                                <rect key="frame" x="0.0" y="69" width="112" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-U2-aqz">
-                                                                <rect key="frame" x="0.0" y="84" width="104" height="13"/>
-                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                                                                <rect key="frame" x="0.0" y="85.5" width="104" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -843,14 +843,14 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCn-R1-GgE">
-                                                                <rect key="frame" x="0.0" y="69" width="112" height="13"/>
-                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                                                                <rect key="frame" x="0.0" y="69" width="112" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBk-CC-ldu">
-                                                                <rect key="frame" x="0.0" y="84" width="104" height="13"/>
-                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
+                                                                <rect key="frame" x="0.0" y="85.5" width="104" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1440,7 +1440,6 @@
                                     <rect key="frame" x="79" y="128" width="217" height="2"/>
                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="217" id="MlT-xA-KUK"/>
                                         <constraint firstAttribute="height" constant="2" id="pzP-cp-igF"/>
                                     </constraints>
                                 </progressView>
@@ -1458,7 +1457,7 @@
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-Zv-VlL">
                                     <rect key="frame" x="8" y="62" width="258" height="14"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -1494,9 +1493,11 @@
                                 <constraint firstItem="j7P-vB-Kf4" firstAttribute="leading" secondItem="IgG-1h-fRX" secondAttribute="leading" constant="6" id="Jav-yT-Mq0"/>
                                 <constraint firstItem="HIR-Vs-heM" firstAttribute="top" secondItem="j7P-vB-Kf4" secondAttribute="bottom" constant="8" id="N4b-Xw-Wq8"/>
                                 <constraint firstAttribute="bottom" secondItem="SZT-cd-wDS" secondAttribute="bottom" constant="8" id="NIj-d1-bIO"/>
+                                <constraint firstItem="SZT-cd-wDS" firstAttribute="leading" secondItem="IgG-1h-fRX" secondAttribute="leading" constant="79" id="O4h-HY-oRO"/>
                                 <constraint firstItem="K4o-Cn-Lid" firstAttribute="bottom" secondItem="IgG-1h-fRX" secondAttribute="bottomMargin" id="R4f-8K-cRE"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="K4o-Cn-Lid" secondAttribute="trailing" constant="32" id="ROr-kY-sXP"/>
                                 <constraint firstAttribute="bottom" secondItem="SZT-cd-wDS" secondAttribute="bottom" constant="8" id="VhD-1o-1yD"/>
+                                <constraint firstAttribute="trailing" secondItem="SZT-cd-wDS" secondAttribute="trailing" constant="79" id="lMd-Nz-70z"/>
                                 <constraint firstItem="HIR-Vs-heM" firstAttribute="leading" secondItem="ocX-Zv-VlL" secondAttribute="trailing" constant="-2" id="lNf-29-Mh5"/>
                                 <constraint firstItem="jX8-Dp-JWl" firstAttribute="top" secondItem="j7P-vB-Kf4" secondAttribute="bottom" constant="8" id="mex-5H-snW"/>
                                 <constraint firstItem="j7P-vB-Kf4" firstAttribute="top" secondItem="IgG-1h-fRX" secondAttribute="top" constant="8" id="p2X-aK-lME"/>
@@ -1534,7 +1535,7 @@
                                                 <constraint firstAttribute="height" constant="14" id="3n0-Yg-12J"/>
                                                 <constraint firstAttribute="width" constant="74" id="TzR-7o-BXF"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1686,8 +1687,8 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFX-a9-3Bn">
-                                            <rect key="frame" x="133" y="46" width="23" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <rect key="frame" x="133" y="46" width="26.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1820,14 +1821,15 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="1242" height="698"/>
+        <image name="home-tab-icon" width="25" height="25"/>
         <image name="placeholder-header" width="1200" height="506"/>
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mDZ-RG-fvs"/>
-        <segue reference="yQr-UQ-GkP"/>
         <segue reference="YYH-WW-hEt"/>
-        <segue reference="TiQ-iG-Egd"/>
+        <segue reference="yQr-UQ-GkP"/>
         <segue reference="Hpx-XP-cwh"/>
+        <segue reference="TiQ-iG-Egd"/>
     </inferredMetricsTieBreakers>
 </document>

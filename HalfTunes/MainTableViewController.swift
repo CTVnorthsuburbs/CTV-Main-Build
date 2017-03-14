@@ -246,6 +246,10 @@ class MainTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+     UIApplication.shared.isStatusBarHidden = false
+        
+        
         category = self.parentCategory
         
         self.title = self.parentCategory.categoryTitle

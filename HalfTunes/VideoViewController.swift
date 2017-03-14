@@ -78,6 +78,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     override func viewWillDisappear(_ animated: Bool) {
         
+    
+        
         self.thumbnailButton.isHidden = true
         
         playerViewController.player?.pause()
@@ -233,8 +235,6 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         self.navigationItem.title = video.title
         
         self.childView.titleLabel.text   = video.title
-        
-        self.childView.descriptionLabel.font = self.childView.descriptionLabel.font.withSize(12)
         
         self.childView.descriptionLabel.text = String("Start Time: \(date!.convertDateToTimeString())\nEnd Time: \(endDate!.convertDateToTimeString())")
         
@@ -443,16 +443,21 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         
+
+        
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         
         let isPresentingInAddVideoMode = presentingViewController is UINavigationController
         
         if isPresentingInAddVideoMode {
             
+        
+            
             dismiss(animated: true, completion: nil)
             
         } else {
             
+    
             navigationController!.popViewController(animated: true)
             
         }
@@ -568,14 +573,17 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     playerViewController.player = moviePlayer
                     
                     self.addChildViewController(playerViewController)
-                    
-                    self.thumbnailView.addSubview(playerViewController.view)
+                  
                     
                     playerViewController.view.frame = self.thumbnailView.bounds
                     
                     playerViewController.allowsPictureInPicturePlayback = true
                     
                     playerViewController.showsPlaybackControls = true
+                    
+                    
+                    
+                    self.thumbnailView.addSubview(playerViewController.view)
                     
                     //let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     
@@ -608,7 +616,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         
                         self.addChildViewController(playerViewController)
                         
-                        self.thumbnailView.addSubview(playerViewController.view)
+                      
                         
                         playerViewController.view.frame = self.thumbnailView.bounds
                         
@@ -616,6 +624,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         
                         playerViewController.showsPlaybackControls = true
                         
+                          self.thumbnailView.addSubview(playerViewController.view)
                         //   let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         
                         //  let value = UIInterfaceOrientation.portrait.rawValue
@@ -641,13 +650,15 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         
                         self.addChildViewController(playerViewController)
                         
-                        self.thumbnailView.addSubview(playerViewController.view)
+                       
                         
                         playerViewController.view.frame = self.thumbnailView.bounds
                         
                         playerViewController.allowsPictureInPicturePlayback = true
                         
                         playerViewController.showsPlaybackControls = true
+                        
+                         self.thumbnailView.addSubview(playerViewController.view)
                         
                         //let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         
@@ -922,11 +933,15 @@ class VideoPlayer: AVPlayerViewController {
             
             appDelegate.shouldRotate = false
             
+            UIApplication.shared.isStatusBarHidden = false
+            
         } else {
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             
             appDelegate.shouldRotate = true // or false to disable rotation
+            
+             UIApplication.shared.isStatusBarHidden = false
             
         }
     }

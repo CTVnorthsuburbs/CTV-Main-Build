@@ -68,11 +68,14 @@ class SuggestedVideosTableViewController: UITableViewController {
             
             if(self.section == nil) {
                 
+         
                 recommendedVideos =  search.getYouTubeVideos(playlist: (currentCategory?.sections[0].sectionPlaylist!)!)!
                 
                 recommendedVideos = search.trimVideos(videoArray: recommendedVideos, numberToReturn: 10)
                 
             } else {
+                
+          
                 
                 recommendedVideos =  search.getYouTubeVideos(playlist: category.sections[self.section!].sectionPlaylist!)!
                 
@@ -93,6 +96,8 @@ class SuggestedVideosTableViewController: UITableViewController {
                 recommendedVideos = results
                 
             } else {
+                
+            
                 
                 recommendedVideos = search.getRecentLimited()
             }
@@ -158,10 +163,13 @@ class SuggestedVideosTableViewController: UITableViewController {
                     
                     videoDetailViewController.video = selectedVideo
                     
-                    suggestedSearch = category.sections[indexPath.section]
+                    suggestedSearch = category.sections[self.section!]
                     
-                    selectedSection = indexPath.section
+                    selectedSection = self.section!
                     
+                    
+                    
+                    /*
                     if(selectedVideo.fileName == 1) {
                         
                         let sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
@@ -171,6 +179,8 @@ class SuggestedVideosTableViewController: UITableViewController {
                         videoDetailViewController.setCategory(category: sections)
                         
                     }
+                    
+                    */
                     
                     videoDetailViewController.setDefaultSession(defaultSession: &self.parentView.defaultSession!)
                     

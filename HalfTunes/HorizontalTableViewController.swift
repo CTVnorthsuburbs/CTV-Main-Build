@@ -67,6 +67,9 @@ class HorizontalTableViewController: UITableViewController {
         self.updateTable()
         
         
+        
+ 
+        
     }
     
     public func updateTable() {
@@ -570,9 +573,13 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         
         if(category.sections[collectionView.tag].sectionType == SectionType.videoList || category.sections[collectionView.tag].sectionType == SectionType.upcomingEventList) {
             
-            let  count = videos[collectionView.tag].count
+            
+         
+                
+            let  count = try videos[collectionView.tag].count
             
             return count
+                
             
         } else if(category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle || category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle) {
             
