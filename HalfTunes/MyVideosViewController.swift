@@ -3,7 +3,7 @@
 //  HalfTunes
 //
 //  Created by William Ogura on 7/15/16.
-//
+//  Copyright © 2016 Ken Toh. All rights reserved.
 //
 
 import Foundation
@@ -13,20 +13,40 @@ import UIKit
 
 import MediaPlayer
 
+
+func convertDateToString(date: Date) -> String {
+    
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    
+    dateFormatter.dateFormat = "MM-dd-yyyy"
+    
+    var timeString = dateFormatter.string(from: date)
+    
+    return timeString
+    
+}
+
+
 class GlobalVariables {
     
-    var activeDownloads = [String: Download]()
     
+    
+    
+    // These are the properties you can store in your singleton
+    var activeDownloads = [String: Download]()
     var progress : Float = 0
     
+    // Here is how you would get to it without there being a global collision of variables.
+    // , or in other words, it is a globally accessable parameter that is specific to the
+    // class.
     class var sharedManager: GlobalVariables {
-        
         struct Static {
-            
             static let instance = GlobalVariables()
-            
         }
-        
         return Static.instance
         
     }
@@ -34,17 +54,14 @@ class GlobalVariables {
     func getDownload(downloadUrl: String)-> Download? {
         
         if((activeDownloads[downloadUrl]) != nil) {
-            
-            let download = activeDownloads[downloadUrl]
+            var download = activeDownloads[downloadUrl]
             
             return download
-            
         }
         
         return nil
         
     }
-    
 }
 
 /// The MyVideosViewController class contains the controller that handles the My Videos table view within the Search View
@@ -52,6 +69,8 @@ class GlobalVariables {
 
 
 var myVideos = [Video]()
+
+
 
 class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, VideoCellDelegate {
     
@@ -76,6 +95,12 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     var myVideoEmptyLabel : UILabel?
     
     var progressView : UIProgressView? = nil
+    
+    // var moviePlayer : MPMoviePlayerController?
+    
+    
+    
+    
     
     var defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
@@ -102,8 +127,9 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             myVideos = loadVideos()!
             
         }
-        //  _ = self.downloadsSession
+        _ = self.downloadsSession
         //  self.filtered = self.myVideos
+        
         
         
         
@@ -112,62 +138,85 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.filtered = myVideos
         
+        
+        
+        //    self.tableView.reloadData()
+        
+        
+        
+        if(loadVideos() != nil) {
+            
+            
+            // myVideos = loadVideos()!
+            
+        }
+        self.filtered = myVideos
+        // super.viewWillAppear(animated)
         tableView.reloadData()
         
-        for _ in GlobalVariables.sharedManager.activeDownloads {
+        
+        
+        for vid in GlobalVariables.sharedManager.activeDownloads {
+            
             
             print("active downloads : ")
-            
             print(GlobalVariables.sharedManager.activeDownloads)
         }
+        
+        
+        
+        
         
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         
+        
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.shouldRotate = false // or false to disable rotation
-        
     }
+    
+    
+    
     
     func didTapView(){
         
         self.parent!.view.endEditing(true)
-        
         self.view.removeGestureRecognizer(tapRecognizer!)
         
         self.parent!.view.removeGestureRecognizer(tapRecognizer!)
         
+        
     }
     
     override func awakeFromNib() {
-        
         tableView.reloadData()
         
     }
     
+    
+    
     func playVideo(_ video: Video) {
         
         //Get the Video Path
-        
         print("playing video\(video.title)")
-        
-        _ = Bundle.main.path(forResource: video.sourceUrl, ofType:"mp4")
-        
+        let videoPath = Bundle.main.path(forResource: video.sourceUrl, ofType:"mp4")
+        print("path\(videoPath)")
+        //Make a URL from your path
+        print("source url \(video.sourceUrl)")
         //Initalize the movie player
         
         if (!localFileExistsForVideo(video)) {
             
-            if let urlString = video.sourceUrl, let _ = localFilePathForUrl(urlString) {
-                
+            if let urlString = video.sourceUrl, let url = localFilePathForUrl(urlString) {
                 print("url string \(urlString)")
-                
                 let fileUrl = URL(string: urlString)
                 
                 
@@ -212,7 +261,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         cell.titleLabel.text = video!.title
         
-        cell.dateLabel.text = video!.eventDate!.convertDateToString()
+        cell.dateLabel.text = convertDateToString(date: video!.eventDate!)
         
         cell.thumbnailView.image = video!.thumbnail
         
@@ -460,7 +509,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     if(selectedVideo.fileName == 1) {
                         
                         
-                        let sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                         
                         
                         
@@ -474,7 +523,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     } else {
                         
                         
-                        let sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
+                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: home()))
                         
                         
                         sections.createListing()
@@ -683,7 +732,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                 }
             }
             // Save the videos.
-            let parentVC = parent as? SearchViewController
+            var parentVC = parent as? SearchViewController
             
             parentVC?.setMyVideoView()
             
@@ -718,7 +767,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func loadVideos() -> [Video]? {
         
-        let loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
+        var loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Video.ArchiveURL.path) as? [Video]
         
         return  loaded
         
@@ -899,7 +948,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             
             print("localurl:\(localUrl)")
-        
+            var isDir : ObjCBool = false
             
             let path = localUrl.path
             
@@ -1123,11 +1172,11 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
             
             GlobalVariables.sharedManager.activeDownloads[url] = nil
             
-            if videoIndexForDownloadTask(downloadTask) != nil {
+            if let videoIndex = videoIndexForDownloadTask(downloadTask) {
                 
                 DispatchQueue.main.async(execute: {
                     
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: [IndexPath(row: videoIndex, section: 0)], with: .none)
                     
                 })
                 
@@ -1146,7 +1195,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
             
             download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             // 3
-            _ = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
+            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             // 4
             
             
@@ -1163,7 +1212,7 @@ extension MyVideosViewController: URLSessionDownloadDelegate {
                         
                         videoCell.progressView.progress = download.progress
                         
-                        let temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
+                        var temp =  GlobalVariables.sharedManager.getDownload(downloadUrl: downloadUrl)
                         
                         temp?.progress = download.progress
                         
