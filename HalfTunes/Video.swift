@@ -164,7 +164,14 @@ open class Video: NSObject, NSCoding {
     
     func getIsEvent() -> Bool {
         
+        if(self.isEvent != nil) {
+            
         return self.isEvent!
+            
+        } else {
+            
+            return false
+        }
         
     }
     

@@ -88,6 +88,8 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+  
+    
     
     override func viewDidAppear(_ animated: Bool) {
         

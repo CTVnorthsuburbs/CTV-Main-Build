@@ -78,7 +78,7 @@ class AllVideosResultsViewController: UITableViewController,  UISearchBarDelegat
                         
                         var downloadsSession: Foundation.URLSession = {
 
-                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration1")
+                            let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
                             
                             let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
              

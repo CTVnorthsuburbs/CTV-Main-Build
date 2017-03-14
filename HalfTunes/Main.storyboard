@@ -174,11 +174,11 @@
                         <viewControllerLayoutGuide type="bottom" id="e08-z7-CfW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oEj-NZ-W0J">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bu8-Wn-Jlw">
-                                <rect key="frame" x="93" y="72" width="189" height="29"/>
+                                <rect key="frame" x="93" y="8" width="189" height="29"/>
                                 <segments>
                                     <segment title="Release Date"/>
                                     <segment title="Name"/>
@@ -188,7 +188,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="ASl-6y-O9W">
-                                <rect key="frame" x="0.0" y="113" width="374" height="554"/>
+                                <rect key="frame" x="0.0" y="113" width="374" height="365"/>
                                 <connections>
                                     <segue destination="Wv0-Vz-WvW" kind="embed" identifier="" id="QxY-oD-c6x"/>
                                 </connections>
@@ -237,7 +237,7 @@
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="OEg-fp-J0R" secondAttribute="height" multiplier="16:9" id="r1b-aD-aqx"/>
+                                    <constraint firstAttribute="height" constant="213" id="8Zv-vQ-rbi"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="obw-ho-oen" appends="YES" id="ooK-tQ-UCV"/>
@@ -251,7 +251,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYm-X3-9WW">
-                                <rect key="frame" x="0.0" y="278" width="375" height="340"/>
+                                <rect key="frame" x="0.0" y="278" width="375" height="389"/>
                                 <connections>
                                     <segue destination="fDR-0I-hgL" kind="embed" id="2XC-rQ-lli"/>
                                 </connections>
@@ -262,17 +262,17 @@
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="4DG-Iz-vNF"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="bottom" constant="1" id="5GV-1Q-1iZ"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="bottom" constant="-18" id="60X-to-Fbd"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="leading" secondItem="OEg-fp-J0R" secondAttribute="leading" id="77v-fY-V3B"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="top" secondItem="OEg-fp-J0R" secondAttribute="top" id="7S9-H9-teN"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="bottom" secondItem="OEg-fp-J0R" secondAttribute="bottom" id="Cb3-aj-vSY"/>
-                            <constraint firstItem="QYm-X3-9WW" firstAttribute="trailing" secondItem="OEg-fp-J0R" secondAttribute="trailing" id="Deh-RF-PC7"/>
-                            <constraint firstItem="Y8Q-20-O1c" firstAttribute="trailing" secondItem="OEg-fp-J0R" secondAttribute="trailing" id="Ep2-N4-KuV"/>
-                            <constraint firstItem="OEg-fp-J0R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="GE1-hB-Gzh"/>
-                            <constraint firstItem="QYm-X3-9WW" firstAttribute="leading" secondItem="OEg-fp-J0R" secondAttribute="leading" constant="4" id="ToN-8V-iQl"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="trailing" secondItem="QYm-X3-9WW" secondAttribute="trailing" id="BN0-Mh-JbC"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="top" secondItem="Y8Q-20-O1c" secondAttribute="top" id="S6g-8u-ItU"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="trailing" secondItem="Y8Q-20-O1c" secondAttribute="trailing" id="T6a-YF-3qn"/>
+                            <constraint firstItem="QYm-X3-9WW" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="Vse-nN-eCH"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ZQX-sG-8KZ"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="bottom" secondItem="Y8Q-20-O1c" secondAttribute="bottom" id="bYy-Ev-OMC"/>
                             <constraint firstAttribute="trailing" secondItem="QYm-X3-9WW" secondAttribute="trailing" id="cMY-F9-Beb"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="top" id="d0s-ot-1ta"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" constant="-16" id="d3X-xa-uf6"/>
-                            <constraint firstItem="OEg-fp-J0R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fPX-1Y-Ruh"/>
                             <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="haa-bw-kg9"/>
+                            <constraint firstItem="OEg-fp-J0R" firstAttribute="leading" secondItem="Y8Q-20-O1c" secondAttribute="leading" id="kHm-en-v7Y"/>
                             <constraint firstItem="QYm-X3-9WW" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nbg-ce-13Z"/>
                         </constraints>
                     </view>
@@ -680,7 +680,7 @@
             <objects>
                 <tableViewController id="gpH-Zq-bv7" customClass="HorizontalTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" id="ctB-hf-W55">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1413,7 +1413,7 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1639,7 +1639,7 @@
             <objects>
                 <tableViewController title="Category" id="Wv0-Vz-WvW" customClass="CategoryTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wav-fN-ngx">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="365"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1826,10 +1826,10 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mDZ-RG-fvs"/>
+        <segue reference="l6J-Ru-YsW"/>
         <segue reference="YYH-WW-hEt"/>
-        <segue reference="yQr-UQ-GkP"/>
+        <segue reference="rnq-VC-yil"/>
         <segue reference="Hpx-XP-cwh"/>
-        <segue reference="TiQ-iG-Egd"/>
+        <segue reference="2XC-rQ-lli"/>
     </inferredMetricsTieBreakers>
 </document>

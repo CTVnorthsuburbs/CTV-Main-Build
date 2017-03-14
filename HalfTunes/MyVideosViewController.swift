@@ -946,20 +946,19 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
         if let urlString = video.sourceUrl, let localUrl = localFilePathForUrl(urlString) {
             
+           
             
-            print("localurl:\(localUrl)")
-            var isDir : ObjCBool = false
             
             let path = localUrl.path
             
             do { try FileManager.default.removeItem(atPath: path)
                 
-                print("deleted")
+          
                 
             } catch {
                 
                 
-                print("cant delete")
+               
             }
             
         }

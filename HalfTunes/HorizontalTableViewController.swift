@@ -48,6 +48,8 @@ class HorizontalTableViewController: UITableViewController {
         
     }()
     
+ 
+    
     
     @IBOutlet weak var tableCollection: UICollectionView!
     
