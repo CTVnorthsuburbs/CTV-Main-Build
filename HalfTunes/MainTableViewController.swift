@@ -129,7 +129,7 @@ class MainTableViewController: UITableViewController {
     
     func update() {
         
-        print("update called1")
+        print("update called")
         
         var updatedSlider: Section?
         

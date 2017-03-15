@@ -1459,7 +1459,7 @@
                                         <action selector="cancelPressed:" destination="fDR-0I-hgL" eventType="touchUpInside" id="aIY-dX-Hah"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-Zv-VlL">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-Zv-VlL">
                                     <rect key="frame" x="8" y="73" width="258" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1829,6 +1829,10 @@
         <scene sceneID="r31-a3-IAa">
             <objects>
                 <viewController id="Qq3-Ic-1fV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tnj-Qm-1Zm"/>
+                        <viewControllerLayoutGuide type="bottom" id="bAp-tF-Dt8"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y4g-as-AhH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1846,10 +1850,10 @@
         <image name="playButton-#fff-100" width="1242" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V9M-Yj-v2K"/>
-        <segue reference="rnq-VC-yil"/>
         <segue reference="Hpx-XP-cwh"/>
+        <segue reference="rnq-VC-yil"/>
         <segue reference="YYH-WW-hEt"/>
         <segue reference="2XC-rQ-lli"/>
+        <segue reference="fNp-cp-4gu"/>
     </inferredMetricsTieBreakers>
 </document>

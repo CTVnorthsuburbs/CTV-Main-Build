@@ -48,7 +48,7 @@ class HorizontalTableViewController: UITableViewController {
         
     }()
     
- 
+    
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
         print("memoery warning recevied and caches cleared")
         
@@ -69,7 +69,7 @@ class HorizontalTableViewController: UITableViewController {
             
             
             saveFeaturedVideos()
-
+            
         }
         
         self.updateTable()
@@ -82,158 +82,184 @@ class HorizontalTableViewController: UITableViewController {
     
     func preloadThumbnails() {
         
-       
-        
-        
         var videos = [Video]()
         
-
-          DispatchQueue.global(qos: .background).async {
         
-    var count = 0
+        DispatchQueue.global(qos: .background).async {
+            
+            var count = 0
             
             var index = 0
             
             
             while (category.sections.count > count) {
                 
-                
-                
-                
-                
                 if(category.sections[count].sectionType == SectionType.videoList   ) {
-                
-                if(category.videoType == VideoType.youtube) {
                     
-                    videos =  self.search.getYouTubeVideos(playlist: category.sections[count].sectionPlaylist!)!
-                    
-                    
-                } else if(category.videoType == VideoType.cablecast) {
-            
-        
-            
-            if (self.listOfVideos.keys.contains(category.sections[count].searchID!)) {
-                
-                
-                videos = self.listOfVideos[category.sections[count].searchID!]!
-                
-                
-            } else {
-                
-                
-               videos = self.search.search(category.sections[count].searchID!)
-                
-                
-              //  videos = self.listOfVideos[category.sections[count].searchID!]!
-                
-                
-                
-            }
-            
-            
-            
-   
-            
-            
-            
-            
-            
-            
-            while (videos.count > index && index < 20) {
-        
-            
-            var image: UIImage?
-            
-            if (videos[index].fileName != nil) {
-                
-                if( videos[index].hasThumbnailUrl()) {
-                    
-                    image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
-                    
-                    
-                } else {
-                    
-                    videos[index].generateThumbnailUrl()
-                    
-                    image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
-                    
-                }
-                
-                
-                
-                
-               // print("thumbnial retreieved for \(videos[index].title)")
-                
-                
-            }
-                
-                
-                index = index + 1
-            }
-            
-            
-            
-            index = 0
-            
-            
-            
-            
-            
-        }
-                
-                }
-                
-                
-                
-                 count = count + 1
-               
-                
-                
-                
-            }
-            
-            
-            
-        /*
-            var index = 0
-            
-            
-        var image: UIImage?
-        
-        if (videos[index].fileName != nil) {
-            
-            if( videos[index].hasThumbnailUrl()) {
-                
-                image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
-                
-                
-            } else {
-                
-                videos[index].generateThumbnailUrl()
-                
-                image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
-                
-            }
-            
-            
-        
-            
-            
-   
-            
-        }
-            
-            
-      */
-            
-        
+                    if(category.videoType == VideoType.youtube) {
+                        
+                        videos =  self.search.getYouTubeVideos(playlist: category.sections[count].sectionPlaylist!)!
+                        
+                     
+                        
+                        
+                        
+                        
+                        while (videos.count > index && index < 20) {
+                            
+                            
+                            
+                            if (videos[index].fileName != nil) {
+                                
+                                if( videos[index].hasThumbnailUrl()) {
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                    
+                                } else {
+                                    
+                                    videos[index].generateThumbnailUrl()
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                }
+                                
+                                
+                                
+                         
+                                
+                                
+                            }
+                            
+                            index = index + 1
+                        }
+                        
+                        index = 0
 
+                        
+                        
+                        
+                    } else if(category.videoType == VideoType.cablecast) {
+                        
+                        
+                        
+                        if (self.listOfVideos.keys.contains(category.sections[count].searchID!)) {
+                            
+                            
+                            videos = self.listOfVideos[category.sections[count].searchID!]!
+                            
+                            
+                        } else {
+                            
+                            
+                            videos = self.search.search(category.sections[count].searchID!)
+                            
+                            
+                            //  videos = self.listOfVideos[category.sections[count].searchID!]!
+                            
+                            
+                            
+                        }
+                        
+                        
+                        while (videos.count > index && index < 20) {
+                            
+                            
+                            
+                            if (videos[index].fileName != nil) {
+                                
+                                if( videos[index].hasThumbnailUrl()) {
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                    
+                                } else {
+                                    
+                                    videos[index].generateThumbnailUrl()
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                }
+                                
+                                
+                                
+                          
+                                
+                                
+                            }
+                            
+                            index = index + 1
+                        }
+                        
+                        index = 0
+                        
+                    }
+                    
+                } else if(category.sections[count].sectionType == SectionType.upcomingEventList ) {
+                    
+                   
+                        
+                    
+                            
+                    let upcomingEvents = self.upcomingEventsFeed.getUpcomingEventUpdate(category: category)!
+                    
+                    var videos = [Video]()
+                    
+                    videos =  self.upcomingEventsFeed.getUpcomingEventVideos(events: upcomingEvents)
+                    
+                    //self.videos.append(videos)
+                    
+                    
+                 
+                        
+                        
+                        while (videos.count > index && index < 20) {
+                            
+                            
+                            
+                            if (videos[index].fileName != nil) {
+                                
+                                if( videos[index].hasThumbnailUrl()) {
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                    
+                                } else {
+                                    
+                                    videos[index].generateThumbnailUrl()
+                                    
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                            }
+                            
+                            index = index + 1
+                        }
+                        
+                        index = 0
+                        
+                    }
+                    
+                
+                
+                
+                
+                
+                
+                
+                count = count + 1
+                
+            }
+            
+            
+            
         }
-        
-
-        
-        
-        
         
         
     }
@@ -381,10 +407,10 @@ class HorizontalTableViewController: UITableViewController {
                 }
                 
             }
-               self.preloadThumbnails()
+            self.preloadThumbnails()
         }
         
-       
+        
     }
     
     
@@ -476,7 +502,7 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
-      
+        
         
         
     }
@@ -664,8 +690,8 @@ class HorizontalTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         /* //old version
-        guard var cell = cell as? HorizontalTableViewCell else { return }
-        */
+         guard var cell = cell as? HorizontalTableViewCell else { return }
+         */
         
         guard cell is HorizontalTableViewCell else { return }
         
@@ -751,21 +777,21 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.videoList || category.sections[safe: collectionView.tag]?.sectionType == SectionType.upcomingEventList) {
             
             
-          
+            
             
             /*
-            
-            if (videos.count != 0 && videos.count >= collectionView.tag) {
-                
-                
-                let  count =  videos[collectionView.tag].count
-                
-                print("count is returned \(count)")
-                 return count
-            }
-         //  let  count =  videos[collectionView.tag].count
-            
-           */
+             
+             if (videos.count != 0 && videos.count >= collectionView.tag) {
+             
+             
+             let  count =  videos[collectionView.tag].count
+             
+             print("count is returned \(count)")
+             return count
+             }
+             //  let  count =  videos[collectionView.tag].count
+             
+             */
             
             
             
@@ -774,7 +800,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 
                 
-              
+                
                 return count
                 
             }
@@ -782,12 +808,12 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             self.refreshTable()
             
             
-                return 0
-                
-                
-                
-    
-                
+            return 0
+            
+            
+            
+            
+            
             
         } else if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonWithTitle || category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonNoTitle) {
             
@@ -915,7 +941,14 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             if(category.videoType == VideoType.youtube) {
                 
+                
+                
+                
                 videos =  search.getYouTubeVideos(playlist: category.sections[collectionView.tag].sectionPlaylist!)!
+                
+                
+                
+                
                 
                 
             } else if(category.videoType == VideoType.cablecast) {
@@ -942,14 +975,20 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
             }
             
-            if (videos[indexPath.item].fileName != nil) {
+            if (videos[safe: indexPath.item]?.fileName != nil) {
+                
+              
                 
                 if( videos[indexPath.item].hasThumbnailUrl()) {
+                    
+           
                     
                     cells.thumbnail.image = self.search.getThumbnail(url: (videos[indexPath.item].thumbnailUrl)!)
                     
                     
                 } else {
+                    
+               
                     
                     videos[indexPath.item].generateThumbnailUrl()
                     
@@ -966,7 +1005,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 cells.dateLabel.text =  videos[indexPath.item].eventDate!.convertDateToString()
                 
             } else {
-                
+               
                 
                 cells.thumbnail.image = #imageLiteral(resourceName: "placeholder-header")
                 

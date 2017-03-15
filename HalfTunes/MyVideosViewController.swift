@@ -13,6 +13,8 @@ import UIKit
 
 import MediaPlayer
 
+import AVKit
+
 
 func convertDateToString(date: Date) -> String {
     
@@ -213,17 +215,32 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             if let urlString = video.sourceUrl, let _ = localFilePathForUrl(urlString) {
                 print("url string \(urlString)")
+                
                 let fileUrl = URL(string: urlString)
                 
                 
-                print("fileurl \(fileUrl)")
+             
+                
+           
+                let asset = AVAsset(url: fileUrl!)
+                
+                let playerItem = AVPlayerItem(asset: asset)
+                
+                let fullScreenPlayer = AVPlayer(playerItem: playerItem)
+                
+                fullScreenPlayer.play()
+                
+                let fullScreenPlayerViewController = AVPlayerViewController()
+                
+                fullScreenPlayerViewController.player = fullScreenPlayer
+                
+                present(fullScreenPlayerViewController, animated: true, completion: nil)
+                
+               // let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
                 
                 
                 
-                
-                let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: fileUrl)
-                
-                presentMoviePlayerViewControllerAnimated(moviePlayer)
+              //  presentMoviePlayerViewControllerAnimated(moviePlayer)
                 
             }
             
@@ -505,7 +522,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
                     if(selectedVideo.fileName == 1) {
                         
                         
-                        var sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
+                        let sections = Category(categoryFactory: CategoryFactory(factorySettings: teens()))
                         
                         
                         
@@ -637,62 +654,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
         
     }
     
-    
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
-    /*
-     
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     if segue.identifier == "ShowDetails" {
-     
-     let videoDetailViewController = segue.destinationViewController as! SearchDetailViewController
-     
-     // Get the cell that generated this segue.
-     if let selectedVideoCell = sender {
-     
-     let indexPath = tableView.indexPathForCell(selectedVideoCell as! UITableViewCell)!
-     
-     var count = 0  //code to map filtered result position to searchResult position
-     
-     for result in searchResults {
-     
-     if (filtered[indexPath.row] == result.title) {
-     
-     let selectedVideo = searchResults[count]
-     
-     videoDetailViewController.video = selectedVideo
-     
-     }
-     
-     count += 1
-     }
-     
-     }
-     
-     }
-     
-     }
-     
-     */
+
     
     @IBAction  func unwindToVideoList(_ sender: UIStoryboardSegue) {
         
@@ -872,10 +834,20 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             
             
-            let moviePlayer:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: url)
             
+            let asset = AVAsset(url: url)
             
+            let playerItem = AVPlayerItem(asset: asset)
             
+            let fullScreenPlayer = AVPlayer(playerItem: playerItem)
+            
+            fullScreenPlayer.play()
+            
+            let fullScreenPlayerViewController = AVPlayerViewController()
+            
+            fullScreenPlayerViewController.player = fullScreenPlayer
+            
+            present(fullScreenPlayerViewController, animated: true, completion: nil)
             
             
             
@@ -887,7 +859,7 @@ class MyVideosViewController: UITableViewController, UISearchBarDelegate, UISear
             
             
             
-            presentMoviePlayerViewControllerAnimated(moviePlayer)
+           // presentMoviePlayerViewControllerAnimated(moviePlayer)
         }
         
     }

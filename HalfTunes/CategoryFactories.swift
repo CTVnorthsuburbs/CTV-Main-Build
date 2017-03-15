@@ -11,6 +11,124 @@ import Foundation
 import UIKit
 
 
+
+@objc(home)
+
+class home: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Home"
+        
+        
+        self.upcomingSectionTitle = "Upcoming Events"
+        
+        self.upcomingSectionSearchID = 85123
+        
+        self.upcomingSectionDisplayCount = 20
+        
+        
+        self.popularSectionTitle = "New & Noteworthy"
+        
+        
+        
+        self.popularSectionSearchID = 85123
+        
+        self.popularSectionDisplayCount = 15
+        
+        
+        self.recentGirlsSectionTitle = "Concerts"
+        
+        self.recentGirlsSectionSearchID = 67318
+        
+        self.recentGirlsSectionDisplayCount = 15
+        
+        self.recentBoysSectionTitle = "Featured Sports"
+        
+        self.recentBoysSectionSearchID = 85458
+        
+      
+
+        self.recentBoysSectionDisplayCount = 15
+        
+        self.featuredSectionTitle = "Community Favorites"
+        
+        self.featuredSectionSearchID = 71301
+        
+        self.featuredSectionDisplayCount = 20
+        
+        self.recentSectionTitle = "Featured Events"
+        
+        self.recentSectionSearchID = 71296
+        
+        self.recentSectionDisplayCount = 15
+        
+        self.buttonsSectionTitle = "Browse By Sport"
+        
+        self.buttonsSectionType = SectionType.buttonWithTitle
+        
+        self.buttons.append(Button(factory:baseballButtonFactory()))
+        
+        self.buttons.append(Button(factory:basketballButtonFactory()))
+        
+        self.buttons.append(Button(factory:footballButtonFactory()))
+        
+        self.buttons.append(Button(factory:gymnasticsButtonFactory()))
+        
+    
+        self.buttons.append(Button(factory:hockeyButtonFactory()))
+        
+        self.buttons.append(Button(factory:lacrosseButtonFactory()))
+        
+        self.buttons.append(Button(factory:soccerButtonFactory()))
+        
+        
+        self.buttons.append(Button(factory:softballButtonFactory()))
+        
+        
+        
+        self.buttons.append(Button(factory:swimmingButtonFactory()))
+        
+        self.buttons.append(Button(factory:volleyballButtonFactory()))
+        
+      
+        
+        self.buttonsSecondSectionType = SectionType.buttonWithTitle
+        
+        self.buttonsSecondTitle = "Browse By"
+        
+        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
+        
+        
+        self.buttonsSecond.append(Button(factory:paradesButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:teenButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:ctvYouTubeButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:programsButtonFactory()))
+        
+        self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
+        
+        
+        
+        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
+        
+    }
+    
+}
+
+
+
+
+
 @objc(teens)
 class teens: CategoryFactorySettings {
     
@@ -444,22 +562,10 @@ class hockey: CategoryFactorySettings {
         
         self.recentSectionDisplayCount = 15
         
-        self.buttonsSectionTitle = "Our Favorite Games of the Year"
-        
-        
-        self.buttonsSectionType = SectionType.buttonWithTitle
-        
-        self.buttons.append(Button(factory:featuredButtonFactory()))
-        
-        self.buttons.append(Button(factory:featured2ButtonFactory()))
-        
-        self.buttons.append(Button(factory:featured3ButtonFactory()))
-        
-        //  self.buttons.append(Button(factory:featuredButtonFactory()))
-        
+    
         self.sliderImages = [#imageLiteral(resourceName: "hockey-1")]
         
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular, CategoryOrder.button, CategoryOrder.boys, CategoryOrder.girls]
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular,  CategoryOrder.boys, CategoryOrder.girls]
         
     }
     
@@ -669,153 +775,4 @@ class meetings: CategoryFactorySettings {
 
 
 
-@objc(home)
-
-class home: CategoryFactorySettings {
-    
-    
-    required init() {
-        
-        super.init()
-        
-        self.categoryTitle = "Home"
-        
-        
-        self.upcomingSectionTitle = "Upcoming Events"
-        
-        self.upcomingSectionSearchID = 85123
-        
-        self.upcomingSectionDisplayCount = 20
-        
-        
-        self.popularSectionTitle = "New & Noteworthy"
-        
-
-        
-        self.popularSectionSearchID = 85123
-        
-        self.popularSectionDisplayCount = 15
-        
-        
-        self.recentGirlsSectionTitle = "Concerts"
-        
-        self.recentGirlsSectionSearchID = 67318
-        
-        self.recentGirlsSectionDisplayCount = 15
-        
-        self.recentBoysSectionTitle = "Local News"
-        
-        self.recentBoysSectionSearchID = 71296
-        
-   
-        
-        self.recentBoysSectionDisplayCount = 15
-        
-        self.featuredSectionTitle = "Community Favorites"
-        
-        self.featuredSectionSearchID = 71301
-        
-        self.featuredSectionDisplayCount = 20
-        
-        self.recentSectionTitle = "Featured Events"
-        
-        self.recentSectionSearchID = 85458
-        
-        self.recentSectionDisplayCount = 15
-        
-        self.buttonsSectionTitle = "Browse By Sport"
-        
-        self.buttonsSectionType = SectionType.buttonWithTitle
-        
-        self.buttons.append(Button(factory:baseballButtonFactory()))
-        
-        self.buttons.append(Button(factory:basketballButtonFactory()))
-        
-          self.buttons.append(Button(factory:footballButtonFactory()))
-        
-        self.buttons.append(Button(factory:gymnasticsButtonFactory()))
-        
-        
-       
-        
-        self.buttons.append(Button(factory:hockeyButtonFactory()))
-        
-         self.buttons.append(Button(factory:lacrosseButtonFactory()))
-        
-       self.buttons.append(Button(factory:soccerButtonFactory()))
-        
-        
-        self.buttons.append(Button(factory:softballButtonFactory()))
-        
-        
-        
-        self.buttons.append(Button(factory:swimmingButtonFactory()))
-        
-        self.buttons.append(Button(factory:volleyballButtonFactory()))
-        
-        
-   
-        
-        
-        self.buttonsSecondSectionType = SectionType.buttonWithTitle
-        
-        self.buttonsSecondTitle = "Browse By"
-        
-        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
-        
-        
-        self.buttonsSecond.append(Button(factory:paradesButtonFactory()))
-    
-        self.buttonsSecond.append(Button(factory:teenButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:ctvYouTubeButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:programsButtonFactory()))
-      
-        self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
-        
-        
-        
-        /*    //programmatic slide show  can be used to add default slides in case slide show updater is too slow
-        
-        self.sliderImages = [#imageLiteral(resourceName: "santa-header"), #imageLiteral(resourceName: "slide-basketball-header"), #imageLiteral(resourceName: "slide-baskketball1-header"), #imageLiteral(resourceName: "slide-meeting-header")]
-        
-        
-        
-        var slide1 = Slide(slideType: ButtonType.video, searchID: nil, videoList: [11193], page: nil, category: nil, image: #imageLiteral(resourceName: "santa-header"), title: "Letters to Santa", webURL: nil)
-        
-        var slide2 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: basketballFactorySettings(), image:#imageLiteral(resourceName: "slide-basketball-header"), title: "Basketball", webURL: nil)
-        
-        var slide3 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: meetingsFactorySettings(), image: #imageLiteral(resourceName: "slide-meeting-header"), title: "Meetings", webURL: nil)
-        
-        
-        
-        // var slide4 = Slide(slideType: ButtonType.webPage, searchID: nil, videoList: nil, page: nil, category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: URL(string: "http://www.ctvnorthsuburbs.org/content/pdfs/job-ptr.pdf"))
-        
-        
-        // var slide4 = Slide(slideType: ButtonType.page, searchID: nil, videoList: nil, page: "About", category: nil, image: #imageLiteral(resourceName: "slide-baskketball1-header"), title: "About CTV", webURL: nil)
-        
-        var slide4 = Slide(slideType: ButtonType.category, searchID: nil, videoList: nil, page: nil, category: basketballFactorySettings(), image:#imageLiteral(resourceName: "slide-baskketball1-header"), title: "Basketball", webURL: nil)
-        
-        self.slides.append(slide1)
-        
-        self.slides.append(slide2)
-        
-        self.slides.append(slide3)
-        
-        self.slides.append(slide4)
- 
- */
-        
-        //   self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.button,  CategoryOrder.boys, CategoryOrder.girls,  CategoryOrder.buttonSecond, CategoryOrder.featured]
-        
-        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
-        
-    }
-    
-}
 

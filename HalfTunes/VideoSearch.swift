@@ -272,7 +272,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
        
         
-        var count: Int?
+       
         
         if dataTask != nil {
             
@@ -280,7 +280,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
         }
         
-        var complete = false
+      
         
         dataTask = defaultSession.dataTask(with: url, completionHandler: {
             
@@ -340,9 +340,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                             
                             
                             
-                            var videoSnippet = snippet.snippet
+                            let videoSnippet = snippet.snippet
                             
-                            var title = videoSnippet?.title
+                            let title = videoSnippet?.title
                             
                             var thumbnail: String?
                             
@@ -359,9 +359,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                                 
                             }
                             
-                            var description = videoSnippet?.description
+                            let description = videoSnippet?.description
                             
-                            var date = videoSnippet?.date
+                            let date = videoSnippet?.date
                             
                             var videoId = "0"
                             
@@ -401,7 +401,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                         
                         
                         
-                        count = results.items?.count
+                     
                         
                         
                         
@@ -1066,7 +1066,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         var image : UIImage?
         
         
-        var thumbnailURL = searchThumbnail(id)
+        let thumbnailURL = searchThumbnail(id)
         
         
         if(thumbnailURL != nil ) {
