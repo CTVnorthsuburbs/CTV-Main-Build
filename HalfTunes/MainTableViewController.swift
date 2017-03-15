@@ -46,6 +46,12 @@ class MainTableViewController: UITableViewController {
     }
     
     
+    
+  
+    
+    
+    
+    
     func setCategory(newCategory: Category) {
         
         
@@ -104,6 +110,7 @@ class MainTableViewController: UITableViewController {
     
     func refresh(sender:AnyObject) {
         
+        print("refresh called")
         DispatchQueue.global(qos: .background).async {
             
             DispatchQueue.main.async( execute: {
@@ -121,6 +128,8 @@ class MainTableViewController: UITableViewController {
     }
     
     func update() {
+        
+        print("update called1")
         
         var updatedSlider: Section?
         
@@ -176,10 +185,13 @@ class MainTableViewController: UITableViewController {
             
           
             
-             self.loadSearch()
+            
+            self.loadSearch()
+    
+            
             
         }
-        
+       NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
        
         
     }

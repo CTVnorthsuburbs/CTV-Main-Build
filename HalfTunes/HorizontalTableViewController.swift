@@ -49,7 +49,15 @@ class HorizontalTableViewController: UITableViewController {
     }()
     
  
-    
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        print("memoery warning recevied and caches cleared")
+        
+        URLCache.shared.removeAllCachedResponses()
+        
+        
+        imageCache.removeAllObjects()
+        
+    }
     
     @IBOutlet weak var tableCollection: UICollectionView!
     
@@ -66,7 +74,167 @@ class HorizontalTableViewController: UITableViewController {
         
         self.updateTable()
         
- 
+        
+        
+    }
+    
+    
+    
+    func preloadThumbnails() {
+        
+       
+        
+        
+        var videos = [Video]()
+        
+
+          DispatchQueue.global(qos: .background).async {
+        
+    var count = 0
+            
+            var index = 0
+            
+            
+            while (category.sections.count > count) {
+                
+                
+                
+                
+                
+                if(category.sections[count].sectionType == SectionType.videoList   ) {
+                
+                if(category.videoType == VideoType.youtube) {
+                    
+                    videos =  self.search.getYouTubeVideos(playlist: category.sections[count].sectionPlaylist!)!
+                    
+                    
+                } else if(category.videoType == VideoType.cablecast) {
+            
+        
+            
+            if (self.listOfVideos.keys.contains(category.sections[count].searchID!)) {
+                
+                
+                videos = self.listOfVideos[category.sections[count].searchID!]!
+                
+                
+            } else {
+                
+                
+               videos = self.search.search(category.sections[count].searchID!)
+                
+                
+              //  videos = self.listOfVideos[category.sections[count].searchID!]!
+                
+                
+                
+            }
+            
+            
+            
+   
+            
+            
+            
+            
+            
+            
+            while (videos.count > index && index < 20) {
+        
+            
+            var image: UIImage?
+            
+            if (videos[index].fileName != nil) {
+                
+                if( videos[index].hasThumbnailUrl()) {
+                    
+                    image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                    
+                    
+                } else {
+                    
+                    videos[index].generateThumbnailUrl()
+                    
+                    image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                    
+                }
+                
+                
+                
+                
+               // print("thumbnial retreieved for \(videos[index].title)")
+                
+                
+            }
+                
+                
+                index = index + 1
+            }
+            
+            
+            
+            index = 0
+            
+            
+            
+            
+            
+        }
+                
+                }
+                
+                
+                
+                 count = count + 1
+               
+                
+                
+                
+            }
+            
+            
+            
+        /*
+            var index = 0
+            
+            
+        var image: UIImage?
+        
+        if (videos[index].fileName != nil) {
+            
+            if( videos[index].hasThumbnailUrl()) {
+                
+                image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                
+                
+            } else {
+                
+                videos[index].generateThumbnailUrl()
+                
+                image = self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                
+            }
+            
+            
+        
+            
+            
+   
+            
+        }
+            
+            
+      */
+            
+        
+
+        }
+        
+
+        
+        
+        
+        
         
     }
     
@@ -213,10 +381,10 @@ class HorizontalTableViewController: UITableViewController {
                 }
                 
             }
-            
+               self.preloadThumbnails()
         }
         
-        
+       
     }
     
     
@@ -289,7 +457,12 @@ class HorizontalTableViewController: UITableViewController {
             
             self.tableView.reloadData()
             
+            
+            
             LoadingOverlay.shared.hideOverlayView()
+            
+            
+            self.preloadThumbnails()
             
         }
         
@@ -303,17 +476,23 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
+      
+        
+        
     }
     
     
     func saveFeaturedVideos() {
         
+        
+        print("save called")
         featuredVideos = videos
         
     }
     
     func loadFeaturedVideos() {
         
+        print("load called")
         videos = featuredVideos
         
     }
@@ -569,22 +748,54 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if(category.sections[collectionView.tag].sectionType == SectionType.videoList || category.sections[collectionView.tag].sectionType == SectionType.upcomingEventList) {
+        if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.videoList || category.sections[safe: collectionView.tag]?.sectionType == SectionType.upcomingEventList) {
             
             
-         
+          
+            
+            /*
+            
+            if (videos.count != 0 && videos.count >= collectionView.tag) {
                 
-            let  count = try videos[collectionView.tag].count
+                
+                let  count =  videos[collectionView.tag].count
+                
+                print("count is returned \(count)")
+                 return count
+            }
+         //  let  count =  videos[collectionView.tag].count
             
-            return count
+           */
+            
+            
+            
+            
+            if let count = videos[safe: collectionView.tag]?.count {
+                
+                
+                
+              
+                return count
+                
+            }
+            
+            self.refreshTable()
+            
+            
+                return 0
+                
+                
+                
+    
                 
             
-        } else if(category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle || category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle) {
+        } else if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonWithTitle || category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonNoTitle) {
             
-            return category.sections[collectionView.tag].buttons.count
+            return (category.sections[safe: collectionView.tag]?.buttons.count)!
             
         }
         
+        print("should not get here")
         return videos[collectionView.tag].count
         
     }
@@ -696,7 +907,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
         }
         
         
-        if(category.sections[collectionView.tag].sectionType == SectionType.videoList   ) {
+        if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.videoList   ) {
             
             
             
