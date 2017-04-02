@@ -191,9 +191,37 @@ class MainTableViewController: UITableViewController {
             
             
         }
-       NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+       NotificationCenter.default.addObserver(self, selector: #selector(self.loadVideos), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
        
         
+    }
+    
+    func loadVideos() {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            
+            
+            if(categoriesVideos.count == 0) {
+                
+                self.generateCategories()
+                
+            }
+            
+            
+        //  self.embeddedViewController?.preloadThumbnails()
+            
+            self.update()
+            
+            
+            self.loadSearch()
+            
+            
+            
+        }
+
+        
+      
     }
     
     
@@ -299,6 +327,8 @@ class MainTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         
     }
+    
+
     
     // MARK: - Table view data source
     

@@ -82,6 +82,8 @@ class HorizontalTableViewController: UITableViewController {
     
     func preloadThumbnails() {
         
+        
+        
         var videos = [Video]()
         
         
@@ -410,6 +412,12 @@ class HorizontalTableViewController: UITableViewController {
             self.preloadThumbnails()
         }
         
+        
+    }
+    
+    override func viewDidLoad() {
+        
+   
         
     }
     
@@ -1004,18 +1012,25 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
                 
                 cells.dateLabel.text =  videos[indexPath.item].eventDate!.convertDateToString()
                 
-            } else {
+            } else  {
                
-                
+                if( videos[safe: indexPath.item] != nil) {
                 cells.thumbnail.image = #imageLiteral(resourceName: "placeholder-header")
                 
                 cells.thumbnail.setRadius(radius: imageRadius)
                 
                 
-                cells.titleLabel.text = videos[indexPath.item].title
+                cells.titleLabel.text = videos[safe: indexPath.item]?.title
                 
-                cells.dateLabel.text =  videos[indexPath.item].eventDate!.convertDateToString()
-                
+                cells.dateLabel.text =  videos[safe: indexPath.item]?.eventDate!.convertDateToString()
+                } else {
+                    
+                    
+                    cells.titleLabel.text = nil
+                    
+                    cells.dateLabel.text = nil
+                    
+                }
             }
         }
         
