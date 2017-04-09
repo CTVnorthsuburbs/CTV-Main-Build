@@ -12,7 +12,7 @@ import UIKit
 
 
 
-var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: home())), Category(categoryFactory: CategoryFactory(factorySettings: baseball())), Category(categoryFactory: CategoryFactory(factorySettings: basketball())),Category(categoryFactory: CategoryFactory(factorySettings: community())),  Category(categoryFactory: CategoryFactory(factorySettings: football())),Category(categoryFactory: CategoryFactory(factorySettings: gymnastics())), Category(categoryFactory: CategoryFactory(factorySettings: hockey())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosse())), Category(categoryFactory: CategoryFactory(factorySettings: parades())), Category(categoryFactory: CategoryFactory(factorySettings: programs())),Category(categoryFactory: CategoryFactory(factorySettings: soccer())),Category(categoryFactory: CategoryFactory(factorySettings: softball())), Category(categoryFactory: CategoryFactory(factorySettings: swimming())), Category(categoryFactory: CategoryFactory(factorySettings: teens())), Category(categoryFactory: CategoryFactory(factorySettings: volleyball())), Category(categoryFactory: CategoryFactory(factorySettings: ctvyoutube())) ]
+var categories: [Category] = [Category(categoryFactory: CategoryFactory(factorySettings: home())), Category(categoryFactory: CategoryFactory(factorySettings: baseball())), Category(categoryFactory: CategoryFactory(factorySettings: basketball())), Category(categoryFactory: CategoryFactory(factorySettings: concerts())),  Category(categoryFactory: CategoryFactory(factorySettings: football())), Category(categoryFactory: CategoryFactory(factorySettings: graduations())),Category(categoryFactory: CategoryFactory(factorySettings: gymnastics())), Category(categoryFactory: CategoryFactory(factorySettings: hockey())), Category(categoryFactory: CategoryFactory(factorySettings: lacrosse())), Category(categoryFactory: CategoryFactory(factorySettings: meetings())), Category(categoryFactory: CategoryFactory(factorySettings: news())), Category(categoryFactory: CategoryFactory(factorySettings: parades())), Category(categoryFactory: CategoryFactory(factorySettings: programs())),Category(categoryFactory: CategoryFactory(factorySettings: soccer())),Category(categoryFactory: CategoryFactory(factorySettings: softball())), Category(categoryFactory: CategoryFactory(factorySettings: sports())), Category(categoryFactory: CategoryFactory(factorySettings: swimming())), Category(categoryFactory: CategoryFactory(factorySettings: teens())), Category(categoryFactory: CategoryFactory(factorySettings: volleyball())), Category(categoryFactory: CategoryFactory(factorySettings: ctvyoutube())) ]
 
 
 
@@ -123,6 +123,16 @@ class CategoryFactorySettings: NSObject {
     
     
     
+    var recent2SectionTitle: String?
+    
+    var recent2SectionSearchID: Int?
+    
+    var recent2SectionDisplayCount: Int?
+    
+    var recent2SectionPlaylist: String?
+    
+    
+    
     var recentSectionTitle: String?
     
     var recentSectionSearchID: Int?
@@ -130,6 +140,26 @@ class CategoryFactorySettings: NSObject {
     var recentSectionDisplayCount: Int?
     
     var recentSectionPlaylist: String?
+    
+    
+    var featured2SectionTitle: String?
+    
+    var featured2SectionSearchID: Int?
+    
+    var featured2SectionDisplayCount: Int?
+    
+    var featured2SectionPlaylist: String?
+    
+
+    var featured3SectionTitle: String?
+    
+    var featured3SectionSearchID: Int?
+    
+    var featured3SectionDisplayCount: Int?
+    
+    var featured3SectionPlaylist: String?
+    
+    
     
     
     var categoryOrder: [CategoryOrder]?
@@ -164,6 +194,14 @@ class CategoryFactorySettings: NSObject {
     
     
     
+    var buttonsSquareTitle: String?
+    
+    var buttonsSquareSection: SectionType?
+    
+    var buttonsSquare = [Button]()
+    
+    
+    
 }
 
 enum CategoryOrder {
@@ -172,7 +210,13 @@ enum CategoryOrder {
     
     case recent
     
+    case recent2
+    
     case featured
+    
+    case featured2
+    
+    case featured3
     
     case popular
     
@@ -185,6 +229,8 @@ enum CategoryOrder {
     case buttonSecond
     
     case buttonThird
+    
+    case square
     
 }
 
@@ -329,6 +375,54 @@ class CategoryFactory {
         
     }
     
+    internal func addFeatured2Section() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = settings.featured2SectionTitle
+        
+        let searchID = settings.featured2SectionSearchID
+        
+        let displayCount = settings.featured2SectionDisplayCount
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [Button]? = nil
+        
+        let sectionPlaylist = settings.featured2SectionPlaylist
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        
+        return section
+        
+    }
+    
+    internal func addFeatured3Section() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = settings.featured3SectionTitle
+        
+        let searchID = settings.featured3SectionSearchID
+        
+        let displayCount = settings.featured3SectionDisplayCount
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [Button]? = nil
+        
+        let sectionPlaylist = settings.featured3SectionPlaylist
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        
+        return section
+        
+    }
+    
     internal func addRecentSection() -> Section {
         
         let sectionType = SectionType.videoList
@@ -340,6 +434,33 @@ class CategoryFactory {
         let displayCount = settings.recentSectionDisplayCount
         
         let sectionPlaylist = settings.recentSectionPlaylist
+        
+        let videoList: [Int]? = nil
+        
+        let buttons: [Button]? = nil
+        
+        
+        
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: displayCount, images: images, sectionPlaylist: sectionPlaylist)
+        
+        return section
+        
+    }
+    
+    
+    internal func addRecent2Section() -> Section {
+        
+        let sectionType = SectionType.videoList
+        
+        let sectionTitle = settings.recent2SectionTitle
+        
+        let searchID = settings.recent2SectionSearchID
+        
+        let displayCount = settings.recent2SectionDisplayCount
+        
+        let sectionPlaylist = settings.recent2SectionPlaylist
         
         let videoList: [Int]? = nil
         
@@ -407,6 +528,26 @@ class CategoryFactory {
         
         let buttons = settings.buttonsThird
 
+        let images: [UIImage]? = nil
+        
+        let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
+        
+        return section
+        
+    }
+    
+    
+    internal func addSquareButtons() -> Section {
+        
+        let sectionType = settings.buttonsSquareSection
+        let sectionTitle = settings.buttonsSquareTitle
+        
+        let searchID: Int?  = nil
+        
+        let videoList: [Int]? = nil
+        
+        let buttons = settings.buttonsSquare
+        
         let images: [UIImage]? = nil
         
         let section = Section(sectionType: sectionType!, sectionTitle: sectionTitle, searchID: searchID, videoList: videoList, buttons: buttons, displayCount: nil, images: images, sectionPlaylist: nil)
@@ -521,6 +662,10 @@ class Category {
                 
                 createRecentSection()
                 
+            case CategoryOrder.recent2:
+                
+                createRecent2Section()
+                
             case CategoryOrder.popular:
                 
                 createPopularSection()
@@ -528,6 +673,14 @@ class Category {
             case CategoryOrder.featured:
                 
                 createFeaturedSection()
+                
+            case CategoryOrder.featured2:
+                
+                createFeatured2Section()
+                
+            case CategoryOrder.featured3:
+                
+                createFeatured3Section()
                 
             case CategoryOrder.button:
                 
@@ -549,7 +702,14 @@ class Category {
                 
                 createRecentGirlsSection()
 
-            }
+            
+            
+            case CategoryOrder.square:
+            
+            createSquareSection()
+            
+            
+        }
 
         }
         
@@ -563,10 +723,28 @@ class Category {
         
         
     }
+
+
     
     func createFeaturedSection() {
         
         sections.append(categoryFactory.addFeaturedSection())
+        
+        
+        
+    }
+    
+    func createFeatured2Section() {
+        
+        sections.append(categoryFactory.addFeatured2Section())
+        
+        
+        
+    }
+    
+    func createFeatured3Section() {
+        
+        sections.append(categoryFactory.addFeatured3Section())
         
         
         
@@ -581,6 +759,12 @@ class Category {
     func createRecentSection() {
         
         sections.append(categoryFactory.addRecentSection())
+        
+    }
+    
+    func createRecent2Section() {
+        
+        sections.append(categoryFactory.addRecent2Section())
         
     }
     
@@ -618,7 +802,14 @@ class Category {
         sections.append(categoryFactory.addButtons())
         
     }
+
+func createSquareSection() {
     
+    
+    sections.append(categoryFactory.addSquareButtons())
+    
+}
+
     func createButtonSectionSecond() {
         
         sections.append(categoryFactory.addButtonsSecond())
@@ -634,7 +825,9 @@ class Category {
         return sections[row]
         
     }
-    
+
+
+
 }
 
 
@@ -780,6 +973,8 @@ enum SectionType {
     case specificVideoList
     
     case upcomingEventList
+    
+    case squareButtonWithTitle
     
 }
 

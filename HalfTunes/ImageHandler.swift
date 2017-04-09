@@ -14,7 +14,7 @@ import UIKit
 
 var imageRadius: CGFloat = 2.0
 
-var buttonRadius: CGFloat = 4.5
+var buttonRadius: CGFloat = 2.0
 
 
 let imageCache = NSCache<AnyObject, AnyObject>()

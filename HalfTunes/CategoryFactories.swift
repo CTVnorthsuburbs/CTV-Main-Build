@@ -11,6 +11,90 @@ import Foundation
 import UIKit
 
 
+@objc(sports)
+class sports: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Sports"
+  
+        self.popularSectionTitle = "Featured Sports"
+        
+        self.popularSectionSearchID = 85458
+        
+           self.popularSectionDisplayCount = 15
+        
+        
+        self.buttonsSectionTitle = "Browse By Sport"
+        
+        self.buttonsSectionType = SectionType.buttonWithTitle
+        
+        self.buttons.append(Button(factory:baseballButtonFactory()))
+        
+        self.buttons.append(Button(factory:basketballButtonFactory()))
+        
+        self.buttons.append(Button(factory:footballButtonFactory()))
+        
+        self.buttons.append(Button(factory:gymnasticsButtonFactory()))
+        
+        
+        self.buttons.append(Button(factory:hockeyButtonFactory()))
+        
+        self.buttons.append(Button(factory:lacrosseButtonFactory()))
+        
+        self.buttons.append(Button(factory:soccerButtonFactory()))
+        
+        
+        self.buttons.append(Button(factory:softballButtonFactory()))
+        
+        
+        
+        self.buttons.append(Button(factory:swimmingButtonFactory()))
+        
+        self.buttons.append(Button(factory:volleyballButtonFactory()))
+        
+        
+        self.sliderImages = [#imageLiteral(resourceName: "sports")]
+        
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.button]
+        
+    }
+    
+}
+
+
+
+@objc(graduations)
+class graduations: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "Graduations"
+        
+        self.popularSectionTitle = "Recent Graduations"
+        
+        self.popularSectionSearchID = 76916
+        
+        self.popularSectionDisplayCount = 15
+        
+
+        self.sliderImages = [#imageLiteral(resourceName: "graduations")]
+        
+        self.categoryOrder = [CategoryOrder.popular]
+        
+    }
+    
+}
+
+
+
+
 
 @objc(home)
 
@@ -24,14 +108,14 @@ class home: CategoryFactorySettings {
         self.categoryTitle = "Home"
         
         
-        self.upcomingSectionTitle = "Upcoming Events"
+        self.upcomingSectionTitle = "Upcoming Live Events"
         
         self.upcomingSectionSearchID = 85123
         
         self.upcomingSectionDisplayCount = 20
         
         
-        self.popularSectionTitle = "New & Noteworthy"
+        self.popularSectionTitle = "Recent Events"
         
         
         
@@ -62,7 +146,7 @@ class home: CategoryFactorySettings {
         
         self.recentSectionTitle = "Featured Events"
         
-        self.recentSectionSearchID = 71296
+        self.recentSectionSearchID = 88862
         
         self.recentSectionDisplayCount = 15
         
@@ -96,30 +180,38 @@ class home: CategoryFactorySettings {
         
       
         
-        self.buttonsSecondSectionType = SectionType.buttonWithTitle
-        
-        self.buttonsSecondTitle = "Browse By"
-        
-        self.buttonsSecond.append(Button(factory:communityButtonFactory()))
-        
-        self.buttonsSecond.append(Button(factory:meetingsButtonFactory()))
         
         
-        self.buttonsSecond.append(Button(factory:paradesButtonFactory()))
+        self.buttonsSquareSection = SectionType.squareButtonWithTitle
         
-        self.buttonsSecond.append(Button(factory:teenButtonFactory()))
+        self.buttonsSquareTitle = "Browse By"
         
-        self.buttonsSecond.append(Button(factory:aboutButtonFactory()))
+         self.buttonsSquare.append(Button(factory:meetingsButtonFactory()))
+          self.buttonsSquare.append(Button(factory:sportsButtonFactory()))
+         self.buttonsSquare.append(Button(factory:newsButtonFactory()))
         
-        self.buttonsSecond.append(Button(factory:ctvYouTubeButtonFactory()))
+        self.buttonsSquare.append(Button(factory:programsButtonFactory()))
         
-        self.buttonsSecond.append(Button(factory:programsButtonFactory()))
+    //    self.buttonsSecond.append(Button(factory:communityButtonFactory()))
         
-        self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
+       
+      self.buttonsSquare.append(Button(factory:concertsButtonFactory()))
+        
+        self.buttonsSquare.append(Button(factory:teenButtonFactory()))
+        
+         self.buttonsSquare.append(Button(factory:ctvYouTubeButtonFactory()))
+        
+        self.buttonsSquare.append(Button(factory:aboutButtonFactory()))
+        
+       
+        
+       
+        
+      //  self.buttonsSecond.append(Button(factory:scheduleButtonFactory()))
         
         
         
-        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.popular,  CategoryOrder.buttonSecond, CategoryOrder.recent, CategoryOrder.boys, CategoryOrder.button,   CategoryOrder.girls,   CategoryOrder.featured]
+        self.categoryOrder = [CategoryOrder.upcoming, CategoryOrder.popular,  CategoryOrder.square, CategoryOrder.recent, CategoryOrder.boys]
         
     }
     
@@ -180,7 +272,7 @@ class teens: CategoryFactorySettings {
         
         
 
-        self.sliderImages = [#imageLiteral(resourceName: "teens-header")]
+        self.sliderImages = [#imageLiteral(resourceName: "teens-header-1")]
         
         self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
         
@@ -284,27 +376,6 @@ class baseball: CategoryFactorySettings {
 }
 
 
-@objc(graduations)
-class graduations: CategoryFactorySettings {
-    
-    
-    required init() {
-        
-        super.init()
-        
-        self.categoryTitle = "Graduations"
-
-        self.recentSectionTitle = "Recent Graduations"
-        
-        self.recentSectionSearchID = 76916
-        
-        self.sliderImages = [#imageLiteral(resourceName: "mobile-grad-slide")]
-        
-        self.categoryOrder = [CategoryOrder.recent]
-        
-    }
-    
-}
 
 
 @objc(parades)
@@ -355,6 +426,84 @@ class community: CategoryFactorySettings {
     
 }
 
+@objc(concerts)
+class concerts: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        
+        
+        self.categoryTitle = "Concerts"
+        
+
+        
+        self.popularSectionTitle = "Popular Concerts"
+        
+        self.popularSectionSearchID = 88868
+        self.popularSectionDisplayCount = 20
+        
+        
+        self.recentSectionTitle = "Recent Concerts"
+        
+        self.recentSectionSearchID = 67318
+        
+        self.recentSectionDisplayCount = 20
+        
+        self.sliderImages = [#imageLiteral(resourceName: "concerts")]
+        
+        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
+        
+    }
+    
+}
+
+
+
+@objc(news)
+class news: CategoryFactorySettings {
+    
+    
+    required init() {
+        
+        super.init()
+        
+        self.categoryTitle = "News"
+        
+        self.popularSectionTitle = "Parades"
+        
+        self.popularSectionSearchID = 85461
+        
+        self.recentGirlsSectionTitle = "What's Brewin'"
+        
+        self.recentGirlsSectionSearchID = 71346
+        
+        self.recentBoysSectionTitle = "Disability Viewpoints"
+        
+        self.recentBoysSectionSearchID = 71349
+        
+        self.featuredSectionTitle = "Tales of Our Cities"
+        
+        self.featuredSectionSearchID = 71328
+        
+        
+        
+        self.recentSectionTitle = "North Suburban Beat"
+        
+        self.recentSectionSearchID = 66603
+        
+        self.recentSectionDisplayCount = 15
+        
+        self.sliderImages = [#imageLiteral(resourceName: "news")]
+        
+        self.categoryOrder = [CategoryOrder.recent]
+        
+    }
+    
+}
+
 
 @objc(programs)
 class programs: CategoryFactorySettings {
@@ -365,6 +514,16 @@ class programs: CategoryFactorySettings {
         super.init()
         
         self.categoryTitle = "Programs"
+        
+       
+        
+        self.recent2SectionTitle = "Recent Programs"
+        
+        self.recent2SectionSearchID = 88862
+        
+        self.recent2SectionDisplayCount = 20
+        
+        
         
         self.popularSectionTitle = "Parades"
         
@@ -386,11 +545,21 @@ class programs: CategoryFactorySettings {
         
         self.recentSectionSearchID = 66603
         
+        self.featured2SectionTitle = "Graduations"
+        
+        self.featured2SectionSearchID = 76916
+        
+        
+        self.featured3SectionTitle = "Community Videos"
+        
+        self.featured3SectionSearchID = 71296
+        
+        
         self.recentSectionDisplayCount = 15
         
         self.sliderImages = [#imageLiteral(resourceName: "programs-header")]
         
-        self.categoryOrder = [CategoryOrder.recent, CategoryOrder.featured,   CategoryOrder.girls,  CategoryOrder.popular, CategoryOrder.boys]
+        self.categoryOrder = [CategoryOrder.recent2, CategoryOrder.recent, CategoryOrder.featured,   CategoryOrder.girls,  CategoryOrder.popular,CategoryOrder.featured2, CategoryOrder.boys]
         
     }
     

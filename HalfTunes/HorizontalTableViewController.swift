@@ -263,7 +263,7 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
-        
+ 
     }
     
     public func updateTable() {
@@ -555,6 +555,10 @@ class HorizontalTableViewController: UITableViewController {
                 
                 tableSize = tableSize + CGFloat(120)
                 
+            case .squareButtonWithTitle:
+                
+                tableSize = tableSize + CGFloat(120)
+                
             default:
                 
                 tableSize = tableSize + CGFloat(165)
@@ -643,6 +647,20 @@ class HorizontalTableViewController: UITableViewController {
                 section.displayCount = 15
                 
             }
+            
+            return cell!
+            
+        }
+        
+        
+        if (section.sectionType == SectionType.squareButtonWithTitle) {
+            
+            
+            self.tableView.rowHeight = 120.0
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SquareTitleCell", for: indexPath) as? HorizontalTableViewCell
+            
+            cell!.sectionLabel.text = section.sectionTitle
             
             return cell!
             
@@ -823,7 +841,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
             
             
             
-        } else if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonWithTitle || category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonNoTitle) {
+        } else if(category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonWithTitle || category.sections[safe: collectionView.tag]?.sectionType == SectionType.buttonNoTitle  || category.sections[safe: collectionView.tag]?.sectionType == SectionType.squareButtonWithTitle) {
             
             return (category.sections[safe: collectionView.tag]?.buttons.count)!
             
@@ -836,6 +854,38 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if(category.sections[collectionView.tag].sectionType == SectionType.squareButtonWithTitle) {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCollectionCell", for: indexPath)
+            
+            var cells : ThumbnailButtonCell
+            
+            cells = cell as! ThumbnailButtonCell
+            
+          
+                
+                
+                var thumbnail: UIImage?
+                
+            
+                    
+                    thumbnail = category.sections[collectionView.tag].buttons[indexPath.row]?.image
+                    
+                    cells.thumbnail.image = thumbnail
+                    
+                    
+        
+                cells.thumbnail.image = category.sections[collectionView.tag].buttons[indexPath.row]?.image
+                
+             
+          
+            
+            cells.thumbnail.setRadius(radius: buttonRadius)
+            
+            return cells
+            
+        }
         
         if(category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle || category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle) {
             
@@ -1091,7 +1141,7 @@ extension HorizontalTableViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle) {
+        if(category.sections[collectionView.tag].sectionType == SectionType.buttonNoTitle ||  category.sections[collectionView.tag].sectionType == SectionType.buttonWithTitle ||  category.sections[collectionView.tag].sectionType == SectionType.squareButtonWithTitle) {
             
             var buttons = category.sections[collectionView.tag].buttons
             

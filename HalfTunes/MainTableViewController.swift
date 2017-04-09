@@ -92,7 +92,7 @@ class MainTableViewController: UITableViewController {
                //perform search list update in background in order to have instant access to search results, it has been pulled to decrease initial load activity and it did not seem to work correctly
         
         if(searchResults.count == 0) {
-           searchResults = search.getRecent()
+          searchResults = search.getRecent()
             
         }
         
@@ -209,7 +209,7 @@ class MainTableViewController: UITableViewController {
             }
             
             
-        //  self.embeddedViewController?.preloadThumbnails()
+         self.embeddedViewController?.preloadThumbnails()
             
             self.update()
             
@@ -261,7 +261,24 @@ class MainTableViewController: UITableViewController {
             } else {
                 
             
+                if( video.categoryTitle == "Meetings" ) {
+                    
+                  let vid = Video(title: "Meetings", thumbnail: #imageLiteral(resourceName: "meetings-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                } else if( video.categoryTitle == "Graduations" ) {
+                    
+                    let vid = Video(title: "Graduations", thumbnail: #imageLiteral(resourceName: "graduations"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                }
                 
+    
+                
+                else {
+                    
+                    
+                    
                 vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
                 
                 if (vid.first?.fileName != nil) {
@@ -273,7 +290,7 @@ class MainTableViewController: UITableViewController {
                     categoriesVideos.append(vid.first!)
                     
                 }
-                
+                }
             }
             
             

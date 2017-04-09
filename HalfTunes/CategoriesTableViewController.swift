@@ -115,7 +115,16 @@ class CategoriesTableViewController: UITableViewController {
                 
                 thumbnail = search.getThumbnail(url: (categoriesVideos[indexPath.row].thumbnailUrl)!)
                 
-            } else {
+            }
+            
+            
+            else if ( categoriesVideos[indexPath.row].fileName == 0) {
+                
+                thumbnail = categoriesVideos[indexPath.row].thumbnail
+                
+            }
+                
+            else {
                 
                 thumbnail = search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
                 

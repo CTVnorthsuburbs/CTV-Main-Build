@@ -59,6 +59,28 @@ class paradesButtonFactory: ButtonFactory {
     
 }
 
+class concertsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "concerts")
+        
+        self.title = "Concerts"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: concerts()))
+        
+    }
+    
+}
+
 
 
 
@@ -706,6 +728,56 @@ class lacrosseButtonFactory: ButtonFactory {
     }
     
 }
+
+
+class sportsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "sports")
+        
+        self.title = "Sports"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: sports()))
+        
+        
+        
+    }
+    
+}
+
+class newsButtonFactory: ButtonFactory {
+    
+    override init() {
+        
+        super.init()
+        
+        self.type = ButtonType.category
+        
+        self.image = #imageLiteral(resourceName: "news")
+        
+        self.title = "News"
+        
+        self.imageOverlay = nil
+        
+        self.page = nil
+        
+        self.category = Category(categoryFactory: CategoryFactory(factorySettings: news()))
+        
+        
+        
+    }
+    
+}
+
 
 
 class softballButtonFactory: ButtonFactory {
