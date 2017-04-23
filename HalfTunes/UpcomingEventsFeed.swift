@@ -158,7 +158,11 @@ class UpcomingEventsFeed {
             print(error)
             
         }
-        
+        if (json == nil) {
+            
+            
+            return nil
+        }
         
         guard let result = EventFeed(json: json) else {
             

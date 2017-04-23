@@ -1243,7 +1243,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             if(VideosResult.vod?.count != 0 && (VideosResult.vod!.count) >= count ) {
                 
                 
-                searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![count].url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id, isEvent: false, endDate: nil)!)
+                searchResults.append(Video(title: show.title, thumbnail: nil , fileName: fileName, sourceUrl: VideosResult.vod![safe: count]?.url, comments : show.comments, eventDate:  date, thumbnailUrl: nil, id: show.id, isEvent: false, endDate: nil)!)
                 
             }
             
