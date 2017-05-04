@@ -214,13 +214,11 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         //this gives all videos within a specifed playlist
         
+       
         let urlString = URL( string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(playlistID)&key=\(apiKey)&maxResults=\(maxResults)")
+
         
-        
-        
-        
-        
-        //    let urlString = URL( string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(playlistID)&key=\(apiKey)&maxResults=\(maxResults)")
+  //gives recent uploads id for channel  https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=CTVnorthsuburbs&key=AIzaSyAXDqPJiyrh1QW2X_-Dy_KUWxIez9E2FHU
         
         
         

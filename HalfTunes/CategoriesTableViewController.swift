@@ -27,7 +27,7 @@ class CategoriesTableViewController: UITableViewController {
         for category in categories {
             
             if(category.sections.first?.images == nil) {
-                
+                print("listing created for \(category.categoryTitle)")
                 category.createListing()
                 
             }
@@ -109,8 +109,14 @@ class CategoriesTableViewController: UITableViewController {
         
         cell?.setCategory(category: categories[indexPath.row])
         
+        
+        print("Count \(categoriesVideos.count) & \(categories.count)")
+        
+        
         if(categoriesVideos.count == categories.count) {
             
+            
+            print("gets here for \(categories[indexPath.row].categoryTitle)")
             if( categoriesVideos[indexPath.row].fileName == 1) {
                 
                 thumbnail = search.getThumbnail(url: (categoriesVideos[indexPath.row].thumbnailUrl)!)
@@ -126,7 +132,13 @@ class CategoriesTableViewController: UITableViewController {
                 
             else {
                 
+                
+                if(categoriesVideos[indexPath.row].fileName != nil) {
+                    
+                    
                 thumbnail = search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
+                    
+                }
                 
             }
             
@@ -136,7 +148,7 @@ class CategoriesTableViewController: UITableViewController {
             if (categories[indexPath.row].sections.first?.searchID != nil) {
                 
                 
-                print("search for single called from cagtegoriestableview")
+                print("search for single called from categories table view")
                 
                 let vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
                 

@@ -244,6 +244,21 @@ class teens: CategoryFactorySettings {
         
         self.videoType = VideoType.youtube
         
+        self.recent2SectionTitle = "Uploads"
+        
+        self.recent2SectionSearchID = 2
+        
+        self.recent2SectionDisplayCount = 15
+        
+        self.recent2SectionPlaylist = "UUItaxOh-FCAiD2Hjqt1KlEw"
+        
+        
+        
+        
+       
+        
+        
+        
         self.popularSectionTitle = "CreaTV Episodes"
         
         self.popularSectionSearchID = 1
@@ -284,7 +299,7 @@ class teens: CategoryFactorySettings {
 
         self.sliderImages = [#imageLiteral(resourceName: "teens-header-1")]
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
+        self.categoryOrder = [CategoryOrder.recent2,CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
         
     }
     
@@ -303,13 +318,13 @@ class ctvyoutube: CategoryFactorySettings {
         
         self.videoType = VideoType.youtube
         
-        self.popularSectionTitle = "CTV sports"
+        self.popularSectionTitle = "Uploads"
         
         self.popularSectionSearchID = 1
         
         self.popularSectionDisplayCount = 15
         
-        self.popularSectionPlaylist = "PL95MWKnFfyTIbeaxDyo4bniLDsh5p2oOc"
+        self.popularSectionPlaylist = "UUwzUkowRlX6k_c5McHrcP8g"
         
         
         self.recentSectionTitle = "Irondale Sports"
@@ -321,13 +336,13 @@ class ctvyoutube: CategoryFactorySettings {
         self.recentSectionPlaylist = "PL95MWKnFfyTKQIRZSfqP65Q1d8XyGB4Bm"
         
         
-        self.featuredSectionTitle = "Water is Everyone's Business"
+        self.featuredSectionTitle = "Top Videos"
         
         self.featuredSectionSearchID = 3
         
         self.featuredSectionDisplayCount = 15
         
-        self.featuredSectionPlaylist = "PL95MWKnFfyTJxw0riNq0HEw4YPbEJf7-D"
+        self.featuredSectionPlaylist = "PL34AE5B5661B3B17A"
  
         self.recentBoysSectionTitle = "Favorite Videos"
         
@@ -339,7 +354,7 @@ class ctvyoutube: CategoryFactorySettings {
  
         self.sliderImages = [#imageLiteral(resourceName: "youtube-header")]
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured, CategoryOrder.boys]
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured]
         
     }
     

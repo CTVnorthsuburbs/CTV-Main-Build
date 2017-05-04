@@ -233,10 +233,10 @@ class MainTableViewController: UITableViewController {
             
             video.createListing()
             
-            var vid = [Video]()
             
             
-            if(video.sections.first!.searchID == 1) {
+            /*
+            if(video.sections.first!.searchID == 1 ) {
                
                 vid = search.getYouTubeVideos(playlist: video.sections.first!.sectionPlaylist!)!
                 
@@ -257,41 +257,97 @@ class MainTableViewController: UITableViewController {
                     categoriesVideos.append(vid.first!)
                     
                 }
+ 
+ */
                 
-            } else {
+          
                 
-            
-                if( video.categoryTitle == "Meetings" ) {
+                //A very bad fix to have set thumbnails instead of generated from the first thumbnail of the category. Should have a bool added to the category factory setting to specify whether to use button thumbnail or load thumbnail from first video
+                
+                switch (video.categoryTitle)
                     
-                  let vid = Video(title: "Meetings", thumbnail: #imageLiteral(resourceName: "meetings-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                {
+                    
+                case  "Meetings":
+                    
+                    let vid = Video(title: "Meetings", thumbnail: #imageLiteral(resourceName: "meetings-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
                     categoriesVideos.append(vid!)
                     
-                } else if( video.categoryTitle == "Graduations" ) {
+                case "Graduations":
                     
                     let vid = Video(title: "Graduations", thumbnail: #imageLiteral(resourceName: "graduations"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
                     categoriesVideos.append(vid!)
                     
+                case "Sports":
+                    
+                    let vid = Video(title: "Sports", thumbnail: #imageLiteral(resourceName: "sports"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                case "News":
+                    
+                    let vid = Video(title: "News", thumbnail: #imageLiteral(resourceName: "news"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                case "Programs":
+                    
+                    let vid = Video(title: "Programs", thumbnail: #imageLiteral(resourceName: "programs-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                case "Concerts":
+                    
+                    let vid = Video(title: "Concerts", thumbnail: #imageLiteral(resourceName: "concerts"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                case "Teens":
+                    
+                    let vid = Video(title: "Teens", thumbnail: #imageLiteral(resourceName: "teens-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                case "YouTube":
+                    
+                    let vid = Video(title: "YouTube", thumbnail: #imageLiteral(resourceName: "youtube-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
+                    categoriesVideos.append(vid!)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                default:
+                    
+                   let vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
+                    
+                    if (vid.first?.fileName != nil) {
+                        
+                        
+                        
+                        search.getThumbnail(id: (vid.first?.fileName)!)
+                        
+                        categoriesVideos.append(vid.first!)
+                        
+                    } else {
+                        
+                        
+                        
+                        
+                        
+                        categoriesVideos.append(vid.first!)
+                    }
                 }
+                    
+                
+                
+
+            
+          
                 
     
-                
-                else {
+               
                     
-                    
-                    
-                vid = search.searchForSingleCategory((video.sections.first!.searchID)!)
-                
-                if (vid.first?.fileName != nil) {
-                    
-                   
-                    
-                    search.getThumbnail(id: (vid.first?.fileName)!)
-                    
-                    categoriesVideos.append(vid.first!)
-                    
-                }
-                }
-            }
+              
+            
             
             
         }
