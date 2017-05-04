@@ -48,9 +48,11 @@ class AboutViewController: UIViewController {
         
         
         
-        textView.text = "Contact Info & Hours\n\n2670 Arthur Street, MN 55113\nPhone: 651-792-7515, Fax: 651-792-7501\nMonday through Thursday: 9:00 am to 9:00 pm\nFriday: 9:00 am to 6:30 pm, Saturday: 9:00 am to 4:30 pm on the first Saturday of the month, Sunday:Closed\n\nAbout CTV\n\nWhile watching yet another night of television, have you ever said to yourself, I could do this? The truth is, you really can do this. It's called public access community television, and it is here for people just like you.\n\nCTV is a nonprofit organization operated by the North Suburban Access Corporation. The nine commission members represent the cities of Arden Hills, Falcon Heights, Lauderdale, Little Canada, Mounds View, New Brighton, North Oaks, Roseville and St. Anthony. They have come together to offer you a station with programming created by the community, for the community.\n\nAny resident within our nine city coverage area can receive the PEG (Public, Educational and Government) channels at no charge through a universal access service agreement with Comcast. There is no fee for installation and no monthly fee unless a cable converter is required. Just call CTV at 651-792-7515 and ask to receive Universal Access Service.\n"
+        textView.text = "Contact Info & Hours\n\n2670 Arthur Street, MN 55113\nPhone: 651-792-7515,\nWeb: www.ctvnorthsuburbs.org\nMonday through Thursday: 9:00 am to 9:00 pm\nFriday: 9:00 am to 6:30 pm, Saturday: 9:00 am to 4:30 pm on the first Saturday of the month, Sunday:Closed\n\nAbout CTV\n\nCTV North Suburbs is your local community media center serving nine cities: Arden Hills, Falcon Heights, Lauderdale, Little Canada, Mounds View, New Brighton, North Oaks, Roseville and St. Anthony.\n\nCTV is a non-profit organization operated by the North Suburban Access Corporation, a board of directors representing each of the nine member cities. They have come together to offer you a community media center with programming created by the community, for the community.\n"
         
         
+        
+      
         super.viewDidLoad()
         
 centerMapOnLocation(location: initialLocation)

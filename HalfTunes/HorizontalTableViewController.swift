@@ -325,21 +325,21 @@ class HorizontalTableViewController: UITableViewController {
                                     
                                     if(category.videoType == VideoType.cablecast) {
                                         
-                                        let vids = self.search.search(category.sections[index].searchID!)
+                                        let vids = self.search.search( (category.sections[safe: index]?.searchID!)!)
                                         
                                         //Was != nil which was always true
                                         
                                         if(  vids.count > 0) {
                                             
-                                            if(self.listOfVideos.count >= category.sections[index].searchID! ) {
+                                            if(self.listOfVideos.count >= (category.sections[safe: index]?.searchID!)! ) {
                                                 
-                                                self.listOfVideos[category.sections[index].searchID!] = vids
+                                                self.listOfVideos[(category.sections[safe: index]?.searchID!)!] = vids
                                                 
                                             }
                                             
                                             if(category.sections[index].getDisplayCount() != nil) {
                                                 
-                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: category.sections[index].getDisplayCount()!)
+                                                let trimmedVids = self.search.trimVideos(videoArray: vids, numberToReturn: (category.sections[safe: index]?.getDisplayCount()!)!)
                                                 
                                                 self.videos.append(trimmedVids)
                                                 
@@ -405,6 +405,8 @@ class HorizontalTableViewController: UITableViewController {
                         self.saveFeaturedVideos()
                         
                     }
+                    
+                    
                     
                 }
                 
@@ -561,7 +563,7 @@ class HorizontalTableViewController: UITableViewController {
                 
             default:
                 
-                tableSize = tableSize + CGFloat(165)
+                tableSize = tableSize + CGFloat(120)
                 
             }
             
@@ -653,18 +655,7 @@ class HorizontalTableViewController: UITableViewController {
         }
         
         
-        if (section.sectionType == SectionType.squareButtonWithTitle) {
-            
-            
-            self.tableView.rowHeight = 120.0
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SquareTitleCell", for: indexPath) as? HorizontalTableViewCell
-            
-            cell!.sectionLabel.text = section.sectionTitle
-            
-            return cell!
-            
-        }
+  
         
         if (section.sectionType == SectionType.buttonWithTitle) {
             
@@ -689,7 +680,21 @@ class HorizontalTableViewController: UITableViewController {
             
         }
         
-        self.tableView.rowHeight = 165.0
+        if (section.sectionType == SectionType.squareButtonWithTitle) {
+            
+            
+            self.tableView.rowHeight = 120.0
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SquareTitleCell", for: indexPath) as? HorizontalTableViewCell
+            
+            cell!.sectionLabel.text = section.sectionTitle
+            
+            return cell!
+            
+        }
+        
+        
+        self.tableView.rowHeight = 120.0
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? HorizontalTableViewCell
         

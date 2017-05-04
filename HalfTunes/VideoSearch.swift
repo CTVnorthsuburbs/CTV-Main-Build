@@ -39,7 +39,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     // This determines the size of the split arrays and effects when the initial result array is split by setting a limit as to when the split occurs, and the returned page size from CableCast.
     
-    let arrayLength = 55
+    let arrayLength = 50
     
     /// Creates the NSURL session necessary to download content from remote URL.
     
@@ -363,9 +363,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                             
                             var videoId = "0"
                             
-                            
+                            if(videoSnippet?.resourceId?.videoId != nil) {
                             videoId  = (videoSnippet?.resourceId?.videoId)!
-                            
+                            }
                             //   var id = "https://www.youtube.com/watch?v=\(videoId)"
                             
                             
@@ -379,18 +379,16 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                             if(thumbnail != nil) {
                                 video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: NSURL(string: thumbnail!), id: 1, isEvent: false, endDate: nil)
                                 
-                            } else {
                                 
                                 
-                                video = Video(title: title!, thumbnail: nil, fileName: 1, sourceUrl: id, comments: description!, eventDate: date!, thumbnailUrl: nil, id: 1, isEvent: false, endDate: nil)
+                                videoResults.append(video!)
                                 
-                            }
+                            } 
                             
                             
                             
                             
-                            
-                            videoResults.append(video!)
+                          
                             
                             
                             
@@ -588,6 +586,18 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
         
+        let array = idArray
+        let newArray = array.chunked(by: arrayLength)
+        
+        return newArray
+        
+    }
+    
+    
+    
+  /*  old manual handling of split. Breaks when total results are split into even parts.
+    fileprivate func splitIdArray(_ idArray: [Int])-> [[Int]]? {
+        
         var resultArray = [[Int]]()
         
         let arrayCount = idArray.count
@@ -601,6 +611,9 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         }
         
         let count = numberOfArrays
+        
+        
+        print("number of arrays \(count)")
         
         var position = -1
         
@@ -618,13 +631,17 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 var range = idArray.count
                 
                 range = range % arrayLength
-                
+                if((position + 1)>(position + range)) {
+                    
+                    position = position - 1
+                    
+                }
                 
                 
                 //  tempArray = Array(idArray[position...position + range])
+                //  print("this \((position + 1)...position + range)")
                 
-                
-                tempArray = Array(idArray[position + 1...position + range])
+                tempArray = Array(idArray[ (position + 1)...(position + range)])
                 
             }
             
@@ -638,6 +655,12 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
             position = position + arrayLength
             
         }
+        
+        
+        
+        
+        
+        
         
         var totalCount = 0
         
@@ -692,6 +715,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return resultArray
         
     }
+*/
     
     /// getRecent() returns the most recent Videos from CableCast as defined by the Saved Search 'App Basic Search'.
     
@@ -1257,6 +1281,20 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         return true
         
+    }
+    
+}
+
+extension Array {
+    
+    func chunked(by distance: Int) -> [[Element]] {
+        if self.count <= distance {
+            return [self]
+        } else {
+            let head = [Array(self[0 ..< distance])]
+            let tail = Array(self[distance ..< self.count])
+            return head + tail.chunked(by: distance)
+        }
     }
     
 }

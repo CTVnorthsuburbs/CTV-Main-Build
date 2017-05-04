@@ -160,33 +160,7 @@ class home: CategoryFactorySettings {
         
         self.recentSectionDisplayCount = 15
         
-        self.buttonsSectionTitle = "Browse By Sport"
-        
-        self.buttonsSectionType = SectionType.buttonWithTitle
-        
-        self.buttons.append(Button(factory:baseballButtonFactory()))
-        
-        self.buttons.append(Button(factory:basketballButtonFactory()))
-        
-        self.buttons.append(Button(factory:footballButtonFactory()))
-        
-        self.buttons.append(Button(factory:gymnasticsButtonFactory()))
-        
-    
-        self.buttons.append(Button(factory:hockeyButtonFactory()))
-        
-        self.buttons.append(Button(factory:lacrosseButtonFactory()))
-        
-        self.buttons.append(Button(factory:soccerButtonFactory()))
-        
-        
-        self.buttons.append(Button(factory:softballButtonFactory()))
-        
-        
-        
-        self.buttons.append(Button(factory:swimmingButtonFactory()))
-        
-        self.buttons.append(Button(factory:volleyballButtonFactory()))
+     
         
       
         
@@ -295,6 +269,8 @@ class teens: CategoryFactorySettings {
         
         self.recentBoysSectionPlaylist = "PLc4OSwdRXG_J0LTEtHVsx-zBH6sF39Nvs"
         
+     
+        
         
 
         self.sliderImages = [#imageLiteral(resourceName: "teens-header-1")]
@@ -327,13 +303,13 @@ class ctvyoutube: CategoryFactorySettings {
         self.popularSectionPlaylist = "UUwzUkowRlX6k_c5McHrcP8g"
         
         
-        self.recentSectionTitle = "Irondale Sports"
+        self.recentSectionTitle = "CTV Sports"
         
         self.recentSectionSearchID = 2
         
         self.recentSectionDisplayCount = 15
         
-        self.recentSectionPlaylist = "PL95MWKnFfyTKQIRZSfqP65Q1d8XyGB4Bm"
+        self.recentSectionPlaylist = "PL95MWKnFfyTIbeaxDyo4bniLDsh5p2oOc"
         
         
         self.featuredSectionTitle = "Top Videos"
@@ -354,7 +330,7 @@ class ctvyoutube: CategoryFactorySettings {
  
         self.sliderImages = [#imageLiteral(resourceName: "youtube-header")]
         
-        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.recent, CategoryOrder.featured]
+        self.categoryOrder = [CategoryOrder.popular, CategoryOrder.featured, CategoryOrder.recent]
         
     }
     
