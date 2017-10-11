@@ -172,7 +172,7 @@ public struct Vods: Decodable {
         
         
         
-        if(("fileName" <~~ json) != nil) {
+    //    if(("fileName" <~~ json) != nil) {
             
             guard let fileName: String = "fileName" <~~ json
                 
@@ -183,7 +183,7 @@ public struct Vods: Decodable {
             
             
             self.fileName = fileName
-        }
+      //  }
         
         
         
