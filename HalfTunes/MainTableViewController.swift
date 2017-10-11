@@ -204,7 +204,7 @@ class MainTableViewController: UITableViewController {
             
             if(categoriesVideos.count == 0) {
                 
-                self.generateCategories()
+               // self.generateCategories()
                 
             }
             
@@ -269,7 +269,7 @@ class MainTableViewController: UITableViewController {
                 {
                     
                 case  "Meetings":
-                    
+                    print("metings loads up")
                     let vid = Video(title: "Meetings", thumbnail: #imageLiteral(resourceName: "meetings-header"), fileName: 0, sourceUrl: nil, comments: "", eventDate: Date(), thumbnailUrl: nil, id: 1, isEvent: nil, endDate: nil)
                     categoriesVideos.append(vid!)
                     
@@ -332,8 +332,11 @@ class MainTableViewController: UITableViewController {
                         
                         
                         
-                        
-                        categoriesVideos.append(vid.first!)
+                        if(vid.first != nil) {
+                            
+                        //categoriesVideos.append(vid.first!)
+                            
+                        }
                     }
                 }
                     

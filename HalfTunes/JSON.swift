@@ -172,18 +172,22 @@ public struct Vods: Decodable {
         
         
         
-    //    if(("fileName" <~~ json) != nil) {
+      //  if(("fileName" <~~ json) != nil) {
             
             guard let fileName: String = "fileName" <~~ json
+        
                 
-                else { print("no vod fileName")
+        
+                else { print("no vod fileName here in JSON")
                     
                     
                     return nil }
-            
-            
+                
+        if(fileName != "") {
             self.fileName = fileName
-      //  }
+            
+        }
+   //    }
         
         
         

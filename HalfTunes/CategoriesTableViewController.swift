@@ -112,20 +112,20 @@ class CategoriesTableViewController: UITableViewController {
         
         print("Count \(categoriesVideos.count) & \(categories.count)")
         
-        
-        if(categoriesVideos.count == categories.count) {
+        //this is where I cahnged it
+        if(categoriesVideos.count != categories.count) {
             
             
             print("gets here for \(categories[indexPath.row].categoryTitle)")
             if( categoriesVideos[indexPath.row].fileName == 1) {
-                
+                print("first filenmae 1")
                 thumbnail = search.getThumbnail(url: (categoriesVideos[indexPath.row].thumbnailUrl)!)
                 
             }
             
             
             else if ( categoriesVideos[indexPath.row].fileName == 0) {
-                
+                print("filamnmae is 0")
                 thumbnail = categoriesVideos[indexPath.row].thumbnail
                 
             }
@@ -135,7 +135,7 @@ class CategoriesTableViewController: UITableViewController {
                 
                 if(categoriesVideos[indexPath.row].fileName != nil) {
                     
-                    
+                     print("filamnmae is doews not = nil")
                 thumbnail = search.getThumbnail(id: (categoriesVideos[indexPath.row].fileName)!)
                     
                 }
@@ -147,7 +147,7 @@ class CategoriesTableViewController: UITableViewController {
             
             if (categories[indexPath.row].sections.first?.searchID != nil) {
                 
-                
+               
                 print("search for single called from categories table view")
                 
                 let vid = search.searchForSingleCategory((categories[indexPath.row].sections.first!.searchID)!)
@@ -159,11 +159,15 @@ class CategoriesTableViewController: UITableViewController {
                     categoriesVideos.append(vid.first!)
                     
                 }
+ 
                 
             }
-            
+ 
+ 
             
         }
+ 
+ 
         
         if (categoryTitle == category.categoryTitle) {
             
