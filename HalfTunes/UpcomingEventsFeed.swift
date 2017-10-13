@@ -107,8 +107,9 @@ class UpcomingEventsFeed {
                     
                     if httpResponse.statusCode == 200 {
                         
+                        if(data != nil) {
                         events = self.updateSearchResults(data)!
-                        
+                        }
                     } else {
                         
                         print("!!!!!!!!!!!!!!!!!!!")
