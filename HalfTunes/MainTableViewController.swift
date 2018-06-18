@@ -108,7 +108,7 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    func refresh(sender:AnyObject) {
+    @objc func refresh(sender:AnyObject) {
         
         print("refresh called")
         DispatchQueue.global(qos: .background).async {
@@ -196,7 +196,7 @@ class MainTableViewController: UITableViewController {
         
     }
     
-    func loadVideos() {
+    @objc func loadVideos() {
         
         DispatchQueue.global(qos: .background).async {
             

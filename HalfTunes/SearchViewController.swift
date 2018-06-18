@@ -208,7 +208,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func didTapView(){
+    @objc func didTapView(){
         
         self.view.endEditing(true)
         

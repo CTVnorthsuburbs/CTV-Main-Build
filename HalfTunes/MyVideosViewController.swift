@@ -1018,9 +1018,9 @@ func getResumeDictionary(_ data: Data) -> NSMutableDictionary? {
         let keyedUnarchiver = NSKeyedUnarchiver(forReadingWith: data)
         
         do {
-            root = try keyedUnarchiver.decodeTopLevelObject(forKey: "NSKeyedArchiveRootObjectKey") ?? nil
+        //    root = try keyedUnarchiver.decodeTopLevelObject(forKey: NSKeyedArchiveRootObjectKey)
             if root == nil {
-                root = try keyedUnarchiver.decodeTopLevelObject(forKey: NSKeyedArchiveRootObjectKey)
+         //       root = try keyedUnarchiver.decodeTopLevelObject(forKey: NSKeyedArchiveRootObjectKey)
             }
         } catch {}
         keyedUnarchiver.finishDecoding()

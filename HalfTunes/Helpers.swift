@@ -121,7 +121,7 @@ extension Date {
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone?
         
         
         
@@ -144,7 +144,7 @@ extension Date {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone!
+        dateFormatter.timeZone = NSTimeZone(name: "America/Chicago") as TimeZone?
         
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
@@ -273,7 +273,7 @@ extension Collection where Indices.Iterator.Element == Index {
     
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.
     
-    subscript (safe index: Index) -> Generator.Element? {
+    subscript (safe index: Index) -> Iterator.Element? {
         
         return indices.contains(index) ? self[index] : nil
         
