@@ -77,7 +77,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     
     
     
-    func showLoadingOverlay() {
+    override func showLoadingOverlay() {
         
         
         DispatchQueue.main.async( execute: {
