@@ -331,7 +331,7 @@ class VideoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     
-    func setProgressBar() {
+    @objc func setProgressBar() {
         
         let tempDownload = GlobalVariables.sharedManager.getDownload(downloadUrl: (self.video?.sourceUrl)!)
         

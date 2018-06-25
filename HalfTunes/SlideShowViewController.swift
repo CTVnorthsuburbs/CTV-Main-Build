@@ -77,7 +77,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     
     
     
-    func showLoadingOverlay() {
+    override func showLoadingOverlay() {
         
         
         DispatchQueue.main.async( execute: {
@@ -144,7 +144,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    public func didTapImage(_ sender: UITapGestureRecognizer) {
+    @objc public func didTapImage(_ sender: UITapGestureRecognizer) {
         
         let page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
         
@@ -338,7 +338,7 @@ class SlideShowViewController: UIViewController, UIScrollViewDelegate {
     
     
     
-    func slideshowTick() {
+    @objc func slideshowTick() {
         
         var page = Int(mainScrollView.contentOffset.x / mainScrollView.frame.size.width)
         
