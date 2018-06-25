@@ -277,9 +277,8 @@ class UpcomingEventsFeed {
         
         } else {
             
-       // is this supposed to be it.... liveStreamAddress = String("https://5ae03111bb852.streamlock.net:4444/External_Feed/BlueTruck/playlist.m3u8")
-
-           liveStreamAddress = String("http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
+            
+            liveStreamAddress = String("http://wowza1.ctv15.org:1935/Live1/live/playlist.m3u8")
         }
  
         return liveStreamAddress

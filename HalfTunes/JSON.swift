@@ -7,104 +7,160 @@
 //
 
 import Foundation
-public struct Videos: Decodable
-{
-   public let show: Shows?
-   public let vod: [Vods]?
-   public init?(json: JSON)
-   {
-        show = "show" <~~ json
-        vod = "vods" <~~ json
-   }
-}//struct videos
 
 
-public struct SlideShow: Decodable
-{
-    public let slides: [Slides]?
-    public init?(json: JSON)
-    {
-        let slides: [Slides]? = "slides" <~~ json
-        self.slides = slides
-    }
-}//struct slideshow
-
-
-
-public struct Slides: Decodable
-{
-    public let title: String?
-    public let category: String?
-    public let imageURL: String?
-    public let webURL: String?
-    public let slideType: String?
-    public let videoID: Int?
-    public let page: String?
+public struct Videos: Decodable {
     
-    public init?(json: JSON)
-    {
-        title = "title" <~~ json
-        category = "category" <~~ json
-        page = "page" <~~ json
-        imageURL = "image" <~~ json
-        webURL = "webURL" <~~ json
-        slideType = "slideType" <~~ json
-        videoID = "videoID" <~~ json
-    }
-}//struct slides
-
-public struct VideosResult: Decodable
-{
-    public let show: [Shows]?
+    public let show: Shows?
+    
     public let vod: [Vods]?
     
-    public init?(json: JSON)
-    {
-        show = "shows" <~~ json
+    public init?(json: JSON) {
+        
+        show = "show" <~~ json
+        
         vod = "vods" <~~ json
+        
+        
     }
-}//struct VideoResult
+    
+}
 
-public struct AllVideos: Decodable
-{
+
+public struct SlideShow: Decodable {
+    
+    public let slides: [Slides]?
+    
+    public init?(json: JSON) {
+        
+        
+        let slides: [Slides]? = "slides" <~~ json
+        
+        self.slides = slides
+        
+        
+    }
+    
+}
+
+
+
+public struct Slides: Decodable {
+    
+    public let title: String?
+    
+    public let category: String?
+    
+    
+    
+    public let imageURL: String?
+    
+    public let webURL: String?
+    
+    public let slideType: String?
+    
+    public let videoID: Int?
+    
+    public let page: String?
+    
+    
+    public init?(json: JSON) {
+        
+        title = "title" <~~ json
+        
+        category = "category" <~~ json
+        
+        page = "page" <~~ json
+        
+        imageURL = "image" <~~ json
+        
+        webURL = "webURL" <~~ json
+        
+        slideType = "slideType" <~~ json
+        
+        videoID = "videoID" <~~ json
+        
+    }
+    
+}
+
+
+
+
+
+public struct VideosResult: Decodable {
+    
+    public let show: [Shows]?
+    
+    public let vod: [Vods]?
+    
+    
+    
+    public init?(json: JSON) {
+        
+        show = "shows" <~~ json
+        
+        vod = "vods" <~~ json
+        
+        
+        
+    }
+    
+}
+
+public struct AllVideos: Decodable {
+    
     public let results : NSDictionary?
-    public init?(json: JSON)
-    {
+    
+    public init?(json: JSON) {
+        
         results = "savedShowSearch" <~~ json
+        
     }
-}//struct AllVideos
+    
+}
 
-public struct AllVideosResults: Decodable
-{
+public struct AllVideosResults: Decodable {
+    
     public let results: NSArray?
     
-    public init?(json: JSON)
-    {
+    public init?(json: JSON) {
+        
         guard let results : NSArray = "results" <~~ json
-           else { return nil }
-        self.results = results
-    }
-}//struct AllVideoResults
-
-public struct Results: Decodable
-{
-    public let results: [Int]
-    public init?(json: JSON)
-    {
-        guard let results : [Int] = "results" <~~ json
+            
             else { return nil }
+        
         self.results = results
+        
     }
-}//struct Results: Decodable
+    
+}
 
-public struct Vods: Decodable
-{
+public struct Results: Decodable {
+    
+    public let results: [Int]
+    
+    public init?(json: JSON) {
+        
+        guard let results : [Int] = "results" <~~ json
+            
+            else { return nil }
+        
+        self.results = results
+        
+    }
+    
+}
+
+public struct Vods: Decodable {
+    
     public let id: Int
+    
     public let url: String
+    
     public var fileName = ""
     
-    public init?(json: JSON)
-    {
+    public init?(json: JSON) {
         
         guard let id: Int = "id" <~~ json
             
@@ -436,6 +492,25 @@ public struct Thumbnails: Decodable {
                 return nil }
         
         self.url = url
+        
         self.id = id
+        
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
