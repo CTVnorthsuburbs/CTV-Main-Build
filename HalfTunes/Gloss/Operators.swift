@@ -32,12 +32,8 @@ import Foundation
 /**
 Decode custom operator
 */
-//infix operator <~~ { associativity left precedence 150 }    //////////////this line was giving problems so added the precendance code and infix line of code
-precedencegroup DecodePrecedence {
-    associativity: left
-    higherThan: LogicalConjunctionPrecedence
-}
-infix operator <~~ : DecodePrecedence
+infix operator <~~ { associativity left precedence 150 }
+
 /**
 Convenience operator for decoding JSON to generic value
 */
@@ -92,12 +88,7 @@ public func <~~ (key: String, json: JSON) -> [URL]? {
 /**
 Encode custom operator
 */
-//infix operator ~~> { associativity left precedence 150 } //    ////////similar problem as the one above
-precedencegroup EncodePrecedence {
-    associativity: left
-    higherThan: LogicalConjunctionPrecedence
-}
-infix operator ~~> : EncodePrecedence
+infix operator ~~> { associativity left precedence 150 }
 
 /**
 Convenience operator for encoding generic value to JSON

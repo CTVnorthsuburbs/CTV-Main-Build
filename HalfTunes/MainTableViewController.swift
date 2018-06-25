@@ -108,7 +108,7 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    @objc func refresh(sender:AnyObject) {
+    func refresh(sender:AnyObject) {
         
         print("refresh called")
         DispatchQueue.global(qos: .background).async {
@@ -196,7 +196,7 @@ class MainTableViewController: UITableViewController {
         
     }
     
-    @objc func loadVideos() {
+    func loadVideos() {
         
         DispatchQueue.global(qos: .background).async {
             
@@ -322,7 +322,7 @@ class MainTableViewController: UITableViewController {
                         
                         
                         
-                    //    search.getThumbnail(id: (vid.first?.fileName)!)
+                        search.getThumbnail(id: (vid.first?.fileName)!)
                         
                         categoriesVideos.append(vid.first!)
                         

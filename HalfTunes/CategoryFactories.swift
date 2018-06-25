@@ -397,6 +397,8 @@ class parades: CategoryFactorySettings {
         
         self.popularSectionSearchID = 90339
         
+        90339
+        
         self.sliderImages = [#imageLiteral(resourceName: "mobile-roseparade")]
         
         self.categoryOrder = [CategoryOrder.recent, CategoryOrder.popular]
