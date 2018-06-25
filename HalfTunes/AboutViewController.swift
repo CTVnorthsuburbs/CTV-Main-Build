@@ -13,11 +13,7 @@ import AddressBook
 class AboutViewController: UIViewController
 {
     @IBOutlet weak var textView: UITextView!
-    
-    
     @IBOutlet weak var mapView: MKMapView!
-    
-   
     
     // set initial location in Honolulu
     let initialLocation = CLLocation(latitude: 45.0218381, longitude: -93.1795165)
