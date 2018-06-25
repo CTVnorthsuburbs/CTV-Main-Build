@@ -8,15 +8,10 @@
 
 import UIKit
 import MapKit
-
 import AddressBook
 
-
-
-class AboutViewController: UIViewController {
-    
-    
-    
+class AboutViewController: UIViewController
+{
     @IBOutlet weak var textView: UITextView!
     
     
