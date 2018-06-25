@@ -115,14 +115,14 @@ class HorizontalTableViewController: UITableViewController {
                                 
                                 if( videos[index].hasThumbnailUrl()) {
                                     
-                                 //   self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                     
                                 } else {
                                     
                                     videos[index].generateThumbnailUrl()
                                     
-                                  //  self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                 }
                                 
@@ -172,14 +172,14 @@ class HorizontalTableViewController: UITableViewController {
                                 
                                 if( videos[index].hasThumbnailUrl()) {
                                     
-                             //       self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                     
                                 } else {
                                     
                                     videos[index].generateThumbnailUrl()
                                     
-                             //       self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                 }
                                 
@@ -223,14 +223,14 @@ class HorizontalTableViewController: UITableViewController {
                                 
                                 if( videos[index].hasThumbnailUrl()) {
                                     
-                       //             self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                     
                                 } else {
                                     
                                     videos[index].generateThumbnailUrl()
                                     
-                          //          self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
+                                    self.search.getThumbnail(url: (videos[index].thumbnailUrl)!)
                                     
                                 }
                                 

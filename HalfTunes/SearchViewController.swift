@@ -208,7 +208,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    @objc func didTapView(){
+    func didTapView(){
         
         self.view.endEditing(true)
         
@@ -345,7 +345,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if (searchText.count == 0) {
+        if (searchText.characters.count == 0) {
             
             searchExamplesView.isHidden = false
             

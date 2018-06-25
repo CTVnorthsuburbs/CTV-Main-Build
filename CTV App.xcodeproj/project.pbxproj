@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -71,7 +71,6 @@
 		8DE12DFF1DA7F9E200749072 /* MainVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */; };
 		8DEA3F751D54D79F00F1DA69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */; };
 		8DEB20F11E1E8D31004A2038 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB20F01E1E8D31004A2038 /* LoadingOverlay.swift */; };
-		D2BE243C20DACF0000B63FC3 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE243B20DACF0000B63FC3 /* Artwork.swift */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -141,7 +140,6 @@
 		8DE12DFE1DA7F9E200749072 /* MainVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVideoCell.swift; sourceTree = "<group>"; };
 		8DEA3F741D54D79F00F1DA69 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8DEB20F01E1E8D31004A2038 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
-		D2BE243B20DACF0000B63FC3 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		D9EF8FC11B53FD2100EFC4B6 /* CTV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CTV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +156,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D128BD91E27D67D00491916 /* Fonts */ = {
+		8D0EF31E1E004FF100AD8B34 /* Static Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D0EF31F1E0050A000AD8B34 /* AboutViewController.swift */,
+				8D9E198A1E01A5E300E37CE8 /* WebViewController.swift */,
+			);
+			name = "Static Views";
+			sourceTree = "<group>";
+		};
+		8D128BD91E27D67D00491916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8D128C081E27D70200491916 /* SF-UI-Display-Black.otf */,
@@ -185,8 +192,7 @@
 				8D128C1D1E27D71200491916 /* SF-UI-Text-Ultrathin.otf */,
 				8D128C1E1E27D71200491916 /* SF-UI-Text-UltrathinItalic.otf */,
 			);
-			name = Fonts;
-			path = HalfTunes;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		8D16F9A31DEF19E10068E6D2 /* Utilities */ = {
@@ -304,15 +310,6 @@
 			name = "See All View";
 			sourceTree = "<group>";
 		};
-		D2BE243E20DAF3C400B63FC3 /* About Page */ = {
-			isa = PBXGroup;
-			children = (
-				8D0EF31F1E0050A000AD8B34 /* AboutViewController.swift */,
-				D2BE243B20DACF0000B63FC3 /* Artwork.swift */,
-			);
-			name = "About Page";
-			sourceTree = "<group>";
-		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				D9EF8FC31B53FD2100EFC4B6 /* CTVApp */,
-				8D128BD91E27D67D00491916 /* Fonts */,
 				D9EF8FC21B53FD2100EFC4B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -351,8 +347,8 @@
 		D9EF8FC31B53FD2100EFC4B6 /* CTVApp */ = {
 			isa = PBXGroup;
 			children = (
-				8D9E198A1E01A5E300E37CE8 /* WebViewController.swift */,
-				D2BE243E20DAF3C400B63FC3 /* About Page */,
+				8D128BD91E27D67D00491916 /* Resources */,
+				8D0EF31E1E004FF100AD8B34 /* Static Views */,
 				8D16F9A31DEF19E10068E6D2 /* Utilities */,
 				8DE12DF71DA7DC5900749072 /* Main Category View */,
 				8D66CF161D8C28C000C600F4 /* Detail Video View */,
@@ -406,19 +402,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = CTV;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Ken Toh";
 				TargetAttributes = {
 					D9EF8FC01B53FD2100EFC4B6 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4BZ7H3T7XC;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = D9EF8FBC1B53FD2100EFC4B6 /* Build configuration list for PBXProject "CTV App" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -486,7 +482,6 @@
 				8D90BBE31DD2262F007B4C76 /* CategoriesTableViewController.swift in Sources */,
 				8D5109B31D3936FC00CFFDAC /* VideoViewController.swift in Sources */,
 				8D6101561DDDF8C9007A3FC6 /* Category.swift in Sources */,
-				D2BE243C20DACF0000B63FC3 /* Artwork.swift in Sources */,
 				8DB4DA321DC2751900AD980B /* ThumbnailButtonCell.swift in Sources */,
 				8D69EFDC1DBFC42100E33439 /* MainTableViewController.swift in Sources */,
 				8D3F98D21E38FB4300CE9F7C /* Updater.swift in Sources */,
@@ -530,27 +525,19 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator11.4]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -570,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -586,27 +573,19 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator11.4]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -619,11 +598,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -637,16 +615,12 @@
 				DEVELOPMENT_TEAM = 4BZ7H3T7XC;
 				INFOPLIST_FILE = HalfTunes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctvnorthsuburbs.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -660,16 +634,12 @@
 				DEVELOPMENT_TEAM = 4BZ7H3T7XC;
 				INFOPLIST_FILE = HalfTunes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctvnorthsuburbs.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

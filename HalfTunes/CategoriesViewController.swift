@@ -8,9 +8,21 @@
 
 import UIKit
 
-class CategoriesViewController: UINavigationController
-{
+class CategoriesViewController: UINavigationController {
+    
     var category: Category?
-    override func viewDidLoad() {super.viewDidLoad()}
-    override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        
+  
+    }
+    
 }
