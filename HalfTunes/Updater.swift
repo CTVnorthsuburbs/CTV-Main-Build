@@ -271,14 +271,14 @@ class Updater {
         
         var updateResults = [Slides]()
         
-        for result in json {
+    //    for result in json {
             
             
-            updateResults.append(Slides(json: result)!)
+    //        updateResults.append(Slides(json: result)!)
             
             
             
-        }
+    //    }
         
     
         

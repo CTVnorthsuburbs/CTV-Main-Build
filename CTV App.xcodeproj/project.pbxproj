@@ -407,7 +407,7 @@
 				TargetAttributes = {
 					D9EF8FC01B53FD2100EFC4B6 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4BZ7H3T7XC;
+						DevelopmentTeam = 5M48XHURZ2;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -612,11 +612,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4BZ7H3T7XC;
+				DEVELOPMENT_TEAM = 5M48XHURZ2;
 				INFOPLIST_FILE = HalfTunes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.ctvnorthsuburbs.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "software-ctvnorthsuburbs.org";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -631,11 +631,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4BZ7H3T7XC;
+				DEVELOPMENT_TEAM = 5M48XHURZ2;
 				INFOPLIST_FILE = HalfTunes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.ctvnorthsuburbs.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "software-ctvnorthsuburbs.org";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
