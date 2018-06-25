@@ -74,124 +74,48 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
      - parameter savedSearchID: Int value equal to the stored search ID determined by the CableCast Frontdoor.
      */
     
-    func search(_ savedSearchID: Int)-> [Video] {
+    func search(_ savedSearchID: Int)-> [Video]
+    {
         //defaultSession.configuration.urlCache?.removeAllCachedResponses()
-        
         searchResults.removeAll()
-        
-        
         let session = getNSURLSession()
-        
-        
-        
         let searchUrl = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/search/advanced/savedshowsearch/?id=\(savedSearchID)")
-        
-        
-        
-        
         let results = getSearchResults(defaultSession: session, url: searchUrl!, isIDSearchURL: false)
-        
         let originalResults = results
-        
-        if(results != nil) {
+        if(results != nil)
+        {
+            if (results!.count > arrayLength)
+            {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
             
-            
-            
-        
-        
-        if (results!.count > arrayLength) {  // if array is longer than maximum, split it and process results, should be moved into separate split function so that the results are passed no matter the size and the function handles the rest.
-            
-            let splitResults = splitIdArray(results!)
-            
-            
-            
-            if (splitResults != nil) {
-                
-                
-                
-                var searchURLs = [URL]()
-                
-                var counter = 0
-                
-                
-                
-                for splitArray in splitResults! {
-                    
-                    let searchURL = convertIdArrayToSearchURL(splitArray)
-                    
-                    
-                    
-                    searchURLs.append(searchURL!)
-                    
-                    counter = counter + 1
-                    
+                let splitResults = splitIdArray(results!)
+                if (splitResults != nil)
+                {
+                    var searchURLs = [URL]()
+                    var counter = 0
+                    for splitArray in splitResults!
+                    {
+                        let searchURL = convertIdArrayToSearchURL(splitArray)
+                        searchURLs.append(searchURL!)
+                        counter = counter + 1
+                    }
                 }
-                
-                for url in searchURLs {
-                    
-                    
-                    getSearchResults(defaultSession: session, url: url, isIDSearchURL: true)
-                    
-                }
-                
-            } }
-            
-            
-        else {        //if array is smaller than maximum, just process it
-            
-            let searchIdURL =  convertIdArrayToSearchURL(results!)
-            
-            
-            getSearchResults(defaultSession: session, url: searchIdURL!, isIDSearchURL: true)
-            
+            }
         }
-        
-        }
-        
-        
-        
-        
         var sortedSearchResults = [Video]()
-        
-        
-        
-        
-        
         //FIX TO maintain the result order by comparing to original id order. !!!!Very inefficient FIX!!
         
-        for id in originalResults! {
-            
-            
-            for result in searchResults {
-                
-                
-                
-                if(result.id == id) {
-                    
-                    
-                    
+        for id in originalResults!
+        {
+            for result in searchResults
+            {
+               if(result.id == id)
+               {
                     sortedSearchResults.append(result)
-                    
                 }
-                
-                
-                
             }
-            
-            
-            
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
         return sortedSearchResults
-    }
+    }//func Search
     
     
     
@@ -417,7 +341,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         })
         
         dataTask?.resume()
-        semaphore.wait(timeout: .distantFuture)
+     //   semaphore.wait(timeout: .distantFuture)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -471,11 +395,8 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
         
-        let session = getNSURLSession()
         
-        let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?ids=\(savedSearchID)&include=vod,thumbnail")
-        
-        getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
+    //    getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
         
         
         return searchResults
@@ -504,14 +425,12 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         url += "include=vod,thumbnail"
         
-        
-        
-        let session = getNSURLSession()
+    
         
         print(url)
-        let searchURL = URL(fileURLWithPath: url)
+       // let searchURL = URL(fileURLWithPath: url)
         
-        getSearchResults(defaultSession: session, url: searchURL, isIDSearchURL: true)
+   //     getSearchResults(defaultSession: session, url: searchURL, isIDSearchURL: true)
         
         
         return searchResults
@@ -523,7 +442,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
         
-        search(savedSearchID)
+   //     search(savedSearchID)
         
         
         
@@ -570,11 +489,11 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         searchResults.removeAll()
         
-        let session = getNSURLSession()
+      //  let session = getNSURLSession()
         
-        let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
+    //    let searchURL = URL(string: "http://trms.ctv15.org/Cablecastapi/v1/shows/?search=\(searchString)&include=vod,thumbnail")
         
-        getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
+    //    getSearchResults(defaultSession: session, url: searchURL!, isIDSearchURL: true)
         
         return searchResults
     }
@@ -721,7 +640,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getRecent() -> [Video] {
         
-        search(52966)
+    //    search(52966)
         
         return searchResults
         
@@ -730,7 +649,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getRecentLimited() -> [Video] {
         
-        search(85123)
+    //    search(85123)
         
         
         var count = 10
@@ -761,7 +680,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getHockeyLimited() -> [Video] {
         
-        search(65797)
+    //    search(65797)
         
         
         
@@ -774,7 +693,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getBasketball() -> [Video] {
         
-        search(66589)
+   //     search(66589)
         
         
         
@@ -788,7 +707,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getNSB() -> [Video] {
         
-        search(66603)
+  //      search(66603)
         
         
         
@@ -802,7 +721,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func getSport(_ sport: String)->[Video]{
         
-        search(sport)
+  //      search(sport)
         
         return searchResults
         
@@ -850,7 +769,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     
                     if (isIDSearchURL == true) {
                         
-                         self.updateSearchResults(data)
+                 //        self.updateSearchResults(data)
                         
                         
                     } else {
@@ -869,7 +788,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     print("!!!Results from video search not found")
                     
                     
-                    self.getSearchResults(defaultSession: defaultSession, url: url, isIDSearchURL: isIDSearchURL)
+               //     self.getSearchResults(defaultSession: defaultSession, url: url, isIDSearchURL: isIDSearchURL)
                 }
                 
             }
@@ -878,7 +797,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         dataTask.resume()
         
-        semaphore.wait(timeout: .distantFuture)
+   //     semaphore.wait(timeout: .distantFuture)
         
         
         
@@ -996,7 +915,7 @@ class VideoSearch : UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         dataTask?.resume()
         
-        semaphore.wait(timeout: .distantFuture)
+   //     semaphore.wait(timeout: .distantFuture)
         
         
         

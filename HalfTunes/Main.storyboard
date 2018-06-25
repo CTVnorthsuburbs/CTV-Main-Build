@@ -285,7 +285,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="obw-ho-oen"/>
             </objects>
-            <point key="canvasLocation" x="428" y="1157"/>
+            <point key="canvasLocation" x="427.5" y="1157"/>
         </scene>
         <!--Home-->
         <scene sceneID="gwO-WK-hl6">
@@ -308,10 +308,10 @@
             </objects>
             <point key="canvasLocation" x="-4190" y="-2087"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="7je-2f-DnQ">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" id="Vlo-aP-QO0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" title="Initial View Controller" id="Vlo-aP-QO0" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="rOF-rp-xmt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1502,7 +1502,7 @@
             <objects>
                 <tableViewController id="fDR-0I-hgL" customClass="SuggestedVideosTableViewController" customModule="CTV_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="cIA-Db-LSB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.26274509800000001" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1930,7 +1930,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yMg-rn-3an"/>
-        <segue reference="TiQ-iG-Egd"/>
+        <segue reference="2XC-rQ-lli"/>
         <segue reference="F7V-dN-6wc"/>
         <segue reference="KGT-Aj-VTq"/>
         <segue reference="YYH-WW-hEt"/>

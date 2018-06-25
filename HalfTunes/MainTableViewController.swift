@@ -322,7 +322,7 @@ class MainTableViewController: UITableViewController {
                         
                         
                         
-                        search.getThumbnail(id: (vid.first?.fileName)!)
+                    //    search.getThumbnail(id: (vid.first?.fileName)!)
                         
                         categoriesVideos.append(vid.first!)
                         
